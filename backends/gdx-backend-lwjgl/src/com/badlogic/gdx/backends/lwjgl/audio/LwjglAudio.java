@@ -21,6 +21,8 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 
 public interface LwjglAudio extends Audio {
 
-	/** Updates audio state (usually called every frame by the {@link LwjglApplication}) */
-	void update ();
+    /**
+     * Updates audio state (usually called every frame by the {@link LwjglApplication})
+     */
+    void update();
 }

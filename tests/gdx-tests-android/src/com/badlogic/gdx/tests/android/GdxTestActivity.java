@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,20 +25,20 @@ import com.badlogic.gdx.tests.utils.GdxTests;
 
 public class GdxTestActivity extends AndroidApplication {
 
-	public void onCreate (Bundle bundle) {
-		super.onCreate(bundle);
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
 
-		// obtain the test info
-		Bundle extras = getIntent().getExtras();
-		String testName = (String)extras.get("test");
-		GdxTest test = GdxTests.newTest(testName);
+        // obtain the test info
+        Bundle extras = getIntent().getExtras();
+        String testName = (String) extras.get("test");
+        GdxTest test = GdxTests.newTest(testName);
 
-		// and run the application...
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		config.useImmersiveMode = true;
-		config.useRotationVectorSensor = true;
-		config.useGyroscope = true;
-		config.renderUnderCutout = true;
-		initialize(test, config);
-	}
+        // and run the application...
+        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+        config.useImmersiveMode = true;
+        config.useRotationVectorSensor = true;
+        config.useGyroscope = true;
+        config.renderUnderCutout = true;
+        initialize(test, config);
+    }
 }

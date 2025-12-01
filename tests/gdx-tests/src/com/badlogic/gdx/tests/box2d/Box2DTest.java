@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,12 +15,12 @@
  ******************************************************************************/
 /*
  * Copyright 2010 Mario Zechner (contact@badlogicgames.com), Nathan Sweet (admin@esotericsoftware.com)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
  * License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
@@ -48,208 +48,220 @@ import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.TimeUtils;
 
-/** Base class for all Box2D Testbed tests, all subclasses must implement the createWorld() method.
- * 
- * @author badlogicgames@gmail.com */
+/**
+ * Base class for all Box2D Testbed tests, all subclasses must implement the createWorld() method.
+ *
+ * @author badlogicgames@gmail.com
+ */
 public abstract class Box2DTest implements ApplicationListener, InputProcessor {
-	/** the camera **/
-	protected OrthographicCamera camera;
+    /**
+     * the camera
+     **/
+    protected OrthographicCamera camera;
 
-	/** the renderer **/
-	protected Box2DDebugRenderer renderer;
+    /**
+     * the renderer
+     **/
+    protected Box2DDebugRenderer renderer;
+    /**
+     * our box2D world
+     **/
+    protected World world;
+    /**
+     * ground body to connect the mouse joint to
+     **/
+    protected Body groundBody;
+    /**
+     * our mouse joint
+     **/
+    protected MouseJoint mouseJoint = null;
+    /**
+     * a hit body
+     **/
+    protected Body hitBody = null;
+    /**
+     * temp vector
+     **/
+    protected Vector2 tmp = new Vector2();
+    SpriteBatch batch;
+    BitmapFont font;
+    /**
+     * we instantiate this vector and the callback here so we don't irritate the GC
+     **/
+    Vector3 testPoint = new Vector3();
+    QueryCallback callback = new QueryCallback() {
+        @Override
+        public boolean reportFixture(Fixture fixture) {
+            // if the hit point is inside the fixture of the body
+            // we report it
+            if (fixture.testPoint(testPoint.x, testPoint.y)) {
+                hitBody = fixture.getBody();
+                return false;
+            } else
+                return true;
+        }
+    };
+    /**
+     * another temporary vector
+     **/
+    Vector2 target = new Vector2();
 
-	SpriteBatch batch;
-	BitmapFont font;
+    protected abstract void createWorld(World world);
 
-	/** our box2D world **/
-	protected World world;
+    @Override
+    public void render() {
+        // update the world with a fixed time step
+        long startTime = TimeUtils.nanoTime();
+        world.step(Gdx.app.getGraphics().getDeltaTime(), 3, 3);
+        float updateTime = (TimeUtils.nanoTime() - startTime) / 1000000000.0f;
 
-	/** ground body to connect the mouse joint to **/
-	protected Body groundBody;
+        startTime = TimeUtils.nanoTime();
+        // clear the screen and setup the projection matrix
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        camera.update();
 
-	/** our mouse joint **/
-	protected MouseJoint mouseJoint = null;
+        // render the world using the debug renderer
+        renderer.render(world, camera.combined);
+        float renderTime = (TimeUtils.nanoTime() - startTime) / 1000000000.0f;
 
-	/** a hit body **/
-	protected Body hitBody = null;
+        batch.begin();
+        font.draw(batch, "fps:" + Gdx.graphics.getFramesPerSecond() + ", update: " + updateTime + ", render: " + renderTime, 0, 20);
+        batch.end();
+    }
 
-	protected abstract void createWorld (World world);
+    @Override
+    public void create() {
+        // setup the camera. In Box2D we operate on a
+        // meter scale, pixels won't do it. So we use
+        // an orthographic camera with a viewport of
+        // 48 meters in width and 32 meters in height.
+        // We also position the camera so that it
+        // looks at (0,16) (that's where the middle of the
+        // screen will be located).
+        camera = new OrthographicCamera(48, 32);
+        camera.position.set(0, 15, 0);
 
-	/** temp vector **/
-	protected Vector2 tmp = new Vector2();
+        // create the debug renderer
+        renderer = new Box2DDebugRenderer();
 
-	@Override
-	public void render () {
-		// update the world with a fixed time step
-		long startTime = TimeUtils.nanoTime();
-		world.step(Gdx.app.getGraphics().getDeltaTime(), 3, 3);
-		float updateTime = (TimeUtils.nanoTime() - startTime) / 1000000000.0f;
+        // create the world
+        world = new World(new Vector2(0, -10), true);
 
-		startTime = TimeUtils.nanoTime();
-		// clear the screen and setup the projection matrix
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		camera.update();
+        // we also need an invisible zero size ground body
+        // to which we can connect the mouse joint
+        BodyDef bodyDef = new BodyDef();
+        groundBody = world.createBody(bodyDef);
 
-		// render the world using the debug renderer
-		renderer.render(world, camera.combined);
-		float renderTime = (TimeUtils.nanoTime() - startTime) / 1000000000.0f;
+        // call abstract method to populate the world
+        createWorld(world);
 
-		batch.begin();
-		font.draw(batch, "fps:" + Gdx.graphics.getFramesPerSecond() + ", update: " + updateTime + ", render: " + renderTime, 0, 20);
-		batch.end();
-	}
+        batch = new SpriteBatch();
+        font = new BitmapFont(Gdx.files.internal("data/lsans-15.fnt"), false);
+    }
 
-	@Override
-	public void create () {
-		// setup the camera. In Box2D we operate on a
-		// meter scale, pixels won't do it. So we use
-		// an orthographic camera with a viewport of
-		// 48 meters in width and 32 meters in height.
-		// We also position the camera so that it
-		// looks at (0,16) (that's where the middle of the
-		// screen will be located).
-		camera = new OrthographicCamera(48, 32);
-		camera.position.set(0, 15, 0);
+    @Override
+    public void dispose() {
+        renderer.dispose();
+        world.dispose();
 
-		// create the debug renderer
-		renderer = new Box2DDebugRenderer();
+        renderer = null;
+        world = null;
+        mouseJoint = null;
+        hitBody = null;
+    }
 
-		// create the world
-		world = new World(new Vector2(0, -10), true);
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
 
-		// we also need an invisible zero size ground body
-		// to which we can connect the mouse joint
-		BodyDef bodyDef = new BodyDef();
-		groundBody = world.createBody(bodyDef);
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
 
-		// call abstract method to populate the world
-		createWorld(world);
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
 
-		batch = new SpriteBatch();
-		font = new BitmapFont(Gdx.files.internal("data/lsans-15.fnt"), false);
-	}
+    @Override
+    public boolean touchDown(int x, int y, int pointer, int button) {
+        // translate the mouse coordinates to world coordinates
+        camera.unproject(testPoint.set(x, y, 0));
+        // ask the world which bodies are within the given
+        // bounding box around the mouse pointer
+        hitBody = null;
+        world.QueryAABB(callback, testPoint.x - 0.0001f, testPoint.y - 0.0001f, testPoint.x + 0.0001f, testPoint.y + 0.0001f);
 
-	@Override
-	public void dispose () {
-		renderer.dispose();
-		world.dispose();
+        if (hitBody == groundBody) hitBody = null;
 
-		renderer = null;
-		world = null;
-		mouseJoint = null;
-		hitBody = null;
-	}
+        // ignore kinematic bodies, they don't work with the mouse joint
+        if (hitBody != null && hitBody.getType() == BodyType.KinematicBody) return false;
 
-	@Override
-	public boolean keyDown (int keycode) {
-		return false;
-	}
+        // if we hit something we create a new mouse joint
+        // and attach it to the hit body.
+        if (hitBody != null) {
+            MouseJointDef def = new MouseJointDef();
+            def.bodyA = groundBody;
+            def.bodyB = hitBody;
+            def.collideConnected = true;
+            def.target.set(testPoint.x, testPoint.y);
+            def.maxForce = 1000.0f * hitBody.getMass();
 
-	@Override
-	public boolean keyTyped (char character) {
-		return false;
-	}
+            mouseJoint = (MouseJoint) world.createJoint(def);
+            hitBody.setAwake(true);
+        }
 
-	@Override
-	public boolean keyUp (int keycode) {
-		return false;
-	}
+        return false;
+    }
 
-	/** we instantiate this vector and the callback here so we don't irritate the GC **/
-	Vector3 testPoint = new Vector3();
-	QueryCallback callback = new QueryCallback() {
-		@Override
-		public boolean reportFixture (Fixture fixture) {
-			// if the hit point is inside the fixture of the body
-			// we report it
-			if (fixture.testPoint(testPoint.x, testPoint.y)) {
-				hitBody = fixture.getBody();
-				return false;
-			} else
-				return true;
-		}
-	};
+    @Override
+    public boolean touchDragged(int x, int y, int pointer) {
+        // if a mouse joint exists we simply update
+        // the target of the joint based on the new
+        // mouse coordinates
+        if (mouseJoint != null) {
+            camera.unproject(testPoint.set(x, y, 0));
+            mouseJoint.setTarget(target.set(testPoint.x, testPoint.y));
+        }
+        return false;
+    }
 
-	@Override
-	public boolean touchDown (int x, int y, int pointer, int button) {
-		// translate the mouse coordinates to world coordinates
-		camera.unproject(testPoint.set(x, y, 0));
-		// ask the world which bodies are within the given
-		// bounding box around the mouse pointer
-		hitBody = null;
-		world.QueryAABB(callback, testPoint.x - 0.0001f, testPoint.y - 0.0001f, testPoint.x + 0.0001f, testPoint.y + 0.0001f);
+    @Override
+    public boolean touchUp(int x, int y, int pointer, int button) {
+        // if a mouse joint exists we simply destroy it
+        if (mouseJoint != null) {
+            world.destroyJoint(mouseJoint);
+            mouseJoint = null;
+        }
+        return false;
+    }
 
-		if (hitBody == groundBody) hitBody = null;
+    @Override
+    public boolean touchCancelled(int x, int y, int pointer, int button) {
+        return touchUp(x, y, pointer, button);
+    }
 
-		// ignore kinematic bodies, they don't work with the mouse joint
-		if (hitBody != null && hitBody.getType() == BodyType.KinematicBody) return false;
+    @Override
+    public boolean mouseMoved(int x, int y) {
+        return false;
+    }
 
-		// if we hit something we create a new mouse joint
-		// and attach it to the hit body.
-		if (hitBody != null) {
-			MouseJointDef def = new MouseJointDef();
-			def.bodyA = groundBody;
-			def.bodyB = hitBody;
-			def.collideConnected = true;
-			def.target.set(testPoint.x, testPoint.y);
-			def.maxForce = 1000.0f * hitBody.getMass();
+    @Override
+    public boolean scrolled(float amountX, float amountY) {
+        return false;
+    }
 
-			mouseJoint = (MouseJoint)world.createJoint(def);
-			hitBody.setAwake(true);
-		}
+    public void pause() {
 
-		return false;
-	}
+    }
 
-	/** another temporary vector **/
-	Vector2 target = new Vector2();
+    public void resume() {
 
-	@Override
-	public boolean touchDragged (int x, int y, int pointer) {
-		// if a mouse joint exists we simply update
-		// the target of the joint based on the new
-		// mouse coordinates
-		if (mouseJoint != null) {
-			camera.unproject(testPoint.set(x, y, 0));
-			mouseJoint.setTarget(target.set(testPoint.x, testPoint.y));
-		}
-		return false;
-	}
+    }
 
-	@Override
-	public boolean touchUp (int x, int y, int pointer, int button) {
-		// if a mouse joint exists we simply destroy it
-		if (mouseJoint != null) {
-			world.destroyJoint(mouseJoint);
-			mouseJoint = null;
-		}
-		return false;
-	}
+    public void resize(int width, int height) {
 
-	@Override
-	public boolean touchCancelled (int x, int y, int pointer, int button) {
-		return touchUp(x, y, pointer, button);
-	}
-
-	@Override
-	public boolean mouseMoved (int x, int y) {
-		return false;
-	}
-
-	@Override
-	public boolean scrolled (float amountX, float amountY) {
-		return false;
-	}
-
-	public void pause () {
-
-	}
-
-	public void resume () {
-
-	}
-
-	public void resize (int width, int height) {
-
-	}
+    }
 }

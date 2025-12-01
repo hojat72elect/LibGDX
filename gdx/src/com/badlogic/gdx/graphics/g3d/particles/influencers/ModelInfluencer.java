@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,129 +27,135 @@ import com.badlogic.gdx.graphics.g3d.particles.ResourceData.SaveData;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
-/** It's an {@link Influencer} which controls which {@link Model} will be assigned to the particles as {@link ModelInstance}.
- * @author Inferno */
+/**
+ * It's an {@link Influencer} which controls which {@link Model} will be assigned to the particles as {@link ModelInstance}.
+ *
+ * @author Inferno
+ */
 public abstract class ModelInfluencer extends Influencer {
 
-	/** Assigns the first model of {@link ModelInfluencer#models} to the particles. */
-	public static class Single extends ModelInfluencer {
+    public Array<Model> models;
+    ObjectChannel<ModelInstance> modelChannel;
 
-		public Single () {
-			super();
-		}
+    public ModelInfluencer() {
+        this.models = new Array<>(true, 1, Model[]::new);
+    }
+    public ModelInfluencer(Model... models) {
+        this.models = new Array<Model>(models);
+    }
 
-		public Single (Single influencer) {
-			super(influencer);
-		}
+    public ModelInfluencer(ModelInfluencer influencer) {
+        this(influencer.models.toArray(Model[]::new));
+    }
 
-		public Single (Model... models) {
-			super(models);
-		}
+    @Override
+    public void allocateChannels() {
+        modelChannel = controller.particles.addChannel(ParticleChannels.ModelInstance);
+    }
 
-		@Override
-		public void init () {
-			Model first = models.first();
-			for (int i = 0, c = controller.emitter.maxParticleCount; i < c; ++i) {
-				modelChannel.data[i] = new ModelInstance(first);
-			}
-		}
+    @Override
+    public void save(AssetManager manager, ResourceData resources) {
+        SaveData data = resources.createSaveData();
+        for (Model model : models)
+            data.saveAsset(manager.getAssetFileName(model), Model.class);
+    }
 
-		@Override
-		public Single copy () {
-			return new Single(this);
-		}
-	}
+    @Override
+    public void load(AssetManager manager, ResourceData resources) {
+        SaveData data = resources.getSaveData();
+        AssetDescriptor descriptor;
+        while ((descriptor = data.loadAsset()) != null) {
+            Model model = (Model) manager.get(descriptor);
+            if (model == null) throw new RuntimeException("Model is null");
+            models.add(model);
+        }
+    }
 
-	/** Assigns a random model of {@link ModelInfluencer#models} to the particles. */
-	public static class Random extends ModelInfluencer {
-		private class ModelInstancePool extends Pool<ModelInstance> {
-			public ModelInstancePool () {
-			}
+    /**
+     * Assigns the first model of {@link ModelInfluencer#models} to the particles.
+     */
+    public static class Single extends ModelInfluencer {
 
-			@Override
-			public ModelInstance newObject () {
-				return new ModelInstance(models.random());
-			}
-		}
+        public Single() {
+            super();
+        }
 
-		ModelInstancePool pool;
+        public Single(Single influencer) {
+            super(influencer);
+        }
 
-		public Random () {
-			super();
-			pool = new ModelInstancePool();
-		}
+        public Single(Model... models) {
+            super(models);
+        }
 
-		public Random (Random influencer) {
-			super(influencer);
-			pool = new ModelInstancePool();
-		}
+        @Override
+        public void init() {
+            Model first = models.first();
+            for (int i = 0, c = controller.emitter.maxParticleCount; i < c; ++i) {
+                modelChannel.data[i] = new ModelInstance(first);
+            }
+        }
 
-		public Random (Model... models) {
-			super(models);
-			pool = new ModelInstancePool();
-		}
+        @Override
+        public Single copy() {
+            return new Single(this);
+        }
+    }
 
-		@Override
-		public void init () {
-			pool.clear();
-		}
+    /**
+     * Assigns a random model of {@link ModelInfluencer#models} to the particles.
+     */
+    public static class Random extends ModelInfluencer {
+        ModelInstancePool pool;
 
-		@Override
-		public void activateParticles (int startIndex, int count) {
-			for (int i = startIndex, c = startIndex + count; i < c; ++i) {
-				modelChannel.data[i] = pool.obtain();
-			}
-		}
+        public Random() {
+            super();
+            pool = new ModelInstancePool();
+        }
 
-		@Override
-		public void killParticles (int startIndex, int count) {
-			for (int i = startIndex, c = startIndex + count; i < c; ++i) {
-				pool.free(modelChannel.data[i]);
-				modelChannel.data[i] = null;
-			}
-		}
+        public Random(Random influencer) {
+            super(influencer);
+            pool = new ModelInstancePool();
+        }
 
-		@Override
-		public Random copy () {
-			return new Random(this);
-		}
-	}
+        public Random(Model... models) {
+            super(models);
+            pool = new ModelInstancePool();
+        }
 
-	public Array<Model> models;
-	ObjectChannel<ModelInstance> modelChannel;
+        @Override
+        public void init() {
+            pool.clear();
+        }
 
-	public ModelInfluencer () {
-		this.models = new Array<>(true, 1, Model[]::new);
-	}
+        @Override
+        public void activateParticles(int startIndex, int count) {
+            for (int i = startIndex, c = startIndex + count; i < c; ++i) {
+                modelChannel.data[i] = pool.obtain();
+            }
+        }
 
-	public ModelInfluencer (Model... models) {
-		this.models = new Array<Model>(models);
-	}
+        @Override
+        public void killParticles(int startIndex, int count) {
+            for (int i = startIndex, c = startIndex + count; i < c; ++i) {
+                pool.free(modelChannel.data[i]);
+                modelChannel.data[i] = null;
+            }
+        }
 
-	public ModelInfluencer (ModelInfluencer influencer) {
-		this(influencer.models.toArray(Model[]::new));
-	}
+        @Override
+        public Random copy() {
+            return new Random(this);
+        }
 
-	@Override
-	public void allocateChannels () {
-		modelChannel = controller.particles.addChannel(ParticleChannels.ModelInstance);
-	}
+        private class ModelInstancePool extends Pool<ModelInstance> {
+            public ModelInstancePool() {
+            }
 
-	@Override
-	public void save (AssetManager manager, ResourceData resources) {
-		SaveData data = resources.createSaveData();
-		for (Model model : models)
-			data.saveAsset(manager.getAssetFileName(model), Model.class);
-	}
-
-	@Override
-	public void load (AssetManager manager, ResourceData resources) {
-		SaveData data = resources.getSaveData();
-		AssetDescriptor descriptor;
-		while ((descriptor = data.loadAsset()) != null) {
-			Model model = (Model)manager.get(descriptor);
-			if (model == null) throw new RuntimeException("Model is null");
-			models.add(model);
-		}
-	}
+            @Override
+            public ModelInstance newObject() {
+                return new ModelInstance(models.random());
+            }
+        }
+    }
 }

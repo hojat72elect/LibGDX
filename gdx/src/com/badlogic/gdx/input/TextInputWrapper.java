@@ -1,17 +1,16 @@
-
 package com.badlogic.gdx.input;
 
 public interface TextInputWrapper {
 
-	String getText ();
+    String getText();
 
-	int getSelectionStart ();
+    void setText(String text);
 
-	int getSelectionEnd ();
+    int getSelectionStart();
 
-	void setText (String text);
+    int getSelectionEnd();
 
-	void setPosition (int position);
+    void setPosition(int position);
 
-	boolean shouldClose ();
+    boolean shouldClose();
 }

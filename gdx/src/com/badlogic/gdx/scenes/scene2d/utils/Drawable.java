@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,55 +18,60 @@ package com.badlogic.gdx.scenes.scene2d.utils;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 
-/** A drawable knows how to draw itself at a given rectangular size. It provides padding sizes and a minimum size so that other
+/**
+ * A drawable knows how to draw itself at a given rectangular size. It provides padding sizes and a minimum size so that other
  * code can determine how to size and position content.
- * @author Nathan Sweet */
+ *
+ * @author Nathan Sweet
+ */
 public interface Drawable {
-	/** Draws this drawable at the specified bounds. The drawable should be tinted with {@link Batch#getColor()}, possibly by
-	 * mixing its own color. */
-	public void draw (Batch batch, float x, float y, float width, float height);
+    /**
+     * Draws this drawable at the specified bounds. The drawable should be tinted with {@link Batch#getColor()}, possibly by
+     * mixing its own color.
+     */
+    void draw(Batch batch, float x, float y, float width, float height);
 
-	public float getLeftWidth ();
+    float getLeftWidth();
 
-	public void setLeftWidth (float leftWidth);
+    void setLeftWidth(float leftWidth);
 
-	public float getRightWidth ();
+    float getRightWidth();
 
-	public void setRightWidth (float rightWidth);
+    void setRightWidth(float rightWidth);
 
-	public float getTopHeight ();
+    float getTopHeight();
 
-	public void setTopHeight (float topHeight);
+    void setTopHeight(float topHeight);
 
-	public float getBottomHeight ();
+    float getBottomHeight();
 
-	public void setBottomHeight (float bottomHeight);
+    void setBottomHeight(float bottomHeight);
 
-	default public void setPadding (float topHeight, float leftWidth, float bottomHeight, float rightWidth) {
-		setTopHeight(topHeight);
-		setLeftWidth(leftWidth);
-		setBottomHeight(bottomHeight);
-		setRightWidth(rightWidth);
-	}
+    default void setPadding(float topHeight, float leftWidth, float bottomHeight, float rightWidth) {
+        setTopHeight(topHeight);
+        setLeftWidth(leftWidth);
+        setBottomHeight(bottomHeight);
+        setRightWidth(rightWidth);
+    }
 
-	default public void setPadding (float padding) {
-		setPadding(padding, padding, padding, padding);
-	}
+    default void setPadding(float padding) {
+        setPadding(padding, padding, padding, padding);
+    }
 
-	default public void setPadding (Drawable from) {
-		setPadding(from.getTopHeight(), from.getLeftWidth(), from.getBottomHeight(), from.getRightWidth());
-	}
+    default void setPadding(Drawable from) {
+        setPadding(from.getTopHeight(), from.getLeftWidth(), from.getBottomHeight(), from.getRightWidth());
+    }
 
-	public float getMinWidth ();
+    float getMinWidth();
 
-	public void setMinWidth (float minWidth);
+    void setMinWidth(float minWidth);
 
-	public float getMinHeight ();
+    float getMinHeight();
 
-	public void setMinHeight (float minHeight);
+    void setMinHeight(float minHeight);
 
-	default public void setMinSize (float minWidth, float minHeight) {
-		setMinWidth(minWidth);
-		setMinHeight(minHeight);
-	}
+    default void setMinSize(float minWidth, float minHeight) {
+        setMinWidth(minWidth);
+        setMinHeight(minHeight);
+    }
 }

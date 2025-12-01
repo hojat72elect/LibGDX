@@ -1,10 +1,4 @@
-
 package com.badlogic.gdx.tests.gles3;
-
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,133 +10,137 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.tests.utils.GdxTestConfig;
 import com.badlogic.gdx.utils.BufferUtils;
 
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 @GdxTestConfig(requireGL30 = true)
 public class PixelBufferObjectTest extends GdxTest {
 
-	static class PBOUpload {
-		private Texture texture;
-		protected Lock lock;
-		protected Pixmap pixmap;
-		protected int pixmapSizeBytes;
-		protected boolean pixmapReady;
-		protected boolean textureReady;
-		protected boolean pboTransferComplete;
-		protected Buffer mappedBuffer;
-		protected int pboHandle;
-		private final boolean useSubImage;
+    private SpriteBatch batch;
+    private PBOUpload demo1, demo2;
 
-		public PBOUpload (boolean useSubImage) {
-			super();
-			this.useSubImage = useSubImage;
-		}
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
 
-		public void start () {
-			lock = new ReentrantLock();
-			lock.lock();
+        demo1 = new PBOUpload(false);
+        demo1.start();
+        demo2 = new PBOUpload(true);
+        demo2.start();
+    }
 
-			new Thread(new Runnable() {
-				@Override
-				public void run () {
-					// load the pixmap in order to get header information
-					pixmap = new Pixmap(Gdx.files.internal("data/badlogic.jpg"));
-					pixmapSizeBytes = pixmap.getWidth() * pixmap.getHeight() * 3;
-					pixmapReady = true;
+    @Override
+    public void render() {
+        demo1.update();
+        demo2.update();
 
-					// wait for PBO initialization (need to be done in GLThread)
-					lock.lock();
+        batch.begin();
+        if (demo1.isTextureReady()) {
+            batch.draw(demo1.getTexture(), 0, 0, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        }
+        if (demo2.isTextureReady()) {
+            batch.draw(demo2.getTexture(), Gdx.graphics.getWidth() / 2, 0, Gdx.graphics.getWidth() / 2,
+                    Gdx.graphics.getHeight() / 2);
+        }
+        batch.end();
+    }
 
-					// Transfer data from pixmap to PBO
-					ByteBuffer data = pixmap.getPixels();
-					data.rewind();
-					BufferUtils.copy(data, mappedBuffer, pixmapSizeBytes);
-					pboTransferComplete = true;
-				}
-			}).start();
-		}
+    static class PBOUpload {
+        private final boolean useSubImage;
+        protected Lock lock;
+        protected Pixmap pixmap;
+        protected int pixmapSizeBytes;
+        protected boolean pixmapReady;
+        protected boolean textureReady;
+        protected boolean pboTransferComplete;
+        protected Buffer mappedBuffer;
+        protected int pboHandle;
+        private Texture texture;
 
-		public void update () {
-			// first step: once we get pixmap size, we can create both texture and PBO
-			if (pixmapReady && texture == null) {
-				texture = new Texture(pixmap.getWidth(), pixmap.getHeight(), pixmap.getFormat());
+        public PBOUpload(boolean useSubImage) {
+            super();
+            this.useSubImage = useSubImage;
+        }
 
-				pboHandle = Gdx.gl.glGenBuffer();
-				Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, pboHandle);
-				Gdx.gl.glBufferData(GL30.GL_PIXEL_UNPACK_BUFFER, pixmapSizeBytes, null, GL30.GL_STREAM_DRAW);
+        public void start() {
+            lock = new ReentrantLock();
+            lock.lock();
 
-				mappedBuffer = Gdx.gl30.glMapBufferRange(GL30.GL_PIXEL_UNPACK_BUFFER, 0, pixmapSizeBytes,
-					GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT);
-				Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, 0);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // load the pixmap in order to get header information
+                    pixmap = new Pixmap(Gdx.files.internal("data/badlogic.jpg"));
+                    pixmapSizeBytes = pixmap.getWidth() * pixmap.getHeight() * 3;
+                    pixmapReady = true;
 
-				lock.unlock();
-			}
-			// second step: once async transfer is complete, we can transfer to the texture and cleanup
-			if (!textureReady && pboTransferComplete) {
+                    // wait for PBO initialization (need to be done in GLThread)
+                    lock.lock();
 
-				// transfer data to texture (GL Thread)
-				Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, pboHandle);
-				Gdx.gl30.glUnmapBuffer(GL30.GL_PIXEL_UNPACK_BUFFER);
+                    // Transfer data from pixmap to PBO
+                    ByteBuffer data = pixmap.getPixels();
+                    data.rewind();
+                    BufferUtils.copy(data, mappedBuffer, pixmapSizeBytes);
+                    pboTransferComplete = true;
+                }
+            }).start();
+        }
 
-				Gdx.gl.glBindTexture(GL20.GL_TEXTURE_2D, texture.getTextureObjectHandle());
+        public void update() {
+            // first step: once we get pixmap size, we can create both texture and PBO
+            if (pixmapReady && texture == null) {
+                texture = new Texture(pixmap.getWidth(), pixmap.getHeight(), pixmap.getFormat());
 
-				// for testing purpose: use glTexSubImage2D or glTexImage2D
-				if (useSubImage) {
-					Gdx.gl30.glTexSubImage2D(GL20.GL_TEXTURE_2D, 0, 0, 0, pixmap.getWidth(), pixmap.getHeight(), pixmap.getGLFormat(),
-						pixmap.getGLType(), 0);
-				} else {
-					Gdx.gl30.glTexImage2D(GL20.GL_TEXTURE_2D, 0, pixmap.getGLInternalFormat(), pixmap.getWidth(), pixmap.getHeight(),
-						0, pixmap.getGLFormat(), pixmap.getGLType(), 0);
-				}
+                pboHandle = Gdx.gl.glGenBuffer();
+                Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, pboHandle);
+                Gdx.gl.glBufferData(GL30.GL_PIXEL_UNPACK_BUFFER, pixmapSizeBytes, null, GL30.GL_STREAM_DRAW);
 
-				Gdx.gl.glBindTexture(GL20.GL_TEXTURE_2D, 0);
+                mappedBuffer = Gdx.gl30.glMapBufferRange(GL30.GL_PIXEL_UNPACK_BUFFER, 0, pixmapSizeBytes,
+                        GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT);
+                Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, 0);
 
-				Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, 0);
+                lock.unlock();
+            }
+            // second step: once async transfer is complete, we can transfer to the texture and cleanup
+            if (!textureReady && pboTransferComplete) {
 
-				// cleanup
-				mappedBuffer = null;
-				Gdx.gl.glDeleteBuffer(pboHandle);
-				pboHandle = 0;
-				pixmap.dispose();
-				pixmap = null;
-				textureReady = true;
-			}
-		}
+                // transfer data to texture (GL Thread)
+                Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, pboHandle);
+                Gdx.gl30.glUnmapBuffer(GL30.GL_PIXEL_UNPACK_BUFFER);
 
-		public boolean isTextureReady () {
-			return textureReady;
-		}
+                Gdx.gl.glBindTexture(GL20.GL_TEXTURE_2D, texture.getTextureObjectHandle());
 
-		public Texture getTexture () {
-			return texture;
-		}
-	}
+                // for testing purpose: use glTexSubImage2D or glTexImage2D
+                if (useSubImage) {
+                    Gdx.gl30.glTexSubImage2D(GL20.GL_TEXTURE_2D, 0, 0, 0, pixmap.getWidth(), pixmap.getHeight(), pixmap.getGLFormat(),
+                            pixmap.getGLType(), 0);
+                } else {
+                    Gdx.gl30.glTexImage2D(GL20.GL_TEXTURE_2D, 0, pixmap.getGLInternalFormat(), pixmap.getWidth(), pixmap.getHeight(),
+                            0, pixmap.getGLFormat(), pixmap.getGLType(), 0);
+                }
 
-	private SpriteBatch batch;
-	private PBOUpload demo1, demo2;
+                Gdx.gl.glBindTexture(GL20.GL_TEXTURE_2D, 0);
 
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
+                Gdx.gl.glBindBuffer(GL30.GL_PIXEL_UNPACK_BUFFER, 0);
 
-		demo1 = new PBOUpload(false);
-		demo1.start();
-		demo2 = new PBOUpload(true);
-		demo2.start();
+                // cleanup
+                mappedBuffer = null;
+                Gdx.gl.glDeleteBuffer(pboHandle);
+                pboHandle = 0;
+                pixmap.dispose();
+                pixmap = null;
+                textureReady = true;
+            }
+        }
 
-	}
+        public boolean isTextureReady() {
+            return textureReady;
+        }
 
-	@Override
-	public void render () {
-		demo1.update();
-		demo2.update();
-
-		batch.begin();
-		if (demo1.isTextureReady()) {
-			batch.draw(demo1.getTexture(), 0, 0, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-		}
-		if (demo2.isTextureReady()) {
-			batch.draw(demo2.getTexture(), Gdx.graphics.getWidth() / 2, 0, Gdx.graphics.getWidth() / 2,
-				Gdx.graphics.getHeight() / 2);
-		}
-		batch.end();
-	}
+        public Texture getTexture() {
+            return texture;
+        }
+    }
 }

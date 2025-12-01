@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,22 +15,6 @@
  ******************************************************************************/
 
 package com.badlogic.gdx.net;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import com.badlogic.gdx.Net;
 import com.badlogic.gdx.Net.HttpMethods;
@@ -41,254 +25,272 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.StreamUtils;
 
-/** Implements part of the {@link Net} API using {@link HttpURLConnection}, to be easily reused between the Android and Desktop
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * Implements part of the {@link Net} API using {@link HttpURLConnection}, to be easily reused between the Android and Desktop
  * backends.
- * @author acoppes */
+ *
+ * @author acoppes
+ */
 public class NetJavaImpl {
 
-	static class HttpClientResponse implements HttpResponse {
-		private final HttpURLConnection connection;
-		private HttpStatus status;
+    final ObjectMap<HttpRequest, HttpURLConnection> connections;
+    final ObjectMap<HttpRequest, HttpResponseListener> listeners;
+    final ObjectMap<HttpRequest, Future<?>> tasks;
+    private final ThreadPoolExecutor executorService;
+    public NetJavaImpl() {
+        this(Integer.MAX_VALUE);
+    }
 
-		public HttpClientResponse (HttpURLConnection connection) throws IOException {
-			this.connection = connection;
-			try {
-				this.status = new HttpStatus(connection.getResponseCode());
-			} catch (IOException e) {
-				this.status = new HttpStatus(-1);
-			}
-		}
+    public NetJavaImpl(int maxThreads) {
+        final boolean isCachedPool = maxThreads == Integer.MAX_VALUE;
+        executorService = new ThreadPoolExecutor(isCachedPool ? 0 : maxThreads, maxThreads, 60L, TimeUnit.SECONDS,
+                isCachedPool ? new SynchronousQueue<Runnable>() : new LinkedBlockingQueue<Runnable>(), new ThreadFactory() {
+            final AtomicInteger threadID = new AtomicInteger();
 
-		@Override
-		public byte[] getResult () {
-			InputStream input = getInputStream();
+            @Override
+            public Thread newThread(Runnable r) {
+                Thread thread = new Thread(r, "NetThread" + threadID.getAndIncrement());
+                thread.setDaemon(true);
+                return thread;
+            }
+        });
+        executorService.allowCoreThreadTimeOut(!isCachedPool);
+        connections = new ObjectMap<HttpRequest, HttpURLConnection>();
+        listeners = new ObjectMap<HttpRequest, HttpResponseListener>();
+        tasks = new ObjectMap<HttpRequest, Future<?>>();
+    }
 
-			// If the response does not contain any content, input will be null.
-			if (input == null) {
-				return StreamUtils.EMPTY_BYTES;
-			}
+    public void sendHttpRequest(final HttpRequest httpRequest, final HttpResponseListener httpResponseListener) {
+        if (httpRequest.getUrl() == null) {
+            httpResponseListener.failed(new GdxRuntimeException("can't process a HTTP request without URL set"));
+            return;
+        }
 
-			try {
-				return StreamUtils.copyStreamToByteArray(input, connection.getContentLength());
-			} catch (IOException e) {
-				return StreamUtils.EMPTY_BYTES;
-			} finally {
-				StreamUtils.closeQuietly(input);
-			}
-		}
+        try {
+            final String method = httpRequest.getMethod();
+            URL url;
 
-		@Override
-		public String getResultAsString () {
-			InputStream input = getInputStream();
+            final boolean doInput = !method.equalsIgnoreCase(HttpMethods.HEAD);
+            // should be enabled to upload data.
+            final boolean doingOutPut = method.equalsIgnoreCase(HttpMethods.POST) || method.equalsIgnoreCase(HttpMethods.PUT)
+                    || method.equalsIgnoreCase(HttpMethods.PATCH);
 
-			// If the response does not contain any content, input will be null.
-			if (input == null) {
-				return "";
-			}
+            if (method.equalsIgnoreCase(HttpMethods.GET) || method.equalsIgnoreCase(HttpMethods.HEAD)) {
+                String queryString = "";
+                String value = httpRequest.getContent();
+                if (value != null && !"".equals(value)) queryString = "?" + value;
+                url = new URL(httpRequest.getUrl() + queryString);
+            } else {
+                url = new URL(httpRequest.getUrl());
+            }
 
-			try {
-				return StreamUtils.copyStreamToString(input, connection.getContentLength(), "UTF8");
-			} catch (IOException e) {
-				return "";
-			} finally {
-				StreamUtils.closeQuietly(input);
-			}
-		}
+            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(doingOutPut);
+            connection.setDoInput(doInput);
+            connection.setRequestMethod(method);
+            HttpURLConnection.setFollowRedirects(httpRequest.getFollowRedirects());
 
-		@Override
-		public InputStream getResultAsStream () {
-			return getInputStream();
-		}
+            putIntoConnectionsAndListeners(httpRequest, httpResponseListener, connection);
 
-		@Override
-		public HttpStatus getStatus () {
-			return status;
-		}
+            // Headers get set regardless of the method
+            for (Map.Entry<String, String> header : httpRequest.getHeaders().entrySet())
+                connection.addRequestProperty(header.getKey(), header.getValue());
 
-		@Override
-		public String getHeader (String name) {
-			return connection.getHeaderField(name);
-		}
+            // Set Timeouts
+            connection.setConnectTimeout(httpRequest.getTimeOut());
+            connection.setReadTimeout(httpRequest.getTimeOut());
 
-		@Override
-		public Map<String, List<String>> getHeaders () {
-			return connection.getHeaderFields();
-		}
+            tasks.put(httpRequest, executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        // Set the content for POST and PUT (GET has the information embedded in the URL)
+                        if (doingOutPut) {
+                            // we probably need to use the content as stream here instead of using it as a string.
+                            String contentAsString = httpRequest.getContent();
+                            if (contentAsString != null) {
+                                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), StandardCharsets.UTF_8);
+                                try {
+                                    writer.write(contentAsString);
+                                } finally {
+                                    StreamUtils.closeQuietly(writer);
+                                }
+                            } else {
+                                InputStream contentAsStream = httpRequest.getContentStream();
+                                if (contentAsStream != null) {
+                                    OutputStream os = connection.getOutputStream();
+                                    try {
+                                        StreamUtils.copyStream(contentAsStream, os);
+                                    } finally {
+                                        StreamUtils.closeQuietly(os);
+                                    }
+                                }
+                            }
+                        }
 
-		private InputStream getInputStream () {
-			try {
-				return connection.getInputStream();
-			} catch (IOException e) {
-				return connection.getErrorStream();
-			}
-		}
-	}
+                        connection.connect();
 
-	private final ThreadPoolExecutor executorService;
-	final ObjectMap<HttpRequest, HttpURLConnection> connections;
-	final ObjectMap<HttpRequest, HttpResponseListener> listeners;
-	final ObjectMap<HttpRequest, Future<?>> tasks;
+                        final HttpClientResponse clientResponse = new HttpClientResponse(connection);
+                        try {
+                            HttpResponseListener listener = getFromListeners(httpRequest);
 
-	public NetJavaImpl () {
-		this(Integer.MAX_VALUE);
-	}
+                            if (listener != null) {
+                                listener.handleHttpResponse(clientResponse);
+                            }
+                        } finally {
+                            removeFromConnectionsAndListeners(httpRequest);
+                            connection.disconnect();
+                        }
+                    } catch (final Exception e) {
+                        connection.disconnect();
+                        try {
+                            httpResponseListener.failed(e);
+                        } finally {
+                            removeFromConnectionsAndListeners(httpRequest);
+                        }
+                    }
+                }
+            }));
+        } catch (Exception e) {
+            try {
+                httpResponseListener.failed(e);
+            } finally {
+                removeFromConnectionsAndListeners(httpRequest);
+            }
+        }
+    }
 
-	public NetJavaImpl (int maxThreads) {
-		final boolean isCachedPool = maxThreads == Integer.MAX_VALUE;
-		executorService = new ThreadPoolExecutor(isCachedPool ? 0 : maxThreads, maxThreads, 60L, TimeUnit.SECONDS,
-			isCachedPool ? new SynchronousQueue<Runnable>() : new LinkedBlockingQueue<Runnable>(), new ThreadFactory() {
-				AtomicInteger threadID = new AtomicInteger();
+    public void cancelHttpRequest(HttpRequest httpRequest) {
+        HttpResponseListener httpResponseListener = getFromListeners(httpRequest);
 
-				@Override
-				public Thread newThread (Runnable r) {
-					Thread thread = new Thread(r, "NetThread" + threadID.getAndIncrement());
-					thread.setDaemon(true);
-					return thread;
-				}
-			});
-		executorService.allowCoreThreadTimeOut(!isCachedPool);
-		connections = new ObjectMap<HttpRequest, HttpURLConnection>();
-		listeners = new ObjectMap<HttpRequest, HttpResponseListener>();
-		tasks = new ObjectMap<HttpRequest, Future<?>>();
-	}
+        if (httpResponseListener != null) {
+            httpResponseListener.cancelled();
+            cancelTask(httpRequest);
+            removeFromConnectionsAndListeners(httpRequest);
+        }
+    }
 
-	public void sendHttpRequest (final HttpRequest httpRequest, final HttpResponseListener httpResponseListener) {
-		if (httpRequest.getUrl() == null) {
-			httpResponseListener.failed(new GdxRuntimeException("can't process a HTTP request without URL set"));
-			return;
-		}
+    public boolean isHttpRequestPending(HttpRequest httpRequest) {
+        return getFromListeners(httpRequest) != null;
+    }
 
-		try {
-			final String method = httpRequest.getMethod();
-			URL url;
+    private void cancelTask(HttpRequest httpRequest) {
+        Future<?> task = tasks.get(httpRequest);
 
-			final boolean doInput = !method.equalsIgnoreCase(HttpMethods.HEAD);
-			// should be enabled to upload data.
-			final boolean doingOutPut = method.equalsIgnoreCase(HttpMethods.POST) || method.equalsIgnoreCase(HttpMethods.PUT)
-				|| method.equalsIgnoreCase(HttpMethods.PATCH);
+        if (task != null) {
+            task.cancel(false);
+        }
+    }
 
-			if (method.equalsIgnoreCase(HttpMethods.GET) || method.equalsIgnoreCase(HttpMethods.HEAD)) {
-				String queryString = "";
-				String value = httpRequest.getContent();
-				if (value != null && !"".equals(value)) queryString = "?" + value;
-				url = new URL(httpRequest.getUrl() + queryString);
-			} else {
-				url = new URL(httpRequest.getUrl());
-			}
+    synchronized void removeFromConnectionsAndListeners(final HttpRequest httpRequest) {
+        connections.remove(httpRequest);
+        listeners.remove(httpRequest);
+        tasks.remove(httpRequest);
+    }
 
-			final HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-			connection.setDoOutput(doingOutPut);
-			connection.setDoInput(doInput);
-			connection.setRequestMethod(method);
-			HttpURLConnection.setFollowRedirects(httpRequest.getFollowRedirects());
+    synchronized void putIntoConnectionsAndListeners(final HttpRequest httpRequest,
+                                                     final HttpResponseListener httpResponseListener, final HttpURLConnection connection) {
+        connections.put(httpRequest, connection);
+        listeners.put(httpRequest, httpResponseListener);
+    }
 
-			putIntoConnectionsAndListeners(httpRequest, httpResponseListener, connection);
+    synchronized HttpResponseListener getFromListeners(HttpRequest httpRequest) {
+        HttpResponseListener httpResponseListener = listeners.get(httpRequest);
+        return httpResponseListener;
+    }
 
-			// Headers get set regardless of the method
-			for (Map.Entry<String, String> header : httpRequest.getHeaders().entrySet())
-				connection.addRequestProperty(header.getKey(), header.getValue());
+    static class HttpClientResponse implements HttpResponse {
+        private final HttpURLConnection connection;
+        private HttpStatus status;
 
-			// Set Timeouts
-			connection.setConnectTimeout(httpRequest.getTimeOut());
-			connection.setReadTimeout(httpRequest.getTimeOut());
+        public HttpClientResponse(HttpURLConnection connection) throws IOException {
+            this.connection = connection;
+            try {
+                this.status = new HttpStatus(connection.getResponseCode());
+            } catch (IOException e) {
+                this.status = new HttpStatus(-1);
+            }
+        }
 
-			tasks.put(httpRequest, executorService.submit(new Runnable() {
-				@Override
-				public void run () {
-					try {
-						// Set the content for POST and PUT (GET has the information embedded in the URL)
-						if (doingOutPut) {
-							// we probably need to use the content as stream here instead of using it as a string.
-							String contentAsString = httpRequest.getContent();
-							if (contentAsString != null) {
-								OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF8");
-								try {
-									writer.write(contentAsString);
-								} finally {
-									StreamUtils.closeQuietly(writer);
-								}
-							} else {
-								InputStream contentAsStream = httpRequest.getContentStream();
-								if (contentAsStream != null) {
-									OutputStream os = connection.getOutputStream();
-									try {
-										StreamUtils.copyStream(contentAsStream, os);
-									} finally {
-										StreamUtils.closeQuietly(os);
-									}
-								}
-							}
-						}
+        @Override
+        public byte[] getResult() {
+            InputStream input = getInputStream();
 
-						connection.connect();
+            // If the response does not contain any content, input will be null.
+            if (input == null) {
+                return StreamUtils.EMPTY_BYTES;
+            }
 
-						final HttpClientResponse clientResponse = new HttpClientResponse(connection);
-						try {
-							HttpResponseListener listener = getFromListeners(httpRequest);
+            try {
+                return StreamUtils.copyStreamToByteArray(input, connection.getContentLength());
+            } catch (IOException e) {
+                return StreamUtils.EMPTY_BYTES;
+            } finally {
+                StreamUtils.closeQuietly(input);
+            }
+        }
 
-							if (listener != null) {
-								listener.handleHttpResponse(clientResponse);
-							}
-						} finally {
-							removeFromConnectionsAndListeners(httpRequest);
-							connection.disconnect();
-						}
-					} catch (final Exception e) {
-						connection.disconnect();
-						try {
-							httpResponseListener.failed(e);
-						} finally {
-							removeFromConnectionsAndListeners(httpRequest);
-						}
-					}
-				}
-			}));
-		} catch (Exception e) {
-			try {
-				httpResponseListener.failed(e);
-			} finally {
-				removeFromConnectionsAndListeners(httpRequest);
-			}
-			return;
-		}
-	}
+        @Override
+        public String getResultAsString() {
+            InputStream input = getInputStream();
 
-	public void cancelHttpRequest (HttpRequest httpRequest) {
-		HttpResponseListener httpResponseListener = getFromListeners(httpRequest);
+            // If the response does not contain any content, input will be null.
+            if (input == null) {
+                return "";
+            }
 
-		if (httpResponseListener != null) {
-			httpResponseListener.cancelled();
-			cancelTask(httpRequest);
-			removeFromConnectionsAndListeners(httpRequest);
-		}
-	}
+            try {
+                return StreamUtils.copyStreamToString(input, connection.getContentLength(), "UTF8");
+            } catch (IOException e) {
+                return "";
+            } finally {
+                StreamUtils.closeQuietly(input);
+            }
+        }
 
-	public boolean isHttpRequestPending (HttpRequest httpRequest) {
-		return getFromListeners(httpRequest) != null;
-	}
+        @Override
+        public InputStream getResultAsStream() {
+            return getInputStream();
+        }
 
-	private void cancelTask (HttpRequest httpRequest) {
-		Future<?> task = tasks.get(httpRequest);
+        @Override
+        public HttpStatus getStatus() {
+            return status;
+        }
 
-		if (task != null) {
-			task.cancel(false);
-		}
-	}
+        @Override
+        public String getHeader(String name) {
+            return connection.getHeaderField(name);
+        }
 
-	synchronized void removeFromConnectionsAndListeners (final HttpRequest httpRequest) {
-		connections.remove(httpRequest);
-		listeners.remove(httpRequest);
-		tasks.remove(httpRequest);
-	}
+        @Override
+        public Map<String, List<String>> getHeaders() {
+            return connection.getHeaderFields();
+        }
 
-	synchronized void putIntoConnectionsAndListeners (final HttpRequest httpRequest,
-		final HttpResponseListener httpResponseListener, final HttpURLConnection connection) {
-		connections.put(httpRequest, connection);
-		listeners.put(httpRequest, httpResponseListener);
-	}
-
-	synchronized HttpResponseListener getFromListeners (HttpRequest httpRequest) {
-		HttpResponseListener httpResponseListener = listeners.get(httpRequest);
-		return httpResponseListener;
-	}
+        private InputStream getInputStream() {
+            try {
+                return connection.getInputStream();
+            } catch (IOException e) {
+                return connection.getErrorStream();
+            }
+        }
+    }
 }

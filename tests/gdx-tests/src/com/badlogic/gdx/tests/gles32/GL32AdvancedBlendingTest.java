@@ -28,57 +28,56 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 @GdxTestConfig(requireGL32 = true)
 public class GL32AdvancedBlendingTest extends GdxTest {
-	private Texture texture;
-	private SpriteBatch batch;
+    // see https://www.khronos.org/registry/OpenGL-Refpages/es3/html/glBlendEquation.xhtml
+    static int[] modes = {
+            // @off
+            GL32.GL_MULTIPLY,
+            GL32.GL_SCREEN,
+            GL32.GL_OVERLAY,
+            GL32.GL_DARKEN,
+            GL32.GL_LIGHTEN,
+            GL32.GL_COLORDODGE,
+            GL32.GL_COLORBURN,
+            GL32.GL_HARDLIGHT,
+            GL32.GL_SOFTLIGHT,
+            GL32.GL_DIFFERENCE,
+            GL32.GL_EXCLUSION
+            // @on
+    };
+    int mode = 0;
+    private Texture texture;
+    private SpriteBatch batch;
 
-	// see https://www.khronos.org/registry/OpenGL-Refpages/es3/html/glBlendEquation.xhtml
-	static int[] modes = {
-		// @off
-		GL32.GL_MULTIPLY,
-		GL32.GL_SCREEN,
-		GL32.GL_OVERLAY,
-		GL32.GL_DARKEN,
-		GL32.GL_LIGHTEN,
-		GL32.GL_COLORDODGE,
-		GL32.GL_COLORBURN,
-		GL32.GL_HARDLIGHT,
-		GL32.GL_SOFTLIGHT,
-		GL32.GL_DIFFERENCE,
-		GL32.GL_EXCLUSION
-		// @on
-	};
-	int mode = 0;
+    public void create() {
+        texture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
+        batch = new SpriteBatch();
+        batch.getProjectionMatrix().setToOrtho2D(0, 0, 1, 1);
+    }
 
-	public void create () {
-		texture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
-		batch = new SpriteBatch();
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, 1, 1);
-	}
+    @Override
+    public void dispose() {
+        texture.dispose();
+        batch.dispose();
+    }
 
-	@Override
-	public void dispose () {
-		texture.dispose();
-		batch.dispose();
-	}
+    @Override
+    public void render() {
+        if (Gdx.input.justTouched()) {
+            mode = (mode + 1) % modes.length;
+        }
 
-	@Override
-	public void render () {
-		if (Gdx.input.justTouched()) {
-			mode = (mode + 1) % modes.length;
-		}
+        ScreenUtils.clear(Color.CLEAR);
+        batch.begin();
 
-		ScreenUtils.clear(Color.CLEAR);
-		batch.begin();
+        batch.draw(texture, 0, 0, 1, 1);
 
-		batch.draw(texture, 0, 0, 1, 1);
+        batch.flush();
 
-		batch.flush();
+        Gdx.gl.glBlendEquation(modes[mode]);
+        batch.draw(texture, 0, 0, .5f, .5f);
 
-		Gdx.gl.glBlendEquation(modes[mode]);
-		batch.draw(texture, 0, 0, .5f, .5f);
+        batch.end();
 
-		batch.end();
-
-		Gdx.gl.glBlendEquation(GL20.GL_FUNC_ADD);
-	}
+        Gdx.gl.glBlendEquation(GL20.GL_FUNC_ADD);
+    }
 }

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,11 +15,6 @@
  ******************************************************************************/
 
 package com.badlogic.gdx.tests;
-
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.Arrays;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -31,136 +26,147 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.Field;
 import com.badlogic.gdx.utils.reflect.Method;
 
-/** Performs some tests with {@link Annotation} and prints the results on the screen.
- * @author dludwig */
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.Arrays;
+
+/**
+ * Performs some tests with {@link Annotation} and prints the results on the screen.
+ *
+ * @author dludwig
+ */
 public class AnnotationTest extends GdxTest {
-	String message = "";
-	BitmapFont font;
-	SpriteBatch batch;
+    String message = "";
+    BitmapFont font;
+    SpriteBatch batch;
 
-	public enum TestEnum {
-		EnumA, EnumB
-	}
+    @Override
+    public void create() {
+        font = new BitmapFont();
+        batch = new SpriteBatch();
 
-	/** Sample annotation. It is required to annotate annotations themselves with {@link RetentionPolicy}.RUNTIME to become
-	 * available to the {@link ClassReflection} package. */
-	@Retention(RetentionPolicy.RUNTIME)
-	static public @interface TestAnnotation {
-		// String parameter, no default
-		String name();
+        try {
+            Annotation annotation = ClassReflection.getDeclaredAnnotation(AnnotatedClass.class, TestAnnotation.class);
+            if (annotation != null) {
+                TestAnnotation annotationInstance = annotation.getAnnotation(TestAnnotation.class);
+                println("Class annotation:\n name=" + annotationInstance.name() + ",\n values="
+                        + Arrays.toString(annotationInstance.values()) + ",\n enum=" + annotationInstance.someEnum().toString());
+            } else {
+                println("ERROR: Class annotation not found.");
+            }
 
-		// Array of integers, with default values
-		int[] values() default {1, 2, 3};
+            Field field = ClassReflection.getDeclaredField(AnnotatedClass.class, "annotatedValue");
+            if (field != null) {
+                Annotation[] annotations = field.getDeclaredAnnotations();
+                for (Annotation a : annotations) {
+                    if (a.getAnnotationType().equals(TestAnnotation.class)) {
+                        TestAnnotation annotationInstance = a.getAnnotation(TestAnnotation.class);
+                        println("Field annotation:\n name=" + annotationInstance.name() + ",\n values="
+                                + Arrays.toString(annotationInstance.values()) + ",\n enum=" + annotationInstance.someEnum().toString());
+                        break;
+                    }
+                }
+            } else {
+                println("ERROR: Field 'annotatedValue' not found.");
+            }
 
-		// Enumeration, with default value
-		TestEnum someEnum() default TestEnum.EnumA;
-	}
+            Method method = ClassReflection.getDeclaredMethod(AnnotatedClass.class, "annotatedMethod");
+            if (method != null) {
+                Annotation[] annotations = method.getDeclaredAnnotations();
+                for (Annotation a : annotations) {
+                    if (a.getAnnotationType().equals(TestAnnotation.class)) {
+                        TestAnnotation annotationInstance = a.getAnnotation(TestAnnotation.class);
+                        println("Method annotation:\n name=" + annotationInstance.name() + ",\n values="
+                                + Arrays.toString(annotationInstance.values()) + ",\n enum=" + annotationInstance.someEnum().toString());
+                        break;
+                    }
+                }
+            } else {
+                println("ERROR: Method 'annotatedMethod' not found.");
+            }
 
-	/** Sample usage of class and field annotations. */
-	@TestAnnotation(name = "MyAnnotatedClass", someEnum = TestEnum.EnumB)
-	static public class AnnotatedClass {
-		public int unanottatedField;
+            println("Class annotations w/@Inherit:");
+            Annotation[] annotations = ClassReflection.getAnnotations(InheritClassB.class);
+            for (Annotation a : annotations) {
+                println(" name=" + a.getAnnotationType().getSimpleName());
+            }
+            if (!ClassReflection.isAnnotationPresent(InheritClassB.class, TestInheritAnnotation.class)) {
+                println("ERROR: Inherited class annotation not found.");
+            }
+        } catch (Exception e) {
+            println("FAILED: " + e.getMessage());
+            message += e.getClass();
+        }
+    }
 
-		public int unannotatedMethod () {
-			return 0;
-		}
+    private void println(String line) {
+        message += line + "\n";
+    }
 
-		@TestAnnotation(name = "MyAnnotatedField", values = {4, 5}) public int annotatedValue;
+    @Override
+    public void render() {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        font.draw(batch, message, 20, Gdx.graphics.getHeight() - 20);
+        batch.end();
+    }
 
-		@TestAnnotation(name = "MyAnnotatedMethod", values = {6, 7})
-		public int annotatedMethod () {
-			return 0;
-		};
-	}
+    @Override
+    public void dispose() {
+        batch.dispose();
+        font.dispose();
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Inherited
-	static public @interface TestInheritAnnotation {
-	}
+    public enum TestEnum {
+        EnumA, EnumB
+    }
 
-	@TestInheritAnnotation
-	static public class InheritClassA {
-	}
+    /**
+     * Sample annotation. It is required to annotate annotations themselves with {@link RetentionPolicy}.RUNTIME to become
+     * available to the {@link ClassReflection} package.
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface TestAnnotation {
+        // String parameter, no default
+        String name();
 
-	@TestAnnotation(name = "MyInheritClassB")
-	static public class InheritClassB extends InheritClassA {
-	}
+        // Array of integers, with default values
+        int[] values() default {1, 2, 3};
 
-	@Override
-	public void create () {
-		font = new BitmapFont();
-		batch = new SpriteBatch();
+        // Enumeration, with default value
+        TestEnum someEnum() default TestEnum.EnumA;
+    }
 
-		try {
-			Annotation annotation = ClassReflection.getDeclaredAnnotation(AnnotatedClass.class, TestAnnotation.class);
-			if (annotation != null) {
-				TestAnnotation annotationInstance = annotation.getAnnotation(TestAnnotation.class);
-				println("Class annotation:\n name=" + annotationInstance.name() + ",\n values="
-					+ Arrays.toString(annotationInstance.values()) + ",\n enum=" + annotationInstance.someEnum().toString());
-			} else {
-				println("ERROR: Class annotation not found.");
-			}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Inherited
+    public @interface TestInheritAnnotation {
+    }
 
-			Field field = ClassReflection.getDeclaredField(AnnotatedClass.class, "annotatedValue");
-			if (field != null) {
-				Annotation[] annotations = field.getDeclaredAnnotations();
-				for (Annotation a : annotations) {
-					if (a.getAnnotationType().equals(TestAnnotation.class)) {
-						TestAnnotation annotationInstance = a.getAnnotation(TestAnnotation.class);
-						println("Field annotation:\n name=" + annotationInstance.name() + ",\n values="
-							+ Arrays.toString(annotationInstance.values()) + ",\n enum=" + annotationInstance.someEnum().toString());
-						break;
-					}
-				}
-			} else {
-				println("ERROR: Field 'annotatedValue' not found.");
-			}
+    /**
+     * Sample usage of class and field annotations.
+     */
+    @TestAnnotation(name = "MyAnnotatedClass", someEnum = TestEnum.EnumB)
+    static public class AnnotatedClass {
+        public int unanottatedField;
+        @TestAnnotation(name = "MyAnnotatedField", values = {4, 5})
+        public int annotatedValue;
 
-			Method method = ClassReflection.getDeclaredMethod(AnnotatedClass.class, "annotatedMethod");
-			if (method != null) {
-				Annotation[] annotations = method.getDeclaredAnnotations();
-				for (Annotation a : annotations) {
-					if (a.getAnnotationType().equals(TestAnnotation.class)) {
-						TestAnnotation annotationInstance = a.getAnnotation(TestAnnotation.class);
-						println("Method annotation:\n name=" + annotationInstance.name() + ",\n values="
-							+ Arrays.toString(annotationInstance.values()) + ",\n enum=" + annotationInstance.someEnum().toString());
-						break;
-					}
-				}
-			} else {
-				println("ERROR: Method 'annotatedMethod' not found.");
-			}
+        public int unannotatedMethod() {
+            return 0;
+        }
 
-			println("Class annotations w/@Inherit:");
-			Annotation[] annotations = ClassReflection.getAnnotations(InheritClassB.class);
-			for (Annotation a : annotations) {
-				println(" name=" + a.getAnnotationType().getSimpleName());
-			}
-			if (!ClassReflection.isAnnotationPresent(InheritClassB.class, TestInheritAnnotation.class)) {
-				println("ERROR: Inherited class annotation not found.");
-			}
-		} catch (Exception e) {
-			println("FAILED: " + e.getMessage());
-			message += e.getClass();
-		}
-	}
+        @TestAnnotation(name = "MyAnnotatedMethod", values = {6, 7})
+        public int annotatedMethod() {
+            return 0;
+        }
+    }
 
-	private void println (String line) {
-		message += line + "\n";
-	}
+    @TestInheritAnnotation
+    static public class InheritClassA {
+    }
 
-	@Override
-	public void render () {
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		font.draw(batch, message, 20, Gdx.graphics.getHeight() - 20);
-		batch.end();
-	}
-
-	@Override
-	public void dispose () {
-		batch.dispose();
-		font.dispose();
-	}
-
+    @TestAnnotation(name = "MyInheritClassB")
+    static public class InheritClassB extends InheritClassA {
+    }
 }

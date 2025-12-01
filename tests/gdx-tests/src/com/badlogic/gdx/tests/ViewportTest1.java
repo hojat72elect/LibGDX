@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,96 +38,98 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/** Cycles viewports while rendering a stage with a root Table for the layout. */
+/**
+ * Cycles viewports while rendering a stage with a root Table for the layout.
+ */
 public class ViewportTest1 extends GdxTest {
-	Array<Viewport> viewports;
-	Array<String> names;
-	Stage stage;
-	Label label;
+    Array<Viewport> viewports;
+    Array<String> names;
+    Stage stage;
+    Label label;
 
-	public void create () {
-		stage = new Stage();
-		Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+    static public Array<String> getViewportNames() {
+        Array<String> names = new Array();
+        names.add("StretchViewport");
+        names.add("FillViewport");
+        names.add("FitViewport");
+        names.add("ExtendViewport: no max");
+        names.add("ExtendViewport: max");
+        names.add("ScreenViewport: 1:1");
+        names.add("ScreenViewport: 0.75:1");
+        names.add("ScalingViewport: none");
+        return names;
+    }
 
-		label = new Label("", skin);
+    static public Array<Viewport> getViewports(Camera camera) {
+        int minWorldWidth = 640;
+        int minWorldHeight = 480;
+        int maxWorldWidth = 800;
+        int maxWorldHeight = 480;
 
-		Table root = new Table(skin);
-		root.setFillParent(true);
-		root.setBackground(skin.getDrawable("default-pane"));
-		root.debug().defaults().space(6);
-		root.add(new TextButton("Button 1", skin));
-		root.add(new TextButton("Button 2", skin)).row();
-		root.add("Press spacebar to change the viewport:").colspan(2).row();
-		root.add(label).colspan(2);
-		stage.addActor(root);
+        Array<Viewport> viewports = new Array();
+        viewports.add(new StretchViewport(minWorldWidth, minWorldHeight, camera));
+        viewports.add(new FillViewport(minWorldWidth, minWorldHeight, camera));
+        viewports.add(new FitViewport(minWorldWidth, minWorldHeight, camera));
+        viewports.add(new ExtendViewport(minWorldWidth, minWorldHeight, camera));
+        viewports.add(new ExtendViewport(minWorldWidth, minWorldHeight, maxWorldWidth, maxWorldHeight, camera));
+        viewports.add(new ScreenViewport(camera));
 
-		viewports = getViewports(stage.getCamera());
-		names = getViewportNames();
+        ScreenViewport screenViewport = new ScreenViewport(camera);
+        screenViewport.setUnitsPerPixel(0.75f);
+        viewports.add(screenViewport);
 
-		stage.setViewport(viewports.first());
-		label.setText(names.first());
+        viewports.add(new ScalingViewport(Scaling.none, minWorldWidth, minWorldHeight, camera));
+        return viewports;
+    }
 
-		Gdx.input.setInputProcessor(new InputMultiplexer(new InputAdapter() {
-			public boolean keyDown (int keycode) {
-				if (keycode == Input.Keys.SPACE) {
-					int index = (viewports.indexOf(stage.getViewport(), true) + 1) % viewports.size;
-					label.setText(names.get(index));
-					Viewport viewport = viewports.get(index);
-					stage.setViewport(viewport);
-					resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-				}
-				return false;
-			}
-		}, stage));
-	}
+    public void create() {
+        stage = new Stage();
+        Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-	public void render () {
-		stage.act();
+        label = new Label("", skin);
 
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.draw();
-	}
+        Table root = new Table(skin);
+        root.setFillParent(true);
+        root.setBackground(skin.getDrawable("default-pane"));
+        root.debug().defaults().space(6);
+        root.add(new TextButton("Button 1", skin));
+        root.add(new TextButton("Button 2", skin)).row();
+        root.add("Press spacebar to change the viewport:").colspan(2).row();
+        root.add(label).colspan(2);
+        stage.addActor(root);
 
-	public void resize (int width, int height) {
-		stage.getViewport().update(width, height, true);
-	}
+        viewports = getViewports(stage.getCamera());
+        names = getViewportNames();
 
-	public void dispose () {
-		stage.dispose();
-	}
+        stage.setViewport(viewports.first());
+        label.setText(names.first());
 
-	static public Array<String> getViewportNames () {
-		Array<String> names = new Array();
-		names.add("StretchViewport");
-		names.add("FillViewport");
-		names.add("FitViewport");
-		names.add("ExtendViewport: no max");
-		names.add("ExtendViewport: max");
-		names.add("ScreenViewport: 1:1");
-		names.add("ScreenViewport: 0.75:1");
-		names.add("ScalingViewport: none");
-		return names;
-	}
+        Gdx.input.setInputProcessor(new InputMultiplexer(new InputAdapter() {
+            public boolean keyDown(int keycode) {
+                if (keycode == Input.Keys.SPACE) {
+                    int index = (viewports.indexOf(stage.getViewport(), true) + 1) % viewports.size;
+                    label.setText(names.get(index));
+                    Viewport viewport = viewports.get(index);
+                    stage.setViewport(viewport);
+                    resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                }
+                return false;
+            }
+        }, stage));
+    }
 
-	static public Array<Viewport> getViewports (Camera camera) {
-		int minWorldWidth = 640;
-		int minWorldHeight = 480;
-		int maxWorldWidth = 800;
-		int maxWorldHeight = 480;
+    public void render() {
+        stage.act();
 
-		Array<Viewport> viewports = new Array();
-		viewports.add(new StretchViewport(minWorldWidth, minWorldHeight, camera));
-		viewports.add(new FillViewport(minWorldWidth, minWorldHeight, camera));
-		viewports.add(new FitViewport(minWorldWidth, minWorldHeight, camera));
-		viewports.add(new ExtendViewport(minWorldWidth, minWorldHeight, camera));
-		viewports.add(new ExtendViewport(minWorldWidth, minWorldHeight, maxWorldWidth, maxWorldHeight, camera));
-		viewports.add(new ScreenViewport(camera));
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.draw();
+    }
 
-		ScreenViewport screenViewport = new ScreenViewport(camera);
-		screenViewport.setUnitsPerPixel(0.75f);
-		viewports.add(screenViewport);
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
 
-		viewports.add(new ScalingViewport(Scaling.none, minWorldWidth, minWorldHeight, camera));
-		return viewports;
-	}
+    public void dispose() {
+        stage.dispose();
+    }
 }

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics;
 
 import com.badlogic.gdx.Graphics;
@@ -12,7 +11,7 @@ import com.badlogic.gdx.utils.Disposable;
  **/
 public interface Cursor extends Disposable {
 
-	public static enum SystemCursor {
-		Arrow, Ibeam, Crosshair, Hand, HorizontalResize, VerticalResize, NWSEResize, NESWResize, AllResize, NotAllowed, None
-	}
+    enum SystemCursor {
+        Arrow, Ibeam, Crosshair, Hand, HorizontalResize, VerticalResize, NWSEResize, NESWResize, AllResize, NotAllowed, None
+    }
 }

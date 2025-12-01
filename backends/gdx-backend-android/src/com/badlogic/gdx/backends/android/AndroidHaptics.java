@@ -24,91 +24,92 @@ import android.os.VibrationAttributes;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.os.VibratorManager;
+
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 
 public class AndroidHaptics {
 
-	private final Vibrator vibrator;
-	private AudioAttributes audioAttributes;
-	private VibrationAttributes vibrationAttributes;
-	private boolean vibratorSupport;
-	private boolean hapticsSupport;
+    private final Vibrator vibrator;
+    private AudioAttributes audioAttributes;
+    private VibrationAttributes vibrationAttributes;
+    private boolean vibratorSupport;
+    private boolean hapticsSupport;
 
-	public AndroidHaptics (Context context) {
-		vibratorSupport = false;
-		hapticsSupport = false;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-			VibratorManager vibratorManager = (VibratorManager)context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
-			vibrator = vibratorManager.getDefaultVibrator();
-		} else {
-			vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-		}
-		if (vibrator != null && vibrator.hasVibrator()) {
-			vibratorSupport = true;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-				if (vibrator.hasAmplitudeControl()) {
-					hapticsSupport = true;
-				}
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-					this.vibrationAttributes = new VibrationAttributes.Builder().setUsage(VibrationAttributes.USAGE_MEDIA).build();
-				else
-					this.audioAttributes = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-						.setUsage(AudioAttributes.USAGE_GAME).build();
-			}
-		}
-	}
+    public AndroidHaptics(Context context) {
+        vibratorSupport = false;
+        hapticsSupport = false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            VibratorManager vibratorManager = (VibratorManager) context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
+            vibrator = vibratorManager.getDefaultVibrator();
+        } else {
+            vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        }
+        if (vibrator != null && vibrator.hasVibrator()) {
+            vibratorSupport = true;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (vibrator.hasAmplitudeControl()) {
+                    hapticsSupport = true;
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                    this.vibrationAttributes = new VibrationAttributes.Builder().setUsage(VibrationAttributes.USAGE_MEDIA).build();
+                else
+                    this.audioAttributes = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                            .setUsage(AudioAttributes.USAGE_GAME).build();
+            }
+        }
+    }
 
-	@SuppressLint("MissingPermission")
-	public void vibrate (int milliseconds) {
-		if (vibratorSupport) {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-				vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
-			else
-				vibrator.vibrate(milliseconds);
-		}
-	}
+    @SuppressLint("MissingPermission")
+    public void vibrate(int milliseconds) {
+        if (vibratorSupport) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
+            else
+                vibrator.vibrate(milliseconds);
+        }
+    }
 
-	@SuppressLint("MissingPermission")
-	public void vibrate (Input.VibrationType vibrationType) {
-		if (hapticsSupport) {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-				int vibrationEffect;
-				switch (vibrationType) {
-				case LIGHT:
-					vibrationEffect = VibrationEffect.EFFECT_TICK;
-					break;
-				case MEDIUM:
-					vibrationEffect = VibrationEffect.EFFECT_CLICK;
-					break;
-				case HEAVY:
-					vibrationEffect = VibrationEffect.EFFECT_HEAVY_CLICK;
-					break;
-				default:
-					throw new IllegalArgumentException("Unknown VibrationType " + vibrationType);
-				}
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-					vibrator.vibrate(VibrationEffect.createPredefined(vibrationEffect), vibrationAttributes);
-				else
-					vibrator.vibrate(VibrationEffect.createPredefined(vibrationEffect), audioAttributes);
-			}
-		}
-	}
+    @SuppressLint("MissingPermission")
+    public void vibrate(Input.VibrationType vibrationType) {
+        if (hapticsSupport) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                int vibrationEffect;
+                switch (vibrationType) {
+                    case LIGHT:
+                        vibrationEffect = VibrationEffect.EFFECT_TICK;
+                        break;
+                    case MEDIUM:
+                        vibrationEffect = VibrationEffect.EFFECT_CLICK;
+                        break;
+                    case HEAVY:
+                        vibrationEffect = VibrationEffect.EFFECT_HEAVY_CLICK;
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Unknown VibrationType " + vibrationType);
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                    vibrator.vibrate(VibrationEffect.createPredefined(vibrationEffect), vibrationAttributes);
+                else
+                    vibrator.vibrate(VibrationEffect.createPredefined(vibrationEffect), audioAttributes);
+            }
+        }
+    }
 
-	@SuppressLint("MissingPermission")
-	public void vibrate (int milliseconds, int intensity, boolean fallback) {
-		if (hapticsSupport) {
-			intensity = MathUtils.clamp(intensity, 0, 255);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-				vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, intensity));
-		} else if (fallback) vibrate(milliseconds);
-	}
+    @SuppressLint("MissingPermission")
+    public void vibrate(int milliseconds, int intensity, boolean fallback) {
+        if (hapticsSupport) {
+            intensity = MathUtils.clamp(intensity, 0, 255);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                vibrator.vibrate(VibrationEffect.createOneShot(milliseconds, intensity));
+        } else if (fallback) vibrate(milliseconds);
+    }
 
-	public boolean hasVibratorAvailable () {
-		return vibratorSupport;
-	}
+    public boolean hasVibratorAvailable() {
+        return vibratorSupport;
+    }
 
-	public boolean hasHapticsSupport () {
-		return hapticsSupport;
-	}
+    public boolean hasHapticsSupport() {
+        return hapticsSupport;
+    }
 }

@@ -16,8 +16,6 @@
 
 package com.badlogic.gdx.tiledmappacker;
 
-import java.io.File;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -34,158 +32,163 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/** Renders and, optionally, deletes maps processed by TiledMapPackerTest. Run TiledMapPackerTest before running this */
+import java.io.File;
+
+/**
+ * Renders and, optionally, deletes maps processed by TiledMapPackerTest. Run TiledMapPackerTest before running this
+ */
 public class TiledMapPackerTestRender extends ApplicationAdapter {
 
-	// --WARNING!--
-	// Please do not edit the MAP_PATH. This deletes the folder recursively and could be very dangerous. The default location is:
-	// MAP_PATH = "data/maps/tiled-atlas-processed/deleteMe/";
+    // --WARNING!--
+    // Please do not edit the MAP_PATH. This deletes the folder recursively and could be very dangerous. The default location is:
+    // MAP_PATH = "data/maps/tiled-atlas-processed/deleteMe/";
 
-	private final boolean DELETE_DELETEME_FOLDER_ON_EXIT = false; // read warning before setting to true
-	private final static String MAP_PATH = "data/maps/tiled-atlas-processed/deleteMe/";
+    private final static String MAP_PATH = "data/maps/tiled-atlas-processed/deleteMe/";
+    /**
+     * Project file won't exist in the deleteMe folder. We must use the one in tiled-atlas-processed folder that will always be
+     * there
+     */
+    private final static String PROJECT_FILE_PATH = "data/maps/tiled-atlas-processed/tiled-prop-test.tiled-project";
+    private final boolean DELETE_DELETEME_FOLDER_ON_EXIT = false; // read warning before setting to true
+    /**
+     * Choose which processed map you want to load. DEFAULT_TMX_MAP: The original default test map.
+     * <p>
+     * DEFAULT_TMJ_MAP: The original default test map in the .tmj format.
+     * <p>
+     * DEFAULT_TMX_IMGLAYER_MAP: A Test map which also loads image layers.
+     * <p>
+     * DEFAULT_TMX_IMGLAYERS_COLLECTION_TILESET: The DEFAULT_TMX_IMGLAYER_MAP but also uses tileset made up of a collection of
+     * images as well as a normal tilesheet tileset.
+     * <p>
+     * DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP: A Test Map in the .tmj format, with an image layer and also supports custom class via a
+     * project file.
+     * <p>
+     * *NOTE the DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP map will only show up in deleteMe folder if the TiledMapPackerTest is run with
+     * TestType testType = TestType.DefaultUsageWithProjectFile;
+     */
 
-	/** Choose which processed map you want to load. DEFAULT_TMX_MAP: The original default test map.
-	 *
-	 * DEFAULT_TMJ_MAP: The original default test map in the .tmj format.
-	 *
-	 * DEFAULT_TMX_IMGLAYER_MAP: A Test map which also loads image layers.
-	 *
-	 * DEFAULT_TMX_IMGLAYERS_COLLECTION_TILESET: The DEFAULT_TMX_IMGLAYER_MAP but also uses tileset made up of a collection of
-	 * images as well as a normal tilesheet tileset.
-	 *
-	 * DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP: A Test Map in the .tmj format, with an image layer and also supports custom class via a
-	 * project file.
-	 *
-	 * *NOTE the DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP map will only show up in deleteMe folder if the TiledMapPackerTest is run with
-	 * TestType testType = TestType.DefaultUsageWithProjectFile; */
+    private final TestMapType TEST_MAP_TYPE = TestMapType.DEFAULT_TMX_MAP;
+    private final boolean CENTER_CAM = true;
+    private final float WORLD_WIDTH = 16;
+    private final float WORLD_HEIGHT = 8;
+    private final float PIXELS_PER_METER = 32;
+    private final float UNIT_SCALE = 1f / PIXELS_PER_METER;
+    private BaseTiledMapLoader.Parameters params;
+    private AtlasTmxMapLoader atlasTmxMapLoader;
+    private BaseTiledMapLoader.Parameters paramsTmj;
+    private AtlasTmjMapLoader atlasTmjMapLoader;
+    private TiledMap map;
+    private Viewport viewport;
+    private OrthogonalTiledMapRenderer mapRenderer;
+    private OrthographicCamera cam;
 
-	private final TestMapType TEST_MAP_TYPE = TestMapType.DEFAULT_TMX_MAP;
+    public static void main(String[] args) throws Exception {
+        File file = new File(MAP_PATH);
+        if (!file.exists()) {
+            System.out.println("Please run TiledMapPackerTest.");
+            return;
+        }
+        new LwjglApplication(new TiledMapPackerTestRender(), "", 640, 480);
+    }
 
-	/** Project file won't exist in the deleteMe folder. We must use the one in tiled-atlas-processed folder that will always be
-	 * there */
-	private final static String PROJECT_FILE_PATH = "data/maps/tiled-atlas-processed/tiled-prop-test.tiled-project";
+    @Override
+    public void create() {
+        String mapLocation = "";
+        switch (TEST_MAP_TYPE) {
+            case DEFAULT_TMX_MAP:
+                atlasTmxMapLoader = new AtlasTmxMapLoader(new InternalFileHandleResolver());
+                params = new BaseTiledMapLoader.Parameters();
+                params.generateMipMaps = false;
+                params.convertObjectToTileSpace = false;
+                params.flipY = true;
+                params.projectFilePath = "";
 
-	private final boolean CENTER_CAM = true;
-	private final float WORLD_WIDTH = 16;
-	private final float WORLD_HEIGHT = 8;
-	private final float PIXELS_PER_METER = 32;
-	private final float UNIT_SCALE = 1f / PIXELS_PER_METER;
-	private BaseTiledMapLoader.Parameters params;
-	private AtlasTmxMapLoader atlasTmxMapLoader;
-	private BaseTiledMapLoader.Parameters paramsTmj;
-	private AtlasTmjMapLoader atlasTmjMapLoader;
-	private TiledMap map;
-	private Viewport viewport;
-	private OrthogonalTiledMapRenderer mapRenderer;
-	private OrthographicCamera cam;
+                mapLocation = MAP_PATH + "test.tmx";
+                map = atlasTmxMapLoader.load(mapLocation, params);
+                break;
+            case DEFAULT_TMJ_MAP:
+                atlasTmjMapLoader = new AtlasTmjMapLoader(new InternalFileHandleResolver());
+                paramsTmj = new BaseTiledMapLoader.Parameters();
+                paramsTmj.generateMipMaps = false;
+                paramsTmj.convertObjectToTileSpace = false;
+                paramsTmj.flipY = true;
+                paramsTmj.projectFilePath = "";
 
-	public enum TestMapType {
-		DEFAULT_TMX_MAP, DEFAULT_TMJ_MAP, DEFAULT_TMX_IMGLAYER_MAP, DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP, DEFAULT_TMX_IMGLAYERS_COLLECTION_TILESET;
-	}
+                mapLocation = MAP_PATH + "test.tmj";
+                map = atlasTmjMapLoader.load(mapLocation, paramsTmj);
+                break;
+            case DEFAULT_TMX_IMGLAYER_MAP:
+                atlasTmxMapLoader = new AtlasTmxMapLoader(new InternalFileHandleResolver());
+                params = new BaseTiledMapLoader.Parameters();
+                params.generateMipMaps = false;
+                params.convertObjectToTileSpace = false;
+                params.flipY = true;
+                params.projectFilePath = "";
 
-	@Override
-	public void create () {
-		String mapLocation = "";
-		switch (TEST_MAP_TYPE) {
-		case DEFAULT_TMX_MAP:
-			atlasTmxMapLoader = new AtlasTmxMapLoader(new InternalFileHandleResolver());
-			params = new BaseTiledMapLoader.Parameters();
-			params.generateMipMaps = false;
-			params.convertObjectToTileSpace = false;
-			params.flipY = true;
-			params.projectFilePath = "";
+                mapLocation = MAP_PATH + "test_w_imglayers.tmx";
+                map = atlasTmxMapLoader.load(mapLocation, params);
+                break;
+            case DEFAULT_TMX_IMGLAYERS_COLLECTION_TILESET:
+                atlasTmxMapLoader = new AtlasTmxMapLoader(new InternalFileHandleResolver());
+                params = new BaseTiledMapLoader.Parameters();
+                params.generateMipMaps = false;
+                params.convertObjectToTileSpace = false;
+                params.flipY = true;
+                params.projectFilePath = "";
 
-			mapLocation = MAP_PATH + "test.tmx";
-			map = atlasTmxMapLoader.load(mapLocation, params);
-			break;
-		case DEFAULT_TMJ_MAP:
-			atlasTmjMapLoader = new AtlasTmjMapLoader(new InternalFileHandleResolver());
-			paramsTmj = new BaseTiledMapLoader.Parameters();
-			paramsTmj.generateMipMaps = false;
-			paramsTmj.convertObjectToTileSpace = false;
-			paramsTmj.flipY = true;
-			paramsTmj.projectFilePath = "";
+                mapLocation = MAP_PATH + "test_w_imglayers_coi.tmx";
+                map = atlasTmxMapLoader.load(mapLocation, params);
+                break;
+            case DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP:
+                atlasTmjMapLoader = new AtlasTmjMapLoader(new InternalFileHandleResolver());
+                paramsTmj = new BaseTiledMapLoader.Parameters();
+                paramsTmj.generateMipMaps = false;
+                paramsTmj.convertObjectToTileSpace = false;
+                paramsTmj.flipY = true;
+                paramsTmj.projectFilePath = PROJECT_FILE_PATH;
 
-			mapLocation = MAP_PATH + "test.tmj";
-			map = atlasTmjMapLoader.load(mapLocation, paramsTmj);
-			break;
-		case DEFAULT_TMX_IMGLAYER_MAP:
-			atlasTmxMapLoader = new AtlasTmxMapLoader(new InternalFileHandleResolver());
-			params = new BaseTiledMapLoader.Parameters();
-			params.generateMipMaps = false;
-			params.convertObjectToTileSpace = false;
-			params.flipY = true;
-			params.projectFilePath = "";
+                mapLocation = MAP_PATH + "test_w_imglayer_props.tmj";
+                map = atlasTmjMapLoader.load(mapLocation, paramsTmj);
+                break;
+        }
 
-			mapLocation = MAP_PATH + "test_w_imglayers.tmx";
-			map = atlasTmxMapLoader.load(mapLocation, params);
-			break;
-		case DEFAULT_TMX_IMGLAYERS_COLLECTION_TILESET:
-			atlasTmxMapLoader = new AtlasTmxMapLoader(new InternalFileHandleResolver());
-			params = new BaseTiledMapLoader.Parameters();
-			params.generateMipMaps = false;
-			params.convertObjectToTileSpace = false;
-			params.flipY = true;
-			params.projectFilePath = "";
+        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
+        cam = (OrthographicCamera) viewport.getCamera();
 
-			mapLocation = MAP_PATH + "test_w_imglayers_coi.tmx";
-			map = atlasTmxMapLoader.load(mapLocation, params);
-			break;
-		case DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP:
-			atlasTmjMapLoader = new AtlasTmjMapLoader(new InternalFileHandleResolver());
-			paramsTmj = new BaseTiledMapLoader.Parameters();
-			paramsTmj.generateMipMaps = false;
-			paramsTmj.convertObjectToTileSpace = false;
-			paramsTmj.flipY = true;
-			paramsTmj.projectFilePath = PROJECT_FILE_PATH;
+        mapRenderer = new OrthogonalTiledMapRenderer(map, UNIT_SCALE);
+    }
 
-			mapLocation = MAP_PATH + "test_w_imglayer_props.tmj";
-			map = atlasTmjMapLoader.load(mapLocation, paramsTmj);
-			break;
-		}
+    @Override
+    public void render() {
+        Gdx.gl.glClearColor(0, 0, 0, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
-		cam = (OrthographicCamera)viewport.getCamera();
+        viewport.apply();
+        mapRenderer.setView(cam);
+        mapRenderer.render();
 
-		mapRenderer = new OrthogonalTiledMapRenderer(map, UNIT_SCALE);
-	}
+        if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+            if (DELETE_DELETEME_FOLDER_ON_EXIT) {
+                FileHandle deleteMeHandle = Gdx.files.local(MAP_PATH);
+                deleteMeHandle.deleteDirectory();
+            }
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            dispose();
+            Gdx.app.exit();
+        }
+    }
 
-		viewport.apply();
-		mapRenderer.setView(cam);
-		mapRenderer.render();
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height, CENTER_CAM);
+    }
 
-		if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-			if (DELETE_DELETEME_FOLDER_ON_EXIT) {
-				FileHandle deleteMeHandle = Gdx.files.local(MAP_PATH);
-				deleteMeHandle.deleteDirectory();
-			}
+    @Override
+    public void dispose() {
+        map.dispose();
+    }
 
-			dispose();
-			Gdx.app.exit();
-		}
-	}
-
-	@Override
-	public void resize (int width, int height) {
-		viewport.update(width, height, CENTER_CAM);
-	}
-
-	@Override
-	public void dispose () {
-		map.dispose();
-	}
-
-	public static void main (String[] args) throws Exception {
-		File file = new File(MAP_PATH);
-		if (!file.exists()) {
-			System.out.println("Please run TiledMapPackerTest.");
-			return;
-		}
-		new LwjglApplication(new TiledMapPackerTestRender(), "", 640, 480);
-	}
+    public enum TestMapType {
+        DEFAULT_TMX_MAP, DEFAULT_TMJ_MAP, DEFAULT_TMX_IMGLAYER_MAP, DEFAULT_TMJ_IMGLAYER_WITH_PROPS_MAP, DEFAULT_TMX_IMGLAYERS_COLLECTION_TILESET
+    }
 }

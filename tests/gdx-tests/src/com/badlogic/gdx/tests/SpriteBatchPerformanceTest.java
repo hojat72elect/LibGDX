@@ -33,110 +33,107 @@ import com.badlogic.gdx.utils.Array;
 @GdxTestConfig
 public class SpriteBatchPerformanceTest extends GdxTest {
 
-	private Texture texture;
-	private SpriteBatch spriteBatch;
-	private StringBuilder stringBuilder = new StringBuilder();
+    private Texture texture;
+    private SpriteBatch spriteBatch;
+    private final StringBuilder stringBuilder = new StringBuilder();
 
-	private BitmapFont bitmapFont;
+    private BitmapFont bitmapFont;
+    private final Array<PerfTest> perfTests = new Array<>();
 
-	private static class PerfTest {
-		Mesh.VertexDataType vertexDataType;
-		WindowedMean counter = new WindowedMean(10000);
+    @Override
+    public void create() {
+        texture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
+        spriteBatch = new SpriteBatch(8191);
+        bitmapFont = new BitmapFont();
 
-		PerfTest (Mesh.VertexDataType type) {
-			this.vertexDataType = type;
-		}
-	}
+        if (Gdx.graphics.isGL30Available()) {
+            perfTests.add(new PerfTest(Mesh.VertexDataType.VertexBufferObjectWithVAO));
 
-	private Array<PerfTest> perfTests = new Array<>();
+            if (Gdx.app.getType() != Application.ApplicationType.Desktop) {
+                perfTests.add(new PerfTest(Mesh.VertexDataType.VertexBufferObject));
+            }
+        } else {
+            perfTests.add(new PerfTest(Mesh.VertexDataType.VertexArray));
+            perfTests.add(new PerfTest(Mesh.VertexDataType.VertexBufferObject));
+        }
 
-	@Override
-	public void create () {
-		texture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
-		spriteBatch = new SpriteBatch(8191);
-		bitmapFont = new BitmapFont();
+        GLProfiler glProfiler = new GLProfiler(Gdx.graphics);
+        glProfiler.setListener(new GLErrorListener() {
+            @Override
+            public void onError(int error) {
+                System.out.println("GLProfiler: error: " + error);
+            }
+        });
+        glProfiler.enable();
+    }
 
-		if (Gdx.graphics.isGL30Available()) {
-			perfTests.add(new PerfTest(Mesh.VertexDataType.VertexBufferObjectWithVAO));
+    @Override
+    public void render() {
+        Gdx.gl20.glViewport(0, 0, Gdx.graphics.getBackBufferWidth(), Gdx.graphics.getBackBufferHeight());
+        Gdx.gl20.glClearColor(0.2f, 0.2f, 0.2f, 1);
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-			if (Gdx.app.getType() != Application.ApplicationType.Desktop) {
-				perfTests.add(new PerfTest(Mesh.VertexDataType.VertexBufferObject));
-			}
-		} else {
-			perfTests.add(new PerfTest(Mesh.VertexDataType.VertexArray));
-			perfTests.add(new PerfTest(Mesh.VertexDataType.VertexBufferObject));
-		}
+        int draws = 100;
+        int spritesToFill = 8190;
 
-		GLProfiler glProfiler = new GLProfiler(Gdx.graphics);
-		glProfiler.setListener(new GLErrorListener() {
-			@Override
-			public void onError (int error) {
-				System.out.println("GLProfiler: error: " + error);
-			}
-		});
-		glProfiler.enable();
+        for (PerfTest perfTest : perfTests) {
+            SpriteBatch.overrideVertexType = perfTest.vertexDataType;
 
-	}
+            SpriteBatch testingBatch = new SpriteBatch(8191);
+            Gdx.gl.glFlush();
+            testingBatch.begin();
+            for (int i = 0; i < draws; i++) {
+                for (int j = 0; j < spritesToFill; j++) {
+                    testingBatch.draw(texture, 0, 0, 1, 1);
+                }
 
-	@Override
-	public void render () {
-		Gdx.gl20.glViewport(0, 0, Gdx.graphics.getBackBufferWidth(), Gdx.graphics.getBackBufferHeight());
-		Gdx.gl20.glClearColor(0.2f, 0.2f, 0.2f, 1);
-		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+                long beforeFlush = System.nanoTime();
+                testingBatch.flush();
+                Gdx.gl.glFlush();
+                long afterFlush = System.nanoTime();
 
-		int draws = 100;
-		int spritesToFill = 8190;
+                perfTest.counter.addValue(afterFlush - beforeFlush);
+            }
 
-		for (PerfTest perfTest : perfTests) {
-			SpriteBatch.overrideVertexType = perfTest.vertexDataType;
+            testingBatch.end();
+            testingBatch.dispose();
+            Gdx.gl.glFlush();
+        }
 
-			SpriteBatch testingBatch = new SpriteBatch(8191);
-			Gdx.gl.glFlush();
-			testingBatch.begin();
-			for (int i = 0; i < draws; i++) {
-				for (int j = 0; j < spritesToFill; j++) {
-					testingBatch.draw(texture, 0, 0, 1, 1);
-				}
+        spriteBatch.begin();
 
-				long beforeFlush = System.nanoTime();
-				testingBatch.flush();
-				Gdx.gl.glFlush();
-				long afterFlush = System.nanoTime();
+        stringBuilder.setLength(0);
+        for (PerfTest perfTest : perfTests) {
+            stringBuilder.append("Type: ");
+            stringBuilder.append(perfTest.vertexDataType);
+            stringBuilder.append("\n");
 
-				perfTest.counter.addValue(afterFlush - beforeFlush);
-			}
+            if (perfTest.counter.hasEnoughData()) {
+                stringBuilder.append("Mean Time ms: ");
+                float nanoTimeMean = perfTest.counter.getMean();
+                stringBuilder.append(nanoTimeMean / 1e6);
+            } else {
+                stringBuilder.append("Please wait, collecting data...");
+            }
+            stringBuilder.append("\n\n");
+        }
+        bitmapFont.draw(spriteBatch, stringBuilder, 0, 400);
 
-			testingBatch.end();
-			testingBatch.dispose();
-			Gdx.gl.glFlush();
-		}
+        spriteBatch.end();
+    }
 
-		spriteBatch.begin();
+    @Override
+    public void dispose() {
+        texture.dispose();
+        spriteBatch.dispose();
+    }
 
-		stringBuilder.setLength(0);
-		for (PerfTest perfTest : perfTests) {
-			stringBuilder.append("Type: ");
-			stringBuilder.append(perfTest.vertexDataType);
-			stringBuilder.append("\n");
+    private static class PerfTest {
+        Mesh.VertexDataType vertexDataType;
+        WindowedMean counter = new WindowedMean(10000);
 
-			if (perfTest.counter.hasEnoughData()) {
-				stringBuilder.append("Mean Time ms: ");
-				float nanoTimeMean = perfTest.counter.getMean();
-				stringBuilder.append(nanoTimeMean / 1e6);
-			} else {
-				stringBuilder.append("Please wait, collecting data...");
-			}
-			stringBuilder.append("\n\n");
-		}
-		bitmapFont.draw(spriteBatch, stringBuilder, 0, 400);
-
-		spriteBatch.end();
-	}
-
-	@Override
-	public void dispose () {
-		texture.dispose();
-		spriteBatch.dispose();
-	}
-
+        PerfTest(Mesh.VertexDataType type) {
+            this.vertexDataType = type;
+        }
+    }
 }

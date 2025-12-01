@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Gdx;
@@ -26,163 +25,161 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class CoordinatesTest extends GdxTest {
-	Skin skin;
-	Stage stage;
-	ShapeRenderer shapeRenderer;
-	Viewport stageViewport;
-	Viewport gameViewport;
-	Camera camera;
-	private Image img;
+    final Vector2 localActorScreen = new Vector2();
+    private final Vector2 vec2 = new Vector2();
+    private final Vector3 vec3 = new Vector3();
+    Skin skin;
+    Stage stage;
+    ShapeRenderer shapeRenderer;
+    Viewport stageViewport;
+    Viewport gameViewport;
+    Camera camera;
+    private Image img;
+    private Label inScreenLabel;
+    private Label vpScreenLabel;
+    private Label stScreenLabel;
+    private Label acScreenLabel;
+    private Label cmScreenLabel;
 
-	final Vector2 localActorScreen = new Vector2();
-	private Label inScreenLabel;
-	private Label vpScreenLabel;
-	private Label stScreenLabel;
-	private Label acScreenLabel;
-	private Label cmScreenLabel;
+    @Override
+    public void create() {
 
-	private final Vector2 vec2 = new Vector2();
-	private final Vector3 vec3 = new Vector3();
+        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+        TextureRegionDrawable logo = new TextureRegionDrawable(
+                new TextureRegion(new Texture(Gdx.files.internal("data/badlogic.jpg"))));
 
-	@Override
-	public void create () {
+        stageViewport = new FitViewport(500, 500);
+        stageViewport = new Viewport() {
+            public void update(int screenWidth, int screenHeight, boolean centerCamera) {
+                setScreenBounds(20, 20, screenWidth - 20, screenHeight - 20);
+                setWorldSize(500, 500);
+                apply(centerCamera);
+            }
+        };
+        stageViewport.setCamera(new OrthographicCamera());
+        gameViewport = new FitViewport(100, 100);
 
-		skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-		TextureRegionDrawable logo = new TextureRegionDrawable(
-			new TextureRegion(new Texture(Gdx.files.internal("data/badlogic.jpg"))));
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		stageViewport = new FitViewport(500, 500);
-		stageViewport = new Viewport() {
-			public void update (int screenWidth, int screenHeight, boolean centerCamera) {
-				setScreenBounds(20, 20, screenWidth - 20, screenHeight - 20);
-				setWorldSize(500, 500);
-				apply(centerCamera);
-			}
-		};
-		stageViewport.setCamera(new OrthographicCamera());
-		gameViewport = new FitViewport(100, 100);
+        stage = new Stage(stageViewport);
+        Gdx.input.setInputProcessor(stage);
 
-		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        shapeRenderer = new ShapeRenderer();
 
-		stage = new Stage(stageViewport);
-		Gdx.input.setInputProcessor(stage);
+        Table root = new Table();
+        root.setFillParent(true);
+        stage.addActor(root);
 
-		shapeRenderer = new ShapeRenderer();
+        Table metrics = new Table(skin);
+        root.add(metrics).expand().top().left();
+        metrics.defaults().pad(3).expandX().left();
 
-		Table root = new Table();
-		root.setFillParent(true);
-		stage.addActor(root);
+        img = new Image(logo) {
+            @Override
+            public void draw(Batch batch, float parentAlpha) {
+                stage.toScreenCoordinates(localActorScreen.set(getX(), getY()), batch.getTransformMatrix());
+                super.draw(batch, parentAlpha);
+            }
+        };
+        img.setSize(64, 64);
+        stage.addActor(img);
 
-		Table metrics = new Table(skin);
-		root.add(metrics).expand().top().left();
-		metrics.defaults().pad(3).expandX().left();
+        inScreenLabel = metrics.add("").getActor();
+        metrics.row();
+        vpScreenLabel = metrics.add("").getActor();
+        metrics.row();
+        cmScreenLabel = metrics.add("").getActor();
+        metrics.row();
+        stScreenLabel = metrics.add("").getActor();
+        metrics.row();
+        acScreenLabel = metrics.add("").getActor();
+        metrics.row();
+    }
 
-		img = new Image(logo) {
-			@Override
-			public void draw (Batch batch, float parentAlpha) {
-				stage.toScreenCoordinates(localActorScreen.set(getX(), getY()), batch.getTransformMatrix());
-				super.draw(batch, parentAlpha);
-			}
-		};
-		img.setSize(64, 64);
-		stage.addActor(img);
+    @Override
+    public void render() {
 
-		inScreenLabel = metrics.add("").getActor();
-		metrics.row();
-		vpScreenLabel = metrics.add("").getActor();
-		metrics.row();
-		cmScreenLabel = metrics.add("").getActor();
-		metrics.row();
-		stScreenLabel = metrics.add("").getActor();
-		metrics.row();
-		acScreenLabel = metrics.add("").getActor();
-		metrics.row();
-	}
+        final float screenHeight = Gdx.graphics.getHeight();
 
-	@Override
-	public void render () {
+        // display screen coordinates for actor, stage, viewport, and camera
+        int pointerX = Gdx.input.getX();
+        int pointerY = Gdx.input.getY();
+        inScreenLabel.setText("input: " + pointerX + " " + pointerY);
 
-		final float screenHeight = Gdx.graphics.getHeight();
+        gameViewport.unproject(vec2.set(pointerX, pointerY));
+        float vpWorldX = vec2.x;
+        float vpWorldY = vec2.y;
 
-		// display screen coordinates for actor, stage, viewport, and camera
-		int pointerX = Gdx.input.getX();
-		int pointerY = Gdx.input.getY();
-		inScreenLabel.setText("input: " + pointerX + " " + pointerY);
+        gameViewport.project(vec2);
+        float vpScreenX = vec2.x;
+        float vpScreenY = screenHeight - vec2.y;
+        vpScreenLabel.setText("viewport re-project: " + vpScreenX + " " + vpScreenY);
 
-		gameViewport.unproject(vec2.set(pointerX, pointerY));
-		float vpWorldX = vec2.x;
-		float vpWorldY = vec2.y;
+        camera.unproject(vec3.set(pointerX, pointerY, 0));
+        float cmWorldX = vec3.x;
+        float cmWorldY = vec3.y;
+        float cmWorldZ = vec3.z;
 
-		gameViewport.project(vec2);
-		float vpScreenX = vec2.x;
-		float vpScreenY = screenHeight - vec2.y;
-		vpScreenLabel.setText("viewport re-project: " + vpScreenX + " " + vpScreenY);
+        camera.project(vec3.set(cmWorldX, cmWorldY, cmWorldZ));
+        float cmScreenX = vec3.x;
+        float cmScreenY = screenHeight - vec3.y;
+        cmScreenLabel.setText("camera re-project: " + cmScreenX + " " + cmScreenY);
 
-		camera.unproject(vec3.set(pointerX, pointerY, 0));
-		float cmWorldX = vec3.x;
-		float cmWorldY = vec3.y;
-		float cmWorldZ = vec3.z;
+        stage.screenToStageCoordinates(vec2.set(pointerX, pointerY));
+        float stWorldX = vec2.x;
+        float stWorldY = vec2.y;
 
-		camera.project(vec3.set(cmWorldX, cmWorldY, cmWorldZ));
-		float cmScreenX = vec3.x;
-		float cmScreenY = screenHeight - vec3.y;
-		cmScreenLabel.setText("camera re-project: " + cmScreenX + " " + cmScreenY);
+        stage.stageToScreenCoordinates(vec2);
+        float stScreenX = vec2.x;
+        float stScreenY = vec2.y;
+        stScreenLabel.setText("stage re-project: " + stScreenX + " " + stScreenY);
 
-		stage.screenToStageCoordinates(vec2.set(pointerX, pointerY));
-		float stWorldX = vec2.x;
-		float stWorldY = vec2.y;
+        acScreenLabel.setText("actor real: " + localActorScreen.x + " " + localActorScreen.y);
 
-		stage.stageToScreenCoordinates(vec2);
-		float stScreenX = vec2.x;
-		float stScreenY = vec2.y;
-		stScreenLabel.setText("stage re-project: " + stScreenX + " " + stScreenY);
+        // clear screen with dark color
+        ScreenUtils.clear(0.2f, 0.2f, 0.2f, 1);
 
-		acScreenLabel.setText("actor real: " + localActorScreen.x + " " + localActorScreen.y);
+        // clear viewport virtual screen with lighter color
+        Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
+        Gdx.gl.glScissor(gameViewport.getScreenX(), gameViewport.getScreenY(), gameViewport.getScreenWidth(),
+                gameViewport.getScreenHeight());
+        Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
 
-		// clear screen with dark color
-		ScreenUtils.clear(0.2f, 0.2f, 0.2f, 1);
+        // test stage world coordinates
+        img.setPosition(stWorldX, stWorldY);
+        stage.getViewport().apply();
+        stage.act();
+        stage.draw();
 
-		// clear viewport virtual screen with lighter color
-		Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
-		Gdx.gl.glScissor(gameViewport.getScreenX(), gameViewport.getScreenY(), gameViewport.getScreenWidth(),
-			gameViewport.getScreenHeight());
-		Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
+        // test viewport world coordinates
+        gameViewport.apply();
+        shapeRenderer.setProjectionMatrix(gameViewport.getCamera().combined);
+        shapeRenderer.begin(ShapeType.Line);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(vpWorldX, vpWorldY, 10, 10);
+        shapeRenderer.end();
 
-		// test stage world coordinates
-		img.setPosition(stWorldX, stWorldY);
-		stage.getViewport().apply();
-		stage.act();
-		stage.draw();
+        // test camera world coordinates
+        HdpiUtils.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.begin(ShapeType.Line);
+        shapeRenderer.setColor(Color.GREEN);
+        shapeRenderer.rect(cmWorldX, cmWorldY, 10, 10);
+        shapeRenderer.end();
+    }
 
-		// test viewport world coordinates
-		gameViewport.apply();
-		shapeRenderer.setProjectionMatrix(gameViewport.getCamera().combined);
-		shapeRenderer.begin(ShapeType.Line);
-		shapeRenderer.setColor(Color.RED);
-		shapeRenderer.rect(vpWorldX, vpWorldY, 10, 10);
-		shapeRenderer.end();
+    @Override
+    public void resize(int width, int height) {
+        stageViewport.update(width, height, true);
+        gameViewport.update(width, height);
+    }
 
-		// test camera world coordinates
-		HdpiUtils.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		shapeRenderer.setProjectionMatrix(camera.combined);
-		shapeRenderer.begin(ShapeType.Line);
-		shapeRenderer.setColor(Color.GREEN);
-		shapeRenderer.rect(cmWorldX, cmWorldY, 10, 10);
-		shapeRenderer.end();
-	}
-
-	@Override
-	public void resize (int width, int height) {
-		stageViewport.update(width, height, true);
-		gameViewport.update(width, height);
-	}
-
-	@Override
-	public void dispose () {
-		stage.dispose();
-		skin.dispose();
-		shapeRenderer.dispose();
-	}
+    @Override
+    public void dispose() {
+        stage.dispose();
+        skin.dispose();
+        shapeRenderer.dispose();
+    }
 }

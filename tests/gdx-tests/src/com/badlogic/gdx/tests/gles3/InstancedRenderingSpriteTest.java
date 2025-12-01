@@ -41,108 +41,105 @@ import java.nio.FloatBuffer;
 @GdxTestConfig(requireGL30 = true)
 public class InstancedRenderingSpriteTest extends GdxTest {
 
-	ShaderProgram shader;
-	Mesh mesh;
+    private final static int INSTANCE_COUNT = 100000;
+    ShaderProgram shader;
+    Mesh mesh;
+    Texture texture;
 
-	private final static int INSTANCE_COUNT = 100000;
-	Texture texture;
+    Viewport viewport;
+    SpriteBatch batch;
+    private GLProfiler glProfiler;
+    private Sprite sprite;
 
-	Viewport viewport;
-	private GLProfiler glProfiler;
+    @Override
+    public void create() {
+        if (Gdx.gl30 == null) {
+            throw new GdxRuntimeException("GLES 3.0 profile required for this test");
+        }
 
-	SpriteBatch batch;
-	private Sprite sprite;
+        String ovs = ShaderProgram.prependVertexCode;
+        String ofs = ShaderProgram.prependFragmentCode;
+        ShaderProgram.prependVertexCode = "#version 300 es\n";
+        ShaderProgram.prependFragmentCode = "#version 300 es\n";
+        shader = new ShaderProgram(Gdx.files.internal("data/shaders/sprite-instanced.vert"),
+                Gdx.files.internal("data/shaders/sprite-instanced.frag"));
+        if (!shader.isCompiled()) {
+            throw new GdxRuntimeException("Shader compile error: " + shader.getLog());
+        }
 
-	@Override
-	public void create () {
-		if (Gdx.gl30 == null) {
-			throw new GdxRuntimeException("GLES 3.0 profile required for this test");
-		}
+        ShaderProgram.prependVertexCode = ovs;
+        ShaderProgram.prependFragmentCode = ofs;
 
-		String ovs = ShaderProgram.prependVertexCode;
-		String ofs = ShaderProgram.prependFragmentCode;
-		ShaderProgram.prependVertexCode = "#version 300 es\n";
-		ShaderProgram.prependFragmentCode = "#version 300 es\n";
-		shader = new ShaderProgram(Gdx.files.internal("data/shaders/sprite-instanced.vert"),
-			Gdx.files.internal("data/shaders/sprite-instanced.frag"));
-		if (!shader.isCompiled()) {
-			throw new GdxRuntimeException("Shader compile error: " + shader.getLog());
-		}
+        mesh = new Mesh(true, 6, 0, new VertexAttribute(Usage.Position, 2, "a_position"),
+                new VertexAttribute(Usage.TextureCoordinates, 2, "a_texCoord0"));
 
-		ShaderProgram.prependVertexCode = ovs;
-		ShaderProgram.prependFragmentCode = ofs;
+        // make two triangles with uvs of 0-1. If using texture reigon, pass in correct uvs
 
-		mesh = new Mesh(true, 6, 0, new VertexAttribute(Usage.Position, 2, "a_position"),
-			new VertexAttribute(Usage.TextureCoordinates, 2, "a_texCoord0"));
+        // for use with GL_TRIANGLES
+        float[] vertices = new float[]{0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
-		// make two triangles with uvs of 0-1. If using texture reigon, pass in correct uvs
+                1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f};
 
-		// for use with GL_TRIANGLES
-		float[] vertices = new float[] {0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+        mesh.setVertices(vertices);
 
-			1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f};
+        mesh.enableInstancedRendering(true, INSTANCE_COUNT, new VertexAttribute(Usage.Position, 2, "i_offset"));
 
-		mesh.setVertices(vertices);
+        FloatBuffer offsets = BufferUtils.newFloatBuffer(INSTANCE_COUNT * 2);
+        for (int i = 0; i < INSTANCE_COUNT; i++) {
+            float x = MathUtils.random(0f, 10f);
+            float y = MathUtils.random(0f, 10f);
+            offsets.put(new float[]{x, y});
+        }
+        ((Buffer) offsets).position(0);
+        mesh.setInstanceData(offsets);
 
-		mesh.enableInstancedRendering(true, INSTANCE_COUNT, new VertexAttribute(Usage.Position, 2, "i_offset"));
+        texture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
+        sprite = new Sprite(texture);
+        sprite.setSize(1, 1);
+        sprite.setPosition(5, 5);
 
-		FloatBuffer offsets = BufferUtils.newFloatBuffer(INSTANCE_COUNT * 2);
-		for (int i = 0; i < INSTANCE_COUNT; i++) {
-			float x = MathUtils.random(0f, 10f);
-			float y = MathUtils.random(0f, 10f);
-			offsets.put(new float[] {x, y});
-		}
-		((Buffer)offsets).position(0);
-		mesh.setInstanceData(offsets);
+        viewport = new ExtendViewport(10, 10);
 
-		texture = new Texture(Gdx.files.internal("data/badlogic.jpg"));
-		sprite = new Sprite(texture);
-		sprite.setSize(1, 1);
-		sprite.setPosition(5, 5);
+        batch = new SpriteBatch();
 
-		viewport = new ExtendViewport(10, 10);
+        glProfiler = new GLProfiler(Gdx.graphics);
+        glProfiler.enable();
+    }
 
-		batch = new SpriteBatch();
+    @Override
+    public void render() {
+        glProfiler.reset();
 
-		glProfiler = new GLProfiler(Gdx.graphics);
-		glProfiler.enable();
-	}
+        ScreenUtils.clear(0.0f, 0.0f, 0.0f, 1f);
 
-	@Override
-	public void render () {
-		glProfiler.reset();
+        viewport.getCamera().position.set(5, 5, 0);
+        viewport.apply();
 
-		ScreenUtils.clear(0.0f, 0.0f, 0.0f, 1f);
+        boolean testingInstancing = false;
 
-		viewport.getCamera().position.set(5, 5, 0);
-		viewport.apply();
+        if (testingInstancing) {
 
-		boolean testingInstancing = false;
+            texture.bind(0);
+            shader.bind();
+            shader.setUniformi("u_texture", 0);
+            shader.setUniformMatrix("u_projTrans", viewport.getCamera().combined);
+            mesh.render(shader, GL30.GL_TRIANGLES);
+        } else {
+            batch.setProjectionMatrix(viewport.getCamera().combined);
+            batch.begin();
+            for (int i = 0; i < INSTANCE_COUNT; i++) {
+                sprite.draw(batch);
+            }
+            batch.end();
+        }
 
-		if (testingInstancing) {
+        int drawCalls = glProfiler.getDrawCalls();
 
-			texture.bind(0);
-			shader.bind();
-			shader.setUniformi("u_texture", 0);
-			shader.setUniformMatrix("u_projTrans", viewport.getCamera().combined);
-			mesh.render(shader, GL30.GL_TRIANGLES);
+        System.out.println("Draw Calls: " + drawCalls + " and " + Gdx.graphics.getFramesPerSecond() + " FPS");
+    }
 
-		} else {
-			batch.setProjectionMatrix(viewport.getCamera().combined);
-			batch.begin();
-			for (int i = 0; i < INSTANCE_COUNT; i++) {
-				sprite.draw(batch);
-			}
-			batch.end();
-		}
-
-		int drawCalls = glProfiler.getDrawCalls();
-
-		System.out.println("Draw Calls: " + drawCalls + " and " + Gdx.graphics.getFramesPerSecond() + " FPS");
-	}
-
-	@Override
-	public void resize (int width, int height) {
-		viewport.update(width, height);
-	}
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height);
+    }
 }

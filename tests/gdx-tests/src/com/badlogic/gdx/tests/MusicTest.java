@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,177 +41,176 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 public class MusicTest extends GdxTest {
 
-	Music music;
-	float songDuration;
-	float currentPosition;
+    Music music;
+    float songDuration;
+    float currentPosition;
 
-	SpriteBatch batch;
+    SpriteBatch batch;
 
-	Stage stage;
-	Label label;
-	Slider slider;
-	boolean sliderUpdating = false;
-	SelectBox<Song> musicBox;
-	TextButton btLoop;
+    Stage stage;
+    Label label;
+    Slider slider;
+    boolean sliderUpdating = false;
+    SelectBox<Song> musicBox;
+    TextButton btLoop;
+    float time;
 
-	enum Song {
-		MP3, OGG, WAV, PCM8, MP3_CLOCK
-	}
+    @Override
+    public void create() {
 
-	float time;
+        batch = new SpriteBatch();
 
-	@Override
-	public void create () {
+        stage = new Stage(new ExtendViewport(600, 480));
+        Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-		batch = new SpriteBatch();
+        Table sliderTable = new Table();
+        label = new Label("", skin);
+        slider = new Slider(0, 100, 0.1f, false, skin);
+        sliderTable.add(slider).expand();
+        sliderTable.add(label).left().width(60f);
+        slider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (!sliderUpdating && slider.isDragging()) music.setPosition((slider.getValue() / 100f) * songDuration);
+            }
+        });
 
-		stage = new Stage(new ExtendViewport(600, 480));
-		Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+        musicBox = new SelectBox<Song>(skin);
+        musicBox.setItems(Song.values());
+        musicBox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                setSong(musicBox.getSelected());
+            }
+        });
 
-		Table sliderTable = new Table();
-		label = new Label("", skin);
-		slider = new Slider(0, 100, 0.1f, false, skin);
-		sliderTable.add(slider).expand();
-		sliderTable.add(label).left().width(60f);
-		slider.addListener(new ChangeListener() {
-			@Override
-			public void changed (ChangeEvent event, Actor actor) {
-				if (!sliderUpdating && slider.isDragging()) music.setPosition((slider.getValue() / 100f) * songDuration);
-			}
-		});
+        btLoop = new TextButton("loop", skin, "toggle");
+        btLoop.setChecked(true);
+        btLoop.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if (music != null) music.setLooping(btLoop.isChecked());
+            }
+        });
 
-		musicBox = new SelectBox<Song>(skin);
-		musicBox.setItems(Song.values());
-		musicBox.addListener(new ChangeListener() {
-			@Override
-			public void changed (ChangeEvent event, Actor actor) {
-				setSong(musicBox.getSelected());
-			}
-		});
+        // Build buttons
+        Table controlsTable = new Table();
+        controlsTable.setSize(200f, 80f);
+        Button playButton = new ImageButton(getDrawable("data/player_play.png"));
+        Button pauseButton = new ImageButton(getDrawable("data/player_pause.png"));
+        Button stopButton = new ImageButton(getDrawable("data/player_stop.png"));
+        float buttonSize = 64f;
+        controlsTable.add(playButton).size(buttonSize);
+        controlsTable.add(pauseButton).size(buttonSize);
+        controlsTable.add(stopButton).size(buttonSize);
+        playButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                music.play();
+                time = 0;
+            }
+        });
+        pauseButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                music.pause();
+            }
+        });
+        stopButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                music.stop();
+            }
+        });
 
-		btLoop = new TextButton("loop", skin, "toggle");
-		btLoop.setChecked(true);
-		btLoop.addListener(new ChangeListener() {
-			@Override
-			public void changed (ChangeEvent event, Actor actor) {
-				if (music != null) music.setLooping(btLoop.isChecked());
-			}
-		});
+        Table footerTable = new Table();
+        footerTable.setSize(500f, 120f);
+        footerTable.add(controlsTable);
+        footerTable.add(sliderTable).width(250f);
 
-		// Build buttons
-		Table controlsTable = new Table();
-		controlsTable.setSize(200f, 80f);
-		Button playButton = new ImageButton(getDrawable("data/player_play.png"));
-		Button pauseButton = new ImageButton(getDrawable("data/player_pause.png"));
-		Button stopButton = new ImageButton(getDrawable("data/player_stop.png"));
-		float buttonSize = 64f;
-		controlsTable.add(playButton).size(buttonSize);
-		controlsTable.add(pauseButton).size(buttonSize);
-		controlsTable.add(stopButton).size(buttonSize);
-		playButton.addListener(new ChangeListener() {
-			@Override
-			public void changed (ChangeEvent event, Actor actor) {
-				music.play();
-				time = 0;
-			}
-		});
-		pauseButton.addListener(new ChangeListener() {
-			@Override
-			public void changed (ChangeEvent event, Actor actor) {
-				music.pause();
-			}
-		});
-		stopButton.addListener(new ChangeListener() {
-			@Override
-			public void changed (ChangeEvent event, Actor actor) {
-				music.stop();
-			}
-		});
+        setSong(musicBox.getSelected());
 
-		Table footerTable = new Table();
-		footerTable.setSize(500f, 120f);
-		footerTable.add(controlsTable);
-		footerTable.add(sliderTable).width(250f);
+        Table table = new Table(skin);
+        table.add(musicBox);
+        table.add(btLoop);
+        table.setFillParent(true);
+        stage.addActor(table);
+        stage.addActor(footerTable);
 
-		setSong(musicBox.getSelected());
+        Gdx.input.setInputProcessor(stage);
+    }
 
-		Table table = new Table(skin);
-		table.add(musicBox);
-		table.add(btLoop);
-		table.setFillParent(true);
-		stage.addActor(table);
-		stage.addActor(footerTable);
+    void setSong(Song song) {
+        if (music != null) {
+            music.dispose();
+        }
+        switch (song) {
+            default:
+            case MP3_CLOCK:
+                music = Gdx.audio.newMusic(Gdx.files.internal("data/60bpm.mp3"));
+                songDuration = 5 * 60 + 4;
+                break;
+            case MP3:
+                music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.mp3"));
+                songDuration = 183;
+                break;
+            case OGG:
+                music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.ogg"));
+                songDuration = 183;
+                break;
+            case WAV:
+                music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.loop.wav"));
+                songDuration = 4;
+                break;
+            case PCM8:
+                music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.loop-8bit.wav"));
+                songDuration = 4;
+                break;
+        }
+        music.setLooping(btLoop.isChecked());
+        music.play();
+        time = 0;
+    }
 
-		Gdx.input.setInputProcessor(stage);
-	}
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
 
-	void setSong (Song song) {
-		if (music != null) {
-			music.dispose();
-		}
-		switch (song) {
-		default:
-		case MP3_CLOCK:
-			music = Gdx.audio.newMusic(Gdx.files.internal("data/60bpm.mp3"));
-			songDuration = 5 * 60 + 4;
-			break;
-		case MP3:
-			music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.mp3"));
-			songDuration = 183;
-			break;
-		case OGG:
-			music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.ogg"));
-			songDuration = 183;
-			break;
-		case WAV:
-			music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.loop.wav"));
-			songDuration = 4;
-			break;
-		case PCM8:
-			music = Gdx.audio.newMusic(Gdx.files.internal("data/8.12.loop-8bit.wav"));
-			songDuration = 4;
-			break;
-		}
-		music.setLooping(btLoop.isChecked());
-		music.play();
-		time = 0;
-	}
+    @Override
+    public void resume() {
+        System.out.println(Gdx.graphics.getDeltaTime());
+    }
 
-	@Override
-	public void resize (int width, int height) {
-		stage.getViewport().update(width, height, true);
-	}
+    @Override
+    public void render() {
+        ScreenUtils.clear(Color.BLACK);
+        currentPosition = music.getPosition();
+        label.setText((int) currentPosition / 60 + ":" + (int) currentPosition % 60);
 
-	@Override
-	public void resume () {
-		System.out.println(Gdx.graphics.getDeltaTime());
-	}
-
-	@Override
-	public void render () {
-		ScreenUtils.clear(Color.BLACK);
-		currentPosition = music.getPosition();
-		label.setText((int)currentPosition / 60 + ":" + (int)currentPosition % 60);
-
-		sliderUpdating = true;
-		slider.setValue((currentPosition / songDuration) * 100f);
-		sliderUpdating = false;
-		stage.act();
-		stage.draw();
+        sliderUpdating = true;
+        slider.setValue((currentPosition / songDuration) * 100f);
+        sliderUpdating = false;
+        stage.act();
+        stage.draw();
 
 // if(music.isPlaying()){
 // time += Gdx.graphics.getDeltaTime();
 // System.out.println("realtime: " + time + " music time: " + currentPosition);
 // }
-	}
+    }
 
-	@Override
-	public void dispose () {
-		batch.dispose();
-		music.dispose();
-	}
+    @Override
+    public void dispose() {
+        batch.dispose();
+        music.dispose();
+    }
 
-	private Drawable getDrawable (String path) {
-		return new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal(path))));
-	}
+    private Drawable getDrawable(String path) {
+        return new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal(path))));
+    }
+
+    enum Song {
+        MP3, OGG, WAV, PCM8, MP3_CLOCK
+    }
 }

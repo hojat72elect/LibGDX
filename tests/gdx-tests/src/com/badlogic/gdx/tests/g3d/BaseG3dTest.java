@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,93 +34,90 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public abstract class BaseG3dTest extends GdxTest {
-	public AssetManager assets;
+    public final Color bgColor = new Color(0, 0, 0, 1);
+    final float GRID_MIN = -10f;
+    final float GRID_MAX = 10f;
+    final float GRID_STEP = 1f;
+    public AssetManager assets;
+    public PerspectiveCamera cam;
+    public CameraInputController inputController;
+    public ModelBatch modelBatch;
+    public Model axesModel;
+    public ModelInstance axesInstance;
+    public boolean showAxes = true;
+    public Array<ModelInstance> instances = new Array<ModelInstance>();
+    protected boolean loading = false;
 
-	public PerspectiveCamera cam;
-	public CameraInputController inputController;
-	public ModelBatch modelBatch;
-	public Model axesModel;
-	public ModelInstance axesInstance;
-	public boolean showAxes = true;
-	public Array<ModelInstance> instances = new Array<ModelInstance>();
-	public final Color bgColor = new Color(0, 0, 0, 1);
+    @Override
+    public void create() {
+        if (assets == null) assets = new AssetManager();
 
-	@Override
-	public void create () {
-		if (assets == null) assets = new AssetManager();
+        modelBatch = new ModelBatch();
 
-		modelBatch = new ModelBatch();
+        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam.position.set(10f, 10f, 10f);
+        cam.lookAt(0, 0, 0);
+        cam.near = 0.1f;
+        cam.far = 1000f;
+        cam.update();
 
-		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		cam.position.set(10f, 10f, 10f);
-		cam.lookAt(0, 0, 0);
-		cam.near = 0.1f;
-		cam.far = 1000f;
-		cam.update();
+        createAxes();
 
-		createAxes();
+        Gdx.input.setInputProcessor(inputController = new CameraInputController(cam));
+    }
 
-		Gdx.input.setInputProcessor(inputController = new CameraInputController(cam));
-	}
+    private void createAxes() {
+        ModelBuilder modelBuilder = new ModelBuilder();
+        modelBuilder.begin();
+        MeshPartBuilder builder = modelBuilder.part("grid", GL20.GL_LINES, Usage.Position | Usage.ColorUnpacked, new Material());
+        builder.setColor(Color.LIGHT_GRAY);
+        for (float t = GRID_MIN; t <= GRID_MAX; t += GRID_STEP) {
+            builder.line(t, 0, GRID_MIN, t, 0, GRID_MAX);
+            builder.line(GRID_MIN, 0, t, GRID_MAX, 0, t);
+        }
+        builder = modelBuilder.part("axes", GL20.GL_LINES, Usage.Position | Usage.ColorUnpacked, new Material());
+        builder.setColor(Color.RED);
+        builder.line(0, 0, 0, 100, 0, 0);
+        builder.setColor(Color.GREEN);
+        builder.line(0, 0, 0, 0, 100, 0);
+        builder.setColor(Color.BLUE);
+        builder.line(0, 0, 0, 0, 0, 100);
+        axesModel = modelBuilder.end();
+        axesInstance = new ModelInstance(axesModel);
+    }
 
-	final float GRID_MIN = -10f;
-	final float GRID_MAX = 10f;
-	final float GRID_STEP = 1f;
+    protected abstract void render(final ModelBatch batch, final Array<ModelInstance> instances);
 
-	private void createAxes () {
-		ModelBuilder modelBuilder = new ModelBuilder();
-		modelBuilder.begin();
-		MeshPartBuilder builder = modelBuilder.part("grid", GL20.GL_LINES, Usage.Position | Usage.ColorUnpacked, new Material());
-		builder.setColor(Color.LIGHT_GRAY);
-		for (float t = GRID_MIN; t <= GRID_MAX; t += GRID_STEP) {
-			builder.line(t, 0, GRID_MIN, t, 0, GRID_MAX);
-			builder.line(GRID_MIN, 0, t, GRID_MAX, 0, t);
-		}
-		builder = modelBuilder.part("axes", GL20.GL_LINES, Usage.Position | Usage.ColorUnpacked, new Material());
-		builder.setColor(Color.RED);
-		builder.line(0, 0, 0, 100, 0, 0);
-		builder.setColor(Color.GREEN);
-		builder.line(0, 0, 0, 0, 100, 0);
-		builder.setColor(Color.BLUE);
-		builder.line(0, 0, 0, 0, 0, 100);
-		axesModel = modelBuilder.end();
-		axesInstance = new ModelInstance(axesModel);
-	}
+    protected void onLoaded() {
+    }
 
-	protected abstract void render (final ModelBatch batch, final Array<ModelInstance> instances);
+    public void render(final Array<ModelInstance> instances) {
+        modelBatch.begin(cam);
+        if (showAxes) modelBatch.render(axesInstance);
+        if (instances != null) render(modelBatch, instances);
+        modelBatch.end();
+    }
 
-	protected boolean loading = false;
+    @Override
+    public void render() {
+        if (loading && assets.update(16)) {
+            loading = false;
+            onLoaded();
+        }
 
-	protected void onLoaded () {
-	}
+        inputController.update();
 
-	public void render (final Array<ModelInstance> instances) {
-		modelBatch.begin(cam);
-		if (showAxes) modelBatch.render(axesInstance);
-		if (instances != null) render(modelBatch, instances);
-		modelBatch.end();
-	}
+        ScreenUtils.clear(bgColor, true);
 
-	@Override
-	public void render () {
-		if (loading && assets.update(16)) {
-			loading = false;
-			onLoaded();
-		}
+        render(instances);
+    }
 
-		inputController.update();
-
-		ScreenUtils.clear(bgColor, true);
-
-		render(instances);
-	}
-
-	@Override
-	public void dispose () {
-		modelBatch.dispose();
-		assets.dispose();
-		assets = null;
-		axesModel.dispose();
-		axesModel = null;
-	}
+    @Override
+    public void dispose() {
+        modelBatch.dispose();
+        assets.dispose();
+        assets = null;
+        axesModel.dispose();
+        axesModel = null;
+    }
 }

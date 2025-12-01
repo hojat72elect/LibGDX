@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,172 +16,191 @@
 
 package com.badlogic.gdx.utils;
 
-/** A simple linked list that pools its nodes.
- * @author mzechner */
+/**
+ * A simple linked list that pools its nodes.
+ *
+ * @author mzechner
+ */
 public class PooledLinkedList<T> {
-	static final class Item<T> {
-		public T payload;
-		public Item<T> next;
-		public Item<T> prev;
-	}
+    private final Pool<Item<T>> pool;
+    private Item<T> head;
+    private Item<T> tail;
+    private Item<T> iter;
+    private Item<T> curr;
+    private int size = 0;
 
-	private Item<T> head;
-	private Item<T> tail;
-	private Item<T> iter;
-	private Item<T> curr;
-	private int size = 0;
+    public PooledLinkedList(int maxPoolSize) {
+        this.pool = new Pool<Item<T>>(16, maxPoolSize) {
+            @Override
+            protected Item<T> newObject() {
+                return new Item<T>();
+            }
+        };
+    }
 
-	private final Pool<Item<T>> pool;
+    /**
+     * Adds the specified object to the end of the list regardless of iteration status
+     */
+    public void add(T object) {
+        Item<T> item = pool.obtain();
+        item.payload = object;
+        item.next = null;
+        item.prev = null;
 
-	public PooledLinkedList (int maxPoolSize) {
-		this.pool = new Pool<Item<T>>(16, maxPoolSize) {
-			@Override
-			protected Item<T> newObject () {
-				return new Item<T>();
-			}
-		};
-	}
+        if (head == null) {
+            head = item;
+            tail = item;
+            size++;
+            return;
+        }
 
-	/** Adds the specified object to the end of the list regardless of iteration status */
-	public void add (T object) {
-		Item<T> item = pool.obtain();
-		item.payload = object;
-		item.next = null;
-		item.prev = null;
+        item.prev = tail;
+        tail.next = item;
+        tail = item;
+        size++;
+    }
 
-		if (head == null) {
-			head = item;
-			tail = item;
-			size++;
-			return;
-		}
+    /**
+     * Adds the specified object to the head of the list regardless of iteration status
+     */
+    public void addFirst(T object) {
+        Item<T> item = pool.obtain();
+        item.payload = object;
+        item.next = head;
+        item.prev = null;
 
-		item.prev = tail;
-		tail.next = item;
-		tail = item;
-		size++;
-	}
+        if (head != null) {
+            head.prev = item;
+        } else {
+            tail = item;
+        }
 
-	/** Adds the specified object to the head of the list regardless of iteration status */
-	public void addFirst (T object) {
-		Item<T> item = pool.obtain();
-		item.payload = object;
-		item.next = head;
-		item.prev = null;
+        head = item;
 
-		if (head != null) {
-			head.prev = item;
-		} else {
-			tail = item;
-		}
+        size++;
+    }
 
-		head = item;
+    /**
+     * Returns the number of items in the list
+     */
+    public int size() {
+        return size;
+    }
 
-		size++;
-	}
+    /**
+     * Starts iterating over the list's items from the head of the list
+     */
+    public void iter() {
+        iter = head;
+    }
 
-	/** Returns the number of items in the list */
-	public int size () {
-		return size;
-	}
+    /**
+     * Starts iterating over the list's items from the tail of the list
+     */
+    public void iterReverse() {
+        iter = tail;
+    }
 
-	/** Starts iterating over the list's items from the head of the list */
-	public void iter () {
-		iter = head;
-	}
+    /**
+     * Gets the next item in the list
+     *
+     * @return the next item in the list or null if there are no more items
+     */
+    public @Null T next() {
+        if (iter == null) return null;
 
-	/** Starts iterating over the list's items from the tail of the list */
-	public void iterReverse () {
-		iter = tail;
-	}
+        T payload = iter.payload;
+        curr = iter;
+        iter = iter.next;
+        return payload;
+    }
 
-	/** Gets the next item in the list
-	 * 
-	 * @return the next item in the list or null if there are no more items */
-	public @Null T next () {
-		if (iter == null) return null;
+    /**
+     * Gets the previous item in the list
+     *
+     * @return the previous item in the list or null if there are no more items
+     */
+    public @Null T previous() {
+        if (iter == null) return null;
 
-		T payload = iter.payload;
-		curr = iter;
-		iter = iter.next;
-		return payload;
-	}
+        T payload = iter.payload;
+        curr = iter;
+        iter = iter.prev;
+        return payload;
+    }
 
-	/** Gets the previous item in the list
-	 * 
-	 * @return the previous item in the list or null if there are no more items */
-	public @Null T previous () {
-		if (iter == null) return null;
+    /**
+     * Removes the current list item based on the iterator position.
+     */
+    public void remove() {
+        if (curr == null) return;
 
-		T payload = iter.payload;
-		curr = iter;
-		iter = iter.prev;
-		return payload;
-	}
+        size--;
 
-	/** Removes the current list item based on the iterator position. */
-	public void remove () {
-		if (curr == null) return;
+        Item<T> c = curr;
+        Item<T> n = curr.next;
+        Item<T> p = curr.prev;
+        pool.free(curr);
+        curr = null;
 
-		size--;
+        if (size == 0) {
+            head = null;
+            tail = null;
+            return;
+        }
 
-		Item<T> c = curr;
-		Item<T> n = curr.next;
-		Item<T> p = curr.prev;
-		pool.free(curr);
-		curr = null;
+        if (c == head) {
+            n.prev = null;
+            head = n;
+            return;
+        }
 
-		if (size == 0) {
-			head = null;
-			tail = null;
-			return;
-		}
+        if (c == tail) {
+            p.next = null;
+            tail = p;
+            return;
+        }
 
-		if (c == head) {
-			n.prev = null;
-			head = n;
-			return;
-		}
+        p.next = n;
+        n.prev = p;
+    }
 
-		if (c == tail) {
-			p.next = null;
-			tail = p;
-			return;
-		}
+    /**
+     * Removes the tail of the list regardless of iteration status
+     */
+    public @Null T removeLast() {
+        if (tail == null) {
+            return null;
+        }
 
-		p.next = n;
-		n.prev = p;
-	}
+        T payload = tail.payload;
 
-	/** Removes the tail of the list regardless of iteration status */
-	public @Null T removeLast () {
-		if (tail == null) {
-			return null;
-		}
+        size--;
 
-		T payload = tail.payload;
+        Item<T> p = tail.prev;
+        pool.free(tail);
 
-		size--;
+        if (size == 0) {
+            head = null;
+            tail = null;
+        } else {
+            tail = p;
+            tail.next = null;
+        }
 
-		Item<T> p = tail.prev;
-		pool.free(tail);
+        return payload;
+    }
 
-		if (size == 0) {
-			head = null;
-			tail = null;
-		} else {
-			tail = p;
-			tail.next = null;
-		}
+    public void clear() {
+        iter();
+        T v = null;
+        while ((v = next()) != null)
+            remove();
+    }
 
-		return payload;
-	}
-
-	public void clear () {
-		iter();
-		T v = null;
-		while ((v = next()) != null)
-			remove();
-	}
-
+    static final class Item<T> {
+        public T payload;
+        public Item<T> next;
+        public Item<T> prev;
+    }
 }

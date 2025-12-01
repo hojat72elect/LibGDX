@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,185 +25,197 @@ import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.FlushablePool;
 
-/** RenderableShapeBuilder builds various properties of a renderable.
- * @author realitix */
+/**
+ * RenderableShapeBuilder builds various properties of a renderable.
+ *
+ * @author realitix
+ */
 public class RenderableShapeBuilder extends BaseShapeBuilder {
 
-	private static class RenderablePool extends FlushablePool<Renderable> {
-		public RenderablePool () {
-			super();
-		}
+    private final static RenderablePool renderablesPool = new RenderablePool();
+    private final static Array<Renderable> renderables = new Array<Renderable>();
+    private static final int FLOAT_BYTES = 4;
+    private static short[] indices;
+    private static float[] vertices;
 
-		@Override
-		protected Renderable newObject () {
-			return new Renderable();
-		}
+    /**
+     * Builds normal, tangent and binormal of a RenderableProvider with default colors (normal blue, tangent red, binormal green).
+     *
+     * @param builder
+     * @param renderableProvider
+     * @param vectorSize         Size of the normal vector
+     */
+    public static void buildNormals(MeshPartBuilder builder, RenderableProvider renderableProvider, float vectorSize) {
+        buildNormals(builder, renderableProvider, vectorSize, tmpColor0.set(0, 0, 1, 1), tmpColor1.set(1, 0, 0, 1),
+                tmpColor2.set(0, 1, 0, 1));
+    }
 
-		@Override
-		public Renderable obtain () {
-			Renderable renderable = super.obtain();
-			renderable.environment = null;
-			renderable.material = null;
-			renderable.meshPart.set("", null, 0, 0, 0);
-			renderable.shader = null;
-			renderable.userData = null;
-			return renderable;
-		}
-	}
+    /**
+     * Builds normal, tangent and binormal of a RenderableProvider.
+     *
+     * @param builder
+     * @param renderableProvider
+     * @param vectorSize         Size of the normal vector
+     * @param normalColor        Normal vector's color
+     * @param tangentColor       Tangent vector's color
+     * @param binormalColor      Binormal vector's color
+     */
+    public static void buildNormals(MeshPartBuilder builder, RenderableProvider renderableProvider, float vectorSize,
+                                    Color normalColor, Color tangentColor, Color binormalColor) {
 
-	private static short[] indices;
-	private static float[] vertices;
-	private final static RenderablePool renderablesPool = new RenderablePool();
-	private final static Array<Renderable> renderables = new Array<Renderable>();
-	private static final int FLOAT_BYTES = 4;
+        renderableProvider.getRenderables(renderables, renderablesPool);
 
-	/** Builds normal, tangent and binormal of a RenderableProvider with default colors (normal blue, tangent red, binormal green).
-	 * @param builder
-	 * @param renderableProvider
-	 * @param vectorSize Size of the normal vector */
-	public static void buildNormals (MeshPartBuilder builder, RenderableProvider renderableProvider, float vectorSize) {
-		buildNormals(builder, renderableProvider, vectorSize, tmpColor0.set(0, 0, 1, 1), tmpColor1.set(1, 0, 0, 1),
-			tmpColor2.set(0, 1, 0, 1));
-	}
+        for (Renderable renderable : renderables) {
+            buildNormals(builder, renderable, vectorSize, normalColor, tangentColor, binormalColor);
+        }
 
-	/** Builds normal, tangent and binormal of a RenderableProvider.
-	 * @param builder
-	 * @param renderableProvider
-	 * @param vectorSize Size of the normal vector
-	 * @param normalColor Normal vector's color
-	 * @param tangentColor Tangent vector's color
-	 * @param binormalColor Binormal vector's color */
-	public static void buildNormals (MeshPartBuilder builder, RenderableProvider renderableProvider, float vectorSize,
-		Color normalColor, Color tangentColor, Color binormalColor) {
+        renderablesPool.flush();
+        renderables.clear();
+    }
 
-		renderableProvider.getRenderables(renderables, renderablesPool);
+    /**
+     * Builds normal, tangent and binormal of a Renderable.
+     *
+     * @param builder
+     * @param renderable
+     * @param vectorSize    Size of the normal vector
+     * @param normalColor   Normal vector's color
+     * @param tangentColor  Tangent vector's color
+     * @param binormalColor Binormal vector's color
+     */
+    public static void buildNormals(MeshPartBuilder builder, Renderable renderable, float vectorSize, Color normalColor,
+                                    Color tangentColor, Color binormalColor) {
+        Mesh mesh = renderable.meshPart.mesh;
 
-		for (Renderable renderable : renderables) {
-			buildNormals(builder, renderable, vectorSize, normalColor, tangentColor, binormalColor);
-		}
+        // Position
+        int positionOffset = -1;
+        if (mesh.getVertexAttribute(Usage.Position) != null)
+            positionOffset = mesh.getVertexAttribute(Usage.Position).offset / FLOAT_BYTES;
 
-		renderablesPool.flush();
-		renderables.clear();
-	}
+        // Normal
+        int normalOffset = -1;
+        if (mesh.getVertexAttribute(Usage.Normal) != null)
+            normalOffset = mesh.getVertexAttribute(Usage.Normal).offset / FLOAT_BYTES;
 
-	/** Builds normal, tangent and binormal of a Renderable.
-	 * @param builder
-	 * @param renderable
-	 * @param vectorSize Size of the normal vector
-	 * @param normalColor Normal vector's color
-	 * @param tangentColor Tangent vector's color
-	 * @param binormalColor Binormal vector's color */
-	public static void buildNormals (MeshPartBuilder builder, Renderable renderable, float vectorSize, Color normalColor,
-		Color tangentColor, Color binormalColor) {
-		Mesh mesh = renderable.meshPart.mesh;
+        // Tangent
+        int tangentOffset = -1;
+        if (mesh.getVertexAttribute(Usage.Tangent) != null)
+            tangentOffset = mesh.getVertexAttribute(Usage.Tangent).offset / FLOAT_BYTES;
 
-		// Position
-		int positionOffset = -1;
-		if (mesh.getVertexAttribute(Usage.Position) != null)
-			positionOffset = mesh.getVertexAttribute(Usage.Position).offset / FLOAT_BYTES;
+        // Binormal
+        int binormalOffset = -1;
+        if (mesh.getVertexAttribute(Usage.BiNormal) != null)
+            binormalOffset = mesh.getVertexAttribute(Usage.BiNormal).offset / FLOAT_BYTES;
 
-		// Normal
-		int normalOffset = -1;
-		if (mesh.getVertexAttribute(Usage.Normal) != null)
-			normalOffset = mesh.getVertexAttribute(Usage.Normal).offset / FLOAT_BYTES;
+        int attributesSize = mesh.getVertexSize() / FLOAT_BYTES;
+        int verticesOffset = 0;
+        int verticesQuantity = 0;
 
-		// Tangent
-		int tangentOffset = -1;
-		if (mesh.getVertexAttribute(Usage.Tangent) != null)
-			tangentOffset = mesh.getVertexAttribute(Usage.Tangent).offset / FLOAT_BYTES;
+        if (mesh.getNumIndices() > 0) {
+            // Get min vertice to max vertice in indices array
+            ensureIndicesCapacity(mesh.getNumIndices());
+            mesh.getIndices(renderable.meshPart.offset, renderable.meshPart.size, indices, 0);
 
-		// Binormal
-		int binormalOffset = -1;
-		if (mesh.getVertexAttribute(Usage.BiNormal) != null)
-			binormalOffset = mesh.getVertexAttribute(Usage.BiNormal).offset / FLOAT_BYTES;
+            short minVertice = minVerticeInIndices();
+            short maxVertice = maxVerticeInIndices();
 
-		int attributesSize = mesh.getVertexSize() / FLOAT_BYTES;
-		int verticesOffset = 0;
-		int verticesQuantity = 0;
+            verticesOffset = minVertice;
+            verticesQuantity = maxVertice - minVertice;
+        } else {
+            verticesOffset = renderable.meshPart.offset;
+            verticesQuantity = renderable.meshPart.size;
+        }
 
-		if (mesh.getNumIndices() > 0) {
-			// Get min vertice to max vertice in indices array
-			ensureIndicesCapacity(mesh.getNumIndices());
-			mesh.getIndices(renderable.meshPart.offset, renderable.meshPart.size, indices, 0);
+        ensureVerticesCapacity(verticesQuantity * attributesSize);
+        mesh.getVertices(verticesOffset * attributesSize, verticesQuantity * attributesSize, vertices, 0);
 
-			short minVertice = minVerticeInIndices();
-			short maxVertice = maxVerticeInIndices();
+        for (int i = verticesOffset; i < verticesQuantity; i++) {
+            int id = i * attributesSize;
 
-			verticesOffset = minVertice;
-			verticesQuantity = maxVertice - minVertice;
-		} else {
-			verticesOffset = renderable.meshPart.offset;
-			verticesQuantity = renderable.meshPart.size;
-		}
+            // Vertex position
+            tmpV0.set(vertices[id + positionOffset], vertices[id + positionOffset + 1], vertices[id + positionOffset + 2]);
 
-		ensureVerticesCapacity(verticesQuantity * attributesSize);
-		mesh.getVertices(verticesOffset * attributesSize, verticesQuantity * attributesSize, vertices, 0);
+            // Vertex normal, tangent, binormal
+            if (normalOffset != -1) {
+                tmpV1.set(vertices[id + normalOffset], vertices[id + normalOffset + 1], vertices[id + normalOffset + 2]);
+                tmpV2.set(tmpV0).add(tmpV1.scl(vectorSize));
+            }
 
-		for (int i = verticesOffset; i < verticesQuantity; i++) {
-			int id = i * attributesSize;
+            if (tangentOffset != -1) {
+                tmpV3.set(vertices[id + tangentOffset], vertices[id + tangentOffset + 1], vertices[id + tangentOffset + 2]);
+                tmpV4.set(tmpV0).add(tmpV3.scl(vectorSize));
+            }
 
-			// Vertex position
-			tmpV0.set(vertices[id + positionOffset], vertices[id + positionOffset + 1], vertices[id + positionOffset + 2]);
+            if (binormalOffset != -1) {
+                tmpV5.set(vertices[id + binormalOffset], vertices[id + binormalOffset + 1], vertices[id + binormalOffset + 2]);
+                tmpV6.set(tmpV0).add(tmpV5.scl(vectorSize));
+            }
 
-			// Vertex normal, tangent, binormal
-			if (normalOffset != -1) {
-				tmpV1.set(vertices[id + normalOffset], vertices[id + normalOffset + 1], vertices[id + normalOffset + 2]);
-				tmpV2.set(tmpV0).add(tmpV1.scl(vectorSize));
-			}
+            // World transform
+            tmpV0.mul(renderable.worldTransform);
+            tmpV2.mul(renderable.worldTransform);
+            tmpV4.mul(renderable.worldTransform);
+            tmpV6.mul(renderable.worldTransform);
 
-			if (tangentOffset != -1) {
-				tmpV3.set(vertices[id + tangentOffset], vertices[id + tangentOffset + 1], vertices[id + tangentOffset + 2]);
-				tmpV4.set(tmpV0).add(tmpV3.scl(vectorSize));
-			}
+            // Draws normal, tangent, binormal
+            if (normalOffset != -1) {
+                builder.setColor(normalColor);
+                builder.line(tmpV0, tmpV2);
+            }
 
-			if (binormalOffset != -1) {
-				tmpV5.set(vertices[id + binormalOffset], vertices[id + binormalOffset + 1], vertices[id + binormalOffset + 2]);
-				tmpV6.set(tmpV0).add(tmpV5.scl(vectorSize));
-			}
+            if (tangentOffset != -1) {
+                builder.setColor(tangentColor);
+                builder.line(tmpV0, tmpV4);
+            }
 
-			// World transform
-			tmpV0.mul(renderable.worldTransform);
-			tmpV2.mul(renderable.worldTransform);
-			tmpV4.mul(renderable.worldTransform);
-			tmpV6.mul(renderable.worldTransform);
+            if (binormalOffset != -1) {
+                builder.setColor(binormalColor);
+                builder.line(tmpV0, tmpV6);
+            }
+        }
+    }
 
-			// Draws normal, tangent, binormal
-			if (normalOffset != -1) {
-				builder.setColor(normalColor);
-				builder.line(tmpV0, tmpV2);
-			}
+    private static void ensureVerticesCapacity(int capacity) {
+        if (vertices == null || vertices.length < capacity) vertices = new float[capacity];
+    }
 
-			if (tangentOffset != -1) {
-				builder.setColor(tangentColor);
-				builder.line(tmpV0, tmpV4);
-			}
+    private static void ensureIndicesCapacity(int capacity) {
+        if (indices == null || indices.length < capacity) indices = new short[capacity];
+    }
 
-			if (binormalOffset != -1) {
-				builder.setColor(binormalColor);
-				builder.line(tmpV0, tmpV6);
-			}
-		}
-	}
+    private static short minVerticeInIndices() {
+        short min = (short) 32767;
+        for (int i = 0; i < indices.length; i++)
+            if (indices[i] < min) min = indices[i];
+        return min;
+    }
 
-	private static void ensureVerticesCapacity (int capacity) {
-		if (vertices == null || vertices.length < capacity) vertices = new float[capacity];
-	}
+    private static short maxVerticeInIndices() {
+        short max = (short) -32768;
+        for (int i = 0; i < indices.length; i++)
+            if (indices[i] > max) max = indices[i];
+        return max;
+    }
 
-	private static void ensureIndicesCapacity (int capacity) {
-		if (indices == null || indices.length < capacity) indices = new short[capacity];
-	}
+    private static class RenderablePool extends FlushablePool<Renderable> {
+        public RenderablePool() {
+            super();
+        }
 
-	private static short minVerticeInIndices () {
-		short min = (short)32767;
-		for (int i = 0; i < indices.length; i++)
-			if (indices[i] < min) min = indices[i];
-		return min;
-	}
+        @Override
+        protected Renderable newObject() {
+            return new Renderable();
+        }
 
-	private static short maxVerticeInIndices () {
-		short max = (short)-32768;
-		for (int i = 0; i < indices.length; i++)
-			if (indices[i] > max) max = indices[i];
-		return max;
-	}
+        @Override
+        public Renderable obtain() {
+            Renderable renderable = super.obtain();
+            renderable.environment = null;
+            renderable.material = null;
+            renderable.meshPart.set("", null, 0, 0, 0);
+            renderable.shader = null;
+            renderable.userData = null;
+            return renderable;
+        }
+    }
 }

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 See AUTHORS file.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,90 +23,98 @@ import android.media.AudioTrack;
 
 import com.badlogic.gdx.audio.AudioDevice;
 
-/** Implementation of the {@link AudioDevice} interface for Android using the AudioTrack class. You will need to set the
+/**
+ * Implementation of the {@link AudioDevice} interface for Android using the AudioTrack class. You will need to set the
  * permission android.permission.RECORD_AUDIO in your manifest file.
- * @author mzechner */
+ *
+ * @author mzechner
+ */
 class AndroidAudioDevice implements AudioDevice {
-	/** the audio track **/
-	private final AudioTrack track;
+    /**
+     * the audio track
+     **/
+    private final AudioTrack track;
+    /**
+     * whether this device is in mono or stereo mode
+     **/
+    private final boolean isMono;
+    /**
+     * the latency in samples
+     **/
+    private final int latency;
+    /**
+     * the mighty buffer
+     **/
+    private short[] buffer = new short[1024];
 
-	/** the mighty buffer **/
-	private short[] buffer = new short[1024];
+    AndroidAudioDevice(int samplingRate, boolean isMono) {
+        this.isMono = isMono;
+        int channelMask = isMono ? AudioFormat.CHANNEL_OUT_MONO : AudioFormat.CHANNEL_OUT_STEREO;
+        int encoding = AudioFormat.ENCODING_PCM_16BIT;
+        int minSize = AudioTrack.getMinBufferSize(samplingRate, channelMask, encoding);
+        AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build();
+        AudioFormat audioFormat = new AudioFormat.Builder().setSampleRate(samplingRate).setChannelMask(channelMask)
+                .setEncoding(encoding).build();
+        track = new AudioTrack(audioAttributes, audioFormat, minSize, AudioTrack.MODE_STREAM,
+                AudioManager.AUDIO_SESSION_ID_GENERATE);
+        track.play();
+        latency = minSize / (isMono ? 1 : 2);
+    }
 
-	/** whether this device is in mono or stereo mode **/
-	private final boolean isMono;
+    @Override
+    public void dispose() {
+        track.stop();
+        track.release();
+    }
 
-	/** the latency in samples **/
-	private final int latency;
+    @Override
+    public boolean isMono() {
+        return isMono;
+    }
 
-	AndroidAudioDevice (int samplingRate, boolean isMono) {
-		this.isMono = isMono;
-		int channelMask = isMono ? AudioFormat.CHANNEL_OUT_MONO : AudioFormat.CHANNEL_OUT_STEREO;
-		int encoding = AudioFormat.ENCODING_PCM_16BIT;
-		int minSize = AudioTrack.getMinBufferSize(samplingRate, channelMask, encoding);
-		AudioAttributes audioAttributes = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME)
-			.setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build();
-		AudioFormat audioFormat = new AudioFormat.Builder().setSampleRate(samplingRate).setChannelMask(channelMask)
-			.setEncoding(encoding).build();
-		track = new AudioTrack(audioAttributes, audioFormat, minSize, AudioTrack.MODE_STREAM,
-			AudioManager.AUDIO_SESSION_ID_GENERATE);
-		track.play();
-		latency = minSize / (isMono ? 1 : 2);
-	}
+    @Override
+    public void writeSamples(short[] samples, int offset, int numSamples) {
+        int writtenSamples = track.write(samples, offset, numSamples);
+        while (writtenSamples != numSamples)
+            writtenSamples += track.write(samples, offset + writtenSamples, numSamples - writtenSamples);
+    }
 
-	@Override
-	public void dispose () {
-		track.stop();
-		track.release();
-	}
+    @Override
+    public void writeSamples(float[] samples, int offset, int numSamples) {
+        if (buffer.length < samples.length) buffer = new short[samples.length];
 
-	@Override
-	public boolean isMono () {
-		return isMono;
-	}
+        int bound = offset + numSamples;
+        for (int i = offset, j = 0; i < bound; i++, j++) {
+            float fValue = samples[i];
+            if (fValue > 1) fValue = 1;
+            if (fValue < -1) fValue = -1;
+            short value = (short) (fValue * Short.MAX_VALUE);
+            buffer[j] = value;
+        }
 
-	@Override
-	public void writeSamples (short[] samples, int offset, int numSamples) {
-		int writtenSamples = track.write(samples, offset, numSamples);
-		while (writtenSamples != numSamples)
-			writtenSamples += track.write(samples, offset + writtenSamples, numSamples - writtenSamples);
-	}
+        int writtenSamples = track.write(buffer, 0, numSamples);
+        while (writtenSamples != numSamples)
+            writtenSamples += track.write(buffer, writtenSamples, numSamples - writtenSamples);
+    }
 
-	@Override
-	public void writeSamples (float[] samples, int offset, int numSamples) {
-		if (buffer.length < samples.length) buffer = new short[samples.length];
+    @Override
+    public int getLatency() {
+        return latency;
+    }
 
-		int bound = offset + numSamples;
-		for (int i = offset, j = 0; i < bound; i++, j++) {
-			float fValue = samples[i];
-			if (fValue > 1) fValue = 1;
-			if (fValue < -1) fValue = -1;
-			short value = (short)(fValue * Short.MAX_VALUE);
-			buffer[j] = value;
-		}
+    @Override
+    public void setVolume(float volume) {
+        track.setVolume(volume);
+    }
 
-		int writtenSamples = track.write(buffer, 0, numSamples);
-		while (writtenSamples != numSamples)
-			writtenSamples += track.write(buffer, writtenSamples, numSamples - writtenSamples);
-	}
+    @Override
+    public void pause() {
+        if (track.getPlayState() == AudioTrack.PLAYSTATE_PLAYING) track.pause();
+    }
 
-	@Override
-	public int getLatency () {
-		return latency;
-	}
-
-	@Override
-	public void setVolume (float volume) {
-		track.setVolume(volume);
-	}
-
-	@Override
-	public void pause () {
-		if (track.getPlayState() == AudioTrack.PLAYSTATE_PLAYING) track.pause();
-	}
-
-	@Override
-	public void resume () {
-		if (track.getPlayState() == AudioTrack.PLAYSTATE_PAUSED) track.play();
-	}
+    @Override
+    public void resume() {
+        if (track.getPlayState() == AudioTrack.PLAYSTATE_PAUSED) track.play();
+    }
 }
