@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 sourceSets.main.java {
 	srcDirs = [
@@ -54,18 +39,18 @@ jnigen {
 		]
 
 		// SWIG doesn't emit strict aliasing compliant code
-		cppFlags += " -fno-strict-aliasing";
+		cppFlags += " -fno-strict-aliasing"
 		// SWIG directors aren't clearly documented to require RTTI, but SWIG
 		// normally generates a small number of dynamic_casts for director code.
 		// gdx-bullet's swig build.xml replaces these with static C casts so we
 		// can compile without RTTI and save some disk space. It seems to work
 		// with these static casts.
-		cppFlags += " -fno-rtti";
+		cppFlags += " -fno-rtti"
 		// Disable profiling (it's on by default). If you change this, you
 		// must regenerate the SWIG wrappers with the changed value.
-		cppFlags += " -DBT_NO_PROFILE";
+		cppFlags += " -DBT_NO_PROFILE"
 		//Bullet 2 compatibility with inverse dynamics
-		cppFlags += " -DBT_USE_INVERSE_DYNAMICS_WITH_BULLET2";
+		cppFlags += " -DBT_USE_INVERSE_DYNAMICS_WITH_BULLET2"
 	}
 	add(Windows, x32)
 	add(Windows, x64)
@@ -77,10 +62,10 @@ jnigen {
 	add(MacOsX, x64, ARM)
 	add(Android) {
 		cppFlags += " -fexceptions"
-		androidApplicationMk += "APP_STL := c++_static";
+		androidApplicationMk += "APP_STL := c++_static"
 	}
 	add(IOS) {
-		cppFlags += " -stdlib=libc++";
+		cppFlags += " -stdlib=libc++"
 	}
 
 	robovm {
