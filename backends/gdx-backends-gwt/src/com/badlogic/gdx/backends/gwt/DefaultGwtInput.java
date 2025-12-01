@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.backends.gwt;
 
@@ -37,12 +22,12 @@ import com.google.gwt.event.dom.client.KeyCodes;
 public class DefaultGwtInput extends AbstractInput implements GwtInput {
 	static final int MAX_TOUCHES = 20;
 	boolean justTouched = false;
-	private IntMap<Integer> touchMap = new IntMap<Integer>(20);
-	private boolean[] touched = new boolean[MAX_TOUCHES];
-	private int[] touchX = new int[MAX_TOUCHES];
-	private int[] touchY = new int[MAX_TOUCHES];
-	private int[] deltaX = new int[MAX_TOUCHES];
-	private int[] deltaY = new int[MAX_TOUCHES];
+	private final IntMap<Integer> touchMap = new IntMap<Integer>(20);
+	private final boolean[] touched = new boolean[MAX_TOUCHES];
+	private final int[] touchX = new int[MAX_TOUCHES];
+	private final int[] touchY = new int[MAX_TOUCHES];
+	private final int[] deltaX = new int[MAX_TOUCHES];
+	private final int[] deltaY = new int[MAX_TOUCHES];
 	IntSet pressedButtons = new IntSet();
 	IntSet pressedKeySet = new IntSet();
 	boolean[] justPressedButtons = new boolean[5];

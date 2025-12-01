@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.math;
 
@@ -74,8 +59,8 @@ public class Matrix4 implements Serializable {
 	public static final int M33 = 15;
 
 	/** @Deprecated Do not use this member, instead use a temporary Matrix4 instance, or create a temporary float array. */
-	@Deprecated public static final float tmp[] = new float[16]; // FIXME Change to private access
-	public final float val[] = new float[16];
+	@Deprecated public static final float[] tmp = new float[16]; // FIXME Change to private access
+	public final float[] val = new float[16];
 
 	/** Constructs an identity matrix */
 	public Matrix4 () {
@@ -1244,7 +1229,7 @@ public class Matrix4 implements Serializable {
 	}
 
 	static void matrix4_mul (float[] mata, float[] matb) {
-		float tmp[] = new float[16];
+		float[] tmp = new float[16];
 		tmp[M00] = mata[M00] * matb[M00] + mata[M01] * matb[M10] + mata[M02] * matb[M20] + mata[M03] * matb[M30];
 		tmp[M01] = mata[M00] * matb[M01] + mata[M01] * matb[M11] + mata[M02] * matb[M21] + mata[M03] * matb[M31];
 		tmp[M02] = mata[M00] * matb[M02] + mata[M01] * matb[M12] + mata[M02] * matb[M22] + mata[M03] * matb[M32];
@@ -1280,7 +1265,7 @@ public class Matrix4 implements Serializable {
 	}
 
 	static boolean matrix4_inv (float[] val) {
-		float tmp[] = new float[16];
+		float[] tmp = new float[16];
 		float l_det = matrix4_det(val);
 		if (l_det == 0) return false;
 		tmp[M00] = val[M12] * val[M23] * val[M31] - val[M13] * val[M22] * val[M31] + val[M13] * val[M21] * val[M32]
@@ -1337,29 +1322,29 @@ public class Matrix4 implements Serializable {
 	}
 
 	static void matrix4_mulVec (float[] mat, float[] vec, int offset) {
-		float x = vec[offset + 0] * mat[M00] + vec[offset + 1] * mat[M01] + vec[offset + 2] * mat[M02] + mat[M03];
-		float y = vec[offset + 0] * mat[M10] + vec[offset + 1] * mat[M11] + vec[offset + 2] * mat[M12] + mat[M13];
-		float z = vec[offset + 0] * mat[M20] + vec[offset + 1] * mat[M21] + vec[offset + 2] * mat[M22] + mat[M23];
-		vec[offset + 0] = x;
+		float x = vec[offset] * mat[M00] + vec[offset + 1] * mat[M01] + vec[offset + 2] * mat[M02] + mat[M03];
+		float y = vec[offset] * mat[M10] + vec[offset + 1] * mat[M11] + vec[offset + 2] * mat[M12] + mat[M13];
+		float z = vec[offset] * mat[M20] + vec[offset + 1] * mat[M21] + vec[offset + 2] * mat[M22] + mat[M23];
+		vec[offset] = x;
 		vec[offset + 1] = y;
 		vec[offset + 2] = z;
 	}
 
 	static void matrix4_proj (float[] mat, float[] vec, int offset) {
-		float inv_w = 1.0f / (vec[offset + 0] * mat[M30] + vec[offset + 1] * mat[M31] + vec[offset + 2] * mat[M32] + mat[M33]);
-		float x = (vec[offset + 0] * mat[M00] + vec[offset + 1] * mat[M01] + vec[offset + 2] * mat[M02] + mat[M03]) * inv_w;
-		float y = (vec[offset + 0] * mat[M10] + vec[offset + 1] * mat[M11] + vec[offset + 2] * mat[M12] + mat[M13]) * inv_w;
-		float z = (vec[offset + 0] * mat[M20] + vec[offset + 1] * mat[M21] + vec[offset + 2] * mat[M22] + mat[M23]) * inv_w;
-		vec[offset + 0] = x;
+		float inv_w = 1.0f / (vec[offset] * mat[M30] + vec[offset + 1] * mat[M31] + vec[offset + 2] * mat[M32] + mat[M33]);
+		float x = (vec[offset] * mat[M00] + vec[offset + 1] * mat[M01] + vec[offset + 2] * mat[M02] + mat[M03]) * inv_w;
+		float y = (vec[offset] * mat[M10] + vec[offset + 1] * mat[M11] + vec[offset + 2] * mat[M12] + mat[M13]) * inv_w;
+		float z = (vec[offset] * mat[M20] + vec[offset + 1] * mat[M21] + vec[offset + 2] * mat[M22] + mat[M23]) * inv_w;
+		vec[offset] = x;
 		vec[offset + 1] = y;
 		vec[offset + 2] = z;
 	}
 
 	static void matrix4_rot (float[] mat, float[] vec, int offset) {
-		float x = vec[offset + 0] * mat[M00] + vec[offset + 1] * mat[M01] + vec[offset + 2] * mat[M02];
-		float y = vec[offset + 0] * mat[M10] + vec[offset + 1] * mat[M11] + vec[offset + 2] * mat[M12];
-		float z = vec[offset + 0] * mat[M20] + vec[offset + 1] * mat[M21] + vec[offset + 2] * mat[M22];
-		vec[offset + 0] = x;
+		float x = vec[offset] * mat[M00] + vec[offset + 1] * mat[M01] + vec[offset + 2] * mat[M02];
+		float y = vec[offset] * mat[M10] + vec[offset + 1] * mat[M11] + vec[offset + 2] * mat[M12];
+		float z = vec[offset] * mat[M20] + vec[offset + 1] * mat[M21] + vec[offset + 2] * mat[M22];
+		vec[offset] = x;
 		vec[offset + 1] = y;
 		vec[offset + 2] = z;
 	}

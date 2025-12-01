@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.backends.iosrobovm;
 
@@ -32,12 +17,12 @@ import com.badlogic.gdx.utils.IntArray;
  *         First pass at implementing OALSimpleAudio support. */
 public class IOSSound implements Sound {
 
-	private ALBuffer soundBuffer;
-	private String soundPath;
+	private final ALBuffer soundBuffer;
+	private final String soundPath;
 
-	private ALChannelSource channel;
-	private NSArray<ALSource> sourcePool;
-	private IntArray streamIds = new IntArray(8);
+	private final ALChannelSource channel;
+	private final NSArray<ALSource> sourcePool;
+	private final IntArray streamIds = new IntArray(8);
 
 	public IOSSound (FileHandle filePath) {
 		soundPath = filePath.file().getPath().replace('\\', '/');

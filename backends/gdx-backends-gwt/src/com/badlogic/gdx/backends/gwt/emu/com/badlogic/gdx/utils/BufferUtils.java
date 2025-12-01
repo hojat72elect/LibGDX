@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.utils;
 
@@ -342,7 +327,7 @@ public final class BufferUtils {
 		dst.position(dstPos);
 	}
 
-	private final static FloatBuffer asFloatBuffer (final Buffer data) {
+	private static FloatBuffer asFloatBuffer(final Buffer data) {
 		FloatBuffer buffer = null;
 		if (data instanceof ByteBuffer)
 			buffer = ((ByteBuffer)data).asFloatBuffer();
@@ -351,7 +336,7 @@ public final class BufferUtils {
 		return buffer;
 	}
 
-	private final static float[] asFloatArray (final FloatBuffer buffer) {
+	private static float[] asFloatArray(final FloatBuffer buffer) {
 		final int pos = buffer.position();
 		final float[] result = new float[buffer.remaining()];
 		buffer.get(result);
@@ -436,8 +421,11 @@ public final class BufferUtils {
 			final int offset = i * size;
 			boolean found = true;
 			for (int j = 0; !found && j < size; j++)
-				if (vertices[offset + j] != vertex[j]) found = false;
-			if (found) return (long)i;
+                if (vertices[offset + j] != vertex[j]) {
+                    found = false;
+                    break;
+                }
+			if (found) return i;
 		}
 		return -1;
 	}
@@ -461,9 +449,12 @@ public final class BufferUtils {
 			final int offset = i * size;
 			boolean found = true;
 			for (int j = 0; !found && j < size; j++)
-				if ((vertices[offset + j] > vertex[j] ? vertices[offset + j] - vertex[j]
-					: vertex[j] - vertices[offset + j]) > epsilon) found = false;
-			if (found) return (long)i;
+                if ((vertices[offset + j] > vertex[j] ? vertices[offset + j] - vertex[j]
+                        : vertex[j] - vertices[offset + j]) > epsilon) {
+                    found = false;
+                    break;
+                }
+			if (found) return i;
 		}
 		return -1;
 	}

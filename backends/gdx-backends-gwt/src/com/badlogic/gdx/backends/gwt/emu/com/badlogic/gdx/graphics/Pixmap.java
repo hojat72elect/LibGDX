@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.graphics;
 
@@ -474,7 +459,7 @@ public class Pixmap implements Disposable {
 		ensureCanvasExists();
 		if (pixels == null) pixels = context.getImageData(0, 0, width, height).getData();
 		int i = x * 4 + y * width * 4;
-		int r = pixels.get(i + 0) & 0xff;
+		int r = pixels.get(i) & 0xff;
 		int g = pixels.get(i + 1) & 0xff;
 		int b = pixels.get(i + 2) & 0xff;
 		int a = pixels.get(i + 3) & 0xff;

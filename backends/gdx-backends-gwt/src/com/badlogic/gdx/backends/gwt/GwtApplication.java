@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.backends.gwt;
 
@@ -84,7 +69,7 @@ public abstract class GwtApplication implements EntryPoint, Application {
 	private int lastHeight;
 	Preloader preloader;
 	private static AgentInfo agentInfo;
-	private ObjectMap<String, Preferences> prefs = new ObjectMap<String, Preferences>();
+	private final ObjectMap<String, Preferences> prefs = new ObjectMap<String, Preferences>();
 	private Clipboard clipboard;
 	LoadingListener loadingListener;
 
@@ -145,18 +130,18 @@ public abstract class GwtApplication implements EntryPoint, Application {
 
 			if (element == null) {
 				VerticalPanel panel = new VerticalPanel();
-				panel.setWidth("" + width + "px");
-				panel.setHeight("" + height + "px");
+				panel.setWidth(width + "px");
+				panel.setHeight(height + "px");
 				panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 				panel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 				RootPanel.get().add(panel);
-				RootPanel.get().setWidth("" + width + "px");
-				RootPanel.get().setHeight("" + height + "px");
+				RootPanel.get().setWidth(width + "px");
+				RootPanel.get().setHeight(height + "px");
 				this.root = panel;
 			} else {
 				VerticalPanel panel = new VerticalPanel();
-				panel.setWidth("" + width + "px");
-				panel.setHeight("" + height + "px");
+				panel.setWidth(width + "px");
+				panel.setHeight(height + "px");
 				panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 				panel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 				element.appendChild(panel.getElement());
@@ -646,10 +631,10 @@ public abstract class GwtApplication implements EntryPoint, Application {
 	/** LoadingListener interface main purpose is to do some things before or after {@link GwtApplication#setupLoop()} */
 	public interface LoadingListener {
 		/** Method called before the setup */
-		public void beforeSetup ();
+        void beforeSetup();
 
 		/** Method called after the setup */
-		public void afterSetup ();
+        void afterSetup();
 	}
 
 	/** ResizeListener called when browser window is resized */
@@ -665,8 +650,8 @@ public abstract class GwtApplication implements EntryPoint, Application {
 				return;
 			}
 
-			getRootPanel().setWidth("" + width + "px");
-			getRootPanel().setHeight("" + height + "px");
+			getRootPanel().setWidth(width + "px");
+			getRootPanel().setHeight(height + "px");
 
 			// while preloading and before setupLoop() is called, graphics are not initialized
 			if (graphics != null) {

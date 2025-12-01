@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
 
 package com.badlogic.gdx.physics.box2d;
 
@@ -39,7 +24,7 @@ public class Box2DDebugRenderer {
 	public SpriteBatch batch;
 
 	/** vertices for polygon rendering **/
-	private static Vector2[] vertices = new Vector2[1000];
+	private static final Vector2[] vertices = new Vector2[1000];
 
 	private static Vector2 lower;
 	private static Vector2 upper;
@@ -131,13 +116,13 @@ public class Box2DDebugRenderer {
 			Fixture fixture = fixtures.get(i);
 
 			if (drawBodies) {
-				if (body.isActive() == false && drawInactiveBodies)
+				if (!body.isActive() && drawInactiveBodies)
 					drawShape(fixture, transform, SHAPE_NOT_ACTIVE);
 				else if (body.getType() == BodyType.StaticBody)
 					drawShape(fixture, transform, SHAPE_STATIC);
 				else if (body.getType() == BodyType.KinematicBody)
 					drawShape(fixture, transform, SHAPE_KINEMATIC);
-				else if (body.isAwake() == false)
+				else if (!body.isAwake())
 					drawShape(fixture, transform, SHAPE_NOT_AWAKE);
 				else
 					drawShape(fixture, transform, SHAPE_AWAKE);
@@ -192,7 +177,7 @@ public class Box2DDebugRenderer {
 		}
 	}
 
-	private static Vector2 t = new Vector2();
+	private static final Vector2 t = new Vector2();
 	private static Vector2 axis = new Vector2();
 
 	private void drawShape (Fixture fixture, Transform transform, Color color) {
