@@ -438,13 +438,13 @@ public interface Net {
          * XmlHttpRequests which always redirect.
          *
          * @param followRedirects whether to follow redirects.
-         * @throws IllegalArgumentException if redirection is disabled on the GWT backend.
+         * @throws IllegalArgumentException if redirection is disabled.
          */
         public void setFollowRedirects(boolean followRedirects) throws IllegalArgumentException {
             if (followRedirects || Gdx.app.getType() != ApplicationType.WebGL) {
                 this.followRedirects = followRedirects;
             } else {
-                throw new IllegalArgumentException("Following redirects can't be disabled using the GWT/WebGL backend!");
+                throw new IllegalArgumentException("Following redirects can't be disabled!");
             }
         }
 

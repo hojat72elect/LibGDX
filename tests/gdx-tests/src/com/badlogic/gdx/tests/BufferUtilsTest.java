@@ -22,9 +22,6 @@ public class BufferUtilsTest extends GdxTest {
 
     @Override
     public void create() {
-        // Not emulated in gwt
-        // ByteBuffer bytebuffer = BufferUtils.newUnsafeByteBuffer(1000 * 1000);
-        // BufferUtils.disposeUnsafeByteBuffer(bytebuffer);
 
         ByteBuffer bb = BufferUtils.newByteBuffer(8);
         CharBuffer cb = BufferUtils.newCharBuffer(8);

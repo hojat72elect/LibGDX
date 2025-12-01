@@ -107,7 +107,7 @@ public class TiledMapAtlasAssetManagerTest extends GdxTest {
         }
 
         batch.begin();
-        if (errorMessage != null) font.draw(batch, "ERROR (OK if running in GWT): " + errorMessage, 10, 50);
+        if (errorMessage != null) font.draw(batch, "ERROR : " + errorMessage, 10, 50);
         font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
         font.draw(batch, "Press keys 1, 2 and 3 to toggle between a map with packed imagelayers.", 170, 20);
         batch.end();

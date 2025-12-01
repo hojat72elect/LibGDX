@@ -18,7 +18,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
  * </p>
  * <p>
  * Note that you don't have to use the FreeType extension for this, you can generate fonts with Hiero as well. The FreeType
- * extension allows you to generate fonts at runtime for different screen densities. It is not portable to GWT!
+ * extension allows you to generate fonts at runtime for different screen densities.
  * </p>
  * <p>
  * For each script examplified below we only use a few characters from the respective alphabet. You'll have to pass in a string

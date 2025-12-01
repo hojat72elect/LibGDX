@@ -77,7 +77,7 @@ public class TiledMapGroupLayerWithImagelayerTest extends GdxTest {
         }
         batch.begin();
         if (errorMessage != null) {
-            font.draw(batch, "ERROR (OK if running in GWT): " + errorMessage, 10, 50);
+            font.draw(batch, "ERROR : " + errorMessage, 10, 50);
             System.out.println(errorMessage);
         }
         font.draw(batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 10, 20);
