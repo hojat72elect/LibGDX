@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.bullet;
 
 import com.badlogic.gdx.Gdx;
@@ -22,8 +21,6 @@ import com.badlogic.gdx.physics.bullet.collision.btPersistentManifoldArray;
 
 /**
  * Based on FrustumCullingTest by Xoppa.
- *
- * @author jsjolund
  */
 public class PairCacheTest extends BaseBulletTest {
 

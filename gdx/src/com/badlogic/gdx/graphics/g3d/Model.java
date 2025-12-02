@@ -56,8 +56,6 @@ import java.nio.ShortBuffer;
  * </p>
  * <p>
  * A model is created from {@link ModelData}, which in turn is loaded by a {@link ModelLoader}.
- *
- * @author badlogic, xoppa
  */
 public class Model implements Disposable {
     /**

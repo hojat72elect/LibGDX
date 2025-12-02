@@ -13,8 +13,6 @@ import java.util.regex.Matcher;
 
 /**
  * Saves PixmapPackers to files.
- *
- * @author jshapcott
  */
 public class PixmapPackerIO {
 

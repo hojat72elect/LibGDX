@@ -19,11 +19,7 @@ import com.badlogic.gdx.utils.Pool;
  * materials. Multiple instances can be created from the same Model, all sharing the meshes and textures of the Model. The Model
  * owns the meshes and textures, to dispose of these, the Model has to be disposed. Therefor, the Model must outlive all its
  * ModelInstances
- * </p>
- * <p>
  * The ModelInstance creates a full copy of all materials, nodes and animations.
- *
- * @author badlogic, xoppa
  */
 public class ModelInstance implements RenderableProvider {
     /**

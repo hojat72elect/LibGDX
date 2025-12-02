@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import com.badlogic.gdx.math.MathUtils;
@@ -45,8 +44,6 @@ import java.util.Objects;
  * <li>writer() - allows a Writer to write directly to the internal buffer
  * </ul>
  * </ul>
- *
- *  * @author org.apache.commons.text.TextStringBuilder
  */
 public class CharArray implements CharSequence, Appendable {
     static private final int CAPACITY = 16;

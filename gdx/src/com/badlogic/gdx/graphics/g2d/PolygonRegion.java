@@ -3,8 +3,6 @@ package com.badlogic.gdx.graphics.g2d;
 
 /**
  * Defines a polygon shape on top of a texture region to avoid drawing transparent pixels.
- *
- * @author Stefan Bachmann
  *  * @see PolygonRegionLoader
  */
 public class PolygonRegion {

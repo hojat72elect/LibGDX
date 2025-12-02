@@ -81,7 +81,6 @@ enum ContactCallbackEvent {
 	ON_ENDED_FILTERED_VALUE						= (FILTERED | BY_VALUE) << SHIFT_ON_ENDED,
 };
 
-/** @author Xoppa */
 class ContactListener {
 protected:
 #ifndef SWIG

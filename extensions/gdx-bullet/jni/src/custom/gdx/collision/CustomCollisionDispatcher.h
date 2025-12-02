@@ -20,8 +20,7 @@
 #ifndef CustomCollisionDispatcher_H
 #define CustomCollisionDispatcher_H
 
-/** For some reason swig doesnt see the needsCollision/needsResponse inheritance (it does see the other virtual methods do).
- *  @author Xoppa */
+/** For some reason swig doesnt see the needsCollision/needsResponse inheritance (it does see the other virtual methods do).*/
 class CustomCollisionDispatcher : public btCollisionDispatcher {
 public:
 	CustomCollisionDispatcher (btCollisionConfiguration* collisionConfiguration)

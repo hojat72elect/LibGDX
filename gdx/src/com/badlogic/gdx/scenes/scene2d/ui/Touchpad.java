@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.scenes.scene2d.ui;
 
 import com.badlogic.gdx.graphics.Color;
@@ -21,8 +20,6 @@ import com.badlogic.gdx.utils.Null;
  * <p>
  * {@link ChangeEvent} is fired when the touchpad knob is moved. Cancelling the event will move the knob to where it was
  * previously.
- *
- * @author Josh Street
  */
 public class Touchpad extends Widget implements Styleable<Touchpad.TouchpadStyle> {
     private final Circle knobBounds = new Circle(0, 0, 0);
@@ -231,8 +228,6 @@ public class Touchpad extends Widget implements Styleable<Touchpad.TouchpadStyle
 
     /**
      * The style for a {@link Touchpad}.
-     *
-     * @author Josh Street
      */
     public static class TouchpadStyle {
         /**

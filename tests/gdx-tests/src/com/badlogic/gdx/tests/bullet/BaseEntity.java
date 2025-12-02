@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.bullet;
 
 import com.badlogic.gdx.graphics.Color;
@@ -9,7 +8,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
- * @author xoppa Base class specifying only a renderable entity
+ * Base class specifying only a renderable entity
  */
 public abstract class BaseEntity implements Disposable {
     public Matrix4 transform;

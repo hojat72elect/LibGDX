@@ -78,8 +78,6 @@ import java.util.regex.Pattern;
  *
  * packer.dispose();
  * </pre>
- *
- *  *  * @author Rob Rendell
  */
 public class PixmapPacker implements Disposable {
     static Pattern indexPattern = Pattern.compile("(.+)_(\\d+)$");
@@ -626,8 +624,7 @@ public class PixmapPacker implements Disposable {
 
     /**
      * Choose the page and location for each rectangle.
-     *
-     *      */
+     */
     public interface PackStrategy {
         void sort(Array<Pixmap> images);
 
@@ -637,9 +634,6 @@ public class PixmapPacker implements Disposable {
         Page pack(PixmapPacker packer, String name, Bounds bounds);
     }
 
-    /**
-     *      *      * @author Rob Rendell
-     */
     static public class Page {
         final Array<String> addedRects = new Array();
         OrderedMap<String, PixmapPackerRectangle> rects = new OrderedMap();
@@ -702,8 +696,6 @@ public class PixmapPacker implements Disposable {
     /**
      * Does bin packing by inserting to the right or below previously packed rectangles. This is good at packing arbitrarily sized
      * images.
-     *
-     *      *      * @author Rob Rendell
      */
     static public class GuillotineStrategy implements PackStrategy {
         Comparator<Pixmap> comparator;

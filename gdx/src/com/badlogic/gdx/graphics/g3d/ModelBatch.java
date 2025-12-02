@@ -24,8 +24,6 @@ import com.badlogic.gdx.utils.Pool;
  * The OpenGL context between the {@link #begin(Camera)} and {@link #end()} call is maintained by the {@link RenderContext}.
  * <p>
  * To provide multiple {@link Renderable}s at once a {@link RenderableProvider} can be used, e.g. a {@link ModelInstance}.
- *
- * @author xoppa, badlogic
  */
 public class ModelBatch implements Disposable {
     protected final RenderablePool renderablesPool = new RenderablePool();

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import java.io.Closeable;
@@ -9,8 +8,6 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Builder style API for emitting UBJSON.
- *
- * @author Justin Shapcott
  */
 public class UBJsonWriter implements Closeable {
 

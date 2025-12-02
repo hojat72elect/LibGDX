@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.scenes.scene2d.utils;
 
 import com.badlogic.gdx.graphics.Color;
@@ -9,8 +8,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * Draws a {@link TextureRegion} repeatedly to fill the area, instead of stretching it.
- *
- *  * @author Thomas Creutzenberg
  */
 public class TiledDrawable extends TextureRegionDrawable {
     private final Color color = new Color(1, 1, 1, 1);

@@ -685,9 +685,6 @@ public class TexturePacker {
         public int x, y, width, height, imageWidth, imageHeight;
     }
 
-    /**
-     * @author Regnarock
-     *      */
     static public class Alias implements Comparable<Alias> {
         public String name;
         public int index;

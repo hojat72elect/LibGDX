@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
  * {@link #begin()} to setup the context, call {@link #end()} to undo all state changes. Use the setters to change state, use
  * {@link #textureBinder} to bind textures.
  *
- * @author badlogic, Xoppa
- */
+ *  */
 public class RenderContext {
     /**
      * used to bind textures

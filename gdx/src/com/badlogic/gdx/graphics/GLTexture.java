@@ -18,8 +18,7 @@ import java.nio.FloatBuffer;
  * Class representing an OpenGL texture by its target and handle. Keeps track of its state like the TextureFilter and
  * TextureWrap. Also provides some (protected) static methods to create TextureData and upload image data.
  *
- * @author badlogic, Xoppa
- */
+ *  */
 public abstract class GLTexture implements Disposable {
     private static float maxAnisotropicFilterLevel = 0;
     /**

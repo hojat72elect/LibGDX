@@ -12,8 +12,6 @@ import java.util.Map;
 
 /**
  * Open GLES wrapper for TextureArray
- *
- * @author Tomski
  */
 public class TextureArray extends GLTexture {
 

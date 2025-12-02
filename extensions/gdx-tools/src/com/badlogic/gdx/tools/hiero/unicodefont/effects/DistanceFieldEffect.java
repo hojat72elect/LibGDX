@@ -21,7 +21,6 @@ import java.util.List;
  * <p>
  * An example of the use of such a font is included in the libgdx test suite under the name {@code BitmapFontDistanceFieldTest}.
  *
- * @author Thomas ten Cate
  * @see DistanceFieldGenerator
  */
 public class DistanceFieldEffect implements ConfigurableEffect {

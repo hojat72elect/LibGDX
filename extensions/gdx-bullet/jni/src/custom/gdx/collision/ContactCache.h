@@ -28,7 +28,6 @@
 struct ContactPair;
 #endif //SWIG
 
-/** @author Xoppa */
 class ContactCache {
 protected:
 #ifndef SWIG

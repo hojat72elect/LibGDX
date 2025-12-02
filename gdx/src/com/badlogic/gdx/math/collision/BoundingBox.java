@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math.collision;
 
 import com.badlogic.gdx.math.Matrix4;
@@ -10,8 +9,6 @@ import java.util.List;
 /**
  * Encapsulates an axis aligned bounding box represented by a minimum and a maximum Vector. Additionally you can query for the
  * bounding box's center, dimensions and corner points.
- *
- * @author badlogicgames@gmail.com, Xoppa
  */
 public class BoundingBox implements Serializable {
     private static final long serialVersionUID = -1286036817192127343L;

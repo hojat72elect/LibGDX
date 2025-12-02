@@ -1,11 +1,15 @@
 /** Creates a pool for the type and sets SWIG to use the pool instead of creating a new java object every time.
  * TODO: Add better pointer support
- * @author Xoppa */
-%define CREATE_POOLED_OBJECT_EXT(CTYPE, JTYPE, _JCLASS)
+ */
+%
+
+define CREATE_POOLED_OBJECT_EXT(CTYPE, JTYPE, _JCLASS)
 
 // Add pooling to the java class
-%typemap(javacode) CTYPE %{
-	/** Temporary instance, use by native methods that return a JTYPE instance */
+%
+typemap(javacode)
+CTYPE %{
+/** Temporary instance, use by native methods that return a JTYPE instance */
 	protected final static JTYPE temp = new JTYPE(0, false);
 	public static JTYPE internalTemp(long cPtr, boolean own) {
 		temp.reset(cPtr, own);

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.distancefield;
 
 import java.awt.Color;
@@ -19,8 +18,6 @@ import javax.imageio.ImageIO;
  * The technique is described in the SIGGRAPH 2007 paper "Improved Alpha-Tested Magnification for Vector Textures and Special
  * Effects" by Chris Green: <a href="http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf">
  * http://www.valvesoftware.com/publications/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf </a>
- *
- * @author Thomas ten Cate
  */
 public class DistanceFieldGenerator {
 

@@ -17,8 +17,6 @@ import java.nio.ByteBuffer;
 /**
  * Class with static helper methods related to currently bound OpenGL frame buffer, including access to the current OpenGL
  * FrameBuffer. These methods can be used to get the entire screen content or a portion thereof.
- *
- * @author espitz
  */
 public final class ScreenUtils {
 

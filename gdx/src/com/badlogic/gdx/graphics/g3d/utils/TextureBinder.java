@@ -8,8 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
  * Responsible for binding textures, may implement a strategy to avoid binding a texture unnecessarily. A TextureBinder may
  * decide to which texture unit it binds a texture.
  *
- * @author badlogic, Xoppa
- */
+ *  */
 public interface TextureBinder {
     /**
      * Prepares the binder for operation, must be matched with a call to {@link #end()}.

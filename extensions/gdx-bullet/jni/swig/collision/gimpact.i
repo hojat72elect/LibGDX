@@ -1,4 +1,3 @@
-/** @author Xoppa */
 %module Gimpact
 
 %{

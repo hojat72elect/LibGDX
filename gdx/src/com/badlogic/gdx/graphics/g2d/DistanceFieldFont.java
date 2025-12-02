@@ -1,25 +1,3 @@
-/*
- * Copyright (c) 2015, Florian Falkner
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following
- * conditions are met:
- *
- * * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided with the distribution. * Neither the name of Matthias Mann nor
- * the names of its contributors may be used to endorse or promote products derived from this software without specific prior
- * written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
- * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
- * SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 package com.badlogic.gdx.graphics.g2d;
 
 import com.badlogic.gdx.files.FileHandle;
@@ -33,8 +11,6 @@ import com.badlogic.gdx.utils.Array;
  * Initialize the SpriteBatch with the {@link #createDistanceFieldShader()} shader.
  * <p>
  * Attention: The batch is flushed before and after each string is rendered.
- *
- * @author Florian Falkner
  */
 public class DistanceFieldFont extends BitmapFont {
     private float distanceFieldSmoothing;
@@ -148,8 +124,6 @@ public class DistanceFieldFont extends BitmapFont {
     /**
      * Provides a font cache that uses distance field shader for rendering fonts. Attention: breaks batching because uniform is
      * needed for smoothing factor, so a flush is performed before and after every font rendering.
-     *
-     * @author Florian Falkner
      */
     static private class DistanceFieldFontCache extends BitmapFontCache {
         public DistanceFieldFontCache(DistanceFieldFont font) {

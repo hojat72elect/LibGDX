@@ -23,7 +23,7 @@ import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.IntIntMap;
 
 /**
- * @author Xoppa A BaseShader is a wrapper around a ShaderProgram that keeps track of the uniform and attribute locations. It
+ * A BaseShader is a wrapper around a ShaderProgram that keeps track of the uniform and attribute locations. It
  * does not manage the ShaderPogram, you are still responsible for disposing the ShaderProgram.
  */
 public abstract class BaseShader implements Shader {

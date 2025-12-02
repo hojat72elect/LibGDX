@@ -11,15 +11,11 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 
 /**
  * Helper class with static methods to build box shapes using {@link MeshPartBuilder}.
- *
- * @author realitix, xoppa
  */
 public class BoxShapeBuilder extends BaseShapeBuilder {
 
     /**
      * Build a box with the shape of the specified {@link BoundingBox}.
-     *
-     * @param box
      */
     public static void build(MeshPartBuilder builder, BoundingBox box) {
         builder.box(box.getCorner000(obtainV3()), box.getCorner010(obtainV3()), box.getCorner100(obtainV3()),

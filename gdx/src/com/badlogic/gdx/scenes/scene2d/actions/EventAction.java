@@ -8,9 +8,7 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
  * Adds a listener to the actor for a specific event type and does not complete until {@link #handle(Event)} returns true.
- *
- * @author JavadocMD
- *  */
+ */
 abstract public class EventAction<T extends Event> extends Action {
     final Class<? extends T> eventClass;
     boolean result, active;

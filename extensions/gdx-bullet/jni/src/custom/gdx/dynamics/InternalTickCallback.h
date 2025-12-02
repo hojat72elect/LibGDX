@@ -21,7 +21,6 @@
 
 static void InternalTickCallback_CB(btDynamicsWorld *world, btScalar timeStep);
 
-/** @author xoppa */
 class InternalTickCallback {
 protected:
 	btDynamicsWorld *mWorld;

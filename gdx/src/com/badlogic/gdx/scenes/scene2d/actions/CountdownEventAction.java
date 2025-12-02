@@ -4,9 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 
 /**
  * An EventAction that is complete once it receives X number of events.
- *
- * @author JavadocMD
- *  */
+ */
 public class CountdownEventAction<T extends Event> extends EventAction<T> {
     int count, current;
 
