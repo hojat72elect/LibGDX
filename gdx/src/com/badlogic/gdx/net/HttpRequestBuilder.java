@@ -15,8 +15,7 @@ import java.util.Map;
  * <p>
  * It also offers a few utility methods to deal with content encoding and HTTP headers.
  *
- * @author Daniel Holderbaum
- */
+ *  */
 public class HttpRequestBuilder {
 
     /**

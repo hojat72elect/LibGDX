@@ -28,8 +28,7 @@ import java.util.Locale;
  * <li>If you want to load the English bundle without replacing the Italian bundle you should use another asset manager.
  * </ul>
  *
- * @author davebaol
- */
+ *  */
 public class I18NBundleLoader extends AsynchronousAssetLoader<I18NBundle, I18NBundleLoader.I18NBundleParameter> {
 
     I18NBundle bundle;

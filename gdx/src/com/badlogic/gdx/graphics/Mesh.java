@@ -118,8 +118,7 @@ public class Mesh implements Disposable {
      * @param maxIndices     the maximum number of indices this mesh can hold
      * @param attributes     the {@link VertexAttributes}. Each vertex attribute defines one property of a vertex such as position,
      *                       normal or texture coordinate
-     * @author Jaroslaw Wisniewski <j.wisniewski@appsisle.com>
-     **/
+     *      **/
     public Mesh(boolean staticVertices, boolean staticIndices, int maxVertices, int maxIndices, VertexAttributes attributes) {
         vertices = makeVertexBuffer(staticVertices, maxVertices, attributes);
         indices = new IndexBufferObject(staticIndices, maxIndices);

@@ -9,8 +9,7 @@ import java.io.Serializable;
 /**
  * Encapsulates a 2D vector. Allows chaining methods by returning a reference to itself
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class Vector2 implements Serializable, Vector<Vector2> {
     public final static Vector2 X = new Vector2(1, 0);
     public final static Vector2 Y = new Vector2(0, 1);

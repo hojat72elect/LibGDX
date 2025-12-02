@@ -10,8 +10,7 @@ import java.io.Serializable;
 /**
  * Encapsulates a 3D sphere with a center and a radius
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class Sphere implements Serializable {
     private static final long serialVersionUID = -6487336868908521596L;
     private static final float PI_4_3 = MathUtils.PI * 4f / 3f;

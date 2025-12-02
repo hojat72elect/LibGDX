@@ -13,8 +13,6 @@ import java.util.List;
 import static com.badlogic.gdx.backends.iosrobovm.objectal.ALConsts.AL_FORMAT_MONO16;
 import static com.badlogic.gdx.backends.iosrobovm.objectal.ALConsts.AL_FORMAT_STEREO16;
 
-/** @author Jile Gao
- * @author Berstanio */
 class OALIOSAudioDevice implements AudioDevice {
 	private ALSource alSource;
 	private List<ALBuffer> alBuffers = new ArrayList<>();

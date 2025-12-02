@@ -31,8 +31,7 @@ import java.util.Map;
  * <p>
  * A Texture must be disposed when it is no longer used
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class Texture extends GLTexture {
     final static Map<Application, Array<Texture>> managedTextures = new HashMap<Application, Array<Texture>>();
     private static AssetManager assetManager;

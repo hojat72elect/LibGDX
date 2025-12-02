@@ -80,8 +80,7 @@ import java.util.List;
 /**
  * List of GdxTest classes. To be used by the test launchers. If you write your own test, add it in here!
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class GdxTests {
     public static final List<Class<? extends GdxTest>> tests = new ArrayList<Class<? extends GdxTest>>(Arrays.asList(
             // @off

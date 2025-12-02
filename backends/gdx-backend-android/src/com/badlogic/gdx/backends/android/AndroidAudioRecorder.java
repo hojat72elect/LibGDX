@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 /**
  * {@link AudioRecorder} implementation for the android system based on AudioRecord
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class AndroidAudioRecorder implements AudioRecorder {
     /**
      * the audio track we read samples from

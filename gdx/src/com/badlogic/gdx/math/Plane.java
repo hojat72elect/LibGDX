@@ -6,8 +6,7 @@ import java.io.Serializable;
 /**
  * A plane defined via a unit length normal and the distance from the origin, as you learned in your math class.
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class Plane implements Serializable {
     private static final long serialVersionUID = -1240652082930747866L;
     public final Vector3 normal = new Vector3();

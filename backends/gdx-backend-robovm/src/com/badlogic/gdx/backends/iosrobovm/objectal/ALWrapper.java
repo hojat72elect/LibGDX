@@ -8,7 +8,6 @@ import org.robovm.objc.annotation.NativeClass;
 import org.robovm.rt.bro.annotation.Library;
 import org.robovm.rt.bro.ptr.VoidPtr;
 
-/** @author Jile Gao */
 @Library(Library.INTERNAL)
 @NativeClass
 public class ALWrapper extends NSObject {

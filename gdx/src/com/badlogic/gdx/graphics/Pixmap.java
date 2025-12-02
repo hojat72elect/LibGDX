@@ -25,8 +25,7 @@ import java.nio.ByteBuffer;
  * A Pixmap stores its data in native heap memory. It is mandatory to call {@link Pixmap#dispose()} when the pixmap is no longer
  * needed, otherwise memory leaks will result
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class Pixmap implements Disposable {
     final Gdx2DPixmap pixmap;
     int color = 0;

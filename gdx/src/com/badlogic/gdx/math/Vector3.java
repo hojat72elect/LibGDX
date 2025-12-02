@@ -9,8 +9,7 @@ import java.io.Serializable;
 /**
  * Encapsulates a 3D vector. Allows chaining operations by returning a reference to itself in all modification methods.
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class Vector3 implements Serializable, Vector<Vector3> {
     public final static Vector3 X = new Vector3(1, 0, 0);
     public final static Vector3 Y = new Vector3(0, 1, 0);

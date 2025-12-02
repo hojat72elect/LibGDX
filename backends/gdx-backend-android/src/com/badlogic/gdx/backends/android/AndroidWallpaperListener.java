@@ -8,8 +8,7 @@ import com.badlogic.gdx.ApplicationListener;
  * be called if the ApplicationListener is running from an AndroidLiveWallpaperService.
  * <p>
  *
- * @author Jaroslaw Wisniewski <j.wisniewski@appsisle.com>
- */
+ *  */
 public interface AndroidWallpaperListener {
 
     /**

@@ -46,8 +46,7 @@ import java.util.Set;
  * abbreviation: BaseName_us__POSIX or BaseName__DE_PREEURO. But it's not allowed to circumvent both language and country:
  * BaseName___VARIANT is illegal.
  *
- * @author davebaol
- * @see PropertiesUtils
+ *  * @see PropertiesUtils
  */
 public class I18NBundle {
 

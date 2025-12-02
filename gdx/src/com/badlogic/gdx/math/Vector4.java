@@ -9,8 +9,7 @@ import java.io.Serializable;
 /**
  * Encapsulates a 4D vector. Allows chaining operations by returning a reference to itself in all modification methods.
  *
- * @author badlogicgames@gmail.com
- * @author Antz
+ *  * @author Antz
  */
 public class Vector4 implements Serializable, Vector<Vector4> {
 

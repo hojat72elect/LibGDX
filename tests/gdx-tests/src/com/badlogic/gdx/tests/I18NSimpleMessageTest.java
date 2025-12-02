@@ -16,8 +16,7 @@ import java.util.Locale;
 /**
  * Performs some tests with {@link I18NBundle} and prints the results on the screen.
  *
- * @author davebaol
- */
+ *  */
 public class I18NSimpleMessageTest extends GdxTest {
 
     String message = "";

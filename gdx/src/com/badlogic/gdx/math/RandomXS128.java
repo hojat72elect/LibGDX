@@ -12,8 +12,7 @@ import java.util.Random;
  * Instances of RandomXS128 are not thread-safe.
  *
  * @author Inferno
- * @author davebaol
- */
+ *  */
 public class RandomXS128 extends Random {
 
     /**

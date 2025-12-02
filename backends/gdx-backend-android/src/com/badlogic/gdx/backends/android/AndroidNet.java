@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.app.Activity;
@@ -17,8 +16,6 @@ import com.badlogic.gdx.net.SocketHints;
 
 /**
  * Android implementation of the {@link Net} API.
- *
- * @author acoppes
  */
 public class AndroidNet implements Net {
 

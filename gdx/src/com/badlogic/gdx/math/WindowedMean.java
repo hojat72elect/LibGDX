@@ -6,8 +6,7 @@ package com.badlogic.gdx.math;
  * value in case enough data has been sampled. After enough data has been sampled the oldest sample will be replaced by the newest
  * in case a new sample is added.
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public final class WindowedMean {
     float[] values;
     int added_values = 0;

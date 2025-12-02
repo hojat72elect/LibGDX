@@ -39,8 +39,6 @@ import com.badlogic.gdx.graphics.Color;
  * object is created, but in the same process. It is important if you plan to use static variables / objects - they will be shared
  * between living instances of wallpaper services'! And depending on your implementation - it can cause problems you were not
  * prepared to.
- *
- * @author Jaroslaw Wisniewski <j.wisniewski@appsisle.com>
  */
 public abstract class AndroidLiveWallpaperService extends WallpaperService {
 
@@ -213,8 +211,6 @@ public abstract class AndroidLiveWallpaperService extends WallpaperService {
     /**
      * Bridge between surface on which wallpaper is rendered and the wallpaper service. The problem is that there can be a group
      * of Engines at one time and we must share libGDX application between them.
-     *
-     * @author libGDX team and Jaroslaw Wisniewski <j.wisniewski@appsisle.com>
      */
     public class AndroidWallpaperEngine extends Engine {
 

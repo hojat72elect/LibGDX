@@ -13,8 +13,7 @@ import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
  * compatibility reasons, this extends {@link TextureMapObject}. Use {@link TiledMapTile#getTextureRegion()} instead of
  * {@link #getTextureRegion()}.
  *
- * @author Daniel Holderbaum
- */
+ *  */
 public class TiledMapTileMapObject extends TextureMapObject {
 
     private boolean flipHorizontally;

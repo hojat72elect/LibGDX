@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.ShortArray;
  * be able to properly assess the winding (because it uses floats). In that case the vertices should be adjusted, eg by finding
  * the smallest X and Y values and subtracting that from each vertex.
  *
- * @author badlogicgames@gmail.com
- * @author Nicolas Gramlich (optimizations, collinear edge support)
+ *  * @author Nicolas Gramlich (optimizations, collinear edge support)
  * @author Eric Spitz
  * @author Thomas ten Cate (bugfixes, optimizations)
  * @author Nathan Sweet (rewrite, return indices, no allocation, optimizations)

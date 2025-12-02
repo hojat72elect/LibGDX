@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Disposable;
  * Stereo samples are interleaved in the order left channel sample, right channel sample. The {@link #dispose()} method must be
  * called when this AudioDevice is no longer needed.
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public interface AudioDevice extends Disposable {
     /**
      * @return whether this AudioDevice is in mono or stereo mode.

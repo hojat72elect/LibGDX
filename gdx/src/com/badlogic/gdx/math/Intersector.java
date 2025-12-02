@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.math.Plane.PlaneSide;
@@ -13,10 +12,7 @@ import java.util.List;
 
 /**
  * Class offering various static methods for intersection testing between different geometric objects.
- *
- * @author badlogicgames@gmail.com
- * @author jan.stria
- *  */
+ */
 public final class Intersector {
     private final static Vector3 v0 = new Vector3();
     private final static Vector3 v1 = new Vector3();

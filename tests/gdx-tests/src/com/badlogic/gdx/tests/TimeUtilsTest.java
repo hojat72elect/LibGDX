@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 /**
  * Test utility functions in TimeUtils.java
  *
- * @author Jon Renner
- */
+ *  */
 public class TimeUtilsTest extends GdxTest {
     final long oneMilliInNanos = 1000000;
 

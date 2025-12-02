@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.app.Activity;
@@ -16,9 +15,6 @@ import com.badlogic.gdx.utils.SnapshotArray;
 /**
  * Interface that abstracts the Android application class usages, so that libGDX can be used with a fragment (or with any other
  * client code)
- *
- * @author Bartol Karuza (me@bartolkaruza.com)
- * @author davebaol
  */
 public interface AndroidApplicationBase extends Application {
 

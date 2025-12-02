@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.view.InputDevice;
@@ -9,8 +8,6 @@ import com.badlogic.gdx.backends.android.DefaultAndroidInput.TouchEvent;
 
 /**
  * Mouse handler for devices running Android >= 3.1.
- *
- * @author Richard Martin
  */
 public class AndroidMouseHandler {
     private int deltaX = 0;

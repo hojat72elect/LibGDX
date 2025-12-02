@@ -14,8 +14,7 @@ import java.util.Arrays;
  * Multitouch handler for devices running Android >= 2.0. If device is capable of (fake) multitouch this will report additional
  * pointers.
  *
- * @author badlogicgames@gmail.com
- */
+ *  */
 public class AndroidTouchHandler {
     public void onTouch(MotionEvent event, DefaultAndroidInput input) {
         final int action = event.getAction() & MotionEvent.ACTION_MASK;

@@ -7,8 +7,7 @@ import java.util.Locale;
 /**
  * {@code TextFormatter} is used by {@link I18NBundle} to perform argument replacement.
  *
- * @author davebaol
- */
+ *  */
 class TextFormatter {
 
     private MessageFormat messageFormat;

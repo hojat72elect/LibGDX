@@ -8,8 +8,7 @@ import java.io.Serializable;
 /**
  * A simple quaternion class.
  *
- * @author badlogicgames@gmail.com
- * @author vesuvio
+ *  * @author vesuvio
  * @author xoppa
  * @see <a href="http://en.wikipedia.org/wiki/Quaternion">http://en.wikipedia.org/wiki/Quaternion</a>
  */

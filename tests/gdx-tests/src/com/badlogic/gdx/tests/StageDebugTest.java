@@ -18,8 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.tests.utils.GdxTest;
 
 /**
- * @author Daniel Holderbaum
- */
+ *  */
 public class StageDebugTest extends GdxTest {
     static TextureRegion textureRegion;
 

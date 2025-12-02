@@ -31,8 +31,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Implements part of the {@link Net} API using {@link HttpURLConnection}, to be easily reused between the Android and Desktop
  * backends.
  *
- * @author acoppes
- */
+ *  */
 public class NetJavaImpl {
 
     final ObjectMap<HttpRequest, HttpURLConnection> connections;

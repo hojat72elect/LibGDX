@@ -29,8 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Daniel Holderbaum
- */
+ *  */
 public class Benchmark3DTest extends BaseG3dHudTest {
 
     private final Vector3 tmpV = new Vector3();

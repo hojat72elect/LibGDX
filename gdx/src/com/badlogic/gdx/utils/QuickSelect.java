@@ -8,8 +8,7 @@ import java.util.Comparator;
  * median of three method, providing better performance than a random pivot for partially sorted data.
  * http://en.wikipedia.org/wiki/Quickselect
  *
- * @author Jon Renner
- */
+ *  */
 public class QuickSelect<T> {
     private T[] array;
     private Comparator<? super T> comp;

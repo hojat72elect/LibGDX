@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.content.res.AssetFileDescriptor;
@@ -15,9 +14,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * @author sarkanyi
- */
 public class AndroidZipFileHandle extends AndroidFileHandle {
     private boolean hasAssetFd;
     private long fdLength;

@@ -20,8 +20,7 @@ import com.badlogic.gdx.utils.Scaling;
  * {@link Scaling#none} keeps the aspect ratio by using a fixed size world (the world may not fill the screen or some of the world
  * may be off screen).
  *
- * @author Daniel Holderbaum
- *  */
+ *  *  */
 public class ScalingViewport extends Viewport {
     private Scaling scaling;
 
