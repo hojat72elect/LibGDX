@@ -100,8 +100,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
- * @author Inferno
- */
+ *  */
 public class FlameMain extends JFrame implements AssetErrorListener {
     public static final String DEFAULT_FONT = "default.fnt", DEFAULT_BILLBOARD_PARTICLE = "pre_particle.png",
             DEFAULT_MODEL_PARTICLE = "monkey.g3db",

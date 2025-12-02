@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.JsonValue;
  * It's an {@link Influencer} which controls a generic channel of the particles. It handles the interpolation through time using
  * {@link ScaledNumericValue}.
  *
- * @author Inferno
- */
+ *  */
 public abstract class SimpleInfluencer extends Influencer {
 
     public ScaledNumericValue value;

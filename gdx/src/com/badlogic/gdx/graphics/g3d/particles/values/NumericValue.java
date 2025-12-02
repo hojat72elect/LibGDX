@@ -7,8 +7,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * A value which contains a single float variable.
  *
- * @author Inferno
- */
+ *  */
 public class NumericValue extends ParticleValue {
     private float value;
 

@@ -19,8 +19,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * @author Inferno
- */
+ *  */
 class ScaledNumericPanel extends ParticleValuePanel<ScaledNumericValue> {
     Slider lowMinSlider, lowMaxSlider;
     Slider highMinSlider, highMaxSlider;

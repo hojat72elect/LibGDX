@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * It's an {@link Influencer} which updates the simulation of particles containing a {@link ParticleController}. Must be the last
  * influencer to be updated, so it has to be placed at the end of the influencers list when creating a {@link ParticleController}.
  *
- * @author Inferno
- */
+ *  */
 public class ParticleControllerFinalizerInfluencer extends Influencer {
     FloatChannel positionChannel, scaleChannel, rotationChannel;
     ObjectChannel<ParticleController> controllerChannel;

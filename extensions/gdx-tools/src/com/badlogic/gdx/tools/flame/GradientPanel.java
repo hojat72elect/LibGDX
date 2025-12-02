@@ -24,8 +24,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * @author Inferno
- */
+ *  */
 class GradientPanel extends ParticleValuePanel<GradientColorValue> {
     ColorSlider saturationSlider, lightnessSlider;
     JPanel colorPanel;

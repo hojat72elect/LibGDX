@@ -26,8 +26,7 @@ import java.io.IOException;
  * be created, one will have to set the required batches manually otherwise the {@link ParticleController} instances contained
  * inside the effect will not be able to render themselves.
  *
- * @author inferno
- */
+ *  */
 public class ParticleEffectLoader
         extends AsynchronousAssetLoader<ParticleEffect, ParticleEffectLoader.ParticleEffectLoadParameter> {
     protected Array<ObjectMap.Entry<String, ResourceData<ParticleEffect>>> items = new Array<ObjectMap.Entry<String, ResourceData<ParticleEffect>>>();

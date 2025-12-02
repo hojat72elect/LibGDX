@@ -32,8 +32,7 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * This class is used to render billboard particles.
  *
- * @author Inferno
- */
+ *  */
 public class BillboardParticleBatch extends BufferedParticleBatch<BillboardControllerRenderData> {
     protected static final Vector3 TMP_V1 = new Vector3(), TMP_V2 = new Vector3(), TMP_V3 = new Vector3(), TMP_V4 = new Vector3(),
             TMP_V5 = new Vector3(), TMP_V6 = new Vector3();

@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 /**
- * @author Inferno
- */
+ *  */
 public class RegionInfluencerPanel extends InfluencerPanel<RegionInfluencer> implements RegionPickerPanel.Listener {
     JDialog regionSelectDialog;
     RegionPickerPanel regionPickerPanel;

@@ -14,8 +14,7 @@ import java.util.Arrays;
 /**
  * It's an {@link Influencer} which controls the particles dynamics (movement, rotations).
  *
- * @author Inferno
- */
+ *  */
 public class DynamicsInfluencer extends Influencer {
     public Array<DynamicsModifier> velocities;
     boolean hasAcceleration, has2dAngularVelocity, has3dAngularVelocity;

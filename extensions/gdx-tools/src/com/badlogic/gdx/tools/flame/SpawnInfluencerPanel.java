@@ -29,8 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
- * @author Inferno
- */
+ *  */
 class SpawnInfluencerPanel extends InfluencerPanel<SpawnInfluencer> implements TemplatePickerPanel.Listener<Model> {
     private static final String SPAWN_SHAPE_POINT = "Point", SPAWN_SHAPE_LINE = "Line", SPAWN_SHAPE_RECTANGLE = "Rectangle",
             SPAWN_SHAPE_CYLINDER = "Cylinder", SPAWN_SHAPE_ELLIPSE = "Ellipse", SPAWN_SHAPE_MESH = "Unweighted Mesh",

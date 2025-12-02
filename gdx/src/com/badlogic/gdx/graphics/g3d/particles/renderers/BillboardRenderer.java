@@ -13,8 +13,7 @@ import com.badlogic.gdx.graphics.g3d.particles.batches.ParticleBatch;
 /**
  * A {@link ParticleControllerRenderer} which will render particles as billboards to a {@link BillboardParticleBatch} .
  *
- * @author Inferno
- */
+ *  */
 public class BillboardRenderer extends ParticleControllerRenderer<BillboardControllerRenderData, BillboardParticleBatch> {
 
     public BillboardRenderer() {

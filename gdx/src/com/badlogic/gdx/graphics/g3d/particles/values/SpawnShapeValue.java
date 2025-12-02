@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * Encapsulate the formulas to spawn a particle on a shape.
  *
- * @author Inferno
- */
+ *  */
 public abstract class SpawnShapeValue extends ParticleValue implements ResourceData.Configurable, Json.Serializable {
 
     public RangedNumericValue xOffsetValue, yOffsetValue, zOffsetValue;

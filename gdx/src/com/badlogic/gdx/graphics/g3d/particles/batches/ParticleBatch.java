@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g3d.particles.renderers.ParticleControllerRende
 /**
  * Common interface to all the batches that render particles.
  *
- * @author Inferno
- */
+ *  */
 public interface ParticleBatch<T extends ParticleControllerRenderData> extends RenderableProvider, ResourceData.Configurable {
 
     /**

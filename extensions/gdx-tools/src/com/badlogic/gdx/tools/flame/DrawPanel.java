@@ -10,8 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @author Inferno
- */
+ *  */
 public class DrawPanel extends EditorPanel {
     JCheckBox drawXYZCheckBox, drawXZPlaneBox, drawXYPlaneBox;
 

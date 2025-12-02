@@ -16,8 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * @author Inferno
- */
+ *  */
 class RangedNumericPanel extends ParticleValuePanel<RangedNumericValue> {
     Slider minSlider, maxSlider;
     JButton rangeButton;

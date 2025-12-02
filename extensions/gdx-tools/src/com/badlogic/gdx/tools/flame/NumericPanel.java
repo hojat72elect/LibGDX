@@ -14,8 +14,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * @author Inferno
- */
+ *  */
 class NumericPanel extends ParticleValuePanel<NumericValue> {
     JSpinner valueSpinner;
 

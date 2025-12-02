@@ -6,8 +6,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 
 /**
- * @author Inferno
- */
+ *  */
 public class CustomCardLayout extends CardLayout {
 
     @Override

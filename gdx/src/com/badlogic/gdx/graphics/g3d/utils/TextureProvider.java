@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g3d.model.data.ModelData;
 /**
  * Used by {@link Model} to load textures from {@link ModelData}.
  *
- * @author badlogic
  */
 public interface TextureProvider {
     Texture load(String fileName);

@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * It's a generic use {@link Emitter} which fits most of the particles simulation scenarios.
  *
- * @author Inferno
- */
+ *  */
 public class RegularEmitter extends Emitter implements Json.Serializable {
 
     public RangedNumericValue delayValue, durationValue;

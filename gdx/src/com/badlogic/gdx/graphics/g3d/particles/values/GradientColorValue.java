@@ -7,8 +7,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * Defines a variation of red, green and blue on a given time line.
  *
- * @author Inferno
- */
+ *  */
 public class GradientColorValue extends ParticleValue {
     static private final float[] temp = new float[3];
     public float[] timeline = {0};

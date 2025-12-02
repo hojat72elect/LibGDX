@@ -6,7 +6,6 @@ import java.io.Serializable;
 /**
  * A point in a 3D grid, with integer x and y coordinates
  *
- * @author badlogic
  */
 public class GridPoint3 implements Serializable {
     private static final long serialVersionUID = 5922187982746752830L;

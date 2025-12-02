@@ -29,8 +29,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Inferno
- */
+ *  */
 public class ParticleControllerTest extends BaseG3dTest {
     public static final String DEFAULT_PARTICLE = "data/pre_particle.png", DEFAULT_SKIN = "data/uiskin.json";
     Quaternion tmpQuaternion = new Quaternion();

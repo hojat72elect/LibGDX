@@ -13,8 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @author Inferno
- */
+ *  */
 public class StrengthVelocityPanel extends EditorPanel<DynamicsModifier.Strength> {
 
     JCheckBox isGlobalCheckBox;

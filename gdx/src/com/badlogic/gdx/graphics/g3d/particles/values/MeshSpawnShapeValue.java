@@ -15,8 +15,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 /**
  * The base class of all the {@link ParticleValue} values which spawn a particle on a mesh shape.
  *
- * @author Inferno
- */
+ *  */
 public abstract class MeshSpawnShapeValue extends SpawnShapeValue {
     protected Mesh mesh;
     /**

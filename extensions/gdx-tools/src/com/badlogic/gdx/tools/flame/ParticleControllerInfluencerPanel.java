@@ -9,8 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 /**
- * @author Inferno
- */
+ *  */
 public class ParticleControllerInfluencerPanel extends InfluencerPanel<ParticleControllerInfluencer>
         implements TemplatePickerPanel.Listener<ParticleController>, LoaderButton.Listener<ParticleEffect>, EventManager.Listener {
     TemplatePickerPanel<ParticleController> controllerPicker;

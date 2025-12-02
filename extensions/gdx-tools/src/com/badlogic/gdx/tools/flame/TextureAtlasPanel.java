@@ -18,8 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * @author Inferno
- */
+ *  */
 public class TextureAtlasPanel extends JPanel {
     JPanel regionsPanel;
     TextureAtlas atlas;

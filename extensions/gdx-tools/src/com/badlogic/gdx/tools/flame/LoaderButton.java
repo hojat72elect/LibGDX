@@ -17,8 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- * @author Inferno
- */
+ *  */
 public abstract class LoaderButton<T> extends JButton {
 
     protected Listener<T> listener;

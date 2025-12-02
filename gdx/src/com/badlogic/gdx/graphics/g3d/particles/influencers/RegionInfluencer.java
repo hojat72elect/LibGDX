@@ -16,8 +16,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * It's an {@link Influencer} which assigns a region of a {@link Texture} to the particles.
  *
- * @author Inferno
- */
+ *  */
 public abstract class RegionInfluencer extends Influencer {
 
     private final static String ASSET_DATA = "atlasAssetData";

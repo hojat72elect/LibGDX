@@ -19,8 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 /**
- * @author Inferno
- */
+ *  */
 public class RegionPickerPanel extends JPanel {
 
     TextureAtlasPanel atlasPanel;

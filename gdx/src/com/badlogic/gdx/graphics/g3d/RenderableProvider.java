@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * Returns a list of {@link Renderable} instances to be rendered by a {@link ModelBatch}.
  *
- * @author badlogic
  */
 public interface RenderableProvider {
     /**

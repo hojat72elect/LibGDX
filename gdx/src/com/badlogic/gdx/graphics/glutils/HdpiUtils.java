@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.GL20;
  * drawing surface to which OpenGL draws, also known as the backbuffer. This class will ensure, that you pass the correct values
  * to OpenGL for any function that expects backbuffer coordinates instead of logical coordinates.
  *
- * @author badlogic
  */
 public class HdpiUtils {
     private static HdpiMode mode = HdpiMode.Logical;

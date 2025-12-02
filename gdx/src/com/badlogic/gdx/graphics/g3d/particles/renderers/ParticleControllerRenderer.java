@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g3d.particles.batches.ParticleBatch;
  * It's a {@link ParticleControllerComponent} which determines how the particles are rendered. It's the base class of every
  * particle renderer.
  *
- * @author Inferno
- */
+ *  */
 public abstract class ParticleControllerRenderer<D extends ParticleControllerRenderData, T extends ParticleBatch<D>>
         extends ParticleControllerComponent {
     protected T batch;

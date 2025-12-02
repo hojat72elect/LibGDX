@@ -25,8 +25,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Inferno
- */
+ *  */
 public abstract class EditorPanel<T> extends JPanel {
     protected T value;
     protected boolean isAlwaysActive, isAlwaysShown = false, isRemovable;

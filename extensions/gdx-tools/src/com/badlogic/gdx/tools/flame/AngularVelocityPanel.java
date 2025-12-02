@@ -13,8 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @author Inferno
- */
+ *  */
 public class AngularVelocityPanel extends EditorPanel<DynamicsModifier.Angular> {
     JCheckBox isGlobalCheckBox;
     ScaledNumericPanel thetaPanel;

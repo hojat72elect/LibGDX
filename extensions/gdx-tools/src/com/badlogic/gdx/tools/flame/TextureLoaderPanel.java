@@ -19,8 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- * @author Inferno
- */
+ *  */
 public class TextureLoaderPanel extends EditorPanel {
     public TextureLoaderPanel(FlameMain editor, String name, String description) {
         super(editor, name, description);

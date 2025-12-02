@@ -18,8 +18,7 @@ import java.util.Iterator;
 /**
  * It's an {@link Influencer} which controls which {@link ParticleController} will be assigned to a particle.
  *
- * @author Inferno
- */
+ *  */
 public abstract class ParticleControllerInfluencer extends Influencer {
 
     public Array<ParticleController> templates;

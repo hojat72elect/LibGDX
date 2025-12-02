@@ -13,8 +13,7 @@ import com.badlogic.gdx.graphics.g3d.particles.batches.ParticleBatch;
  * A {@link ParticleControllerRenderer} which will render particles as {@link ModelInstance} to a
  * {@link ModelInstanceParticleBatch}.
  *
- * @author Inferno
- */
+ *  */
 public class ModelInstanceRenderer
         extends ParticleControllerRenderer<ModelInstanceControllerRenderData, ModelInstanceParticleBatch> {
     private boolean hasColor, hasScale, hasRotation;

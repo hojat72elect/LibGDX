@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
  * It's a class which represents a value bound to the particles. Generally used by a particle controller component to find the
  * current value of a particle property during the simulation.
  *
- * @author Inferno
- */
+ *  */
 public class ParticleValue implements Json.Serializable {
     public boolean active;
 

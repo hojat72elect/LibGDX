@@ -14,8 +14,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Inferno
- */
+ *  */
 public class TemplatePickerPanel<T> extends EditorPanel<Array<T>> implements LoaderButton.Listener<T> {
 
     Array<T> loadedTemplates;

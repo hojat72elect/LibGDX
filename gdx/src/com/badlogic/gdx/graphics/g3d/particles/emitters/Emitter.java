@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.JsonValue;
  * {@link Emitter#minParticleCount} and {@link Emitter#maxParticleCount} to rule particle emission. It should notify the particle
  * controller when particles are activated, killed, or when an emission cycle begins.
  *
- * @author Inferno
- */
+ *  */
 public abstract class Emitter extends ParticleControllerComponent implements Json.Serializable {
     /**
      * The min/max quantity of particles

@@ -26,8 +26,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * This is a custom shader to render the particles. Usually is not required, because the {@link DefaultShader} will be used
  * instead. This shader will be used when dealing with billboards using GPU mode or point sprites.
  *
- * @author inferno
- */
+ *  */
 public class ParticleShader extends BaseShader {
     static final Vector3 TMP_VECTOR3 = new Vector3();
     /**

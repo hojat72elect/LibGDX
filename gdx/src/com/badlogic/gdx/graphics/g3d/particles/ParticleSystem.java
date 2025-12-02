@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.Pool;
  * Singleton class which manages the particle effects. It's a utility class to ease particle batches management and particle
  * effects update.
  *
- * @author inferno
- */
+ *  */
 public final class ParticleSystem implements RenderableProvider {
     private static ParticleSystem instance;
     private final Array<ParticleBatch<?>> batches;

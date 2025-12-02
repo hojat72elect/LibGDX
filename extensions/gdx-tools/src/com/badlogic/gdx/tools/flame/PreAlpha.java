@@ -22,8 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
- * @author Inferno
- */
+ *  */
 public class PreAlpha extends JFrame {
     BufferedImage image;
     ImagePanel imagePanel;

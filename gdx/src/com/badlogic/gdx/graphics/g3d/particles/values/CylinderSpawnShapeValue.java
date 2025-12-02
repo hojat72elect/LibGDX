@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * Encapsulate the formulas to spawn a particle on a cylinder shape.
  *
- * @author Inferno
- */
+ *  */
 public final class CylinderSpawnShapeValue extends PrimitiveSpawnShapeValue {
 
     public CylinderSpawnShapeValue(CylinderSpawnShapeValue cylinderSpawnShapeValue) {

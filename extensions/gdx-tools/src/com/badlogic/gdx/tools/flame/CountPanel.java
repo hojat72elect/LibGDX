@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.flame;
 
 import com.badlogic.gdx.graphics.g3d.particles.ParticleController;
@@ -10,9 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/**
- * @author Inferno
- */
 class CountPanel extends EditorPanel {
     Slider maxSlider, minSlider;
 

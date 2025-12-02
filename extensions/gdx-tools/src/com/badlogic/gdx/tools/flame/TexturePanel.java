@@ -12,8 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * @author Inferno
- */
+ *  */
 public class TexturePanel extends ImagePanel {
     Array<TextureRegion> selectedRegions;
     Array<TextureRegion> unselectedRegions;

@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * Returned by a {@link ModelLoader}, contains meshes, materials, nodes and animations. OpenGL resources like textures or vertex
  * buffer objects are not stored. Instead, a ModelData instance needs to be converted to a Model first.
  *
- * @author badlogic
  */
 public class ModelData {
     public final short[] version = new short[2];

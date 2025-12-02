@@ -13,8 +13,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * It's an {@link Influencer} which controls where the particles will be spawned.
  *
- * @author Inferno
- */
+ *  */
 public class SpawnInfluencer extends Influencer {
 
     public SpawnShapeValue spawnShapeValue;

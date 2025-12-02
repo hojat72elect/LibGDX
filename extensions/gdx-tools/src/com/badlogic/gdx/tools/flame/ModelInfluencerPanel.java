@@ -7,8 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 /**
- * @author Inferno
- */
+ *  */
 public class ModelInfluencerPanel extends InfluencerPanel<ModelInfluencer>
         implements TemplatePickerPanel.Listener<Model>, EventManager.Listener {
 

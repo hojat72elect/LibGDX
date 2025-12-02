@@ -15,8 +15,7 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * It's an {@link Influencer} which controls which {@link Model} will be assigned to the particles as {@link ModelInstance}.
  *
- * @author Inferno
- */
+ *  */
 public abstract class ModelInfluencer extends Influencer {
 
     public Array<Model> models;

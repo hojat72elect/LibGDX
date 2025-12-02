@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * A value which has a defined minimum and maximum bounds.
  *
- * @author Inferno
- */
+ *  */
 public class RangedNumericValue extends ParticleValue {
     private float lowMin, lowMax;
 

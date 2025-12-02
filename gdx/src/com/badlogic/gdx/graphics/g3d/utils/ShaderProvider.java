@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Disposable;
  * Returns {@link Shader} instances for a {@link Renderable} on request. Also responsible for disposing of any created
  * {@link Shader} instances on a call to {@link Disposable#dispose()}.
  *
- * @author badlogic
  */
 public interface ShaderProvider extends Disposable {
     /**

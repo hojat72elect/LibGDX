@@ -15,8 +15,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * @author Inferno
- */
+ *  */
 public class BillboardBatchPanel extends EditorPanel<BillboardParticleBatch> {
     JComboBox alignCombo;
     JCheckBox useGPUBox;

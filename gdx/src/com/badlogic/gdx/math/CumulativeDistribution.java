@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.Array;
  * often than triangles with a smaller one. See
  * <a href="http://en.wikipedia.org/wiki/Cumulative_distribution_function">Wikipedia</a> for a detailed explanation.
  *
- * @author Inferno
- */
+ *  */
 public class CumulativeDistribution<T> {
     private final Array<CumulativeValue<T>> values;
 

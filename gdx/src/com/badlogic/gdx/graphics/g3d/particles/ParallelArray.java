@@ -14,8 +14,7 @@ import java.util.Arrays;
  * types in the channels but doing so will "exploit" data locality in the JVM, which is ensured for primitive types. Use
  * {@link FloatChannel}, {@link IntChannel}, {@link ObjectChannel} to store the data.
  *
- * @author inferno
- */
+ *  */
 public class ParallelArray {
 
     /**

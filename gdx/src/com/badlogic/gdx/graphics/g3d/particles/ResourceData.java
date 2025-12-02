@@ -24,8 +24,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  * , while the global {@link SaveData} instances can be accessed in any order because require a unique {@link String} and are
  * stored in an {@link ObjectMap}.
  *
- * @author Inferno
- */
+ *  */
 public class ResourceData<T> implements Json.Serializable {
 
     public T resource;

@@ -3,8 +3,7 @@ package com.badlogic.gdx.tools.flame;
 import com.badlogic.gdx.graphics.g3d.particles.influencers.Influencer;
 
 /**
- * @author Inferno
- */
+ *  */
 public abstract class InfluencerPanel<T extends Influencer> extends EditorPanel<T> {
     public InfluencerPanel(FlameMain editor, T influencer, String name, String description) {
         super(editor, name, description, true, true);

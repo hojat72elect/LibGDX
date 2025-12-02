@@ -10,8 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * @author Inferno
- */
+ *  */
 public class ImagePanel extends JPanel {
     private BufferedImage image;
 

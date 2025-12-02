@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * This class is used by particle batches to sort the particles before rendering.
  *
- * @author Inferno
- */
+ *  */
 public abstract class ParticleSorter {
     static final Vector3 TMP_V1 = new Vector3();
     protected Camera camera;

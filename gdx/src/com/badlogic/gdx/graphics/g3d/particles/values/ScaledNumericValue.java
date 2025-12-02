@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * A value which has a defined minimum and maximum upper and lower bounds. Defines the variations of the value on a time line.
  *
- * @author Inferno
- */
+ *  */
 public class ScaledNumericValue extends RangedNumericValue {
     public float[] timeline = {0};
     private float[] scaling = {1};

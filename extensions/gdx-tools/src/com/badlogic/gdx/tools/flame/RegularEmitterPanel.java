@@ -10,8 +10,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 
 /**
- * @author Inferno
- */
+ *  */
 public class RegularEmitterPanel extends EditorPanel<RegularEmitter> {
 
     CountPanel countPanel;

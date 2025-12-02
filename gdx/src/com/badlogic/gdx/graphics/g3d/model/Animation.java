@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Array;
  * {@link Model}. Every {@link NodeAnimation} is assumed to have the same amount of keyframes, at the same timestamps, as all
  * other node animations for faster keyframe searches.
  *
- * @author badlogic
  */
 public class Animation {
     /**

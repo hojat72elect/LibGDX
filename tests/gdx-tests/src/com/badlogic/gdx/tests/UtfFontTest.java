@@ -9,7 +9,6 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 /**
  * See <a href="https://github.com/libgdx/libgdx/issues/1315">#1315</a>
  *
- * @author badlogic
  */
 public class UtfFontTest extends GdxTest {
     BitmapFont font;

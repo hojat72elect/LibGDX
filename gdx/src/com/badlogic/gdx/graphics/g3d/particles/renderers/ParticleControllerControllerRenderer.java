@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 /**
  * A {@link ParticleControllerRenderer} which will render the {@link ParticleController} of each particle.
  *
- * @author Inferno
- */
+ *  */
 @SuppressWarnings("rawtypes")
 public class ParticleControllerControllerRenderer extends ParticleControllerRenderer {
     ObjectChannel<ParticleController> controllerChannel;

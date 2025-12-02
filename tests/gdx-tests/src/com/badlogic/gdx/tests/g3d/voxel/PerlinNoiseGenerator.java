@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.MathUtils;
 /**
  * Adapted from <a href="http://devmag.org.za/2009/04/25/perlin-noise/">http://devmag.org.za/2009/04/25/perlin-noise/</a>
  *
- * @author badlogic
  */
 public class PerlinNoiseGenerator {
     public static float[][] generateWhiteNoise(int width, int height) {

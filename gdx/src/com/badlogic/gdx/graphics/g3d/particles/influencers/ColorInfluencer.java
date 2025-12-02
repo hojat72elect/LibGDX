@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.JsonValue;
 /**
  * It's an {@link Influencer} which controls particles color and transparency.
  *
- * @author Inferno
- */
+ *  */
 public abstract class ColorInfluencer extends Influencer {
 
     FloatChannel colorChannel;

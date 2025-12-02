@@ -48,8 +48,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Inferno
- */
+ *  */
 class EffectPanel extends JPanel {
     FlameMain editor;
     JTable emitterTable;

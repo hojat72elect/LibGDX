@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Placeholder class that's wired up with all backends so i can quickly test out issues...
  *
- * @author badlogic
  */
 public class IssueTest extends GdxTest {
     SpriteBatch batch;

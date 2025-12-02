@@ -15,8 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * @author Inferno
- */
+ *  */
 class PercentagePanel extends ParticleValuePanel<ScaledNumericValue> {
     JButton expandButton;
     Chart chart;
