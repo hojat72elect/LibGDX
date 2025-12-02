@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Application;
@@ -47,9 +46,6 @@ import com.badlogic.gdx.tests.bullet.VehicleTest;
 import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.utils.Align;
 
-/**
- * @author xoppa
- */
 public class BulletTestCollection extends GdxTest implements InputProcessor, GestureListener {
     protected final BulletTest[] tests = {new BasicBulletTest(), new ShootTest(), new BasicShapesTest(), new KinematicTest(),
             new ConstraintsTest(), new MeshShapeTest(), new GimpactTest(), new ConvexHullTest(), new ConvexHullDistanceTest(),

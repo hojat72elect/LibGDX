@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 /**
  * This shader pack the depth data into the texture
  *
- * @author realitix
- */
+ *  */
 public class Pass1Shader extends DefaultShader {
     private static String defaultVertexShader = null;
     private static String defaultFragmentShader = null;

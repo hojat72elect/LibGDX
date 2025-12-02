@@ -86,9 +86,6 @@ import javax.xml.transform.stream.StreamResult;
  * correctly read the associated TextureAtlas representing the tileset. The map file will also overwrite the sources of any
  * imagelayer images to a new unique region name prepending 'atlas_imagelayer_' to a newly generated one which represents it's
  * region in the atlas
- *
- * @author David Fraska and others (initial implementation, tell me who you are!)
- * @author Manuel Bua
  */
 public class TiledMapPacker {
     private static final String TilesetsOutputDir = "tileset";

@@ -22,8 +22,7 @@ import java.util.Comparator;
  * directly transformed, therefore the resulting {@link Renderable#worldTransform} might not be suitable for sorting anymore (such
  * as the default sorter of ModelBatch does).
  *
- * @author Xoppa
- */
+ *  */
 public class ModelCache implements Disposable, RenderableProvider {
     private final Array<Renderable> renderables = new Array<Renderable>();
     private final FlushablePool<Renderable> renderablesPool = new FlushablePool<Renderable>() {
@@ -262,8 +261,7 @@ public class ModelCache implements Disposable, RenderableProvider {
      * the mesh always the maximum (64k) size. Use this when for dynamic caching where you need to obtain meshes very frequently
      * (typically every frame).
      *
-     * @author Xoppa
-     */
+     *      */
     public static class SimpleMeshPool implements MeshPool {
         // FIXME Make a better (preferable JNI) MeshPool implementation
         private final Array<Mesh> freeMeshes = new Array<Mesh>();
@@ -307,8 +305,7 @@ public class ModelCache implements Disposable, RenderableProvider {
     /**
      * A tight {@link MeshPool} implementation, which is typically used for static meshes (create once, use many).
      *
-     * @author Xoppa
-     */
+     *      */
     public static class TightMeshPool implements MeshPool {
         private final Array<Mesh> freeMeshes = new Array<Mesh>();
         private final Array<Mesh> usedMeshes = new Array<Mesh>();
@@ -350,8 +347,7 @@ public class ModelCache implements Disposable, RenderableProvider {
      * A {@link RenderableSorter} that sorts by vertex attributes, material attributes and primitive types (in that order), so
      * that meshes can be easily merged.
      *
-     * @author Xoppa
-     */
+     *      */
     public static class Sorter implements RenderableSorter, Comparator<Renderable> {
         @Override
         public void sort(Camera camera, Array<Renderable> renderables) {

@@ -24,8 +24,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
  * 3 - There is no constraint about shader varying.
  * </pre>
  *
- * @author realitix
- */
+ *  */
 public class ClassicalShadowSystem extends FirstPassBaseShadowSystem {
 
     public static final int PASS_QUANTITY = 2;

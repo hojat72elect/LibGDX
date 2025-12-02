@@ -10,8 +10,7 @@ import com.badlogic.gdx.physics.bullet.collision.btGImpactMeshShape;
 import com.badlogic.gdx.physics.bullet.collision.btTriangleIndexVertexArray;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class GimpactTest extends BaseBulletTest {
     BulletEntity ground;
     btTriangleIndexVertexArray chassisVertexArray;

@@ -10,8 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * FrustumShapeBuilder builds camera or frustum.
  *
- * @author realitix
- */
+ *  */
 public class FrustumShapeBuilder extends BaseShapeBuilder {
 
     /**

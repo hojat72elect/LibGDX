@@ -20,8 +20,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 /**
  * This shader accumulates shadow with blending
  *
- * @author realitix
- */
+ *  */
 public class Pass2Shader extends DefaultShader {
     public static final int LIGHT_SPOT = 0;
     public static final int LIGHT_DIR = 1;

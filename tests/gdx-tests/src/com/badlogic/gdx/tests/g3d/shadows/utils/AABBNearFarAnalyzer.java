@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.g3d.shadows.utils;
 
 import com.badlogic.gdx.graphics.Camera;
@@ -13,8 +12,6 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * Compute near and far plane based on renderable providers passed in constructor. Renderable providers array should contains
  * only renderable in camera frustum.
- *
- * @author realitix
  */
 public class AABBNearFarAnalyzer implements NearFarAnalyzer {
     /**

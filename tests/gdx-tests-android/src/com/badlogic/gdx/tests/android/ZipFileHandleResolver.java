@@ -1,13 +1,9 @@
-
 package com.badlogic.gdx.tests.android;
 
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.backends.android.AndroidZipFileHandle;
 import com.badlogic.gdx.files.FileHandle;
 
-/**
- * @author sarkanyi
- */
 public class ZipFileHandleResolver implements FileHandleResolver {
 
     @Override

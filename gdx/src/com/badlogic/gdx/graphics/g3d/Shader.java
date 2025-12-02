@@ -43,8 +43,7 @@ import com.badlogic.gdx.utils.Disposable;
  * example, disposed (unloads for memory) the used {@link ShaderProgram}.
  * </p>
  *
- * @author Xoppa
- */
+ *  */
 public interface Shader extends Disposable {
     /**
      * Initializes the Shader, must be called before the Shader can be used. This typically compiles a {@link ShaderProgram},

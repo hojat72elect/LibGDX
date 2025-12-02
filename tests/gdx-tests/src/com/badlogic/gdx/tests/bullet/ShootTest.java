@@ -2,8 +2,7 @@
 package com.badlogic.gdx.tests.bullet;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class ShootTest extends BaseBulletTest {
     final int BOXCOUNT_X = 5;
     final int BOXCOUNT_Y = 5;

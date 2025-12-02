@@ -7,8 +7,7 @@ import android.view.View;
  * This {@link ResolutionStrategy} will maintain a given aspect ratio and stretch the GLSurfaceView to the maximum available
  * screen size.
  *
- * @author christoph widulle
- */
+ *  */
 public class RatioResolutionStrategy implements ResolutionStrategy {
 
     private final float ratio;

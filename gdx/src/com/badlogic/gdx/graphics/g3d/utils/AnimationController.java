@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.Pool;
  * You can use multiple AnimationControllers on the same ModelInstance, as long as they don't interfere with each other (don't
  * affect the same {@link Node}s).
  *
- * @author Xoppa
- */
+ *  */
 public class AnimationController extends BaseAnimationController {
 
     protected final Pool<AnimationDesc> animationPool = new Pool<AnimationDesc>() {
@@ -493,8 +492,7 @@ public class AnimationController extends BaseAnimationController {
     /**
      * Listener that will be informed when an animation is looped or completed.
      *
-     * @author Xoppa
-     */
+     *      */
     public interface AnimationListener {
         /**
          * Gets called when an animation is completed.
@@ -516,8 +514,7 @@ public class AnimationController extends BaseAnimationController {
      * Class describing how to play and {@link Animation}. You can read the values within this class to get the progress of the
      * animation. Do not change the values. Only valid when the animation is currently played.
      *
-     * @author Xoppa
-     */
+     *      */
     public static class AnimationDesc {
         /**
          * Listener which will be informed when the animation is looped or ended.

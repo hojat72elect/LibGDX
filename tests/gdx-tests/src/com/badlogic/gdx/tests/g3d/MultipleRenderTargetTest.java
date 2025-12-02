@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.g3d;
 
 import com.badlogic.gdx.Application;
@@ -46,8 +45,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 /**
  * MRT test compliant with GLES 3.0, with per pixel lighting and normal and specular mapping. Thanks to
  * http://www.blendswap.com/blends/view/73922 for the cannon model, licensed under CC-BY-SA
- * <p>
- * /** @author Tomski
  */
 @GdxTestConfig(requireGL30 = true)
 public class MultipleRenderTargetTest extends GdxTest {

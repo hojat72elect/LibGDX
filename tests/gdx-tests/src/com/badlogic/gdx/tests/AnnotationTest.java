@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Gdx;
@@ -18,8 +17,6 @@ import java.util.Arrays;
 
 /**
  * Performs some tests with {@link Annotation} and prints the results on the screen.
- *
- * @author dludwig
  */
 public class AnnotationTest extends GdxTest {
     String message = "";

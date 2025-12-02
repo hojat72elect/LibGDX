@@ -28,8 +28,6 @@ import java.nio.FloatBuffer;
 
 /**
  * Added during glTexImage2D corrections.
- *
- * @author Ret-Mode
  */
 public class GlTexImage2D extends GdxTest {
 

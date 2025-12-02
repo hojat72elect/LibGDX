@@ -27,8 +27,7 @@ import com.badlogic.gdx.physics.bullet.collision.btPersistentManifoldArray;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class FrustumCullingTest extends BaseBulletTest {
     /**
      * Only show entities inside the frustum

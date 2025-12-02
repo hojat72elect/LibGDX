@@ -13,8 +13,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * If you set size to QUALITY_MIN and mapQuantity to NB_MAP_MAX, each depth map would be 64*64.
  * </p>
  *
- * @author realitix
- */
+ *  */
 public class FixedShadowMapAllocator implements ShadowMapAllocator {
     /**
      * Helpers to choose shadow map quality

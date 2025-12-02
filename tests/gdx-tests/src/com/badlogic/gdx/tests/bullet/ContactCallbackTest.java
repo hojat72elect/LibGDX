@@ -7,8 +7,7 @@ import com.badlogic.gdx.physics.bullet.collision.ContactListener;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class ContactCallbackTest extends BaseBulletTest {
     final int BOXCOUNT_X = 5;
     final int BOXCOUNT_Y = 1;

@@ -4,8 +4,7 @@ package com.badlogic.gdx.math;
 /**
  * Interface that specifies a path of type T within the window 0.0<=t<=1.0.
  *
- * @author Xoppa
- */
+ *  */
 public interface Path<T> {
     T derivativeAt(T out, float t);
 

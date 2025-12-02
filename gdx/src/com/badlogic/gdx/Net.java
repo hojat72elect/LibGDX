@@ -39,8 +39,7 @@ import java.util.Map;
  * {@link #newServerSocket(Protocol, int, ServerSocketHints)} method. The returned {@link ServerSocket} offers an
  * {@link ServerSocket#accept(SocketHints options)} method that waits for an incoming connection.
  *
- *  * @author noblemaster
- * @author arielsan
+ *  *  * @author arielsan
  */
 public interface Net {
 

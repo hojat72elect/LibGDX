@@ -39,8 +39,7 @@ import com.badlogic.gdx.utils.Pool;
  * cache.dispose();
  * </pre>
  *
- * @author realitix
- */
+ *  */
 public class ShapeCache implements Disposable, RenderableProvider {
 
     /**

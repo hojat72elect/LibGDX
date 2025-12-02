@@ -543,8 +543,7 @@ public interface MeshPartBuilder {
     /**
      * Class that contains all vertex information the builder can use.
      *
-     * @author Xoppa
-     */
+     *      */
     class VertexInfo implements Poolable {
         public final Vector3 position = new Vector3();
         public final Vector3 normal = new Vector3(0, 1, 0);

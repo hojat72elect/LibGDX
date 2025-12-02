@@ -36,8 +36,7 @@ import com.badlogic.gdx.utils.ShortArray;
  * {@link #part(String, int)} before you start building the part. The MeshPart itself is only valid after the call to
  * {@link #end()}.
  *
- * @author Xoppa
- */
+ *  */
 public class MeshBuilder implements MeshPartBuilder {
     /**
      * maximum number of vertices mesh builder can hold (64k)

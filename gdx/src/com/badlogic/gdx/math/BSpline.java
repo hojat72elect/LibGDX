@@ -4,8 +4,7 @@ package com.badlogic.gdx.math;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class BSpline<T extends Vector<T>> implements Path<T> {
     private final static float d6 = 1f / 6f;
     public T[] controlPoints;

@@ -24,8 +24,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * {@link #part(String, int, VertexAttributes, Material)} method will return a {@link MeshPartBuilder} which can be used to build
  * the node part.
  *
- * @author Xoppa
- */
+ *  */
 public class ModelBuilder {
     /**
      * The model currently being build

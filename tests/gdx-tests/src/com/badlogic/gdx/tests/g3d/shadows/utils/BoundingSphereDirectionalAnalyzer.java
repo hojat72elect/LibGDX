@@ -9,8 +9,7 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 /**
  * Compute directional camera based on frustum bounding sphere.
  *
- * @author realitix
- */
+ *  */
 public class BoundingSphereDirectionalAnalyzer implements DirectionalAnalyzer {
     /**
      * Objects used for computation

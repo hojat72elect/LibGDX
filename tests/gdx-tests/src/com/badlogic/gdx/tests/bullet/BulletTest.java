@@ -9,9 +9,6 @@ import com.badlogic.gdx.math.FloatCounter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.PerformanceCounter;
 
-/**
- * @author xoppa
- */
 public class BulletTest extends InputAdapter implements ApplicationListener, GestureListener {
     public StringBuilder performance = new StringBuilder();
     public String instructions = "Tap to shoot\nLong press to toggle debug mode\nSwipe for next test\nCtrl+drag to rotate\nScroll to zoom";

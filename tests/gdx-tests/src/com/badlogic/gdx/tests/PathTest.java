@@ -17,8 +17,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class PathTest extends GdxTest {
     final Vector2 tmpV = new Vector2();
     final Vector2 tmpV2 = new Vector2();

@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Simple test showing the use of {@link ModelCache}.
  *
- * @author Xoppa
- */
+ *  */
 public class ModelCacheTest extends Benchmark3DTest {
     ModelCache modelCache;
     CheckBox cacheCheckBox;

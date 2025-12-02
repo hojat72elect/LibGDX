@@ -9,8 +9,7 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 /**
  * This Filter allows lights that are in camera frustum.
  *
- * @author realitix
- */
+ *  */
 public class FrustumLightFilter implements LightFilter {
     /**
      * Bounding box used for computation

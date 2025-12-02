@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
  * Added during WebGL2 implementation. Non-POT mipmap texture support was added in WebGL2 This test renders a non-POT texture. On
  * WebGL1 you will receive a non-POT error.
  *
- * @author JamesTKhan
- */
+ *  */
 public class NonPowerOfTwoTest extends GdxTest {
     SpriteBatch batch;
     Texture texture;

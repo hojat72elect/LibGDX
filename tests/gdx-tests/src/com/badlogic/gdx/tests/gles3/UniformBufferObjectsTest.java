@@ -25,8 +25,7 @@ import java.nio.IntBuffer;
  * Added during WebGL2 implementation but also applicable to Desktop. UBO's were added in WebGL2, this test uses a UBO to send
  * color and position data to the shader using a buffer.
  *
- * @author JamesTKhan
- */
+ *  */
 @GdxTestConfig(requireGL30 = true)
 public class UniformBufferObjectsTest extends GdxTest {
 

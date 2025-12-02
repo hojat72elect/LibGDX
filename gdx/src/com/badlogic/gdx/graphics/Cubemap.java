@@ -21,8 +21,7 @@ import java.util.Map;
 /**
  * Wraps a standard OpenGL ES Cubemap. Must be disposed when it is no longer used.
  *
- * @author Xoppa
- */
+ *  */
 public class Cubemap extends GLTexture {
     final static Map<Application, Array<Cubemap>> managedCubemaps = new HashMap<Application, Array<Cubemap>>();
     private static AssetManager assetManager;

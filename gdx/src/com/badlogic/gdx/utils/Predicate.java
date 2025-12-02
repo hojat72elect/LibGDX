@@ -6,8 +6,7 @@ import java.util.Iterator;
 /**
  * Interface used to select items within an iterator against a predicate.
  *
- * @author Xoppa
- */
+ *  */
 public interface Predicate<T> {
 
     /**

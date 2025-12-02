@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.reflect;
 
 import java.lang.reflect.InvocationTargetException;
@@ -6,8 +5,6 @@ import java.lang.reflect.Modifier;
 
 /**
  * Provides information about, and access to, a single method on a class or interface.
- *
- * @author nexsoftware
  */
 public final class Method {
 

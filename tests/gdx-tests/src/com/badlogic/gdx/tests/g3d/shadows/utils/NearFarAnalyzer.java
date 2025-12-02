@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g3d.environment.BaseLight;
  * Nearfar Analyzer computes near and far plane of camera. It has to call camera.update() after setting values. Updated camera's
  * frustum should encompass all casting shadow objects.
  *
- * @author realitix
- */
+ *  */
 public interface NearFarAnalyzer {
     /**
      * Update near and far plane of camera.

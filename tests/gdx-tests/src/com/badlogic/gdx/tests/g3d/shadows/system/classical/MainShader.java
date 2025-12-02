@@ -11,8 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 /**
  * This shader is used by the classical shadow system. This shader supports normal mapping and specular mapping
  *
- * @author realitix
- */
+ *  */
 public class MainShader extends DefaultShader {
     protected static ClassicalShadowSystem shadowSystem;
     private static String defaultVertexShader = null;

@@ -25,8 +25,7 @@ import java.nio.FloatBuffer;
 /**
  * Demonstration of Bullets {@link btHeightfieldTerrainShape}.
  *
- * @author JamesTKhan
- */
+ *  */
 public class HeightFieldTest extends BaseBulletTest {
     private HeightField field;
     private Texture texture;

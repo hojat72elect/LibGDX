@@ -25,8 +25,7 @@ import com.badlogic.gdx.physics.bullet.dynamics.btVehicleRaycaster;
 import com.badlogic.gdx.physics.bullet.dynamics.btWheelInfo;
 
 /**
- * @author Xoppa
- */
+ *  */
 public class VehicleTest extends BaseBulletTest {
     public btVehicleRaycaster raycaster;
     public btRaycastVehicle vehicle;

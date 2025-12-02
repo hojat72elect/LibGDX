@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * A server socket that accepts new incoming connections, returning {@link Socket} instances. The {@link #accept(SocketHints)}
  * method should preferably be called in a separate thread as it is blocking.
  *
- *  * @author noblemaster
- */
+ *  *  */
 public interface ServerSocket extends Disposable {
 
     /**

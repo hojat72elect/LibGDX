@@ -36,9 +36,6 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.tests.utils.GdxTestConfig;
 
-/**
- * @author Tomski
- **/
 @GdxTestConfig(requireGL30 = true)
 public class TextureArrayTest extends GdxTest {
 

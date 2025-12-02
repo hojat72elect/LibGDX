@@ -6,8 +6,7 @@ import com.badlogic.gdx.graphics.g3d.environment.BaseLight;
 /**
  * Shadow map allocator return texture region for each light
  *
- * @author realitix
- */
+ *  */
 public interface ShadowMapAllocator {
 
     /**

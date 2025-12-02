@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.Pool.Poolable;
  * {@link Node} transformations, it does not manage animations or keep track of animation states. See {@link AnimationController}
  * for an implementation of this class which does manage animations.
  *
- * @author Xoppa
- */
+ *  */
 public class BaseAnimationController {
     private final static ObjectMap<Node, Transform> transforms = new ObjectMap<Node, Transform>();
     private final static Transform tmpT = new Transform();

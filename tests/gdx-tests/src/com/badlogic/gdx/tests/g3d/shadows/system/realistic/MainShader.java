@@ -20,8 +20,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 /**
  * This shader is used by the realistic shadow system. This shader supports normal mapping and specular mapping
  *
- * @author realitix
- */
+ *  */
 public class MainShader extends DefaultShader {
     private static String defaultVertexShader = null;
     private static String defaultFragmentShader = null;
