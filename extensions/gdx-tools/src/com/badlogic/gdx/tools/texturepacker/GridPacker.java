@@ -9,8 +9,7 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class GridPacker implements Packer {
     private final Settings settings;
 

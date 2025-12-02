@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.Timer.Task;
  * <p>
  * If using drag and drop, {@link DragAndDrop#setCancelTouchFocus(boolean)} must be false.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class DragScrollListener extends DragListener {
     static final Vector2 tmpCoords = new Vector2();
     Interpolation interpolation = Interpolation.exp5In;

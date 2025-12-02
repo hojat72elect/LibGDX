@@ -9,8 +9,7 @@ import com.badlogic.gdx.Input.Buttons;
  * call to {@link ApplicationListener#render()}. Each method returns a boolean in case you want to use this with the
  * {@link InputMultiplexer} to chain input processors.
  *
- * @author mzechner
- */
+ *  */
 public interface InputProcessor {
     /**
      * Called when a key was pressed

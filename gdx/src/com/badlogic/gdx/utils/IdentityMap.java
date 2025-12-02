@@ -18,8 +18,7 @@ package com.badlogic.gdx.utils;
  * Skarupke's blog post</a>). Linear probing continues to work even when all hashCodes collide, just more slowly.
  *
  * @author Tommy Ettinger
- * @author Nathan Sweet
- */
+ *  */
 public class IdentityMap<K, V> extends ObjectMap<K, V> {
     /**
      * Creates a new map with an initial capacity of 51 and a load factor of 0.8.

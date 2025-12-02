@@ -47,8 +47,7 @@ import javax.imageio.ImageIO;
  * Happy packing!
  * </p>
  *
- * @author mzechner
- */
+ *  */
 public class ImagePacker {
     BufferedImage image;
     int padding;

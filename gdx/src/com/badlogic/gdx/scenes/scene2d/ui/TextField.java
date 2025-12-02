@@ -46,9 +46,7 @@ import com.badlogic.gdx.utils.Timer.Task;
  * The desktop keyboard is a stub, as a softkeyboard is not needed on the desktop. The Android {@link OnscreenKeyboard}
  * implementation will bring up the default IME.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class TextField extends Widget implements Disableable, Styleable<TextField.TextFieldStyle> {
     static protected final char BACKSPACE = 8;
     static protected final char CARRIAGE_RETURN = '\r';
@@ -834,8 +832,7 @@ public class TextField extends Widget implements Disableable, Styleable<TextFiel
     /**
      * Interface for listening to typed characters.
      *
-     * @author mzechner
-     */
+     *      */
     public interface TextFieldListener {
         void keyTyped(TextField textField, char c);
     }
@@ -843,8 +840,7 @@ public class TextField extends Widget implements Disableable, Styleable<TextFiel
     /**
      * Interface for filtering characters entered into the text field.
      *
-     * @author mzechner
-     */
+     *      */
     public interface TextFieldFilter {
         boolean acceptChar(TextField textField, char c);
 
@@ -858,8 +854,7 @@ public class TextField extends Widget implements Disableable, Styleable<TextFiel
     /**
      * An interface for onscreen keyboards. Can invoke the default keyboard or render your own keyboard!
      *
-     * @author mzechner
-     */
+     *      */
     public interface OnscreenKeyboard {
         void show(boolean visible);
     }
@@ -868,8 +863,7 @@ public class TextField extends Widget implements Disableable, Styleable<TextFiel
      * The default {@link OnscreenKeyboard} used by all {@link TextField} instances. Just uses
      * {@link Input#setOnscreenKeyboardVisible(boolean)} as appropriate. Might overlap your actual rendering, so use with care!
      *
-     * @author mzechner
-     */
+     *      */
     static public class DefaultOnscreenKeyboard implements OnscreenKeyboard {
         public void show(boolean visible) {
             Gdx.input.setOnscreenKeyboardVisible(visible);
@@ -879,9 +873,7 @@ public class TextField extends Widget implements Disableable, Styleable<TextFiel
     /**
      * The style for a text field, see {@link TextField}.
      *
-     * @author mzechner
-     * @author Nathan Sweet
-     */
+     *      *      */
     static public class TextFieldStyle {
         public BitmapFont font;
         public Color fontColor;

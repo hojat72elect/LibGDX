@@ -21,8 +21,7 @@ import java.nio.charset.StandardCharsets;
  * The default behavior is to parse the XML into a DOM. Extends this class and override methods to perform event driven parsing.
  * When this is done, the parse methods will return null.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class XmlReader {
     static final int xml_start = 1;
     static final int xml_first_final = 34;

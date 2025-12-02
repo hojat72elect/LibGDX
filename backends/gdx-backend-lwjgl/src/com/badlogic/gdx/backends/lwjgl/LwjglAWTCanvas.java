@@ -43,8 +43,7 @@ import javax.swing.SwingUtilities;
  * may need to call {@link #stop()} or a Swing application may deadlock on System.exit due to how LWJGL and/or Swing deal with
  * shutdown hooks.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class LwjglAWTCanvas implements Application {
     static int instanceCount;
     final ApplicationListener listener;

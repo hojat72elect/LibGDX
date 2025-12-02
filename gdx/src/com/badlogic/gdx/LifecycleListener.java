@@ -11,8 +11,7 @@ package com.badlogic.gdx;
  * The methods will be invoked on the rendering thread. The methods will be executed before the {@link ApplicationListener}
  * methods are executed.
  *
- * @author mzechner
- */
+ *  */
 public interface LifecycleListener {
     /**
      * Called when the {@link Application} is about to pause

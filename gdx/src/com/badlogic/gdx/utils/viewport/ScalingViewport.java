@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.Scaling;
  * may be off screen).
  *
  * @author Daniel Holderbaum
- * @author Nathan Sweet
- */
+ *  */
 public class ScalingViewport extends Viewport {
     private Scaling scaling;
 

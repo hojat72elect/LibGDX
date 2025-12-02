@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  * Encodes a Box2D transform. We are lazy so we only store a 4 float wide array. First two floats are the position of the
  * b2Transform struct. Next two floats are the cosine and sine of the rotation angle.
  *
- * @author mzechner
- */
+ *  */
 public class Transform {
     public static final int POS_X = 0;
     public static final int POS_Y = 1;

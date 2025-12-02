@@ -29,8 +29,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 /**
  * A subclass of {@link AndroidGraphics} specialized for live wallpaper applications.
  *
- * @author mzechner
- */
+ *  */
 public final class AndroidGraphicsLiveWallpaper extends AndroidGraphics {
 
     public AndroidGraphicsLiveWallpaper(AndroidLiveWallpaper lwp, AndroidApplicationConfiguration config,

@@ -29,8 +29,7 @@ import java.net.Socket;
  * The touch coordinates will be translated to the desktop window's coordinate system, no matter the orientation of the device
  * </p>
  *
- * @author mzechner
- */
+ *  */
 public class RemoteInput implements Runnable, Input {
     private static final int MAX_TOUCHES = 20;
     public static int DEFAULT_PORT = 8190;

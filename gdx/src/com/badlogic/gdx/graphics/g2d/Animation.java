@@ -16,8 +16,7 @@ import java.util.Arrays;
  * <p>
  * <code>Animation&lt;TextureRegion&gt; myAnimation = new Animation&lt;TextureRegion&gt;(...);</code>
  *
- * @author mzechner
- */
+ *  */
 public class Animation<T> {
 
     /**

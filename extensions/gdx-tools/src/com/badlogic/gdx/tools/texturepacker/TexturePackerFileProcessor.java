@@ -20,8 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class TexturePackerFileProcessor extends FileProcessor {
     private final Settings defaultSettings;
     private final ProgressListener progress;

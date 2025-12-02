@@ -16,8 +16,7 @@ import java.util.List;
  *
  * @author badlogicgames@gmail.com
  * @author jan.stria
- * @author Nathan Sweet
- */
+ *  */
 public final class Intersector {
     private final static Vector3 v0 = new Vector3();
     private final static Vector3 v1 = new Vector3();

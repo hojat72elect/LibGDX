@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Scaling;
  * black bars (letterboxing) for the remaining space.
  *
  * @author Daniel Holderbaum
- * @author Nathan Sweet
- */
+ *  */
 public class FitViewport extends ScalingViewport {
     /**
      * Creates a new viewport using a new {@link OrthographicCamera}.

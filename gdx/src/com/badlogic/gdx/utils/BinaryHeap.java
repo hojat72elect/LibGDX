@@ -7,8 +7,7 @@ import java.util.Arrays;
  * A binary heap that stores nodes which each have a float value and are sorted either lowest first or highest first. The
  * {@link Node} class can be extended to store additional information.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class BinaryHeap<T extends BinaryHeap.Node> {
     private final boolean isMaxHeap;
     public int size;
@@ -239,8 +238,7 @@ public class BinaryHeap<T extends BinaryHeap.Node> {
     /**
      * A binary heap node.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public class Node {
         float value;
         int index;

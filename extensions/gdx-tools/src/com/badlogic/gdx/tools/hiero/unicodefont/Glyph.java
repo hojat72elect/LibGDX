@@ -14,8 +14,7 @@ import java.awt.font.GlyphVector;
 /**
  * Represents the glyph in a font for a unicode codepoint.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Glyph {
     float u, v, u2, v2;
     Texture texture;

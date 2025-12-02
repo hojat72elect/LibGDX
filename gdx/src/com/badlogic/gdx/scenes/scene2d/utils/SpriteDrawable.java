@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;
 /**
  * Drawable for a {@link Sprite}.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class SpriteDrawable extends BaseDrawable implements TransformDrawable {
     private Sprite sprite;
 

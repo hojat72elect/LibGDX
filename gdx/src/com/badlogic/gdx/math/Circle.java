@@ -20,8 +20,7 @@ import java.io.Serializable;
 /**
  * A convenient 2D circle class.
  *
- * @author mzechner
- */
+ *  */
 public class Circle implements Serializable, Shape2D {
     public float x, y;
     public float radius;

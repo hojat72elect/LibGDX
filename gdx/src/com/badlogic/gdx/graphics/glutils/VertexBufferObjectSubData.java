@@ -23,8 +23,7 @@ import java.nio.FloatBuffer;
  * <p>
  * VertexBufferObjects must be disposed via the {@link #dispose()} method when no longer needed
  *
- * @author mzechner
- */
+ *  */
 public class VertexBufferObjectSubData implements VertexData {
     final VertexAttributes attributes;
     final FloatBuffer buffer;

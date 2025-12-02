@@ -23,8 +23,7 @@ import java.nio.ShortBuffer;
  * An implementation of the {@link GL20} interface based on LWJGL. Note that LWJGL shaders and OpenGL ES shaders will not be 100%
  * compatible. Some glGetXXX methods are not implemented.
  *
- * @author mzechner
- */
+ *  */
 class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
     private ByteBuffer buffer = null;
     private FloatBuffer floatBuffer = null;

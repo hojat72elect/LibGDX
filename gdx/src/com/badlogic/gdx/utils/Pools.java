@@ -43,8 +43,7 @@ import com.badlogic.gdx.utils.DefaultPool.PoolSupplier;
 /**
  * Stores a map of {@link Pool}s by type for convenient static access.
  *
- * @author Nathan Sweet
- * @deprecated Use {@link PoolManager} for bundling pools instead
+ *  * @deprecated Use {@link PoolManager} for bundling pools instead
  */
 @Deprecated
 public class Pools {

@@ -21,8 +21,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 /**
  * A simple example of how to use a y-down coordinate system.
  *
- * @author mzechner
- */
+ *  */
 public class YDownTest extends GdxTest {
     SpriteBatch batch;
     BitmapFont font;
@@ -120,8 +119,7 @@ public class YDownTest extends GdxTest {
     /**
      * A very simple actor implementation that does not obey rotation/scale/origin set on the actor. Allows dragging of the actor.
      *
-     * @author mzechner
-     */
+     *      */
     public class MyActor extends Actor {
         TextureRegion region;
         float lastX;

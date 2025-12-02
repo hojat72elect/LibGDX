@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
  * Demonstrates how to use non-continuous (aka dirty-only) rendering. The application will clear the screen with a random color
  * every frame it renders. Rendering requests are issued automatically if new input events arrive.
  *
- * @author mzechner
- */
+ *  */
 public class DirtyRenderingTest extends GdxTest {
     @Override
     public void create() {

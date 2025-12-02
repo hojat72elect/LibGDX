@@ -9,8 +9,7 @@ import org.lwjgl.glfw.GLFW;
 /**
  * Clipboard implementation for desktop that uses the system clipboard via GLFW.
  *
- * @author mzechner
- */
+ *  */
 public class Lwjgl3Clipboard implements Clipboard {
     @Override
     public boolean hasContents() {

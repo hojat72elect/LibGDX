@@ -7,9 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import java.io.File;
 
 /**
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public final class Lwjgl3Files implements Files {
     static public final String externalPath = System.getProperty("user.home") + File.separator;
     static public final String localPath = new File("").getAbsolutePath() + File.separator;

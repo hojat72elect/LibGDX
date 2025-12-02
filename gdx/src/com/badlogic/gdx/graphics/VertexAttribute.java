@@ -10,8 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
  * defines how many components the attribute has. The alias defines to which shader attribute this attribute should bind. The
  * alias is used by a {@link Mesh} when drawing with a {@link ShaderProgram}. The alias can be changed at any time.
  *
- * @author mzechner
- */
+ *  */
 public final class VertexAttribute {
     /**
      * The attribute {@link Usage}, used for identification.

@@ -187,8 +187,7 @@ public class Plane implements Serializable {
      * Enum specifying on which side a point lies respective to the plane and it's normal. {@link PlaneSide#Front} is the side to
      * which the normal points.
      *
-     * @author mzechner
-     */
+     *      */
     public enum PlaneSide {
         OnPlane, Back, Front
     }

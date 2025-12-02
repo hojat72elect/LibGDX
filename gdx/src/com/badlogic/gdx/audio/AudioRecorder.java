@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.Disposable;
  * returned in signed 16-bit PCM format. Stereo samples are interleaved in the order left channel, right channel. The
  * AudioRecorder has to be disposed if no longer needed via the {@link #dispose()}.
  *
- * @author mzechner
- */
+ *  */
 public interface AudioRecorder extends Disposable {
     /**
      * Reads in numSamples samples into the array samples starting at offset. If the recorder is in stereo you have to multiply

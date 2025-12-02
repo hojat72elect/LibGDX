@@ -139,8 +139,7 @@ import javax.swing.event.ListSelectionListener;
  * This tool is quite old. It was originally written for Slick, then ported to libgdx. It has had a few different contributors
  * over the years, the FreeType rendering was tacked on and in general the code isn't great. It does its job though!
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Hiero extends JFrame {
     static public final String EXTENDED_CHARS;
     static final String NEHE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n" //

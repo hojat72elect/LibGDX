@@ -4,8 +4,7 @@ package com.badlogic.gdx.utils;
 /**
  * Wrapper around System.nanoTime() and System.currentTimeMillis(). Use this if you want to be compatible across all platforms!
  *
- * @author mzechner
- */
+ *  */
 public final class TimeUtils {
     private static final long nanosPerMilli = 1000000;
 

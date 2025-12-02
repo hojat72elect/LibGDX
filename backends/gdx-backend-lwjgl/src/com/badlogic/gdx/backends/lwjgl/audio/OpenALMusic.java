@@ -42,8 +42,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public abstract class OpenALMusic implements Music {
     static private final int bufferSize = 4096 * 10;
     static private final int bufferCount = 3;

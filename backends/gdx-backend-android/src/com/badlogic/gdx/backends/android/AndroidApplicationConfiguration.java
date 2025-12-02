@@ -14,8 +14,7 @@ import com.badlogic.gdx.utils.GdxNativesLoader;
  * Class defining the configuration of an {@link AndroidApplication}. Allows you to disable the use of the accelerometer to save
  * battery among other things.
  *
- * @author mzechner
- */
+ *  */
 public class AndroidApplicationConfiguration {
     /**
      * number of bits per color channel

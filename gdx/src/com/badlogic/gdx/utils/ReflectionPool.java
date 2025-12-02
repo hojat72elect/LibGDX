@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  * {@link Constructor#setAccessible(boolean)} will be used if the class and/or constructor is not visible.
  * <p>
  *
- * @author Nathan Sweet
- * @deprecated Please use {@link DefaultPool} instead.
+ *  * @deprecated Please use {@link DefaultPool} instead.
  */
 @Deprecated
 public class ReflectionPool<T> extends Pool<T> {

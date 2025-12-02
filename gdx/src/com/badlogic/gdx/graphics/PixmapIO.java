@@ -25,9 +25,7 @@ import java.util.zip.InflaterInputStream;
 /**
  * Writes Pixmaps to various formats.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class PixmapIO {
     /**
      * Writes the {@link Pixmap} to the given file using a custom compression scheme. First three integers define the width,
@@ -80,8 +78,7 @@ public class PixmapIO {
     }
 
     /**
-     * @author mzechner
-     */
+     *      */
     static private class CIM {
         static private final int BUFFER_SIZE = 32000;
         static private final byte[] writeBuffer = new byte[BUFFER_SIZE];
@@ -181,9 +178,7 @@ public class PixmapIO {
      * THE SOFTWARE.
      * </pre>
      *
-     * @author Matthias Mann
-     * @author Nathan Sweet
-     */
+     *      *      */
     static public class PNG implements Disposable {
         static private final byte[] SIGNATURE = {(byte) 137, 80, 78, 71, 13, 10, 26, 10};
         static private final int IHDR = 0x49484452, IDAT = 0x49444154, IEND = 0x49454E44;

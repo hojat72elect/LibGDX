@@ -150,8 +150,7 @@ import java.io.Reader;
  * return matcher.accessToken;
  * </pre>
  *
- * @author Nathan Sweet
- */
+ *  */
 public class JsonMatcher extends JsonSkimmer {
     static final int match = 0b000001;
     static final int process = 0b000010;

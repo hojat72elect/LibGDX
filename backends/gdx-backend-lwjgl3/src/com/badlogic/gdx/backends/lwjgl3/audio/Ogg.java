@@ -14,8 +14,7 @@ import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class Ogg {
     static public class Music extends OpenALMusic {
         private OggInputStream input;

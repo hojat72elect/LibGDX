@@ -4,8 +4,7 @@ package com.badlogic.gdx.math;
 /**
  * Takes a linear value in the range of 0-1 and outputs a (usually) non-linear, interpolated value.
  *
- * @author Nathan Sweet
- */
+ *  */
 public abstract class Interpolation {
     static public final Interpolation linear = new Interpolation() {
         public float apply(float a) {

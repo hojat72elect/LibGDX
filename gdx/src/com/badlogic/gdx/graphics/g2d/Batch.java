@@ -30,9 +30,7 @@ import com.badlogic.gdx.utils.Disposable;
  * <p>
  * A Batch has to be disposed if it is no longer used.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public interface Batch extends Disposable {
     int X1 = 0;
     int Y1 = 1;

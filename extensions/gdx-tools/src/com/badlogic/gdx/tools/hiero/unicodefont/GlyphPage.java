@@ -35,8 +35,7 @@ import java.util.List;
 /**
  * Stores a number of glyphs on a single texture.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class GlyphPage {
     static public final int MAX_GLYPH_SIZE = 256;
     static private final ByteBuffer scratchByteBuffer = ByteBuffer.allocateDirect(MAX_GLYPH_SIZE * MAX_GLYPH_SIZE * 4);

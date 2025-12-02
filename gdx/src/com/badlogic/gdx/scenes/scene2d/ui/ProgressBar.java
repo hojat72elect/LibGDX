@@ -25,9 +25,7 @@ import com.badlogic.gdx.utils.Null;
  * For a horizontal progress bar, its preferred height is determined by the larger of the knob and background, and the preferred
  * width is 140, a relatively arbitrary size. These parameters are reversed for a vertical progress bar.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class ProgressBar extends Widget implements Disableable, Styleable<ProgressBar.ProgressBarStyle> {
     final boolean vertical;
     float min, max, stepSize;
@@ -405,9 +403,7 @@ public class ProgressBar extends Widget implements Disableable, Styleable<Progre
     /**
      * The style for a progress bar, see {@link ProgressBar}.
      *
-     * @author mzechner
-     * @author Nathan Sweet
-     */
+     *      *      */
     static public class ProgressBarStyle {
         /**
          * The progress bar background, stretched only in one direction.

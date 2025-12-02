@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 /**
  * Drawable that stores the size information but doesn't draw anything.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class BaseDrawable implements Drawable {
     private @Null String name;
     private float leftWidth, rightWidth, topHeight, bottomHeight, minWidth, minHeight;

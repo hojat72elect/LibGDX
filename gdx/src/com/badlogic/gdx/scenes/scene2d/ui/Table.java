@@ -31,8 +31,7 @@ import java.util.Arrays;
  * <p>
  * The preferred and minimum sizes are that of the children laid out in columns and rows.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Table extends WidgetGroup {
     static final Pool<Cell> cellPool = new Pool<Cell>() {
         protected Cell newObject() {
@@ -45,8 +44,7 @@ public class Table extends WidgetGroup {
     /**
      * Value that is the top padding of the table's background.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public Value backgroundTop = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -56,8 +54,7 @@ public class Table extends WidgetGroup {
     /**
      * Value that is the left padding of the table's background.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public Value backgroundLeft = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -67,8 +64,7 @@ public class Table extends WidgetGroup {
     /**
      * Value that is the bottom padding of the table's background.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public Value backgroundBottom = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -78,8 +74,7 @@ public class Table extends WidgetGroup {
     /**
      * Value that is the right padding of the table's background.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public Value backgroundRight = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -1406,15 +1401,13 @@ public class Table extends WidgetGroup {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     public enum Debug {
         none, all, table, cell, actor
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class DebugRect extends Rectangle {
         static Pool<DebugRect> pool = new DefaultPool<>(DebugRect::new);
         Color color;

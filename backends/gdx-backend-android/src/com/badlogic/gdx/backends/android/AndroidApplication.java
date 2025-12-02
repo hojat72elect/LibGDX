@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.annotation.TargetApi;
@@ -39,8 +38,6 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * An implementation of the {@link Application} interface for Android. Create an {@link Activity} that derives from this class.
  * In the {@link Activity#onCreate(Bundle)} method call the {@link #initialize(ApplicationListener)} method specifying the
  * configuration for the GLSurfaceView.
- *
- * @author mzechner
  */
 public class AndroidApplication extends Activity implements AndroidApplicationBase {
 

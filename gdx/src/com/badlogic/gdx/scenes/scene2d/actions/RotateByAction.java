@@ -4,8 +4,7 @@ package com.badlogic.gdx.scenes.scene2d.actions;
 /**
  * Sets the actor's rotation from its current value to a relative value.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class RotateByAction extends RelativeTemporalAction {
     private float amount;
 

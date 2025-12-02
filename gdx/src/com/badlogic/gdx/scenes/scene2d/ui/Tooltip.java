@@ -28,8 +28,7 @@ import com.badlogic.gdx.utils.Null;
 /**
  * A listener that shows a tooltip actor when the mouse is over another actor.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Tooltip<T extends Actor> extends InputListener {
     static Vector2 tmp = new Vector2();
     final Container<T> container;

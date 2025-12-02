@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.Pool;
  * An action that runs a {@link Runnable}. Alternatively, the {@link #run()} method can be overridden instead of setting a
  * runnable.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class RunnableAction extends Action {
     private Runnable runnable;
     private boolean ran;

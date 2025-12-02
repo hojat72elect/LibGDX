@@ -8,8 +8,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 /**
  * A simple test to demonstrate the life cycle of an application.
  *
- * @author mzechner
- */
+ *  */
 public class LifeCycleTest extends GdxTest {
 
     @Override

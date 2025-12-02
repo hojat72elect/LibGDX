@@ -6,8 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Various scaling types for fitting one rectangle into another.
  *
- * @author Nathan Sweet
- */
+ *  */
 public abstract class Scaling {
     protected static final Vector2 temp = new Vector2();
     /**

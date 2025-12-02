@@ -25,8 +25,7 @@ import com.badlogic.gdx.utils.ObjectMap;
  * the content table and buttons to the button table, but any widgets can be added. When a button is clicked,
  * {@link #result(Object)} is called and the dialog is removed from the stage.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Dialog extends Window {
     protected InputListener ignoreTouchDown = new InputListener() {
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

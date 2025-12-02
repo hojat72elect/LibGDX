@@ -22,8 +22,7 @@ import java.util.NoSuchElementException;
  * "https://probablydance.com/2018/06/16/fibonacci-hashing-the-optimization-that-the-world-forgot-or-a-better-alternative-to-integer-modulo/">Malte
  * Skarupke's blog post</a>). Linear probing continues to work even when all hashCodes collide, just more slowly.
  *
- * @author Nathan Sweet
- * @author Tommy Ettinger
+ *  * @author Tommy Ettinger
  */
 public class IntIntMap implements Iterable<IntIntMap.Entry> {
     private final float loadFactor;

@@ -8,8 +8,7 @@ import java.io.OutputStream;
 /**
  * Extends {@link DataOutputStream} with additional convenience methods.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class DataOutput extends DataOutputStream {
     public DataOutput(OutputStream out) {
         super(out);

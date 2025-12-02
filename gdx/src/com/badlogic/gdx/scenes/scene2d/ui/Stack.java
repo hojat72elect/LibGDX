@@ -39,8 +39,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * The preferred and min size of the stack is the largest preferred and min size of any children. The max size of the stack is the
  * smallest max size of any children.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Stack extends WidgetGroup {
     private float prefWidth, prefHeight, minWidth, minHeight, maxWidth, maxHeight;
     private boolean sizeInvalid = true;

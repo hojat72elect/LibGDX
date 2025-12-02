@@ -23,8 +23,7 @@ import java.io.Writer;
  * System.out.println(writer);
  * </pre>
  *
- * @author Nathan Sweet
- */
+ *  */
 //@on
 public class XmlWriter extends Writer {
     private final Writer writer;

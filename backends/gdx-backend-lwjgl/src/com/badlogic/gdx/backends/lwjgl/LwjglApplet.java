@@ -10,8 +10,7 @@ import java.awt.Canvas;
 /**
  * An OpenGL surface in an applet.
  *
- * @author Nathan Sweet
- */
+ *  */
 @SuppressWarnings("removal")
 public class LwjglApplet extends Applet {
     final Canvas canvas;

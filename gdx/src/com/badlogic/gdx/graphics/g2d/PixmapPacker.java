@@ -79,9 +79,7 @@ import java.util.regex.Pattern;
  * packer.dispose();
  * </pre>
  *
- * @author mzechner
- * @author Nathan Sweet
- * @author Rob Rendell
+ *  *  * @author Rob Rendell
  */
 public class PixmapPacker implements Disposable {
     static Pattern indexPattern = Pattern.compile("(.+)_(\\d+)$");
@@ -629,8 +627,7 @@ public class PixmapPacker implements Disposable {
     /**
      * Choose the page and location for each rectangle.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     public interface PackStrategy {
         void sort(Array<Pixmap> images);
 
@@ -641,9 +638,7 @@ public class PixmapPacker implements Disposable {
     }
 
     /**
-     * @author mzechner
-     * @author Nathan Sweet
-     * @author Rob Rendell
+     *      *      * @author Rob Rendell
      */
     static public class Page {
         final Array<String> addedRects = new Array();
@@ -708,9 +703,7 @@ public class PixmapPacker implements Disposable {
      * Does bin packing by inserting to the right or below previously packed rectangles. This is good at packing arbitrarily sized
      * images.
      *
-     * @author mzechner
-     * @author Nathan Sweet
-     * @author Rob Rendell
+     *      *      * @author Rob Rendell
      */
     static public class GuillotineStrategy implements PackStrategy {
         Comparator<Pixmap> comparator;
@@ -817,8 +810,7 @@ public class PixmapPacker implements Disposable {
     /**
      * Does bin packing by inserting in rows. This is good at packing images that have similar heights.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public class SkylineStrategy implements PackStrategy {
         Comparator<Pixmap> comparator;
 

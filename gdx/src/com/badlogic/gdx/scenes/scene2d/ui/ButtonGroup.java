@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.Null;
  * <p>
  * The {@link #canCheck(Button, boolean)} method can be overridden to control if a button check or uncheck is allowed.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ButtonGroup<T extends Button> {
     private final Array<T> buttons = new Array();
     private final Array<T> checkedButtons = new Array(1);

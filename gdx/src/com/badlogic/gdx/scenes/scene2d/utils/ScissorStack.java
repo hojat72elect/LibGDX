@@ -16,8 +16,7 @@ import com.badlogic.gdx.utils.Null;
  * Rectangle is pushed onto the stack, it will be merged with the current top of stack. The minimum area of overlap is then set as
  * the real top of the stack.
  *
- * @author mzechner
- */
+ *  */
 public class ScissorStack {
     static final Rectangle viewport = new Rectangle();
     static Vector3 tmp = new Vector3();

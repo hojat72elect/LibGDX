@@ -15,8 +15,7 @@ import com.badlogic.gdx.utils.TimeUtils;
  * can be detected using {@link #getTapCount()}. Any touch (not just the first) will trigger this listener. While pressed, other
  * touch downs are ignored.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ClickListener extends InputListener {
     /**
      * Time in seconds {@link #isVisualPressed()} reports true after a press resulting in a click is released.

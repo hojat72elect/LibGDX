@@ -15,8 +15,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
  * The min size is set to the ninepatch total size by default. It could be set to the left+right and top+bottom, excluding the
  * middle size, to allow the drawable to be sized down as small as possible.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class NinePatchDrawable extends BaseDrawable implements TransformDrawable {
     private NinePatch patch;
 

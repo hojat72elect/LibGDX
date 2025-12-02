@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * {@link Texture} containing the glyphs as a dependency. The {@link BitmapFontParameter} allows you to set things like texture
  * filters or whether to flip the glyphs vertically.
  *
- * @author mzechner
- */
+ *  */
 public class BitmapFontLoader extends AsynchronousAssetLoader<BitmapFont, BitmapFontLoader.BitmapFontParameter> {
     BitmapFontData data;
 
@@ -90,8 +89,7 @@ public class BitmapFontLoader extends AsynchronousAssetLoader<BitmapFont, Bitmap
      * Parameter to be passed to {@link AssetManager#load(String, Class, AssetLoaderParameters)} if additional configuration is
      * necessary for the {@link BitmapFont}.
      *
-     * @author mzechner
-     */
+     *      */
     static public class BitmapFontParameter extends AssetLoaderParameters<BitmapFont> {
         /**
          * Flips the font vertically if {@code true}. Defaults to {@code false}.

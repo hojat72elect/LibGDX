@@ -26,8 +26,7 @@ import java.util.Objects;
  * 	System.out.println(entry.name + " = " + entry.asString());
  * </pre>
  *
- * @author Nathan Sweet
- */
+ *  */
 public class JsonValue implements Iterable<JsonValue> {
     public String name;
     /**

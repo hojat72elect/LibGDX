@@ -7,8 +7,7 @@ import com.badlogic.gdx.utils.Null;
 /**
  * An action that has a float, whose value is transitioned over time.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class FloatAction extends TemporalAction {
     private float start, end;
     private float value;

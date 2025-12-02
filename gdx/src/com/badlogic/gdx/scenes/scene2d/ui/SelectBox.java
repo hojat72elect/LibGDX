@@ -40,9 +40,7 @@ import com.badlogic.gdx.utils.Pool;
  * The preferred size of the select box is determined by the maximum text bounds of the items and the size of the
  * {@link SelectBoxStyle#background}.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class SelectBox<T> extends Widget implements Disableable, Styleable<SelectBox.SelectBoxStyle> {
     static final Vector2 temp = new Vector2();
     final Array<T> items = new Array();
@@ -455,8 +453,7 @@ public class SelectBox<T> extends Widget implements Disableable, Styleable<Selec
     /**
      * The scroll pane shown when a select box is open.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public class SelectBoxScrollPane<T> extends ScrollPane {
         final SelectBox<T> selectBox;
         final List<T> list;
@@ -649,9 +646,7 @@ public class SelectBox<T> extends Widget implements Disableable, Styleable<Selec
     /**
      * The style for a select box, see {@link SelectBox}.
      *
-     * @author mzechner
-     * @author Nathan Sweet
-     */
+     *      *      */
     static public class SelectBoxStyle {
         public BitmapFont font;
         public Color fontColor = new Color(1, 1, 1, 1);

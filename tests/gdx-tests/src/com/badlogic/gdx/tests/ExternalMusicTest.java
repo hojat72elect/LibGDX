@@ -9,8 +9,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 /**
  * Tests playing back audio from the external storage.
  *
- * @author mzechner
- */
+ *  */
 public class ExternalMusicTest extends GdxTest {
     Music music;
 

@@ -4,8 +4,7 @@ package com.badlogic.gdx;
 /**
  * Convenience implementation of {@link ApplicationListener}. Derive from this and only override what you need.
  *
- * @author mzechner
- */
+ *  */
 public abstract class ApplicationAdapter implements ApplicationListener {
     @Override
     public void create() {

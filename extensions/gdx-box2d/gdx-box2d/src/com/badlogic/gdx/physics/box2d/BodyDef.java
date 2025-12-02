@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  * A body definition holds all the data needed to construct a rigid body. You can safely re-use body definitions. Shapes are
  * added to a body after construction.
  *
- * @author mzechner
- */
+ *  */
 public class BodyDef {
     /**
      * The world position of the body. Avoid creating bodies at the origin since this can lead to many overlapping shapes.

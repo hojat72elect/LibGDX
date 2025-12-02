@@ -25,8 +25,7 @@ import com.badlogic.gdx.utils.Scaling;
  * rotate. It is not a general solution as it assumes that actors and groups are only translated (moved, change their x/y
  * coordinates). NOTE: This has been obsoleted by {@link Cullable}.
  *
- * @author mzechner
- */
+ *  */
 public class SimpleStageCullingTest extends GdxTest {
 
     OrthoCamController camController;
@@ -86,8 +85,7 @@ public class SimpleStageCullingTest extends GdxTest {
      * We need to extend a base actor class so we can add the culling in the render method. We also add a method to get the stage
      * coordinates of the actor so we can cull it against the camera's view volume.
      *
-     * @author mzechner
-     */
+     *      */
     private class CullableActor extends Image {
         /**
          * the camera to test against

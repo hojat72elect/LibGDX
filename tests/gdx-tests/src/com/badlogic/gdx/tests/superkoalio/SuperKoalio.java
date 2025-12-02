@@ -31,8 +31,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
  * <p>
  * Shows simple platformer collision detection as well as on-the-fly map modifications through destructible blocks!
  *
- * @author mzechner
- */
+ *  */
 public class SuperKoalio extends GdxTest {
     private static final float GRAVITY = -2.5f;
     private TiledMap map;

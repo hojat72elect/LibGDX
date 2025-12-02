@@ -7,9 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  * Defines a rectangular area of a texture. The coordinate system used has its origin in the upper left corner with the x-axis
  * pointing to the right and the y axis pointing downwards.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class TextureRegion {
     Texture texture;
     float u, v;

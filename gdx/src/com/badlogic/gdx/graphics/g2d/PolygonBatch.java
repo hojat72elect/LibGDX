@@ -7,9 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  * A PolygonBatch is an extension of the Batch interface that provides additional render methods specifically for rendering
  * polygons.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public interface PolygonBatch extends Batch {
     /**
      * Draws a polygon region with the bottom left corner at x,y having the width and height of the region.

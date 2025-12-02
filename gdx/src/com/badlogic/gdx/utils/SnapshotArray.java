@@ -26,8 +26,7 @@ import java.util.Comparator;
  * array.end();
  * </pre>
  *
- * @author Nathan Sweet
- */
+ *  */
 public class SnapshotArray<T> extends Array<T> {
     private T[] snapshot, recycled;
     private int snapshots;

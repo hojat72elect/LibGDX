@@ -6,8 +6,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 /**
  * The version of libGDX
  *
- * @author mzechner
- */
+ *  */
 public class Version {
     /**
      * The current version of libGDX as a String in the major.minor.revision format

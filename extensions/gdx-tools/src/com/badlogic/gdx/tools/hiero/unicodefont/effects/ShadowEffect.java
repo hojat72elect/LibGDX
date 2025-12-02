@@ -17,8 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class ShadowEffect implements ConfigurableEffect {
     /**
      * The numberof kernels to apply

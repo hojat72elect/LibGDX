@@ -54,9 +54,7 @@ import java.util.regex.Pattern;
  * <p>
  * The code was originally based on Matthias Mann's TWL BitmapFont class. Thanks for sharing, Matthias! :)
  *
- * @author Nathan Sweet
- * @author Matthias Mann
- */
+ *  *  */
 public class BitmapFont implements Disposable {
     static private final int LOG2_PAGE_SIZE = 9;
     static private final int PAGE_SIZE = 1 << LOG2_PAGE_SIZE;

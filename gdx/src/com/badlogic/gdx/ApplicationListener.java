@@ -13,8 +13,7 @@ package com.badlogic.gdx;
  * accordingly.
  * </p>
  *
- * @author mzechner
- */
+ *  */
 public interface ApplicationListener {
     /**
      * Called when the {@link Application} is first created.

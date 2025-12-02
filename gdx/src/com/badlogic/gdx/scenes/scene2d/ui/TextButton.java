@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.Null;
 /**
  * A button with a child {@link Label} to display text.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class TextButton extends Button {
     private Label label;
     private TextButtonStyle style;
@@ -125,8 +124,7 @@ public class TextButton extends Button {
     /**
      * The style for a text button, see {@link TextButton}.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public class TextButtonStyle extends ButtonStyle {
         public BitmapFont font;
         public @Null Color fontColor, downFontColor, overFontColor, focusedFontColor, disabledFontColor;

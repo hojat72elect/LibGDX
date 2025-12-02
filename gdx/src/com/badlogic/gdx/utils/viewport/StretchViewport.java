@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Scaling;
  * whole screen.
  *
  * @author Daniel Holderbaum
- * @author Nathan Sweet
- */
+ *  */
 public class StretchViewport extends ScalingViewport {
     /**
      * Creates a new viewport using a new {@link OrthographicCamera}.

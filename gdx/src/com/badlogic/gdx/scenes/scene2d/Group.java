@@ -18,9 +18,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * Actors have a z-order equal to the order they were inserted into the group. Actors inserted later will be drawn on top of
  * actors added earlier. Touch events that hit more than one actor are distributed to topmost actors first.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class Group extends Actor implements Cullable {
     static private final Vector2 tmp = new Vector2();
 

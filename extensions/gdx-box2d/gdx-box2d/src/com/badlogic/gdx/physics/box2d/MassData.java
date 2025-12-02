@@ -6,8 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * This holds the mass data computed for a shape.
  *
- * @author mzechner
- */
+ *  */
 public class MassData {
     /**
      * The position of the shape's centroid relative to the shape's origin.

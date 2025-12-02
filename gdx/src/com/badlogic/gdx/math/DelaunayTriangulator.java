@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.ShortArray;
 /**
  * Delaunay triangulation. Adapted from Paul Bourke's triangulate: http://paulbourke.net/papers/triangulate/
  *
- * @author Nathan Sweet
- */
+ *  */
 public class DelaunayTriangulator {
     static private final float EPSILON = 0.000001f;
     static private final int INSIDE = 0;

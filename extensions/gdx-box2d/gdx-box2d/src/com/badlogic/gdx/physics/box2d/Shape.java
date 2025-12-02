@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Disposable;
  * <p>
  * NOTE: YOU NEED TO DISPOSE SHAPES YOU CREATED YOURSELF AFTER YOU NO LONGER USE THEM! E.g. after calling body.createFixture();
  *
- * @author mzechner
- */
+ *  */
 public abstract class Shape implements Disposable {
     // @off
 	/*JNI
@@ -92,8 +91,7 @@ public abstract class Shape implements Disposable {
     /**
      * Enum describing the type of a shape
      *
-     * @author mzechner
-     */
+     *      */
     public enum Type {
         Circle, Edge, Polygon, Chain,
     }

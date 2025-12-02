@@ -21,9 +21,7 @@ import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 
 /**
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class AndroidFileHandle extends FileHandle {
     // The asset manager, or null if this is not an internal file.
     final private AssetManager assets;

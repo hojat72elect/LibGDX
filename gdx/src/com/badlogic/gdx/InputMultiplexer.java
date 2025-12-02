@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * An {@link InputProcessor} that delegates to an ordered list of other InputProcessors. Delegation for an event stops if a
  * processor returns true, which indicates that the event was handled.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class InputMultiplexer implements InputProcessor {
     private final SnapshotArray<InputProcessor> processors = new SnapshotArray(4);
 

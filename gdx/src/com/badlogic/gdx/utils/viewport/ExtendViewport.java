@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.Scaling;
  * scaling, such as {@link Scaling#contain}, may lengthen the world in both directions. A maximum size can be specified to limit
  * how much the world is extended and black bars (letterboxing) are used for any remaining space.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ExtendViewport extends Viewport {
     private float minWorldWidth, minWorldHeight;
     private float maxWorldWidth, maxWorldHeight;

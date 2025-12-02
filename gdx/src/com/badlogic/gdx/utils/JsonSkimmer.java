@@ -33,8 +33,7 @@ import java.util.Arrays;
 /**
  * Lightweight event-based JSON parser. All values are provided as strings to reduce work when many values are ignored.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class JsonSkimmer {
     static final int json_start = 1;
     static final int json_first_final = 31;

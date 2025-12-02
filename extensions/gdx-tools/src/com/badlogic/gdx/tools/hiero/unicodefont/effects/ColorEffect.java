@@ -14,8 +14,7 @@ import java.util.List;
 /**
  * Makes glyphs a solid color.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ColorEffect implements ConfigurableEffect {
     private Color color = Color.white;
 

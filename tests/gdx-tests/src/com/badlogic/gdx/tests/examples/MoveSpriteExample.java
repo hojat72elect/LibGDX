@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 /**
  * Demonstrates how to let a sprite follow a finger touching the screen.
  *
- * @author mzechner
- */
+ *  */
 public class MoveSpriteExample extends GdxTest {
     Texture texture;
     SpriteBatch batch;

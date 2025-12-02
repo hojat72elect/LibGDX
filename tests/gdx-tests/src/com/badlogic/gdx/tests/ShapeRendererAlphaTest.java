@@ -11,8 +11,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 /**
  * Tests alpha blending with all ShapeRenderer shapes.
  *
- * @author mzechner
- */
+ *  */
 public class ShapeRendererAlphaTest extends GdxTest {
     ShapeRenderer renderer;
 

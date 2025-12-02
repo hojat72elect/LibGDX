@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  * @author Stefan Bachmann
- * @author Nathan Sweet
- */
+ *  */
 public class PolygonSprite {
     private final Color color = new Color(1f, 1f, 1f, 1f);
     PolygonRegion region;

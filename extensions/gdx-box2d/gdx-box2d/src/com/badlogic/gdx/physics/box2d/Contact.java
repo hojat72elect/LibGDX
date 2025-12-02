@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  * The class manages contact between two shapes. A contact exists for each overlapping AABB in the broad-phase (except if
  * filtered). Therefore a contact object may exist that has no contact points.
  *
- * @author mzechner
- */
+ *  */
 public class Contact {
     // @off
 	/*JNI

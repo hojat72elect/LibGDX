@@ -27,8 +27,7 @@ import java.util.List;
 /**
  * An implementation of the {@link Audio} interface for Android.
  *
- * @author mzechner
- */
+ *  */
 public class DefaultAndroidAudio implements AndroidAudio {
     private final SoundPool soundPool;
     private final AudioManager manager;

@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * {@link #invalidate()} or {@link #invalidateHierarchy()} as needed. By default, invalidateHierarchy is called when child widgets
  * are added and removed.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class WidgetGroup extends Group implements Layout {
     private boolean needsLayout = true;
     private boolean fillParent;

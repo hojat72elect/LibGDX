@@ -11,8 +11,7 @@ import com.badlogic.gdx.files.FileHandle;
  *
  * @param <T>
  * @param <P>
- * @author mzechner
- */
+ *  */
 public abstract class AsynchronousAssetLoader<T, P extends AssetLoaderParameters<T>> extends AssetLoader<T, P> {
 
     public AsynchronousAssetLoader(FileHandleResolver resolver) {

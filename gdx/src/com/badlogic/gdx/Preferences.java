@@ -21,8 +21,7 @@ import java.util.Map;
  * preferences name will be used as the filename, so make sure the name is valid for a filename.
  * </p>
  *
- * @author mzechner
- */
+ *  */
 public interface Preferences {
     Preferences putBoolean(String key, boolean val);
 

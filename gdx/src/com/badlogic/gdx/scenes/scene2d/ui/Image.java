@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.Scaling;
  * Displays a {@link Drawable}, scaled various way within the widgets bounds. The preferred size is the min size of the drawable.
  * Only when using a {@link TextureRegionDrawable} will the actor's scale, rotation, and origin be used when drawing.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Image extends Widget {
     private Scaling scaling;
     private int align = Align.center;

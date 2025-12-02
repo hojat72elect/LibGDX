@@ -31,8 +31,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class BMFontUtil {
     private final UnicodeFont unicodeFont;
 

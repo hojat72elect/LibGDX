@@ -24,8 +24,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
  * For each script examplified below we only use a few characters from the respective alphabet. You'll have to pass in a string
  * containing all the printable characters of that language that you want to use!
  *
- * @author mzechner
- */
+ *  */
 public class InternationalFontsTest extends GdxTest {
     OrthographicCamera cam;
     SpriteBatch batch;

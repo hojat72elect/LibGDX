@@ -7,8 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 /**
  * Adds a listener to an actor.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class AddListenerAction extends Action {
     private EventListener listener;
     private boolean capture;

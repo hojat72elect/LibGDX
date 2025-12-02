@@ -35,8 +35,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class OpenALAudioDevice implements AudioDevice {
     static private final int bytesPerSample = 2;
 

@@ -6,8 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 /**
  * Adds an action to an actor.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class AddAction extends Action {
     private Action action;
 

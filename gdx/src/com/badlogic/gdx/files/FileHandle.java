@@ -37,9 +37,7 @@ import java.nio.channels.FileChannel.MapMode;
  * or are found via the classpath), the methods for extracting a {@link #path()} or {@link #file()} may not be appropriate for all
  * types. Use the Reader or Stream methods here to hide these dependencies from your platform independent code.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class FileHandle {
     protected File file;
     protected FileType type;

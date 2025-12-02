@@ -4,8 +4,7 @@ package com.badlogic.gdx.scenes.scene2d;
 /**
  * Low level interface for receiving events. Typically there is a listener class for each specific event class.
  *
- * @author Nathan Sweet
- * @see InputListener
+ *  * @see InputListener
  * @see InputEvent
  */
 public interface EventListener {

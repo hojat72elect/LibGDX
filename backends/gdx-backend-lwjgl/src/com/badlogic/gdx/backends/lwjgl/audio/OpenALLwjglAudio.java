@@ -40,8 +40,7 @@ import java.nio.Buffer;
 import java.nio.FloatBuffer;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class OpenALLwjglAudio implements LwjglAudio {
     private final int deviceBufferSize;
     private final int deviceBufferCount;

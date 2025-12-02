@@ -61,8 +61,7 @@ public class Wav {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class WavInputStream extends FilterInputStream {
 
         public int channels, bitDepth, sampleRate, dataRemaining, type;

@@ -4,8 +4,7 @@ package com.badlogic.gdx.utils;
 /**
  * Provides bit flag constants for alignment.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Align {
     static public final int center = 1 << 0;
     static public final int top = 1 << 1;

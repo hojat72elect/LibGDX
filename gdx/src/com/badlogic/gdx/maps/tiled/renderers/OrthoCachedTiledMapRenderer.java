@@ -65,8 +65,7 @@ import com.badlogic.gdx.utils.Disposable;
  * change.
  *
  * @author Justin Shapcott
- * @author Nathan Sweet
- */
+ *  */
 public class OrthoCachedTiledMapRenderer implements TiledMapRenderer, Disposable {
     static protected final int NUM_VERTICES = 20;
     static private final float tolerance = 0.00001f;

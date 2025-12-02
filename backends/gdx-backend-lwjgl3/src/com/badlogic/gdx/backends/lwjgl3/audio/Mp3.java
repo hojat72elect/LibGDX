@@ -13,8 +13,7 @@ import javazoom.jl.decoder.MP3Decoder;
 import javazoom.jl.decoder.OutputBuffer;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class Mp3 {
     static public class Music extends OpenALMusic {
         // Note: This uses a slightly modified version of JLayer.

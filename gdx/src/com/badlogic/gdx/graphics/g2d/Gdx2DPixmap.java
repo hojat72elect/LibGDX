@@ -11,8 +11,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 /**
- * @author mzechner
- */
+ *  */
 public class Gdx2DPixmap implements Disposable {
     public static final int GDX2D_FORMAT_ALPHA = 1;
     public static final int GDX2D_FORMAT_LUMINANCE_ALPHA = 2;

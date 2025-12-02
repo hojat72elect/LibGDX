@@ -7,8 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 /**
  * Removes a listener from an actor.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class RemoveListenerAction extends Action {
     private EventListener listener;
     private boolean capture;

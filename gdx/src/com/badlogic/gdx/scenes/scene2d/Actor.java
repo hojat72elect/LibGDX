@@ -44,9 +44,7 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
  * {@link ActorGestureListener}) can listen for and combine primitive events and recognize complex interactions like multi-touch
  * or pinch.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class Actor {
 
     static public PoolManager POOLS = new PoolManager();

@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.CharArray;
 /**
  * Shows how to pull up the softkeyboard and process input from it.
  *
- * @author mzechner
- */
+ *  */
 public class SoftKeyboardTest extends GdxTest {
     SpriteBatch batch;
     BitmapFont font;
@@ -65,8 +64,7 @@ public class SoftKeyboardTest extends GdxTest {
     /**
      * Let's create a very simple {@link CharSequence} implementation that can handle common text input operations.
      *
-     * @author mzechner
-     */
+     *      */
     public static class SimpleCharSequence implements CharSequence {
         CharArray chars = new CharArray();
         int cursor = -1;

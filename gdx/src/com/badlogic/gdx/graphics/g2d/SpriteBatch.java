@@ -19,9 +19,7 @@ import java.nio.Buffer;
 /**
  * Draws batched quads using indices.
  *
- * @author mzechner
- * @author Nathan Sweet
- * @see Batch
+ *  *  * @see Batch
  */
 public class SpriteBatch implements Batch {
     /**

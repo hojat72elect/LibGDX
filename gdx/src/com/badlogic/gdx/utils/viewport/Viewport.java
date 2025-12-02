@@ -17,8 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
  * Manages a {@link Camera} and determines how world coordinates are mapped to and from the screen.
  *
  * @author Daniel Holderbaum
- * @author Nathan Sweet
- */
+ *  */
 public abstract class Viewport {
     private final Vector3 tmp = new Vector3();
     private Camera camera;

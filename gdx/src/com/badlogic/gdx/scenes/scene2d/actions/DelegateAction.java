@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.Pool;
 /**
  * Base class for an action that wraps another action.
  *
- * @author Nathan Sweet
- */
+ *  */
 abstract public class DelegateAction extends Action {
     protected Action action;
 

@@ -22,8 +22,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class OpenALSound implements Sound {
     private final OpenALLwjglAudio audio;
     private int bufferID = -1;

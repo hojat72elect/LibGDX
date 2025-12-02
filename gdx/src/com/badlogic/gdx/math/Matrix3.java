@@ -9,8 +9,7 @@ import java.io.Serializable;
  * A 3x3 <a href="http://en.wikipedia.org/wiki/Row-major_order#Column-major_order">column major</a> matrix; useful for 2D
  * transforms.
  *
- * @author mzechner
- */
+ *  */
 public class Matrix3 implements Serializable {
     public static final int M00 = 0;
     public static final int M01 = 3;

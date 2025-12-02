@@ -15,8 +15,7 @@ import java.util.Comparator;
  * Code using this class must not rely on items being removed immediately. Consider using {@link SnapshotArray} if this is a
  * problem.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class DelayedRemovalArray<T> extends Array<T> {
     private int iterating;
     private final IntArray remove = new IntArray(0);

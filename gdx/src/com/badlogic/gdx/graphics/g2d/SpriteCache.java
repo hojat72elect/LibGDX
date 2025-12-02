@@ -52,8 +52,7 @@ import java.nio.FloatBuffer;
  * <br>
  * SpriteCache must be disposed once it is no longer needed.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class SpriteCache implements Disposable {
     static private final float[] tempVertices = new float[VERTEX_SIZE * 6];
 

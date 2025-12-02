@@ -33,8 +33,7 @@ import javax.swing.SpinnerNumberModel;
 /**
  * Provides utility methods for effects.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class EffectUtil {
     static private final BufferedImage scratchImage = new BufferedImage(GlyphPage.MAX_GLYPH_SIZE, GlyphPage.MAX_GLYPH_SIZE,
             BufferedImage.TYPE_INT_ARGB);

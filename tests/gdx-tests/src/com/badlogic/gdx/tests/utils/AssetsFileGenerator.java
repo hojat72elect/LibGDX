@@ -6,8 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 /**
  * Used to generate an assets.txt file for a specific directory.
  *
- * @author mzechner
- */
+ *  */
 public class AssetsFileGenerator {
     public static void main(String[] args) {
         FileHandle file = new FileHandle(args[0]);

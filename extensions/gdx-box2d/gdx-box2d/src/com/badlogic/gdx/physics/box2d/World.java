@@ -38,8 +38,7 @@ import java.util.Iterator;
  * The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient
  * memory management facilities.
  *
- * @author mzechner
- */
+ *  */
 public final class World implements Disposable {
     // @off
 	/*JNI

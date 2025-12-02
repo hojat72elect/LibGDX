@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Scaling;
  * (some of the world may be off screen).
  *
  * @author Daniel Holderbaum
- * @author Nathan Sweet
- */
+ *  */
 public class FillViewport extends ScalingViewport {
     /**
      * Creates a new viewport using a new {@link OrthographicCamera}.

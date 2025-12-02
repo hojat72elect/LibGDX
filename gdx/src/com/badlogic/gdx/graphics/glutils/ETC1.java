@@ -21,8 +21,7 @@ import java.util.zip.GZIPOutputStream;
 /**
  * Class for encoding and decoding ETC1 compressed images. Also provides methods to add a PKM header.
  *
- * @author mzechner
- */
+ *  */
 public class ETC1 {
     /**
      * The PKM header size in bytes
@@ -201,8 +200,7 @@ public class ETC1 {
     /**
      * Class for storing ETC1 compressed image data.
      *
-     * @author mzechner
-     */
+     *      */
     public final static class ETC1Data implements Disposable {
         /**
          * the width in pixels

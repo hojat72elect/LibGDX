@@ -29,8 +29,7 @@ import com.badlogic.gdx.utils.JsonMatcher.Processor;
 /**
  * Parses {@link JsonMatcher} patterns.
  *
- * @author Nathan Sweet
- */
+ *  */
 class PatternParser {
     static final int parser_start = 1;
     private static final byte[] _parser_actions = init__parser_actions_0();

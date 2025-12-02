@@ -19,8 +19,7 @@ import javax.swing.SwingUtilities;
 /**
  * Demonstrates how to use LwjglAWTCanvas to have multiple GL widgets in a Swing application.
  *
- * @author mzechner
- */
+ *  */
 public class SwingLwjglTest extends JFrame {
     LwjglAWTCanvas canvas1;
     LwjglAWTCanvas canvas2;

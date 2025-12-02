@@ -8,9 +8,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * Provides standard access to the filesystem, classpath, Android app storage (internal and external), and Android assets
  * directory.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public interface Files {
     /**
      * Returns a handle representing a file or directory.
@@ -71,9 +69,7 @@ public interface Files {
     /**
      * Indicates how to resolve a path to a file.
      *
-     * @author mzechner
-     * @author Nathan Sweet
-     */
+     *      *      */
     enum FileType {
         /**
          * Path relative to the root of the classpath. Classpath files are always readonly. Note that classpath files are not

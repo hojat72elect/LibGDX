@@ -29,8 +29,7 @@ import com.badlogic.gdx.utils.Null;
  *
  * @param <N> The type of nodes in the tree.
  * @param <V> The type of values for each node.
- * @author Nathan Sweet
- */
+ *  */
 public class Tree<N extends Node, V> extends WidgetGroup implements Styleable<Tree.TreeStyle> {
     static private final Vector2 tmp = new Vector2();
     final Array<N> rootNodes = new Array();
@@ -616,8 +615,7 @@ public class Tree<N extends Node, V> extends WidgetGroup implements Styleable<Tr
      * @param <N> The type for the node's parent and child nodes.
      * @param <V> The type for the node's value.
      * @param <A> The type for the node's actor.
-     * @author Nathan Sweet
-     */
+     *      */
     static abstract public class Node<N extends Node, V, A extends Actor> {
         final Array<N> children = new Array(0);
         A actor;
@@ -954,8 +952,7 @@ public class Tree<N extends Node, V> extends WidgetGroup implements Styleable<Tr
     /**
      * The style for a {@link Tree}.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public class TreeStyle {
         public Drawable plus, minus;
         public @Null Drawable plusOver, minusOver;

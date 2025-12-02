@@ -4,8 +4,7 @@ package com.badlogic.gdx.scenes.scene2d;
 /**
  * Determines how touch input events are distributed to an actor and any children.
  *
- * @author Nathan Sweet
- */
+ *  */
 public enum Touchable {
     /**
      * All touch input events will be received by the actor and any children.

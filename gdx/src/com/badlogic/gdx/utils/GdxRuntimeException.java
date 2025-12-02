@@ -4,8 +4,7 @@ package com.badlogic.gdx.utils;
 /**
  * Typed runtime exception used throughout libGDX
  *
- * @author mzechner
- */
+ *  */
 public class GdxRuntimeException extends RuntimeException {
     private static final long serialVersionUID = 6735854402467673117L;
 

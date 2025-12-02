@@ -21,8 +21,7 @@ import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class OpenALSound implements Sound {
     private final OpenALLwjgl3Audio audio;
     private int bufferID = -1;

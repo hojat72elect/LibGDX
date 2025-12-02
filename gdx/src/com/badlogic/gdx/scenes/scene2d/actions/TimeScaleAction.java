@@ -4,8 +4,7 @@ package com.badlogic.gdx.scenes.scene2d.actions;
 /**
  * Multiplies the delta of an action.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class TimeScaleAction extends DelegateAction {
     private float scale;
 

@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.ObjectMap.Entry;
  * meaning that they can be referenced from inside the json file itself. This is useful for dynamic resources such as a BitmapFont
  * generated through FreeTypeFontGenerator.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class SkinLoader extends AsynchronousAssetLoader<Skin, SkinLoader.SkinParameter> {
     public SkinLoader(FileHandleResolver resolver) {
         super(resolver);

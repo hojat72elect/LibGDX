@@ -40,10 +40,8 @@ import com.badlogic.gdx.math.Matrix4;
  * <p>
  * A PolygonSpriteBatch has to be disposed if it is no longer used.
  *
- * @author mzechner
- * @author Stefan Bachmann
- * @author Nathan Sweet
- */
+ *  * @author Stefan Bachmann
+ *  */
 public class PolygonSpriteBatch implements PolygonBatch {
     private final float[] vertices;
     private final short[] triangles;

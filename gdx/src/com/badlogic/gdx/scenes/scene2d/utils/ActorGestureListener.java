@@ -14,8 +14,7 @@ import com.badlogic.gdx.utils.Null;
  * Detects tap, long press, fling, pan, zoom, and pinch gestures on an actor. If there is only a need to detect tap, use
  * {@link ClickListener}.
  *
- * @author Nathan Sweet
- * @see GestureDetector
+ *  * @see GestureDetector
  */
 public class ActorGestureListener implements EventListener {
     static final Vector2 tmpCoords = new Vector2(), tmpCoords2 = new Vector2();

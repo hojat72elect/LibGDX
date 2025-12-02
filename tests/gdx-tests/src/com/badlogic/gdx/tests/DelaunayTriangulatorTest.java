@@ -14,8 +14,7 @@ import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.ShortArray;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class DelaunayTriangulatorTest extends GdxTest {
     FloatArray points = new FloatArray();
     ShortArray triangles;

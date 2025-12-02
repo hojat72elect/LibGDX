@@ -46,8 +46,7 @@ import java.util.Objects;
  * </ul>
  * </ul>
  *
- * @author Nathan Sweet
- * @author org.apache.commons.text.TextStringBuilder
+ *  * @author org.apache.commons.text.TextStringBuilder
  */
 public class CharArray implements CharSequence, Appendable {
     static private final int CAPACITY = 16;

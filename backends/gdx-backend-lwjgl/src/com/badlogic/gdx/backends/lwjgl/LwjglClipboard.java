@@ -14,8 +14,7 @@ import java.util.List;
 /**
  * Clipboard implementation for desktop that uses the system clipboard via the default AWT {@link Toolkit}.
  *
- * @author mzechner
- */
+ *  */
 public class LwjglClipboard implements Clipboard, ClipboardOwner {
     @Override
     public boolean hasContents() {

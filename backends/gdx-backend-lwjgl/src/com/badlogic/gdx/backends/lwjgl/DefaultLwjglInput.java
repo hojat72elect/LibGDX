@@ -33,8 +33,7 @@ import javax.swing.event.DocumentListener;
 /**
  * An implementation of the {@link LwjglInput} interface hooking a LWJGL panel for input.
  *
- * @author mzechner
- */
+ *  */
 final public class DefaultLwjglInput extends AbstractInput implements LwjglInput {
     static public float keyRepeatInitialTime = 0.4f;
     static public float keyRepeatTime = 0.1f;

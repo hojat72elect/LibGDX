@@ -59,10 +59,8 @@ import com.badlogic.gdx.utils.Disposable;
  * The projection and transformation matrices are a state of the ShapeRenderer, just like the color, and will be applied to all
  * shapes until they are changed.
  *
- * @author mzechner
- * @author stbachmann
- * @author Nathan Sweet
- */
+ *  * @author stbachmann
+ *  */
 public class ShapeRenderer implements Disposable {
     private final ImmediateModeRenderer renderer;
     private final Matrix4 projectionMatrix = new Matrix4();

@@ -8,8 +8,7 @@ import com.badlogic.gdx.utils.ShortArray;
 /**
  * Computes the convex hull of a set of points using the monotone chain convex hull algorithm (aka Andrew's algorithm).
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ConvexHull {
     private final IntArray quicksortStack = new IntArray();
     private final FloatArray hull = new FloatArray();

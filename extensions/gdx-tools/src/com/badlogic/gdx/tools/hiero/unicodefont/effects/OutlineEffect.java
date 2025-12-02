@@ -16,8 +16,7 @@ import java.util.List;
 /**
  * Strokes glyphs with an outline.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class OutlineEffect implements ConfigurableEffect {
     private float width = 2;
     private Color color = Color.black;

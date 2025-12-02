@@ -35,8 +35,7 @@ import com.badlogic.gdx.utils.Timer.Task;
 /**
  * Keeps track of an application's tooltips.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class TooltipManager {
     static private TooltipManager instance;
     static private Files files;

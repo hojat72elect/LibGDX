@@ -4,8 +4,7 @@ package com.badlogic.gdx.scenes.scene2d.actions;
 /**
  * Sets the actor's scale from its current value to a specific value.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ScaleToAction extends TemporalAction {
     private float startX, startY;
     private float endX, endY;

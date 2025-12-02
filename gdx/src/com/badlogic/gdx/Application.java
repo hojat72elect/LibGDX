@@ -78,8 +78,7 @@ import com.badlogic.gdx.utils.Clipboard;
  * Android.
  * </p>
  *
- * @author mzechner
- */
+ *  */
 public interface Application {
     int LOG_NONE = 0;
     int LOG_DEBUG = 3;
@@ -238,8 +237,7 @@ public interface Application {
     /**
      * Enumeration of possible {@link Application} types
      *
-     * @author mzechner
-     */
+     *      */
     enum ApplicationType {
         Android, Desktop, HeadlessDesktop, Applet, WebGL, iOS
     }

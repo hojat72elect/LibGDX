@@ -22,9 +22,7 @@ import com.badlogic.gdx.utils.Null;
  * For a horizontal progress bar, its preferred height is determined by the larger of the knob and background, and the preferred
  * width is 140, a relatively arbitrary size. These parameters are reversed for a vertical progress bar.
  *
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public class Slider extends ProgressBar {
     int button = -1;
     int draggingPointer = -1;
@@ -254,9 +252,7 @@ public class Slider extends ProgressBar {
     /**
      * The style for a slider, see {@link Slider}.
      *
-     * @author mzechner
-     * @author Nathan Sweet
-     */
+     *      *      */
     static public class SliderStyle extends ProgressBarStyle {
         public @Null Drawable backgroundOver, backgroundDown;
         public @Null Drawable knobOver, knobDown;

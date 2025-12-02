@@ -12,8 +12,7 @@ import java.nio.ByteOrder;
 /**
  * A rigid body. These are created via World.CreateBody.
  *
- * @author mzechner
- */
+ *  */
 public class Body {
     // @off
 	/*JNI

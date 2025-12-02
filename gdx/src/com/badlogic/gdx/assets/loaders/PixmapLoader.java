@@ -11,8 +11,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * {@link AssetLoader} for {@link Pixmap} instances. The Pixmap is loaded asynchronously.
  *
- * @author mzechner
- */
+ *  */
 public class PixmapLoader extends AsynchronousAssetLoader<Pixmap, PixmapLoader.PixmapParameter> {
     Pixmap pixmap;
 

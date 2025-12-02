@@ -10,8 +10,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.TargetDataLine;
 
 /**
- * @author mzechner
- */
+ *  */
 public class JavaSoundAudioRecorder implements AudioRecorder {
     private final TargetDataLine line;
     private byte[] buffer = new byte[1024 * 4];

@@ -7,8 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 /**
  * Provides methods for an actor to participate in layout and to provide a minimum, preferred, and maximum size.
  *
- * @author Nathan Sweet
- */
+ *  */
 public interface Layout {
     /**
      * Computes and caches any information needed for drawing and, if this actor has children, positions and sizes each child,

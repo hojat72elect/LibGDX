@@ -10,8 +10,7 @@ import java.awt.image.BufferedImage;
 /**
  * A graphical effect that is applied to glyphs in a {@link UnicodeFont}.
  *
- * @author Nathan Sweet
- */
+ *  */
 public interface Effect {
     /**
      * Called to draw the effect.

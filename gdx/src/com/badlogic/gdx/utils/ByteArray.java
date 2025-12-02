@@ -9,8 +9,7 @@ import java.util.Arrays;
  * A resizable, ordered or unordered byte array. Avoids the boxing that occurs with ArrayList<Byte>. If unordered, this class
  * avoids a memory copy when removing elements (the last element is moved to the removed element's position).
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ByteArray {
     public byte[] items;
     public int size;

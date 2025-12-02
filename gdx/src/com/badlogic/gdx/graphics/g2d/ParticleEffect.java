@@ -21,8 +21,7 @@ import java.io.Writer;
  * See <a href=
  * "https://web.archive.org/web/20200427191041/http://www.badlogicgames.com/wordpress/?p=12555">http://www.badlogicgames.com/wordpress/?p=12555</a>
  *
- * @author mzechner
- */
+ *  */
 public class ParticleEffect implements Disposable {
     private final Array<ParticleEmitter> emitters;
     protected float xSizeScale = 1f;

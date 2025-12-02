@@ -17,8 +17,7 @@ import com.badlogic.gdx.utils.Null;
  * A group with a single child that sizes and positions the child using constraints. This provides layout similar to a
  * {@link Table} with a single cell but is more lightweight.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Container<T extends Actor> extends WidgetGroup {
     private @Null T actor;
     private Value minWidth = Value.minWidth, minHeight = Value.minHeight;

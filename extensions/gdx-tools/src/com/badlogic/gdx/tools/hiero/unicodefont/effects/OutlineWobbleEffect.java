@@ -25,8 +25,7 @@ import java.util.List;
 
 /**
  * @author Jerry Huxtable
- * @author Nathan Sweet
- */
+ *  */
 public class OutlineWobbleEffect extends OutlineEffect {
     float detail = 1;
     float amplitude = 1;

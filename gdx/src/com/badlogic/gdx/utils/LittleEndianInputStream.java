@@ -10,8 +10,7 @@ import java.io.InputStream;
 /**
  * Taken from http://www.javafaq.nu/java-example-code-1079.html
  *
- * @author mzechner
- */
+ *  */
 public class LittleEndianInputStream extends FilterInputStream implements DataInput {
 
     private final DataInputStream din;

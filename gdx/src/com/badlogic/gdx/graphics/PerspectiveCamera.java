@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * A Camera with perspective projection.
  *
- * @author mzechner
- */
+ *  */
 public class PerspectiveCamera extends Camera {
     final Vector3 tmp = new Vector3();
     /**

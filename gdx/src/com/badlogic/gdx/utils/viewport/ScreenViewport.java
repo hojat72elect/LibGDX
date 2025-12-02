@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
  * can be {@link #setUnitsPerPixel(float) changed}.
  *
  * @author Daniel Holderbaum
- * @author Nathan Sweet
- */
+ *  */
 public class ScreenViewport extends Viewport {
     private float unitsPerPixel = 1;
 

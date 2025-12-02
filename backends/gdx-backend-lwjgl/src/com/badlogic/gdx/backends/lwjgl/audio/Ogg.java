@@ -7,8 +7,7 @@ import com.badlogic.gdx.utils.StreamUtils;
 import java.io.ByteArrayOutputStream;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class Ogg {
     static public class Music extends OpenALMusic {
         private OggInputStream input;

@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Null;
  * Sets the alpha for an actor's color (or a specified color), from the current alpha to the new alpha. Note this action
  * transitions from the alpha at the time the action starts to the specified alpha.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class AlphaAction extends TemporalAction {
     private float start, end;
     private @Null Color color;

@@ -48,8 +48,7 @@ import java.nio.IntBuffer;
  * automatically reloaded when the OpenGL context is recreated so you don't have to do this manually.
  * </p>
  *
- * @author mzechner
- */
+ *  */
 public class ShaderProgram implements Disposable {
     /**
      * default name for position attributes

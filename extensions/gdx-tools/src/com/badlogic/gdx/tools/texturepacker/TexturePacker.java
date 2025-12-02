@@ -37,8 +37,7 @@ import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class TexturePacker {
     private final Settings settings;
     private final ImageProcessor imageProcessor;
@@ -678,8 +677,7 @@ public class TexturePacker {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class Page {
         public String imageName;
         public Array<Rect> outputRects, remainingRects;
@@ -689,8 +687,7 @@ public class TexturePacker {
 
     /**
      * @author Regnarock
-     * @author Nathan Sweet
-     */
+     *      */
     static public class Alias implements Comparable<Alias> {
         public String name;
         public int index;
@@ -726,8 +723,7 @@ public class TexturePacker {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class Rect implements Comparable<Rect> {
         public String name;
         public int offsetX, offsetY, regionWidth, regionHeight, originalWidth, originalHeight;
@@ -931,8 +927,7 @@ public class TexturePacker {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class Settings {
         public boolean pot = true;
         public boolean multipleOfFour;

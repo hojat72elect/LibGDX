@@ -41,8 +41,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  * <p>
  * See the <a href="https://libgdx.com/wiki/graphics/2d/scene2d/skin">documentation</a> for more.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Skin implements Disposable {
     static private final Class[] defaultTagClasses = {BitmapFont.class, Color.class, TintedDrawable.class, NinePatchDrawable.class,
             SpriteDrawable.class, TextureRegionDrawable.class, TiledDrawable.class, Button.ButtonStyle.class,
@@ -694,8 +693,7 @@ public class Skin implements Disposable {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class TintedDrawable {
         public String name;
         public Color color;

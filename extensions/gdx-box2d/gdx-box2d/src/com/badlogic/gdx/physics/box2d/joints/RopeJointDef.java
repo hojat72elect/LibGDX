@@ -8,8 +8,7 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * Rope joint definition. This requires two body anchor points and a maximum lengths. Note: by default the connected objects will
  * not collide. see collideConnected in b2JointDef.
  *
- * @author mzechner
- */
+ *  */
 public class RopeJointDef extends JointDef {
     /**
      * The local anchor point relative to bodyA's origin.

@@ -16,8 +16,7 @@ import com.badlogic.gdx.utils.PoolManager;
 /**
  * Static convenience methods for using pooled actions, intended for static import.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class Actions {
 
     public static final PoolManager ACTION_POOLS = new PoolManager();

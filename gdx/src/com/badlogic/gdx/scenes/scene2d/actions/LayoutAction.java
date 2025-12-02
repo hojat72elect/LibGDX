@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * Sets an actor's {@link Layout#setLayoutEnabled(boolean) layout} to enabled or disabled. The actor must implements
  * {@link Layout}.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class LayoutAction extends Action {
     private boolean enabled;
 

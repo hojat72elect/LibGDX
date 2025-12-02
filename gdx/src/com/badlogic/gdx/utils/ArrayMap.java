@@ -16,8 +16,7 @@ import java.util.NoSuchElementException;
  * makes iteration fast. Like {@link Array}, if ordered is false, this class avoids a memory copy when removing elements (the last
  * element is moved to the removed element's position).
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
     public K[] keys;
     public V[] values;

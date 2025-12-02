@@ -24,8 +24,7 @@ import java.math.BigInteger;
 /**
  * Builder API for emitting JSON to a string.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class JsonString {
     static private final int none = 0, needsComma = 1, object = '}' << 1, array = ']' << 1, isObject = 0b1000000;
 

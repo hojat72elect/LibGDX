@@ -42,8 +42,7 @@ import java.util.Map;
  * For efficiency, glyphs are packed on to textures. Glyphs can be loaded to the textures on the fly, when they are first needed
  * for display. However, it is best to load the glyphs that are known to be needed at startup.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class UnicodeFont {
     static private final int DISPLAY_LIST_CACHE_SIZE = 200;
     static private final int MAX_GLYPH_CODE = 0x10FFFF;

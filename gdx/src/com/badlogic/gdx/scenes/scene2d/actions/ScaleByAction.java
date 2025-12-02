@@ -4,8 +4,7 @@ package com.badlogic.gdx.scenes.scene2d.actions;
 /**
  * Scales an actor's scale to a relative size.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class ScaleByAction extends RelativeTemporalAction {
     private float amountX, amountY;
 

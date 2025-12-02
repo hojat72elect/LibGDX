@@ -17,8 +17,7 @@ import java.util.regex.Pattern;
  * the callbacks have the original file, the output directory, and the output file. If {@link #setFlattenOutput(boolean)} is
  * false, the output will match the directory structure of the input.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class FileProcessor {
     FilenameFilter inputFilter;
     Comparator<File> comparator = new Comparator<File>() {
@@ -251,8 +250,7 @@ public class FileProcessor {
     }
 
     /**
-     * @author Nathan Sweet
-     */
+     *      */
     static public class Entry {
         public File inputFile;
         /**

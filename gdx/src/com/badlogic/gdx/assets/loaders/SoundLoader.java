@@ -12,8 +12,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * {@link AssetLoader} to load {@link Sound} instances.
  *
- * @author mzechner
- */
+ *  */
 public class SoundLoader extends AsynchronousAssetLoader<Sound, SoundLoader.SoundParameter> {
 
     private Sound sound;

@@ -17,8 +17,7 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Random;
 
 /**
- * @author Nathan Sweet
- */
+ *  */
 public class TexturePackerTest extends ApplicationAdapter {
     ShapeRenderer renderer;
     Array<Page> pages;

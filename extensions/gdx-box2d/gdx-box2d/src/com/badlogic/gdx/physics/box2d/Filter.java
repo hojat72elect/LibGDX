@@ -4,8 +4,7 @@ package com.badlogic.gdx.physics.box2d;
 /**
  * This holds contact filtering data.
  *
- * @author mzechner
- */
+ *  */
 public class Filter {
     /**
      * The collision category bits. Normally you would just set one bit.

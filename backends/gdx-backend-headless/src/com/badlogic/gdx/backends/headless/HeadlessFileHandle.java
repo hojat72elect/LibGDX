@@ -8,9 +8,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import java.io.File;
 
 /**
- * @author mzechner
- * @author Nathan Sweet
- */
+ *  *  */
 public final class HeadlessFileHandle extends FileHandle {
     public HeadlessFileHandle(String fileName, FileType type) {
         super(fileName, type);

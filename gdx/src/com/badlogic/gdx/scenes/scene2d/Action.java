@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 /**
  * Actions attach to an {@link Actor} and perform some task, often over time.
  *
- * @author Nathan Sweet
- */
+ *  */
 abstract public class Action implements Poolable {
     /**
      * The actor this action is attached to, or null if it is not attached.

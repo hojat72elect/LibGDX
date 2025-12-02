@@ -6,8 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Callback class for ray casts.
  *
- * @author mzechner
- * @see World#rayCast(RayCastCallback, Vector2, Vector2)
+ *  * @see World#rayCast(RayCastCallback, Vector2, Vector2)
  */
 
 public interface RayCastCallback {

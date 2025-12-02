@@ -12,8 +12,7 @@ import java.net.Socket;
  * Sends all inputs from touch, key, accelerometer and compass to a {@link RemoteInput} at the given ip/port. Instantiate this
  * and call sendUpdate() periodically.
  *
- * @author mzechner
- */
+ *  */
 public class RemoteSender implements InputProcessor {
     public static final int KEY_DOWN = 0;
     public static final int KEY_UP = 1;

@@ -16,8 +16,7 @@ import java.util.Comparator;
 /**
  * Demonstrates how to do simple z-sorting of sprites
  *
- * @author mzechner
- */
+ *  */
 public class SortedSpriteTest extends GdxTest {
     /**
      * spritebatch used for rendering
@@ -91,8 +90,7 @@ public class SortedSpriteTest extends GdxTest {
      * Sprite based class that adds a z-coordinate for depth sorting. Note that allt he constructors were auto-generated in
      * Eclipse (alt + shift + s, c).
      *
-     * @author mzechner
-     */
+     *      */
     public class MySprite extends Sprite {
         public float z;
 
@@ -128,8 +126,7 @@ public class SortedSpriteTest extends GdxTest {
     /**
      * Comparator used for sorting, sorts in ascending order (biggset z to smallest z).
      *
-     * @author mzechner
-     */
+     *      */
     public class MySpriteComparator implements Comparator<MySprite> {
         @Override
         public int compare(MySprite sprite1, MySprite sprite2) {

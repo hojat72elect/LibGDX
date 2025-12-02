@@ -48,8 +48,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * An implementation of the {@link Application} interface to be used with an AndroidLiveWallpaperService. Not directly
  * constructable, instead the {@link AndroidLiveWallpaperService} will create this class internally.
  *
- * @author mzechner
- */
+ *  */
 public class AndroidLiveWallpaper implements AndroidApplicationBase {
 
     protected final Array<Runnable> runnables = new Array<Runnable>();

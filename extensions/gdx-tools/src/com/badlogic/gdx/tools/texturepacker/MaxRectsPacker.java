@@ -17,8 +17,7 @@ import java.util.Comparator;
  * Packs pages of images using the maximal rectangles bin packing algorithm by Jukka Jylänki. A brute force binary search is used
  * to pack into the smallest bin possible.
  *
- * @author Nathan Sweet
- */
+ *  */
 public class MaxRectsPacker implements Packer {
     final Settings settings;
     private final FreeRectChoiceHeuristic[] methods = FreeRectChoiceHeuristic.values();
@@ -310,8 +309,7 @@ public class MaxRectsPacker implements Packer {
      * http://clb.demon.fi/projects/even-more-rectangle-bin-packing
      *
      * @author Jukka Jyl�nki
-     * @author Nathan Sweet
-     */
+     *      */
     class MaxRects {
         private final Array<Rect> usedRectangles = new Array<>();
         private final Array<Rect> freeRectangles = new Array<>();

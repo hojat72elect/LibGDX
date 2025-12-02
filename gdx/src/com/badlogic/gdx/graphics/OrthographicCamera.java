@@ -9,8 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * A camera with orthographic projection.
  *
- * @author mzechner
- */
+ *  */
 public class OrthographicCamera extends Camera {
     private final Vector3 tmp = new Vector3();
     /**

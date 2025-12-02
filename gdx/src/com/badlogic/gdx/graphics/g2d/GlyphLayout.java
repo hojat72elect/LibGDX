@@ -27,8 +27,7 @@ import com.badlogic.gdx.utils.Pool.Poolable;
  * <p>
  * This class is not thread safe, even if synchronized externally, and must only be used from the game thread.
  *
- * @author Nathan Sweet
- * @author davebaol
+ *  * @author davebaol
  * @author Alexander Dorokhov
  * @author Thomas Creutzenberg
  */
@@ -548,8 +547,7 @@ public class GlyphLayout implements Poolable {
     /**
      * Stores glyphs and positions for a line of text.
      *
-     * @author Nathan Sweet
-     */
+     *      */
     static public class GlyphRun implements Poolable {
         public Array<Glyph> glyphs = new Array();
 
