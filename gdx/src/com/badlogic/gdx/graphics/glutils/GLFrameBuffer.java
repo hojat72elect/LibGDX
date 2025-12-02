@@ -36,8 +36,6 @@ import java.util.Map;
  * <p>
  * A FrameBuffer must be disposed if it is no longer needed
  * </p>
- *
- * @author mzechner, realitix
  */
 public abstract class GLFrameBuffer<T extends GLTexture> implements Disposable {
     /**

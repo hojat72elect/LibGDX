@@ -11,8 +11,7 @@ package com.badlogic.gdx.graphics;
  * Before a call to either {@link #consume3DData()}, Texture3D will bind the OpenGL ES texture.
  * </p>
  *
- * @author mgsx
- */
+ *  */
 public interface Texture3DData {
 
     /**

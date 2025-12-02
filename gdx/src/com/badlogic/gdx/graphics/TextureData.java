@@ -99,8 +99,7 @@ public interface TextureData {
     /**
      * Provides static method to instantiate the right implementation (Pixmap, ETC1, KTX).
      *
-     * @author Vincent Bousquet
-     */
+     *      */
     class Factory {
 
         public static TextureData loadFromFile(FileHandle file, boolean useMipMaps) {

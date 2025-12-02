@@ -21,8 +21,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * see https://www.khronos.org/opengl/wiki/Debug_Output
  *
- * @author mgsx
- */
+ *  */
 @GdxTestConfig(requireGL32 = true)
 public class GL32DebugControlTest extends GdxTest {
     private SpriteBatch batch;

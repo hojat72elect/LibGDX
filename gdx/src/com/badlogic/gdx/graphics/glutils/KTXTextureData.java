@@ -29,8 +29,7 @@ import java.util.zip.GZIPInputStream;
  * <p>
  * For example, KTXTextureData can be used for {@link Texture} or {@link Cubemap}.
  *
- * @author Vincent Bousquet
- */
+ *  */
 public class KTXTextureData implements TextureData, CubemapData {
 
     private static final int GL_TEXTURE_1D = 0x1234;

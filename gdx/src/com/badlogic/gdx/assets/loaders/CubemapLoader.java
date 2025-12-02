@@ -19,8 +19,6 @@ import com.badlogic.gdx.utils.Array;
  * rendering thread, synchronously. Passing a {@link CubemapParameter} to
  * {@link AssetManager#load(String, Class, AssetLoaderParameters)} allows one to specify parameters as can be passed to the
  * various Cubemap constructors, e.g. filtering and so on.
- *
- * @author mzechner, Vincent Bousquet
  */
 public class CubemapLoader extends AsynchronousAssetLoader<Cubemap, CubemapLoader.CubemapParameter> {
     CubemapLoaderInfo info = new CubemapLoaderInfo();

@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 /**
  * Helper class with static methods to build patch shapes using {@link MeshPartBuilder}.
  *
- * @author xoppa
- */
+ *  */
 public class PatchShapeBuilder extends BaseShapeBuilder {
     /**
      * Build a patch shape. Requires GL_POINTS, GL_LINES or GL_TRIANGLES primitive type.

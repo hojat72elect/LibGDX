@@ -50,8 +50,6 @@ import java.io.InputStreamReader;
  * file might reference one or more texture files, in which case those filename(s) are expected to be located relative to the MTL
  * file.
  * </p>
- *
- * @author mzechner, espitz, xoppa
  */
 public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
     /**

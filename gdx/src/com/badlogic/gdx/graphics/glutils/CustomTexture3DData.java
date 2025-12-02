@@ -17,8 +17,7 @@ import java.nio.ByteBuffer;
  * Or you can use it to upload pixels to GPU. In this case you should call {@link #getPixels()} to fill the buffer prior to
  * consuming it (eg. before new Texture3D(data)).
  *
- * @author mgsx
- */
+ *  */
 public class CustomTexture3DData implements Texture3DData {
 
     private final int width;

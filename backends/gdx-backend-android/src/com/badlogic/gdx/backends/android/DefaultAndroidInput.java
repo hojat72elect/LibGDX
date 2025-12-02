@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.animation.Animator;
@@ -67,8 +66,6 @@ import java.util.List;
 
 /**
  * An implementation of the {@link Input} interface for Android.
- *
- *  * @author jshapcot
  */
 public class DefaultAndroidInput extends AbstractInput implements AndroidInput, KeyboardHeightObserver {
 

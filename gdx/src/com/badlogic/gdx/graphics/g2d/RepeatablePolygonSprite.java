@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g2d;
 
 import com.badlogic.gdx.graphics.Color;
@@ -13,8 +12,6 @@ import com.badlogic.gdx.utils.ShortArray;
 /**
  * Renders polygon filled with a repeating TextureRegion with specified density Without causing an additional flush or render
  * call
- *
- * @author Avetis Zakharyan
  */
 public class RepeatablePolygonSprite {
 

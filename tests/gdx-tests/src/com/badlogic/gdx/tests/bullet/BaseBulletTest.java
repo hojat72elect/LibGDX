@@ -28,9 +28,6 @@ import com.badlogic.gdx.physics.bullet.linearmath.btIDebugDraw.DebugDrawModes;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
-/**
- * @author xoppa
- */
 public class BaseBulletTest extends BulletTest {
     protected final static Vector3 tmpV1 = new Vector3(), tmpV2 = new Vector3();
     // Set this to the path of the lib to use it on desktop instead of default lib.

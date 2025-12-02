@@ -23,9 +23,6 @@ import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.physics.bullet.dynamics.btTypedConstraint;
 import com.badlogic.gdx.utils.Array;
 
-/**
- * @author xoppa
- */
 public class RayPickRagdollTest extends BaseBulletTest {
 
     final static float PI = MathUtils.PI;

@@ -29,8 +29,6 @@ import java.nio.ShortBuffer;
  * <p>
  * VertexBufferObjects must be disposed via the {@link #dispose()} method when no longer needed
  * </p>
- *
- * @author mzechner, Thorsten Schleinzer
  */
 public class IndexBufferObject implements IndexData {
     final ShortBuffer buffer;

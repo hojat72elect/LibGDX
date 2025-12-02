@@ -1308,8 +1308,6 @@ public class ShapeRenderer implements Disposable {
 
     /**
      * Shape types to be used with {@link #begin(ShapeType)}.
-     *
-     * @author mzechner, stbachmann
      */
     public enum ShapeType {
         Point(GL20.GL_POINTS), Line(GL20.GL_LINES), Filled(GL20.GL_TRIANGLES);

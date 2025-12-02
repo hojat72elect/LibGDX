@@ -19,8 +19,6 @@ import java.nio.FloatBuffer;
  * <p>
  * This class is not compatible with OpenGL 3+ core profiles. For this {@link VertexBufferObject}s are needed.
  * </p>
- *
- * @author mzechner, Dave Clayton <contact@redskyforge.com>
  */
 public class VertexArray implements VertexData {
     final VertexAttributes attributes;

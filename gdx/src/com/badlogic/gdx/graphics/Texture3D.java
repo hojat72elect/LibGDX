@@ -14,8 +14,7 @@ import java.util.Map;
 /**
  * Open GLES wrapper for Texture3D
  *
- * @author mgsx
- */
+ *  */
 public class Texture3D extends GLTexture {
 
     final static Map<Application, Array<Texture3D>> managedTexture3Ds = new HashMap<Application, Array<Texture3D>>();

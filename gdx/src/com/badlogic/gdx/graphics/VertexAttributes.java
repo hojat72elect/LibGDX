@@ -10,8 +10,6 @@ import java.util.NoSuchElementException;
 /**
  * Instances of this class specify the vertex attributes of a mesh. VertexAttributes are used by {@link Mesh} instances to define
  * its vertex structure. Vertex attributes have an order. The order is specified by the order they are added to this class.
- *
- * @author mzechner, Xoppa
  */
 public final class VertexAttributes implements Iterable<VertexAttribute>, Comparable<VertexAttributes> {
     /**

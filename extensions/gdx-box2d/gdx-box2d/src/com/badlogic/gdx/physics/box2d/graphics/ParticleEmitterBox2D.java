@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.physics.box2d.graphics;
 
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
@@ -13,11 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * @author kalle_h
- * <p>
  * ParticleEmitterBox2D use box2d rayCast:ing to achieve continuous collision detection against box2d fixtures. If
  * particle detect collision it change it's direction before actual collision would occur. Velocity is 100% reflected.
- * <p>
  * These particles does not have any other physical attributes or functionality. Particles can't collide to other
  * particles.
  */

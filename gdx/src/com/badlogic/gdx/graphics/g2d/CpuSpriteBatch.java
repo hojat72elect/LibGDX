@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g2d;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * Instead, the vertices get adjusted on subsequent draws to match the running batch. This can improve performance through longer
  * batches, for example when drawing Groups with transform enabled.
  *
- * @author Valentin Milea
  * @see SpriteBatch#renderCalls
  * @see com.badlogic.gdx.scenes.scene2d.Group#setTransform(boolean) Group.setTransform()
  */

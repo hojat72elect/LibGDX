@@ -7,9 +7,6 @@ import com.badlogic.gdx.physics.bullet.collision.ClosestRayResultCallback;
 import com.badlogic.gdx.physics.bullet.collision.btCollisionObject;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 
-/**
- * @author xoppa
- */
 public class RayCastTest extends BaseBulletTest {
     final int BOXCOUNT_X = 5;
     final int BOXCOUNT_Y = 5;

@@ -15,9 +15,6 @@ import com.badlogic.gdx.physics.bullet.collision.btDbvtBroadphase;
 import com.badlogic.gdx.physics.bullet.collision.btDefaultCollisionConfiguration;
 import com.badlogic.gdx.physics.bullet.collision.btManifoldPoint;
 
-/**
- * @author xoppa
- */
 public class CollisionWorldTest extends BaseBulletTest {
     BulletEntity movingBox;
     boolean hit = false;

@@ -51,8 +51,6 @@ import java.util.Map;
  * is used to bind a specific vertex attribute to a shader attribute. The shader source and the alias of the attribute must match
  * exactly for this to work.
  * </p>
- *
- * @author mzechner, Dave Clayton <contact@redskyforge.com>, Xoppa
  */
 public class Mesh implements Disposable {
     /**

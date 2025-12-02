@@ -8,8 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 /**
  * Helper class with static methods to build cone shapes using {@link MeshPartBuilder}.
  *
- * @author xoppa
- */
+ *  */
 public class ConeShapeBuilder extends BaseShapeBuilder {
     public static void build(MeshPartBuilder builder, float width, float height, float depth, int divisions) {
         build(builder, width, height, depth, divisions, 0, 360);

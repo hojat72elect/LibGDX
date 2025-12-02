@@ -9,9 +9,6 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.physics.bullet.collision.btConvexHullShape;
 import com.badlogic.gdx.physics.bullet.collision.btShapeHull;
 
-/**
- * @author xoppa
- */
 public class ConvexHullTest extends BaseBulletTest {
 
     public static btConvexHullShape createConvexHullShape(final Model model, boolean optimize) {

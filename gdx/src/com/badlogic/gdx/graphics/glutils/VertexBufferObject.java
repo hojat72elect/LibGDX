@@ -22,8 +22,6 @@ import java.nio.FloatBuffer;
  * constructor.
  * <p>
  * VertexBufferObjects must be disposed via the {@link #dispose()} method when no longer needed
- *
- * @author mzechner, Dave Clayton <contact@redskyforge.com>
  */
 public class VertexBufferObject implements VertexData {
     boolean isDirty = false;

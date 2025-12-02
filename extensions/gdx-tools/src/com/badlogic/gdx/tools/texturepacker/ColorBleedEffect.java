@@ -1,13 +1,8 @@
-
 package com.badlogic.gdx.tools.texturepacker;
 
 import java.awt.image.BufferedImage;
 import java.util.NoSuchElementException;
 
-/**
- * @author Ruben Garat
- * @author Ariel Coppes
- *  */
 public class ColorBleedEffect {
     static private final int[] offsets = {-1, -1, 0, -1, 1, -1, -1, 0, 1, 0, -1, 1, 0, 1, 1, 1};
 

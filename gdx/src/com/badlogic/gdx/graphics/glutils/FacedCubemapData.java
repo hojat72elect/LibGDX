@@ -14,8 +14,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
  * A FacedCubemapData holds a cubemap data definition based on a {@link TextureData} per face.
- *
- * @author Vincent Nousquet
  */
 public class FacedCubemapData implements CubemapData {
 

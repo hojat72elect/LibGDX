@@ -19,9 +19,6 @@ import com.badlogic.gdx.utils.BufferUtils;
 
 import java.nio.ShortBuffer;
 
-/**
- * @author xoppa
- */
 public class SoftMeshTest extends BaseBulletTest {
     btSoftBodyWorldInfo worldInfo;
     btSoftBody softBody;

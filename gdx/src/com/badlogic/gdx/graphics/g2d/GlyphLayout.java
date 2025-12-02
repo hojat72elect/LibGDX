@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g2d;
 
 import com.badlogic.gdx.graphics.Color;
@@ -26,9 +25,6 @@ import com.badlogic.gdx.utils.Pool.Poolable;
  * Glyphs positions are determined by {@link BitmapFontData#getGlyphs(GlyphRun, CharSequence, int, int, Glyph)}.
  * <p>
  * This class is not thread safe, even if synchronized externally, and must only be used from the game thread.
- *
- *  *  * @author Alexander Dorokhov
- * @author Thomas Creutzenberg
  */
 public class GlyphLayout implements Poolable {
     static private final Pool<GlyphRun> glyphRunPool = new DefaultPool<>(GlyphRun::new);

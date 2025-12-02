@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g2d;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
@@ -20,8 +19,6 @@ import java.io.IOException;
 
 /**
  * loads {@link PolygonRegion PolygonRegions} using a {@link com.badlogic.gdx.graphics.g2d.PolygonRegionLoader}
- *
- * @author dermetfan
  */
 public class PolygonRegionLoader extends SynchronousAssetLoader<PolygonRegion, PolygonRegionParameters> {
 

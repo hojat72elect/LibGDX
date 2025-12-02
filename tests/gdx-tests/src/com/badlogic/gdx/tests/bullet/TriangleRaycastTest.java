@@ -19,9 +19,6 @@ import com.badlogic.gdx.physics.bullet.linearmath.btVector3;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-/**
- * @author jsjolund
- */
 public class TriangleRaycastTest extends BaseBulletTest {
 
     private Model model;

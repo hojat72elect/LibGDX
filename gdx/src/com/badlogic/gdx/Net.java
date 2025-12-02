@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx;
 
 import com.badlogic.gdx.Application.ApplicationType;
@@ -38,8 +37,6 @@ import java.util.Map;
  * To create a TCP server socket that waits for incoming connections, invoke the
  * {@link #newServerSocket(Protocol, int, ServerSocketHints)} method. The returned {@link ServerSocket} offers an
  * {@link ServerSocket#accept(SocketHints options)} method that waits for an incoming connection.
- *
- *  *  * @author arielsan
  */
 public interface Net {
 

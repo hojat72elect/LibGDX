@@ -12,9 +12,6 @@ import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.physics.bullet.dynamics.btTypedConstraint;
 import com.badlogic.gdx.utils.Array;
 
-/**
- * @author xoppa
- */
 public class ConstraintsTest extends BaseBulletTest {
 
     final Array<btTypedConstraint> constraints = new Array<btTypedConstraint>();

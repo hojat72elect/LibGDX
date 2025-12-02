@@ -7,9 +7,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.bullet.collision.Collision;
 import com.badlogic.gdx.physics.bullet.collision.btCollisionObject;
 
-/**
- * @author xoppa
- */
 public class KinematicTest extends BaseBulletTest {
     final static Vector3 position1 = new Vector3(5f, 0.5f, 0f);
     final static Vector3 position2 = new Vector3(8f, 0.5f, 0f);

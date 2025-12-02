@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.bullet.collision.btCollisionShape;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody.btRigidBodyConstructionInfo;
 
 /**
- * @author xoppa Holds the information necessary to create a bullet btRigidBody. This class should outlive the btRigidBody
+ * Holds the information necessary to create a bullet btRigidBody. This class should outlive the btRigidBody
  * (entity) itself.
  */
 public class BulletConstructor extends BaseWorld.Constructor<BulletEntity> {

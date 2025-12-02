@@ -12,9 +12,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.bullet.collision.btBvhTriangleMeshShape;
 import com.badlogic.gdx.physics.bullet.collision.btSphereShape;
 
-/**
- * @author xoppa
- */
 public class MeshShapeTest extends BaseBulletTest {
 
     @Override

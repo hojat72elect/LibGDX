@@ -8,8 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * Helper class with static methods to build arrow shapes using {@link MeshPartBuilder}.
  *
- * @author xoppa
- */
+ *  */
 public class ArrowShapeBuilder extends BaseShapeBuilder {
     /**
      * Build an arrow

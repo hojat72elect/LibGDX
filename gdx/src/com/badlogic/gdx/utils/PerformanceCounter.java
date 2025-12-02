@@ -12,8 +12,7 @@ import com.badlogic.gdx.math.MathUtils;
  * total and current time (in seconds) the task takes. Likewise for the {@link #load} value, which is the percentage of the total
  * time.
  *
- * @author xoppa
- */
+ *  */
 public class PerformanceCounter {
     private final static float nano2seconds = MathUtils.nanoToSec;
     /**

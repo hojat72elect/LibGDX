@@ -18,9 +18,6 @@ import javax.imageio.ImageIO;
 
 /**
  * Unpacks a texture atlas into individual image files.
- *
- * @author Geert Konijnendijk
- *  * @author Michael Bazos
  */
 public class TextureUnpacker {
     private static final String DEFAULT_OUTPUT_PATH = "output";

@@ -34,9 +34,6 @@ import com.badlogic.gdx.physics.bullet.dynamics.btSequentialImpulseConstraintSol
 import com.badlogic.gdx.physics.bullet.linearmath.btDefaultMotionState;
 import com.badlogic.gdx.utils.Array;
 
-/**
- * @author xoppa
- */
 public class BasicBulletTest extends BulletTest {
     ModelBatch modelBatch;
     Environment lights;

@@ -3,8 +3,6 @@ package com.badlogic.gdx;
 
 /**
  * Convenience implementation of {@link Screen}. Derive from this and only override what you need.
- *
- * @author semtiko
  */
 public class ScreenAdapter implements Screen {
     @Override

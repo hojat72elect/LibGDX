@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.iosrobovm;
 
 import org.robovm.apple.foundation.NSArray;
@@ -11,10 +10,7 @@ import com.badlogic.gdx.backends.iosrobovm.objectal.OALSimpleAudio;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.IntArray;
 
-/** @author tescott
- * @author Tomski
- * 
- *         First pass at implementing OALSimpleAudio support. */
+/* First pass at implementing OALSimpleAudio support. */
 public class IOSSound implements Sound {
 
 	private final ALBuffer soundBuffer;

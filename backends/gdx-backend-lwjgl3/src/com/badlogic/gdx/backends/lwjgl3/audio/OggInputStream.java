@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl3.audio;
 
 import com.badlogic.gdx.Gdx;
@@ -21,64 +20,109 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-/** An input stream to read Ogg Vorbis.
- * @author kevin */
+/**
+ * An input stream to read Ogg Vorbis.
+ */
 public class OggInputStream extends InputStream {
     private final static int BUFFER_SIZE = 512;
-    /** Temporary scratch buffer */
-    byte[] buffer;
-    /** The number of bytes read */
-    int bytes = 0;
-    /** The true if we should be reading big endian */
-    boolean bigEndian = ByteOrder.nativeOrder().equals(ByteOrder.BIG_ENDIAN);
-    /** True if we're reached the end of the current bit stream */
-    boolean endOfBitStream = true;
-    /** True if we're initialise the OGG info block */
-    boolean inited = false;
-    /** The conversion buffer size */
-    private int convsize = BUFFER_SIZE * 4;
-    /** The buffer used to read OGG file */
+    /**
+     * The buffer used to read OGG file
+     */
     private final byte[] convbuffer;
-    /** The stream we're reading the OGG file from */
+    /**
+     * The stream we're reading the OGG file from
+     */
     private final InputStream input;
-    /** The audio information from the OGG header */
+    /**
+     * The audio information from the OGG header
+     */
     private final Info oggInfo = new Info(); // struct that stores all the static vorbis bitstream settings
-    /** True if we're at the end of the available data */
-    private boolean endOfStream;
-    /** The Vorbis SyncState used to decode the OGG */
+    /**
+     * The Vorbis SyncState used to decode the OGG
+     */
     private final SyncState syncState = new SyncState(); // sync and verify incoming physical bitstream
-    /** The Vorbis Stream State used to decode the OGG */
+    /**
+     * The Vorbis Stream State used to decode the OGG
+     */
     private final StreamState streamState = new StreamState(); // take physical pages, weld into a logical stream of packets
-    /** The current OGG page */
+    /**
+     * The current OGG page
+     */
     private final Page page = new Page(); // one Ogg bitstream page. Vorbis packets are inside
-    /** The current packet page */
+    /**
+     * The current packet page
+     */
     private final Packet packet = new Packet(); // one raw packet of data for decode
-    /** The comment read from the OGG file */
+    /**
+     * The comment read from the OGG file
+     */
     private final Comment comment = new Comment(); // struct that stores all the bitstream user comments
-    /** The Vorbis DSP stat eused to decode the OGG */
+    /**
+     * The Vorbis DSP stat eused to decode the OGG
+     */
     private final DspState dspState = new DspState(); // central working state for the packet->PCM decoder
-    /** The OGG block we're currently working with to convert PCM */
+    /**
+     * The OGG block we're currently working with to convert PCM
+     */
     private final Block vorbisBlock = new Block(dspState); // local working space for packet->PCM decode
-    /** The index into the byte array we currently read from */
-    private int readIndex;
-    /** The byte array store used to hold the data read from the ogg */
+    /**
+     * The byte array store used to hold the data read from the ogg
+     */
     private final ByteBuffer pcmBuffer;
-    /** The total number of bytes */
+    /**
+     * The total number of bytes
+     */
     private final int total;
+    /**
+     * Temporary scratch buffer
+     */
+    byte[] buffer;
+    /**
+     * The number of bytes read
+     */
+    int bytes = 0;
+    /**
+     * The true if we should be reading big endian
+     */
+    boolean bigEndian = ByteOrder.nativeOrder().equals(ByteOrder.BIG_ENDIAN);
+    /**
+     * True if we're reached the end of the current bit stream
+     */
+    boolean endOfBitStream = true;
+    /**
+     * True if we're initialise the OGG info block
+     */
+    boolean inited = false;
+    /**
+     * The conversion buffer size
+     */
+    private int convsize = BUFFER_SIZE * 4;
+    /**
+     * True if we're at the end of the available data
+     */
+    private boolean endOfStream;
+    /**
+     * The index into the byte array we currently read from
+     */
+    private int readIndex;
 
-    /** Create a new stream to decode OGG data
+    /**
+     * Create a new stream to decode OGG data
      *
-     * @param input The input stream from which to read the OGG file */
+     * @param input The input stream from which to read the OGG file
+     */
     public OggInputStream(InputStream input) {
         this(input, null);
     }
 
-    /** Create a new stream to decode OGG data, reusing buffers from another stream.
-     *
+    /**
+     * Create a new stream to decode OGG data, reusing buffers from another stream.
+     * <p>
      * It's not a good idea to use the old stream instance afterwards.
      *
-     * @param input The input stream from which to read the OGG file
-     * @param previousStream The stream instance to reuse buffers from, may be null */
+     * @param input          The input stream from which to read the OGG file
+     * @param previousStream The stream instance to reuse buffers from, may be null
+     */
     public OggInputStream(InputStream input, OggInputStream previousStream) {
         if (previousStream == null) {
             convbuffer = new byte[convsize];
@@ -98,9 +142,11 @@ public class OggInputStream extends InputStream {
         init();
     }
 
-    /** Get the number of bytes on the stream
+    /**
+     * Get the number of bytes on the stream
      *
-     * @return The number of the bytes on the stream */
+     * @return The number of the bytes on the stream
+     */
     public int getLength() {
         return total;
     }
@@ -113,25 +159,33 @@ public class OggInputStream extends InputStream {
         return oggInfo.rate;
     }
 
-    /** Initialise the streams and thread involved in the streaming of OGG data */
+    /**
+     * Initialise the streams and thread involved in the streaming of OGG data
+     */
     private void init() {
         initVorbis();
         readPCM();
     }
 
-    /** @see java.io.InputStream#available() */
+    /**
+     * @see java.io.InputStream#available()
+     */
     public int available() {
         return endOfStream ? 0 : 1;
     }
 
-    /** Initialise the vorbis decoding */
+    /**
+     * Initialise the vorbis decoding
+     */
     private void initVorbis() {
         syncState.init();
     }
 
-    /** Get a page and packet from that page
+    /**
+     * Get a page and packet from that page
      *
-     * @return True if there was a page available */
+     * @return True if there was a page available
+     */
     private boolean getPageAndPacket() {
         // grab some data at the head of the stream. We want the first page
         // (which is guaranteed to be small and only contain the Vorbis
@@ -254,7 +308,9 @@ public class OggInputStream extends InputStream {
         return true;
     }
 
-    /** Decode the OGG file as shown in the jogg/jorbis examples */
+    /**
+     * Decode the OGG file as shown in the jogg/jorbis examples
+     */
     private void readPCM() {
         boolean wrote = false;
 

@@ -7,9 +7,6 @@ import com.badlogic.gdx.physics.bullet.dynamics.InternalTickCallback;
 import com.badlogic.gdx.physics.bullet.dynamics.btDynamicsWorld;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 
-/**
- * @author xoppa
- */
 public class InternalTickTest extends BaseBulletTest {
     final int BOXCOUNT_X = 5;
     final int BOXCOUNT_Y = 5;

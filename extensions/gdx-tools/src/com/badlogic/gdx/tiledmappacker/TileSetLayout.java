@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tiledmappacker;
 
 import com.badlogic.gdx.files.FileHandle;
@@ -13,8 +12,6 @@ import javax.imageio.ImageIO;
 
 /**
  * Contains extra information that can only be calculated after a Tiled Map's tile set images are loaded.
- *
- * @author David Fraska
  */
 public class TileSetLayout {
 

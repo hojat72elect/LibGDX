@@ -8,8 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 /**
  * Helper class with static methods to build cylinders shapes using {@link MeshPartBuilder}.
  *
- * @author xoppa
- */
+ *  */
 public class CylinderShapeBuilder extends BaseShapeBuilder {
     /**
      * Build a cylinder

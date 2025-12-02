@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.bullet;
 
 import com.badlogic.gdx.graphics.Color;
@@ -8,9 +7,6 @@ import com.badlogic.gdx.physics.bullet.dynamics.btDynamicsWorld;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.physics.bullet.dynamics.btVehicleRaycaster;
 
-/**
- * @author jsjolund, ax-rwnd and mjolnir92
- */
 public class VehicleFilterTest extends VehicleTest {
 
     static final short FILTER_GROUP = (short) (1 << 11);

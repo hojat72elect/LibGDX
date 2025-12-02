@@ -10,8 +10,7 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 /**
  * Test case to validate an issue where soundID is in dirty state and controls a source used by a music.
  *
- * @author mgsx
- */
+ *  */
 public class AudioSoundAndMusicIsolationTest extends GdxTest {
     private Sound sound;
     private Music music;
