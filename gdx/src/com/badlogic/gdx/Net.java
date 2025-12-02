@@ -434,8 +434,7 @@ public interface Net {
         }
 
         /**
-         * Sets whether 301 and 302 redirects are followed. By default true. Can't be changed in the GWT backend because this uses
-         * XmlHttpRequests which always redirect.
+         * Sets whether 301 and 302 redirects are followed. By default true.
          *
          * @param followRedirects whether to follow redirects.
          * @throws IllegalArgumentException if redirection is disabled.

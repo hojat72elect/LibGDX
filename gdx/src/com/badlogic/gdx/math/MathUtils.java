@@ -115,8 +115,7 @@ public final class MathUtils {
                 / ((0.015873015873015872f) * x4 - (0.4444444444444444f) * x2 + 1f);
         // How we calculated those long constants above (from Stack Exchange, by Soonts):
 // return x * ((1.0/945.0) * x4 - (1.0/9.0) * x2 + 1.0) / ((1.0/63.0) * x4 - (4.0/9.0) * x2 + 1.0);
-// Normally, it would be best to show the division steps, but if GWT isn't computing mathematical constants at
-// compile-time, which I don't know if it does, that would make the shown-division way slower by 4 divisions.
+// Normally, it would be best to show the division steps.
     }
 
     /**

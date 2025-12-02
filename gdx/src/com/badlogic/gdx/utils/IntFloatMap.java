@@ -108,9 +108,9 @@ public class IntFloatMap implements Iterable<IntFloatMap.Entry> {
      * <p>
      * The default implementation uses Fibonacci hashing on the item's {@link Object#hashCode()}: the hashcode is multiplied by a
      * long constant (2 to the 64th, divided by the golden ratio) then the uppermost bits are shifted into the lowest positions to
-     * obtain an index in the desired range. Multiplication by a long may be slower than int (eg on GWT) but greatly improves
+     * obtain an index in the desired range. Multiplication by a long may be slower than int but greatly improves
      * rehashing, allowing even very poor hashcodes, such as those that only differ in their upper bits, to be used without high
-     * collision rates. Fibonacci hashing has increased collision rates when all or most hashcodes are multiples of larger
+     * collision rates. Fibonacci hashing has increased collision rates when all or most hash codes are multiples of larger
      * Fibonacci numbers (see <a href=
      * "https://probablydance.com/2018/06/16/fibonacci-hashing-the-optimization-that-the-world-forgot-or-a-better-alternative-to-integer-modulo/">Malte
      * Skarupke's blog post</a>).

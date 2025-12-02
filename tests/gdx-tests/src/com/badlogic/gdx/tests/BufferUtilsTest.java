@@ -98,7 +98,7 @@ public class BufferUtilsTest extends GdxTest {
         checkFloat(fb.get(), 7);
         checkFloat(fb.get(), 8);
 
-        if (Gdx.app.getType() != ApplicationType.WebGL) { // gwt throws: NYI: Numbers.doubleToRawLongBits
+        if (Gdx.app.getType() != ApplicationType.WebGL) {
             ((Buffer) db).position(4);
             BufferUtils.copy(new double[]{1, 2, 3, 4}, 0, db, 4);
             checkFloat(db.get(), 1);

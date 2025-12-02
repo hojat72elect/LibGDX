@@ -47,8 +47,7 @@ public class Pixmap implements Disposable {
     }
 
     /**
-     * Creates a new Pixmap instance from the given encoded image data. The image can be encoded as JPEG, PNG or BMP. Not
-     * available on GWT backend.
+     * Creates a new Pixmap instance from the given encoded image data. The image can be encoded as JPEG, PNG or BMP.
      *
      * @param encodedData the encoded image data
      * @param offset      the offset
@@ -62,8 +61,7 @@ public class Pixmap implements Disposable {
         }
     }
     /**
-     * Creates a new Pixmap instance from the given encoded image data. The image can be encoded as JPEG, PNG or BMP. Not
-     * available on GWT backend.
+     * Creates a new Pixmap instance from the given encoded image data. The image can be encoded as JPEG, PNG or BMP.
      *
      * @param encodedData the encoded image data
      * @param offset      the offset relative to the base address of encodedData
@@ -79,9 +77,7 @@ public class Pixmap implements Disposable {
     }
 
     /**
-     * Creates a new Pixmap instance from the given encoded image data. The image can be encoded as JPEG, PNG or BMP. Not
-     * available on GWT backend.
-     * <p>
+     * Creates a new Pixmap instance from the given encoded image data. The image can be encoded as JPEG, PNG or BMP.
      * Offset is based on the position of the buffer. Length is based on the remaining bytes of the buffer.
      *
      * @param encodedData the encoded image data

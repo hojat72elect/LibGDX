@@ -1591,8 +1591,8 @@ public class ParticleEmitter {
             else if (reader.markSupported())
                 reader.reset();
             else {
-                // @see java.io.BufferedReader#markSupported may return false in some platforms (such as GWT),
-                // in that case backwards commpatibility is not possible
+                // @see java.io.BufferedReader#markSupported may return false in some platforms,
+                // in that case backwards compatibility is not possible.
                 String errorMessage = "The loaded particle effect descriptor file uses an old invalid format. "
                         + "Please download the latest version of the Particle Editor tool and recreate the file by"
                         + " loading and saving it again.";

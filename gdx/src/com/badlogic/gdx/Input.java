@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.ObjectIntMap;
 /**
  * <p>
  * Interface to the input facilities. This allows polling the state of the keyboard, the touch screen and the accelerometer. On
- * some backends (desktop, gwt, etc) the touch screen is replaced by mouse input. The accelerometer is of course not available on
+ * some backends (desktop, etc) the touch screen is replaced by mouse input. The accelerometer is of course not available on
  * all backends.
  * </p>
  *
@@ -167,7 +167,7 @@ public interface Input {
 
     /**
      * Returns whether a given button has just been pressed. Button constants can be found in {@link Buttons}. On Android only the
-     * Buttons#LEFT constant is meaningful before version 4.0. On WebGL (GWT), only LEFT, RIGHT and MIDDLE buttons are supported.
+     * Buttons#LEFT constant is meaningful before version 4.0.
      *
      * @param button the button to check.
      * @return true or false.
@@ -342,8 +342,8 @@ public interface Input {
     long getCurrentEventTime();
 
     /**
-     * Sets whether the given key on Android or GWT should be caught. No effect on other platforms. All keys that are not caught
-     * may be handled by other apps or background processes on Android, or may trigger default browser behaviour on GWT. For
+     * Sets whether the given key on Android should be caught. No effect on other platforms. All keys that are not caught
+     * may be handled by other apps or background processes on Android. For
      * example, media or volume buttons are handled by background media players if present, or Space key triggers a scroll. All
      * keys you need to control your game should be caught to prevent unintended behaviour.
      *

@@ -996,7 +996,7 @@ public class Stage extends InputAdapter implements Disposable {
     }
 
     /**
-     * Internal class for managing touch focus. Public only for GWT.
+     * Internal class for managing touch focus.
      *
      * @author Nathan Sweet
      */

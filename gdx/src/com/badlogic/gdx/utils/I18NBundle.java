@@ -77,8 +77,7 @@ public class I18NBundle {
     private TextFormatter formatter;
 
     /**
-     * Returns the flag indicating whether to use the simplified message pattern syntax (default is false). This flag is always
-     * assumed to be true on GWT backend.
+     * Returns the flag indicating whether to use the simplified message pattern syntax (default is false).
      */
     public static boolean getSimpleFormatter() {
         return simpleFormatter;
@@ -180,7 +179,7 @@ public class I18NBundle {
 
             // Check the loaded bundle (if any)
             if (bundle != null) {
-                Locale bundleLocale = bundle.getLocale(); // WTH? GWT can't access bundle.locale directly
+                Locale bundleLocale = bundle.getLocale();
                 boolean isBaseBundle = bundleLocale.equals(Locale.ROOT);
 
                 if (!isBaseBundle || bundleLocale.equals(locale)) {
@@ -408,8 +407,6 @@ public class I18NBundle {
      * @param reader the reader
      * @throws IOException if an error occurred when reading from the input stream.
      */
-    // NOTE:
-    // This method can't be private otherwise GWT can't access it from loadBundle()
     protected void load(Reader reader) throws IOException {
         properties = new ObjectMap<>();
         PropertiesUtils.load(properties, reader);
