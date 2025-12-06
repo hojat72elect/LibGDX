@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 public class Polyline implements Shape2D {

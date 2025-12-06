@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.headless;
 
 import com.badlogic.gdx.Files;

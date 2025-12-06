@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.compression.rangecoder;
 
 import java.io.IOException;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.scenes.scene2d.ui;
 
 import com.badlogic.gdx.graphics.g2d.Batch;

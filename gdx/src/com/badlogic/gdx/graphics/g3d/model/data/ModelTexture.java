@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.model.data;
 
 import com.badlogic.gdx.math.Vector2;

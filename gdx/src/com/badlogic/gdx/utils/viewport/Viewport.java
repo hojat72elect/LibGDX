@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.viewport;
 
 import com.badlogic.gdx.ApplicationListener;

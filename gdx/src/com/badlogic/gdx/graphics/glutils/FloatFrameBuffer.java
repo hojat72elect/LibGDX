@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.glutils;
 
 import com.badlogic.gdx.Application.ApplicationType;

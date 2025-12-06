@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.maps.tiled.tiles;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

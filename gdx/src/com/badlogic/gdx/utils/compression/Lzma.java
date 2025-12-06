@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.compression;
 
 import java.io.IOException;

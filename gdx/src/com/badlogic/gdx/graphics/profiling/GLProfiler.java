@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.profiling;
 
 import com.badlogic.gdx.Gdx;

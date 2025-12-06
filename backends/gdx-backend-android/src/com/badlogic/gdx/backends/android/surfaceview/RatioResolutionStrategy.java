@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android.surfaceview;
 
 import android.view.View;

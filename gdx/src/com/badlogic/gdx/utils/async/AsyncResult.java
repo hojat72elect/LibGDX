@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.async;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;

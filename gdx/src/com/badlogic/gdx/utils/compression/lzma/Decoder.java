@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.compression.lzma;
 
 import com.badlogic.gdx.utils.compression.lz.OutWindow;

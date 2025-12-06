@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.headers;
 
 import com.badlogic.gdx.files.FileHandle;

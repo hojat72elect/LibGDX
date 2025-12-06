@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.iosrobovm;
 
 /** Represents the bounds inside GL view to which libGDX draws. These bounds may be same as view's dimensions, but may differ in

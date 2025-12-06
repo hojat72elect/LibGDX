@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.g3d.shadows.system;
 
 import com.badlogic.gdx.graphics.Camera;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx;
 
 import java.util.Map;

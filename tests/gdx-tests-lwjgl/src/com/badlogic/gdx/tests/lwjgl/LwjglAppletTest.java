@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.lwjgl;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplet;

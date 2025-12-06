@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl.audio;
 
 import com.badlogic.gdx.audio.AudioRecorder;

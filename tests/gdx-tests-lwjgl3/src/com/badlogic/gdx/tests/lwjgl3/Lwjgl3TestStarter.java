@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.lwjgl3;
 
 import com.badlogic.gdx.ApplicationAdapter;

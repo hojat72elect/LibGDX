@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.utils.shapebuilders;
 
 import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;

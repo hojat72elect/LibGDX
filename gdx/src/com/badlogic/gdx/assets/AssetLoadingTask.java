@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.assets;
 
 import com.badlogic.gdx.assets.loaders.AssetLoader;

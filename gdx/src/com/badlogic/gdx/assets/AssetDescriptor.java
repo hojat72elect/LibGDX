@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.assets;
 
 import com.badlogic.gdx.files.FileHandle;

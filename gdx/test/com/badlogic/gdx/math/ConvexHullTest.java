@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 import static org.junit.Assert.assertEquals;
@@ -55,6 +54,6 @@ public class ConvexHullTest {
 			}
 		}
 
-		fail("Array items " + array.toString() + " does not match witness array " + Arrays.toString(witness));
+		fail("Array items " + array + " does not match witness array " + Arrays.toString(witness));
 	}
 }

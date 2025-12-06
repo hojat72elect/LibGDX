@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.alpha;

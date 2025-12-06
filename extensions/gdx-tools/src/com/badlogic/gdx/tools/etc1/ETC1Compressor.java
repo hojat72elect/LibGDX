@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.etc1;
 
 import com.badlogic.gdx.files.FileHandle;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.math.Intersector.SplitTriangle;
@@ -13,7 +12,7 @@ public class IntersectorTest {
 	private static boolean triangleEquals (float[] base, int baseOffset, int stride, float[] comp) {
 		assertTrue(stride >= 3);
 		assertTrue(base.length - baseOffset >= 9);
-		assertTrue(comp.length == 9);
+        assertEquals(9, comp.length);
 
 		int offset = -1;
 		// Find first comp vertex in base triangle
@@ -46,9 +45,9 @@ public class IntersectorTest {
 		{// All back
 			float[] fTriangle = {-10, 0, 10, -1, 0, 0, -12, 0, 10}; // Whole triangle on the back side
 			Intersector.splitTriangle(fTriangle, plane, split);
-			assertTrue(split.numBack == 1);
-			assertTrue(split.numFront == 0);
-			assertTrue(split.total == 1);
+            assertEquals(1, split.numBack);
+            assertEquals(0, split.numFront);
+            assertEquals(1, split.total);
 			assertTrue(triangleEquals(split.back, 0, 3, fTriangle));
 
 			fTriangle[4] = 5f;
@@ -58,18 +57,18 @@ public class IntersectorTest {
 		{// All front
 			float[] fTriangle = {10, 0, 10, 1, 0, 0, 12, 0, 10}; // Whole triangle on the front side
 			Intersector.splitTriangle(fTriangle, plane, split);
-			assertTrue(split.numBack == 0);
-			assertTrue(split.numFront == 1);
-			assertTrue(split.total == 1);
+            assertEquals(0, split.numBack);
+            assertEquals(1, split.numFront);
+            assertEquals(1, split.total);
 			assertTrue(triangleEquals(split.front, 0, 3, fTriangle));
 		}
 
 		{// Two back, one front
 			float[] triangle = {-10, 0, 10, 10, 0, 0, -10, 0, -10}; // ABC One vertex in front, two in back
 			Intersector.splitTriangle(triangle, plane, split); // Split points are D (0,0,5) and E (0,0,-5)
-			assertTrue(split.numBack == 2);
-			assertTrue(split.numFront == 1);
-			assertTrue(split.total == 3);
+            assertEquals(2, split.numBack);
+            assertEquals(1, split.numFront);
+            assertEquals(3, split.total);
 			// There is only one way to triangulate front
 			assertTrue(triangleEquals(split.front, 0, 3, new float[] {0, 0, 5, 10, 0, 0, 0, 0, -5}));
 
@@ -87,9 +86,9 @@ public class IntersectorTest {
 		{// Two front, one back
 			float[] triangle = {10, 0, 10, -10, 0, 0, 10, 0, -10}; // ABC One vertex in back, two in front
 			Intersector.splitTriangle(triangle, plane, split); // Split points are D (0,0,5) and E (0,0,-5)
-			assertTrue(split.numBack == 1);
-			assertTrue(split.numFront == 2);
-			assertTrue(split.total == 3);
+            assertEquals(1, split.numBack);
+            assertEquals(2, split.numFront);
+            assertEquals(3, split.total);
 			// There is only one way to triangulate back
 			assertTrue(triangleEquals(split.back, 0, 3, new float[] {0, 0, 5, -10, 0, 0, 0, 0, -5}));
 
@@ -124,18 +123,18 @@ public class IntersectorTest {
 		Intersector.MinimumTranslationVector mtv = new Intersector.MinimumTranslationVector();
 		intersects = Intersector.intersectSegmentCircle(new Vector2(1.5f, 6f), new Vector2(1.5f, 3f), circle, mtv);
 		assertTrue(intersects);
-		assertTrue(mtv.normal.equals(new Vector2(-1f, 0)));
-		assertTrue(mtv.depth == 0.5f);
+        assertEquals(mtv.normal, new Vector2(-1f, 0));
+        assertEquals(0.5f, mtv.depth, 0.0);
 		// Segment contains circle center point
 		intersects = Intersector.intersectSegmentCircle(new Vector2(4f, 5f), new Vector2(6f, 5f), circle, mtv);
 		assertTrue(intersects);
 		assertTrue(mtv.normal.equals(new Vector2(0, 1f)) || mtv.normal.equals(new Vector2(0f, -1f)));
-		assertTrue(mtv.depth == 4f);
+        assertEquals(4f, mtv.depth, 0.0);
 		// Segment contains circle center point which is the same as the end point
 		intersects = Intersector.intersectSegmentCircle(new Vector2(4f, 5f), new Vector2(5f, 5f), circle, mtv);
 		assertTrue(intersects);
 		assertTrue(mtv.normal.equals(new Vector2(0, 1f)) || mtv.normal.equals(new Vector2(0f, -1f)));
-		assertTrue(mtv.depth == 4f);
+        assertEquals(4f, mtv.depth, 0.0);
 	}
 
 	@Test
@@ -264,7 +263,7 @@ public class IntersectorTest {
 		assertArrayEquals(new float[] {1, -2, 1, -1.5f, 1.5f, -1.5f, 1.5f, -2}, intersectionPolygon.getTransformedVertices(), 0);
 		// verify that the origin has also been reset
 		intersectionPolygon.setScale(2, 2);
-		assertArrayEquals(new float[] {2 * 1, 2 * -2, 2 * 1, 2 * -1.5f, 2 * 1.5f, 2 * -1.5f, 2 * 1.5f, 2 * -2},
+		assertArrayEquals(new float[] {2, 2 * -2, 2, 2 * -1.5f, 2 * 1.5f, 2 * -1.5f, 2 * 1.5f, 2 * -2},
 			intersectionPolygon.getTransformedVertices(), 0);
 	}
 }

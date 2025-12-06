@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl3.audio;
 
 import static org.lwjgl.openal.AL10.AL_BUFFER;

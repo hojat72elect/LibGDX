@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 import java.util.ArrayList;
@@ -17,10 +16,10 @@ import com.badlogic.gdx.utils.Array;
 @RunWith(Parameterized.class)
 public class BezierTest {
 
-	private static float epsilon = Float.MIN_NORMAL;
-	private static float epsilonApprimations = 1e-6f;
+	private static final float epsilon = Float.MIN_NORMAL;
+	private static final float epsilonApprimations = 1e-6f;
 
-	private static enum ImportType {
+	private enum ImportType {
 		LibGDXArrays, JavaArrays, JavaVarArgs
 	}
 

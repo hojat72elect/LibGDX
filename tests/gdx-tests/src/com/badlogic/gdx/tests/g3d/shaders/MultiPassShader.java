@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.g3d.shaders;
 
 import com.badlogic.gdx.graphics.GL20;

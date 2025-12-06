@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.flame;
 
 import java.awt.EventQueue;

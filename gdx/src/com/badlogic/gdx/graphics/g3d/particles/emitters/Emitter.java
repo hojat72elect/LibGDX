@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.particles.emitters;
 
 import com.badlogic.gdx.graphics.g3d.particles.ParticleControllerComponent;

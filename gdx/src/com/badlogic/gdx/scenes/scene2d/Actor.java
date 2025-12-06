@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.scenes.scene2d;
 
 import static com.badlogic.gdx.utils.Align.bottom;

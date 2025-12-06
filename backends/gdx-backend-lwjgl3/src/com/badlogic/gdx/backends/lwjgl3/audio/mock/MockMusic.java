@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl3.audio.mock;
 
 import com.badlogic.gdx.audio.Music;

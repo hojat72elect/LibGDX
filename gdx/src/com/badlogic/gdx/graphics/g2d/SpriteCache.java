@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g2d;
 
 import static com.badlogic.gdx.graphics.g2d.Sprite.SPRITE_SIZE;

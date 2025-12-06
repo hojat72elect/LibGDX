@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools;
 
 import com.badlogic.gdx.utils.Array;

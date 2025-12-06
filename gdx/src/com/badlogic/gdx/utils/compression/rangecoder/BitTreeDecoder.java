@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.compression.rangecoder;
 
 public class BitTreeDecoder {

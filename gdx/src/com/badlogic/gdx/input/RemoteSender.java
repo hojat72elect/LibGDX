@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.input;
 
 import com.badlogic.gdx.Gdx;

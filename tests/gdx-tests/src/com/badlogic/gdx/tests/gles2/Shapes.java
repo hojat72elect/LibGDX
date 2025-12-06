@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.gles2;
 
 import com.badlogic.gdx.graphics.Mesh;

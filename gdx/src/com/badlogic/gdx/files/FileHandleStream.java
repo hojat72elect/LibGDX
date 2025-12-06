@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.files;
 
 import com.badlogic.gdx.Files.FileType;

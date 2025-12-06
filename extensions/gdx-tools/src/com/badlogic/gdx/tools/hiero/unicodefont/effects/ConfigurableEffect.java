@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 
 import java.util.List;

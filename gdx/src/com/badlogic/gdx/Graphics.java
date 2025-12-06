@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx;
 
 import com.badlogic.gdx.graphics.Cursor;

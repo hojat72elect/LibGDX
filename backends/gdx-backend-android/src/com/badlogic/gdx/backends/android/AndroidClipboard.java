@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.android;
 
 import android.content.ClipData;

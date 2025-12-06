@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.flame;
 
 import com.badlogic.gdx.graphics.g3d.particles.values.NumericValue;

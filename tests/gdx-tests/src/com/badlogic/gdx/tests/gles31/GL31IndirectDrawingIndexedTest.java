@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.gles31;
 
 import com.badlogic.gdx.Gdx;

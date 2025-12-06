@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.superkoalio;
 
 import com.badlogic.gdx.Gdx;

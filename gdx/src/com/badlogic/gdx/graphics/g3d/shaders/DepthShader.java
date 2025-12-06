@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.shaders;
 
 import com.badlogic.gdx.Gdx;

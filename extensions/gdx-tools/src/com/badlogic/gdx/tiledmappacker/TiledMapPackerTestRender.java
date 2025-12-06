@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tiledmappacker;
 
 import com.badlogic.gdx.ApplicationAdapter;

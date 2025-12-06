@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g2d.freetype;
 
 import com.badlogic.gdx.Gdx;

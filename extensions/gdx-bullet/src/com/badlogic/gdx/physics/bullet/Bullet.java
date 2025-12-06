@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.physics.bullet;
 
 import com.badlogic.gdx.graphics.g3d.model.MeshPart;

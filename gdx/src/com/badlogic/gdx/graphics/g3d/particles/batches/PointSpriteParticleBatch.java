@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.particles.batches;
 
 import com.badlogic.gdx.Application.ApplicationType;

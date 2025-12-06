@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.iosrobovm;
 
 import com.badlogic.gdx.ApplicationLogger;

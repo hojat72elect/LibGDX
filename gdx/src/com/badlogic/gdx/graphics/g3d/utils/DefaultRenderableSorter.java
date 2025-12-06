@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.utils;
 
 import com.badlogic.gdx.graphics.Camera;

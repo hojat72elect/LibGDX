@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.utils.Pool.Poolable;

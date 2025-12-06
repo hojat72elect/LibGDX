@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import java.io.IOException;
@@ -674,7 +673,7 @@ public class CharArrayTest {
 		Assert.assertTrue(array1.equals(array2));
 		Assert.assertFalse(array1.equals(array3));
 		Assert.assertFalse(array1.equals(null));
-		Assert.assertFalse(array1.equals("Hello")); // Different type
+        Assert.assertNotEquals("Hello", array1); // Different type
 
 		// HashCode
 		Assert.assertEquals(array1.hashCode(), array2.hashCode());

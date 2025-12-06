@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.iosrobovm;
 
 /** An IOSViewControllerListener can be added to an {@link IOSApplication} via

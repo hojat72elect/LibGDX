@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import static org.junit.Assert.*;
@@ -993,7 +992,7 @@ public class JsonMatcherTests {
 		test( // Test capturing only the first value when other pattern prevents stopping
 			json, //
 			new String[] {"*/(type)", "*/devices/*/(serial_num[])"}, //
-			new String[] {"ENCHARGE", "[32131444,234234211,9834711]"});
+                "ENCHARGE", "[32131444,234234211,9834711]");
 	}
 
 	@Test
@@ -1276,7 +1275,7 @@ public class JsonMatcherTests {
 		value.getString("admin_state_str");
 		value.getBoolean("sleep_enabled");
 		value.get("device_status").asStringArray();
-		assertTrue(value.get("object").type() == ValueType.object);
+        assertSame(value.get("object").type(), ValueType.object);
 	}
 
 	@Test
@@ -1446,7 +1445,7 @@ public class JsonMatcherTests {
 		JsonMatcher matcher = new JsonMatcher() {
 			@Override
 			protected void value (JsonToken name, JsonToken value) {
-				if (notParsedValue != null && name.equals(notParsedValue))
+				if (name.equals(notParsedValue))
 					fail("Should have ended before parsing value: " + notParsedValue);
 				super.value(name, value);
 			}

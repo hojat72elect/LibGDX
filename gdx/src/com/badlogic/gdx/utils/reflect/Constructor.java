@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils.reflect;
 
 import java.lang.reflect.InvocationTargetException;

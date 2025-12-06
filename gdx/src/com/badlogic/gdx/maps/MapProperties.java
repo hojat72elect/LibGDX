@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.maps;
 
 import com.badlogic.gdx.utils.ObjectMap;

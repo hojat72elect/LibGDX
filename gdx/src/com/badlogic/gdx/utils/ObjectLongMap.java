@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import static com.badlogic.gdx.utils.ObjectSet.tableSize;

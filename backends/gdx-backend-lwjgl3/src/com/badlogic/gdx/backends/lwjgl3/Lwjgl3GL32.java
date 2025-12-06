@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl3;
 
 import com.badlogic.gdx.graphics.GL32;

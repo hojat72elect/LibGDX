@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.particles;
 
 import com.badlogic.gdx.graphics.g3d.Renderable;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import org.junit.Test;

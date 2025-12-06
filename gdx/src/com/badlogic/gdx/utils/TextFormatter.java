@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import java.text.MessageFormat;

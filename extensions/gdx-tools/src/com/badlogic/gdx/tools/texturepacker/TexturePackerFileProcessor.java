@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.texturepacker;
 
 import com.badlogic.gdx.tools.FileProcessor;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl;
 
 import static com.badlogic.gdx.utils.SharedLibraryLoader.bitness;

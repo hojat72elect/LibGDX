@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.scenes.scene2d.ui;
 
 import static com.badlogic.gdx.math.Interpolation.fade;

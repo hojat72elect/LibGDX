@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.attributes;
 
 import com.badlogic.gdx.graphics.GL20;

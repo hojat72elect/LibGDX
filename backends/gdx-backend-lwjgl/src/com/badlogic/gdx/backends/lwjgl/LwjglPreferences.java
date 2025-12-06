@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl;
 
 import com.badlogic.gdx.Files.FileType;

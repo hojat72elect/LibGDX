@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.loader;
 
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.iosrobovm.objectal;
 
 import com.badlogic.gdx.audio.AudioDevice;

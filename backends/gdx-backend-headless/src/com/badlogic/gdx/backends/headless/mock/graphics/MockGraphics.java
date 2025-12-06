@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.headless.mock.graphics;
 
 import com.badlogic.gdx.AbstractGraphics;

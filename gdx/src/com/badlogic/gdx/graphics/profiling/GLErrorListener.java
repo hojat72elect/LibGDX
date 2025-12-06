@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.profiling;
 
 import static com.badlogic.gdx.graphics.profiling.GLInterceptor.resolveErrorNumber;

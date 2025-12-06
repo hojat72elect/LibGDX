@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.lwjgl3.angle;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;

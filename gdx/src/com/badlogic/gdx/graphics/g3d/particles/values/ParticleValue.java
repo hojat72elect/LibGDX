@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.particles.values;
 
 import com.badlogic.gdx.utils.Json;

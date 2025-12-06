@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.bench;
 
 import com.badlogic.gdx.Gdx;

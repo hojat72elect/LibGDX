@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.g3d;
 
 import com.badlogic.gdx.files.FileHandle;

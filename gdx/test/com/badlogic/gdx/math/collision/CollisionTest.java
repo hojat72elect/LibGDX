@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math.collision;
 
 import static org.junit.Assert.assertFalse;

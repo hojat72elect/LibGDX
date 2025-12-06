@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.headless.mock.audio;
 
 import com.badlogic.gdx.audio.Sound;

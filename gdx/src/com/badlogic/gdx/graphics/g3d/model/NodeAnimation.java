@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.graphics.g3d.model;
 
 import com.badlogic.gdx.graphics.g3d.Model;

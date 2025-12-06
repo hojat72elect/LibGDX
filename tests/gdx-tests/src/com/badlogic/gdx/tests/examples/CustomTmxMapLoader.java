@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.examples;
 
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;

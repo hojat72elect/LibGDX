@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.tests.utils.GdxTest;

@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.math;
 
 import static org.junit.Assert.assertEquals;

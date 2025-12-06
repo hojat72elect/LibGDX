@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.g3d.shadows.system.classical;
 
 import com.badlogic.gdx.graphics.g3d.Renderable;

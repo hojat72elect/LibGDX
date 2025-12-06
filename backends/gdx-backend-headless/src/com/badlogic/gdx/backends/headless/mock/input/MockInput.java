@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.headless.mock.input;
 
 import com.badlogic.gdx.Input;

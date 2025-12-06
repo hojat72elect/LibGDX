@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.utils;
 
 import static org.junit.Assert.*;
@@ -79,7 +78,7 @@ public class LongQueueTest {
 	public void resizableQueueTest () {
 		final LongQueue q = new LongQueue(8);
 
-		assertTrue("New queue is not empty!", q.size == 0);
+        assertEquals("New queue is not empty!", 0, q.size);
 
 		for (int i = 0; i < 100; i++) {
 
@@ -90,32 +89,32 @@ public class LongQueueTest {
 					fail("Failed to add element " + j + " (" + i + ")");
 				}
 				final long peeked = q.last();
-				assertTrue("peekLast shows " + peeked + ", should be " + j + " (" + i + ")", peeked == j);
+                assertEquals("peekLast shows " + peeked + ", should be " + j + " (" + i + ")", peeked, j);
 				final int size = q.size;
-				assertTrue("Size should be " + (j + 1) + " but is " + size + " (" + i + ")", size == j + 1);
+                assertEquals("Size should be " + (j + 1) + " but is " + size + " (" + i + ")", size, j + 1);
 			}
 
 			if (i != 0) {
 				final long peek = q.first();
-				assertTrue("First thing is not zero but " + peek + " (" + i + ")", peek == 0);
+                assertEquals("First thing is not zero but " + peek + " (" + i + ")", 0, peek);
 			}
 
 			for (int j = 0; j < i; j++) {
 				final long pop = q.removeFirst();
-				assertTrue("Popped should be " + j + " but is " + pop + " (" + i + ")", pop == j);
+                assertEquals("Popped should be " + j + " but is " + pop + " (" + i + ")", pop, j);
 
 				final int size = q.size;
-				assertTrue("Size should be " + (i - 1 - j) + " but is " + size + " (" + i + ")", size == i - 1 - j);
+                assertEquals("Size should be " + (i - 1 - j) + " but is " + size + " (" + i + ")", size, i - 1 - j);
 			}
 
-			assertTrue("Not empty after cycle " + i, q.size == 0);
+            assertEquals("Not empty after cycle " + i, 0, q.size);
 		}
 
 		for (int i = 0; i < 56; i++) {
 			q.addLast(42);
 		}
 		q.clear();
-		assertTrue("Clear did not clear properly", q.size == 0);
+        assertEquals("Clear did not clear properly", 0, q.size);
 	}
 
 	/** Same as resizableQueueTest, but in reverse */
@@ -123,7 +122,7 @@ public class LongQueueTest {
 	public void resizableDequeTest () {
 		final LongQueue q = new LongQueue(8);
 
-		assertTrue("New deque is not empty!", q.size == 0);
+        assertEquals("New deque is not empty!", 0, q.size);
 
 		for (int i = 0; i < 100; i++) {
 
@@ -134,32 +133,32 @@ public class LongQueueTest {
 					fail("Failed to add element " + j + " (" + i + ")");
 				}
 				final long peeked = q.first();
-				assertTrue("peek shows " + peeked + ", should be " + j + " (" + i + ")", peeked == j);
+                assertEquals("peek shows " + peeked + ", should be " + j + " (" + i + ")", peeked, j);
 				final int size = q.size;
-				assertTrue("Size should be " + (j + 1) + " but is " + size + " (" + i + ")", size == j + 1);
+                assertEquals("Size should be " + (j + 1) + " but is " + size + " (" + i + ")", size, j + 1);
 			}
 
 			if (i != 0) {
 				final long peek = q.last();
-				assertTrue("Last thing is not zero but " + peek + " (" + i + ")", peek == 0);
+                assertEquals("Last thing is not zero but " + peek + " (" + i + ")", 0, peek);
 			}
 
 			for (int j = 0; j < i; j++) {
 				final long pop = q.removeLast();
-				assertTrue("Popped should be " + j + " but is " + pop + " (" + i + ")", pop == j);
+                assertEquals("Popped should be " + j + " but is " + pop + " (" + i + ")", pop, j);
 
 				final int size = q.size;
-				assertTrue("Size should be " + (i - 1 - j) + " but is " + size + " (" + i + ")", size == i - 1 - j);
+                assertEquals("Size should be " + (i - 1 - j) + " but is " + size + " (" + i + ")", size, i - 1 - j);
 			}
 
-			assertTrue("Not empty after cycle " + i, q.size == 0);
+            assertEquals("Not empty after cycle " + i, 0, q.size);
 		}
 
 		for (int i = 0; i < 56; i++) {
 			q.addFirst(42);
 		}
 		q.clear();
-		assertTrue("Clear did not clear properly", q.size == 0);
+        assertEquals("Clear did not clear properly", 0, q.size);
 	}
 
 	@Test
@@ -172,7 +171,7 @@ public class LongQueueTest {
 			assertEquals("get(0) is not equal to peek (" + i + ")", q.get(0), q.first());
 			assertEquals("get(size-1) is not equal to peekLast (" + i + ")", q.get(q.size - 1), q.last());
 			for (int j = 0; j < 4; j++) {
-				assertTrue(q.get(j) == j);
+                assertEquals(q.get(j), j);
 			}
 			for (int j = 0; j < 4 - 1; j++) {
 				q.removeFirst();
@@ -254,13 +253,13 @@ public class LongQueueTest {
 	@Test
 	public void toStringTest () {
 		LongQueue q = new LongQueue(1);
-		assertTrue(q.toString().equals("[]"));
+        assertEquals("[]", q.toString());
 		q.addLast(4);
-		assertTrue(q.toString().equals("[4]"));
+        assertEquals("[4]", q.toString());
 		q.addLast(5);
 		q.addLast(6);
 		q.addLast(7);
-		assertTrue(q.toString().equals("[4, 5, 6, 7]"));
+        assertEquals("[4, 5, 6, 7]", q.toString());
 	}
 
 	@Test

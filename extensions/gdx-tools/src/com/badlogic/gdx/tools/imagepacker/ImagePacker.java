@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tools.imagepacker;
 
 import java.awt.Color;

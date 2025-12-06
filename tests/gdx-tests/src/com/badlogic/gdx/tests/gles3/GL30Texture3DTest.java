@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.tests.gles3;
 
 import com.badlogic.gdx.Application.ApplicationType;

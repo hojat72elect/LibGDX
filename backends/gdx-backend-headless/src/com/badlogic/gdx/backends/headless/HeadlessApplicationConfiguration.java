@@ -1,4 +1,3 @@
-
 package com.badlogic.gdx.backends.headless;
 
 public class HeadlessApplicationConfiguration {
