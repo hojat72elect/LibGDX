@@ -1,6 +1,7 @@
 
 configure(subprojects - project(":backends:gdx-backend-android")) {
 	apply plugin: "java"
+    apply plugin: "kotlin"
 
 	if (JavaVersion.current().isJava9Compatible()) {
 		compileJava {
@@ -11,10 +12,12 @@ configure(subprojects - project(":backends:gdx-backend-android")) {
 	targetCompatibility = versions.java
 
 	sourceSets.main.java.srcDirs = ["src"]
+    sourceSets.main.kotlin.srcDirs = ["src"]
 	sourceSets.main.resources.srcDirs = ["res"]
 
 
 	dependencies {
 		api project(":gdx")
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 	}
 }

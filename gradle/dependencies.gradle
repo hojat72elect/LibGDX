@@ -22,6 +22,7 @@ versions.androidTargetSdk = 35
 versions.androidMinSdk = 21
 versions.androidxFragment = "1.8.5"
 versions.androidxCore = "1.15.0"
+versions.kotlin = "2.0.21"
 versions.kotlinBomTests = "2.0.21"
 versions.javaparser = "2.3.0"
 versions.spotless = "7.0.3"

@@ -1,6 +1,7 @@
 
 configure(subprojects - project(":tests:gdx-tests-android")) {
 	apply plugin: "java"
+	apply plugin: "kotlin"
 
 	if (JavaVersion.current().isJava9Compatible()) {
 		compileJava {
@@ -11,9 +12,14 @@ configure(subprojects - project(":tests:gdx-tests-android")) {
 	targetCompatibility = versions.java
 
 	sourceSets.main.java.srcDirs = ["src"]
+	sourceSets.main.kotlin.srcDirs = ["src"]
 	sourceSets.main.resources.srcDirs = ["res"]
 
 	configurations { natives }
+
+	dependencies {
+		implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+	}
 }
 
 

@@ -1,5 +1,6 @@
 
 apply plugin: "java"
+apply plugin: "kotlin"
 
 if (JavaVersion.current().isJava9Compatible()) {
 	compileJava {
@@ -10,8 +11,10 @@ sourceCompatibility = versions.java
 targetCompatibility = versions.java
 
 sourceSets.main.java.srcDirs = ["src"]
+sourceSets.main.kotlin.srcDirs = ["src"]
 sourceSets.main.resources.srcDirs = ["res"]
 sourceSets.test.java.srcDirs = ["test"]
+sourceSets.test.kotlin.srcDirs = ["test"]
 
 compileJava {
 	options.fork = true
@@ -71,6 +74,7 @@ task validateIOSHeader {
 dependencies {
 	testImplementation libraries.junit
 	api "com.badlogicgames.gdx:gdx-jnigen-loader:2.5.2"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 }
 
 test {
