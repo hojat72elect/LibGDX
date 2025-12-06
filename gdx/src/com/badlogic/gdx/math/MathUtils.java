@@ -33,9 +33,10 @@ public final class MathUtils {
     static private final int SIN_BITS = 14; // 16KB. Adjust for accuracy.
     static private final int SIN_MASK = ~(-1 << SIN_BITS);
     static private final int SIN_COUNT = SIN_MASK + 1;
+    static private final float degFull = 360;
     static private final float radToIndex = SIN_COUNT / radFull;
     static private final float degToIndex = SIN_COUNT / degFull;
-    static private final float degFull = 360;
+
     static private final int BIG_ENOUGH_INT = 16 * 1024;
     static private final double BIG_ENOUGH_FLOOR = BIG_ENOUGH_INT;
     static private final double CEIL = 0.9999999;

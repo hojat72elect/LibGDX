@@ -5,12 +5,12 @@ import java.io.IOException;
 
 public class Encoder {
     public static final int kNumBitPriceShiftBits = 6;
+    static final int kNumMoveReducingBits = 2;
     static final int kTopMask = ~((1 << 24) - 1);
     static final int kNumBitModelTotalBits = 11;
     static final int kBitModelTotal = (1 << kNumBitModelTotalBits);
     private static final int[] ProbPrices = new int[kBitModelTotal >>> kNumMoveReducingBits];
     static final int kNumMoveBits = 5;
-    static final int kNumMoveReducingBits = 2;
 
     static {
         int kNumBits = (kNumBitModelTotalBits - kNumMoveReducingBits);
