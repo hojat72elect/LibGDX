@@ -221,4 +221,21 @@ class Circle(
         return result
     }
 
+    /**
+     * Operator function that allows to deconstruct this circle.
+     * @return X component.
+     */
+    operator fun component1() = this.x
+
+    /**
+     * Operator function that allows to deconstruct this circle.
+     * @return Y component.
+     */
+    operator fun component2() = this.y
+
+    /**
+     * Operator function that allows to deconstruct this circle.
+     * @return Radius component.
+     */
+    operator fun component3() = this.radius
 }
