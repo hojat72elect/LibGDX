@@ -137,4 +137,15 @@ class CircleTest {
         val c3 = Circle(1f, 2f, 4f)
         assertNotEquals(c1, c3)
     }
+
+    @Test
+    fun `should destructure Circle`() {
+        val circle = Circle(1f, 2f, 3f)
+
+        val (x, y, radius) = circle
+
+        assertEquals(1f, x)
+        assertEquals(2f, y)
+        assertEquals(3f, radius)
+    }
 }
