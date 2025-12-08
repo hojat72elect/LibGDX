@@ -1,69 +1,43 @@
-package com.badlogic.gdx.math;
+package com.badlogic.gdx.math
 
-import com.badlogic.gdx.utils.NumberUtils;
-
-import java.io.Serializable;
+import com.badlogic.gdx.utils.NumberUtils
+import java.io.Serializable
 
 /**
  * A convenient 2D circle class.
  */
-public class Circle implements Serializable, Shape2D {
-    public float x, y;
-    public float radius;
+class Circle(
+    @JvmField var x: Float = 0F,
+    @JvmField var y: Float = 0F,
+    @JvmField var radius: Float = 0F
+) : Serializable, Shape2D {
 
     /**
-     * Constructs a new circle with all values set to zero.
-     */
-    public Circle() {
-    }
-
-    /**
-     * Constructs a new circle with the given X and Y coordinates and the given radius.
+     * Constructs a new circle using a given [Vector2] that contains the desired X and Y coordinates, and a given radius.
      *
-     * @param x      X coordinate of the center of the circle.
-     * @param y      Y coordinate of the center of the circle.
-     * @param radius The radius of the circle.
-     */
-    public Circle(float x, float y, float radius) {
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
-    }
-
-    /**
-     * Constructs a new circle using a given {@link Vector2} that contains the desired X and Y coordinates, and a given radius.
-     *
-     * @param position The position {@link Vector2} of the center of the circle.
+     * @param position The position [Vector2] of the center of the circle.
      * @param radius   The radius.
      */
-    public Circle(Vector2 position, float radius) {
-        this.x = position.x;
-        this.y = position.y;
-        this.radius = radius;
-    }
+    constructor(position: Vector2, radius: Float) : this(position.x, position.y, radius)
 
     /**
      * Copy constructor
      *
      * @param circle The circle to construct a copy of.
      */
-    public Circle(Circle circle) {
-        this.x = circle.x;
-        this.y = circle.y;
-        this.radius = circle.radius;
-    }
+    constructor(circle: Circle) : this(circle.x, circle.y, circle.radius)
 
     /**
-     * Creates a new {@link Circle} in terms of its center and a point on its edge.
+     * Creates a new [Circle] in terms of its center and a point on its edge.
      *
      * @param center The center of the new circle
      * @param edge   Any point on the edge of the given circle
      */
-    public Circle(Vector2 center, Vector2 edge) {
-        this.x = center.x;
-        this.y = center.y;
-        this.radius = Vector2.len(center.x - edge.x, center.y - edge.y);
-    }
+    constructor(center: Vector2, edge: Vector2) : this(
+        center.x,
+        center.y,
+        Vector2.len(center.x - edge.x, center.y - edge.y)
+    )
 
     /**
      * Sets a new location and radius for this circle.
@@ -72,22 +46,22 @@ public class Circle implements Serializable, Shape2D {
      * @param y      Y coordinate of the center of the circle
      * @param radius Circle radius
      */
-    public void set(float x, float y, float radius) {
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
+    fun set(x: Float, y: Float, radius: Float) {
+        this.x = x
+        this.y = y
+        this.radius = radius
     }
 
     /**
      * Sets a new location and radius for this circle.
      *
-     * @param position Position {@link Vector2} for this circle.
+     * @param position Position [Vector2] for this circle.
      * @param radius   Circle radius
      */
-    public void set(Vector2 position, float radius) {
-        this.x = position.x;
-        this.y = position.y;
-        this.radius = radius;
+    fun set(position: Vector2, radius: Float) {
+        this.x = position.x
+        this.y = position.y
+        this.radius = radius
     }
 
     /**
@@ -95,22 +69,22 @@ public class Circle implements Serializable, Shape2D {
      *
      * @param circle The circle to copy the position and radius of.
      */
-    public void set(Circle circle) {
-        this.x = circle.x;
-        this.y = circle.y;
-        this.radius = circle.radius;
+    fun set(circle: Circle) {
+        this.x = circle.x
+        this.y = circle.y
+        this.radius = circle.radius
     }
 
     /**
-     * Sets this {@link Circle}'s values in terms of its center and a point on its edge.
+     * Sets this [Circle]'s values in terms of its center and a point on its edge.
      *
      * @param center The new center of the circle
      * @param edge   Any point on the edge of the given circle
      */
-    public void set(Vector2 center, Vector2 edge) {
-        this.x = center.x;
-        this.y = center.y;
-        this.radius = Vector2.len(center.x - edge.x, center.y - edge.y);
+    fun set(center: Vector2, edge: Vector2) {
+        this.x = center.x
+        this.y = center.y
+        this.radius = Vector2.len(center.x - edge.x, center.y - edge.y)
     }
 
     /**
@@ -118,9 +92,9 @@ public class Circle implements Serializable, Shape2D {
      *
      * @param position The position vector
      */
-    public void setPosition(Vector2 position) {
-        this.x = position.x;
-        this.y = position.y;
+    fun setPosition(position: Vector2) {
+        this.x = position.x
+        this.y = position.y
     }
 
     /**
@@ -129,9 +103,9 @@ public class Circle implements Serializable, Shape2D {
      * @param x The x-coordinate
      * @param y The y-coordinate
      */
-    public void setPosition(float x, float y) {
-        this.x = x;
-        this.y = y;
+    fun setPosition(x: Float, y: Float) {
+        this.x = x
+        this.y = y
     }
 
     /**
@@ -139,8 +113,8 @@ public class Circle implements Serializable, Shape2D {
      *
      * @param x The x-coordinate
      */
-    public void setX(float x) {
-        this.x = x;
+    fun setX(x: Float) {
+        this.x = x
     }
 
     /**
@@ -148,8 +122,8 @@ public class Circle implements Serializable, Shape2D {
      *
      * @param y The y-coordinate
      */
-    public void setY(float y) {
-        this.y = y;
+    fun setY(y: Float) {
+        this.y = y
     }
 
     /**
@@ -157,8 +131,8 @@ public class Circle implements Serializable, Shape2D {
      *
      * @param radius The radius
      */
-    public void setRadius(float radius) {
-        this.radius = radius;
+    fun setRadius(radius: Float) {
+        this.radius = radius
     }
 
     /**
@@ -168,87 +142,83 @@ public class Circle implements Serializable, Shape2D {
      * @param y Y coordinate
      * @return true if this circle contains the given point.
      */
-    public boolean contains(float x, float y) {
-        x = this.x - x;
-        y = this.y - y;
-        return x * x + y * y <= radius * radius;
+    override fun contains(x: Float, y: Float): Boolean {
+        val dx = this.x - x
+        val dy = this.y - y
+        return dx * dx + dy * dy <= radius * radius
     }
 
     /**
      * Checks whether or not this circle contains a given point.
      *
-     * @param point The {@link Vector2} that contains the point coordinates.
+     * @param point The [Vector2] that contains the point coordinates.
      * @return true if this circle contains this point; false otherwise.
      */
-    public boolean contains(Vector2 point) {
-        float dx = x - point.x;
-        float dy = y - point.y;
-        return dx * dx + dy * dy <= radius * radius;
+    override fun contains(point: Vector2): Boolean {
+        val dx = x - point.x
+        val dy = y - point.y
+        return dx * dx + dy * dy <= radius * radius
     }
 
     /**
-     * @param c the other {@link Circle}
+     * @param c the other [Circle]
      * @return whether this circle contains the other circle.
      */
-    public boolean contains(Circle c) {
-        final float radiusDiff = radius - c.radius;
-        if (radiusDiff < 0f) return false; // Can't contain bigger circle
-        final float dx = x - c.x;
-        final float dy = y - c.y;
-        final float dst = dx * dx + dy * dy;
-        final float radiusSum = radius + c.radius;
-        return (!(radiusDiff * radiusDiff < dst) && (dst < radiusSum * radiusSum));
+    fun contains(c: Circle): Boolean {
+        val radiusDiff = radius - c.radius
+        if (radiusDiff < 0F) return false // Can't contain bigger circle
+        val dx = x - c.x
+        val dy = y - c.y
+        val dst = dx * dx + dy * dy
+        val radiusSum = radius + c.radius
+        return !(radiusDiff * radiusDiff < dst) && (dst < radiusSum * radiusSum)
     }
 
     /**
-     * @param c the other {@link Circle}
+     * @param c the other [Circle]
      * @return whether this circle overlaps the other circle.
      */
-    public boolean overlaps(Circle c) {
-        float dx = x - c.x;
-        float dy = y - c.y;
-        float distance = dx * dx + dy * dy;
-        float radiusSum = radius + c.radius;
-        return distance < radiusSum * radiusSum;
+    fun overlaps(c: Circle): Boolean {
+        val dx = x - c.x
+        val dy = y - c.y
+        val distance = dx * dx + dy * dy
+        val radiusSum = radius + c.radius
+        return distance < radiusSum * radiusSum
     }
 
     /**
-     * Returns a {@link String} representation of this {@link Circle} of the form {@code x,y,radius}.
+     * Returns a [String] representation of this [Circle] of the form `x,y,radius`.
      */
-    @Override
-    public String toString() {
-        return x + "," + y + "," + radius;
+    override fun toString(): String {
+        return "$x,$y,$radius"
     }
 
     /**
-     * @return The circumference of this circle (as 2 * {@link MathUtils#PI2}) * {@code radius}
+     * @return The circumference of this circle (as 2 * [MathUtils.PI2]) * `radius`
      */
-    public float circumference() {
-        return this.radius * MathUtils.PI2;
+    fun circumference(): Float {
+        return this.radius * MathUtils.PI2
     }
 
     /**
-     * @return The area of this circle (as {@link MathUtils#PI} * radius * radius).
+     * @return The area of this circle (as [MathUtils.PI] * radius * radius).
      */
-    public float area() {
-        return this.radius * this.radius * MathUtils.PI;
+    fun area() = this.radius * this.radius * MathUtils.PI
+
+    override fun equals(other: Any?): Boolean {
+        if (other === this) return true
+        if (other == null || other.javaClass != this.javaClass) return false
+        val c = other as Circle
+        return this.x == c.x && this.y == c.y && this.radius == c.radius
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o == null || o.getClass() != this.getClass()) return false;
-        Circle c = (Circle) o;
-        return this.x == c.x && this.y == c.y && this.radius == c.radius;
+    override fun hashCode(): Int {
+        val prime = 41
+        var result = 1
+        result = prime * result + NumberUtils.floatToRawIntBits(radius)
+        result = prime * result + NumberUtils.floatToRawIntBits(x)
+        result = prime * result + NumberUtils.floatToRawIntBits(y)
+        return result
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 41;
-        int result = 1;
-        result = prime * result + NumberUtils.floatToRawIntBits(radius);
-        result = prime * result + NumberUtils.floatToRawIntBits(x);
-        result = prime * result + NumberUtils.floatToRawIntBits(y);
-        return result;
-    }
 }
