@@ -1,16 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- ******************************************************************************/
-
 package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.utils.NumberUtils;
@@ -19,25 +6,23 @@ import java.io.Serializable;
 
 /**
  * A convenient 2D circle class.
- *
- *  */
+ */
 public class Circle implements Serializable, Shape2D {
     public float x, y;
     public float radius;
 
     /**
-     * Constructs a new circle with all values set to zero
+     * Constructs a new circle with all values set to zero.
      */
     public Circle() {
-
     }
 
     /**
      * Constructs a new circle with the given X and Y coordinates and the given radius.
      *
-     * @param x      X coordinate of the center of the circle
-     * @param y      Y coordinate of the center of the circle
-     * @param radius The radius of the circle
+     * @param x      X coordinate of the center of the circle.
+     * @param y      Y coordinate of the center of the circle.
+     * @param radius The radius of the circle.
      */
     public Circle(float x, float y, float radius) {
         this.x = x;
@@ -48,8 +33,8 @@ public class Circle implements Serializable, Shape2D {
     /**
      * Constructs a new circle using a given {@link Vector2} that contains the desired X and Y coordinates, and a given radius.
      *
-     * @param position The position {@link Vector2} of the center of the circle
-     * @param radius   The radius
+     * @param position The position {@link Vector2} of the center of the circle.
+     * @param radius   The radius.
      */
     public Circle(Vector2 position, float radius) {
         this.x = position.x;
