@@ -21,6 +21,12 @@ compileJava {
 	options.incremental = true
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+	kotlinOptions {
+		jvmTarget = versions.java <= 8 ? "1." + versions.java : versions.java.toString()
+	}
+}
+
 jar {
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
