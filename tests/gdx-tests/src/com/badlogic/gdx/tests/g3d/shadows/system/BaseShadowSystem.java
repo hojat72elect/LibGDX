@@ -34,8 +34,7 @@ import java.util.Set;
 
 /**
  * BaseShadowSystem allows to easily create custom shadow system.
- *
- *  */
+ */
 public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
     /**
      * Main camera
@@ -458,8 +457,7 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
 
     /**
      * This class handles camera and texture region.
-     *
-     *      */
+     */
     public static class LightProperties {
         public Camera camera;
         public TextureRegion region = new TextureRegion();
@@ -471,8 +469,7 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
 
     /**
      * This class handles LightProperties for each side of PointLight.
-     *
-     *      */
+     */
     public static class PointLightProperties {
         public ObjectMap<CubemapSide, LightProperties> properties = new ObjectMap<CubemapSide, LightProperties>(6);
     }

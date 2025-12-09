@@ -1,12 +1,12 @@
-package com.badlogic.gdx.utils;
+package com.badlogic.gdx.utils
 
 /**
  * Interface for disposable resources.
- *
- *  */
-public interface Disposable {
+ */
+interface Disposable {
+
     /**
      * Releases all resources of this object.
      */
-    void dispose();
+    fun dispose()
 }

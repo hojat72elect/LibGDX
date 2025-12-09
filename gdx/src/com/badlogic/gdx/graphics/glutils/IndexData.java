@@ -1,7 +1,6 @@
 package com.badlogic.gdx.graphics.glutils;
 
 import com.badlogic.gdx.utils.Disposable;
-
 import java.nio.ShortBuffer;
 
 /**

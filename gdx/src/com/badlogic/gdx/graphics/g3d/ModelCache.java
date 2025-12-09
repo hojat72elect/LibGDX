@@ -23,7 +23,7 @@ import java.util.Comparator;
  *
  *  */
 public class ModelCache implements Disposable, RenderableProvider {
-    private final Array<Renderable> renderables = new Array<Renderable>();
+    private final Array<Renderable> renderables = new Array<>();
     private final FlushablePool<Renderable> renderablesPool = new FlushablePool<Renderable>() {
         @Override
         protected Renderable newObject() {
@@ -36,8 +36,8 @@ public class ModelCache implements Disposable, RenderableProvider {
             return new MeshPart();
         }
     };
-    private final Array<Renderable> items = new Array<Renderable>();
-    private final Array<Renderable> tmp = new Array<Renderable>();
+    private final Array<Renderable> items = new Array<>();
+    private final Array<Renderable> tmp = new Array<>();
     private final MeshBuilder meshBuilder;
     private boolean building;
     private final RenderableSorter sorter;
@@ -263,8 +263,8 @@ public class ModelCache implements Disposable, RenderableProvider {
      *      */
     public static class SimpleMeshPool implements MeshPool {
         // FIXME Make a better (preferable JNI) MeshPool implementation
-        private final Array<Mesh> freeMeshes = new Array<Mesh>();
-        private final Array<Mesh> usedMeshes = new Array<Mesh>();
+        private final Array<Mesh> freeMeshes = new Array<>();
+        private final Array<Mesh> usedMeshes = new Array<>();
 
         @Override
         public void flush() {

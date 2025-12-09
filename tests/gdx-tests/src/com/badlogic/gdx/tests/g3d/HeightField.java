@@ -63,8 +63,7 @@ import java.nio.ByteBuffer;
  * Sharp will be used if the vertex attributes contains a normal attribute and you didnt specify `true` for the `smooth` argument
  * of the constructor. This will cause the number of vertices to be around four times the amount grid points and each normal is
  * estimated for each face instead of each point.
- *
- *  */
+ */
 public class HeightField implements Disposable {
     public final Vector2 uvOffset = new Vector2(0, 0);
     public final Vector2 uvScale = new Vector2(1, 1);
