@@ -1,11 +1,10 @@
-package com.badlogic.gdx.utils;
+package com.badlogic.gdx.utils
 
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.files.FileHandle
+import java.io.InputStream
 
-import java.io.InputStream;
+interface BaseJsonReader {
 
-public interface BaseJsonReader {
-    JsonValue parse(InputStream input);
-
-    JsonValue parse(FileHandle file);
+    fun parse(input: InputStream): JsonValue
+    fun parse(file: FileHandle): JsonValue
 }

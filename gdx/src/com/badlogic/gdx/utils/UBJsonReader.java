@@ -2,6 +2,8 @@ package com.badlogic.gdx.utils;
 
 import com.badlogic.gdx.files.FileHandle;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +24,8 @@ public class UBJsonReader implements BaseJsonReader {
      * For best performance you should provide buffered streams to this method!
      */
     @Override
-    public JsonValue parse(InputStream input) {
+    @NotNull
+    public JsonValue parse(@NotNull InputStream input) {
         DataInputStream din = null;
         try {
             din = new DataInputStream(input);
@@ -35,7 +38,8 @@ public class UBJsonReader implements BaseJsonReader {
     }
 
     @Override
-    public JsonValue parse(FileHandle file) {
+    @NotNull
+    public JsonValue parse(@NotNull FileHandle file) {
         try {
             return parse(file.read(8192));
         } catch (Exception ex) {

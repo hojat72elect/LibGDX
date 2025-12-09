@@ -79,7 +79,7 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
                 jsonMesh.vertices = mesh.require("vertices").asFloatArray();
 
                 JsonValue meshParts = mesh.require("parts");
-                Array<ModelMeshPart> parts = new Array<ModelMeshPart>();
+                Array<ModelMeshPart> parts = new Array<>();
                 for (JsonValue meshPart = meshParts.child; meshPart != null; meshPart = meshPart.next) {
                     ModelMeshPart jsonPart = new ModelMeshPart();
                     String partId = meshPart.getString("id", null);
@@ -402,10 +402,10 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
                 } else { // Version 0.2:
                     JsonValue translationKF = node.get("translation");
                     if (translationKF != null && translationKF.isArray()) {
-                        nodeAnim.translation = new Array<ModelNodeKeyframe<Vector3>>();
+                        nodeAnim.translation = new Array<>();
                         nodeAnim.translation.ensureCapacity(translationKF.size);
                         for (JsonValue keyframe = translationKF.child; keyframe != null; keyframe = keyframe.next) {
-                            ModelNodeKeyframe<Vector3> kf = new ModelNodeKeyframe<Vector3>();
+                            ModelNodeKeyframe<Vector3> kf = new ModelNodeKeyframe<>();
                             nodeAnim.translation.add(kf);
                             kf.keytime = keyframe.getFloat("keytime", 0f) / 1000.f;
                             JsonValue translation = keyframe.get("value");
@@ -416,10 +416,10 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
 
                     JsonValue rotationKF = node.get("rotation");
                     if (rotationKF != null && rotationKF.isArray()) {
-                        nodeAnim.rotation = new Array<ModelNodeKeyframe<Quaternion>>();
+                        nodeAnim.rotation = new Array<>();
                         nodeAnim.rotation.ensureCapacity(rotationKF.size);
                         for (JsonValue keyframe = rotationKF.child; keyframe != null; keyframe = keyframe.next) {
-                            ModelNodeKeyframe<Quaternion> kf = new ModelNodeKeyframe<Quaternion>();
+                            ModelNodeKeyframe<Quaternion> kf = new ModelNodeKeyframe<>();
                             nodeAnim.rotation.add(kf);
                             kf.keytime = keyframe.getFloat("keytime", 0f) / 1000.f;
                             JsonValue rotation = keyframe.get("value");
@@ -430,10 +430,10 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
 
                     JsonValue scalingKF = node.get("scaling");
                     if (scalingKF != null && scalingKF.isArray()) {
-                        nodeAnim.scaling = new Array<ModelNodeKeyframe<Vector3>>();
+                        nodeAnim.scaling = new Array<>();
                         nodeAnim.scaling.ensureCapacity(scalingKF.size);
                         for (JsonValue keyframe = scalingKF.child; keyframe != null; keyframe = keyframe.next) {
-                            ModelNodeKeyframe<Vector3> kf = new ModelNodeKeyframe<Vector3>();
+                            ModelNodeKeyframe<Vector3> kf = new ModelNodeKeyframe<>();
                             nodeAnim.scaling.add(kf);
                             kf.keytime = keyframe.getFloat("keytime", 0f) / 1000.f;
                             JsonValue scaling = keyframe.get("value");
