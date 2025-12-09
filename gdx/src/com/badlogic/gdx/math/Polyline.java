@@ -1,5 +1,7 @@
 package com.badlogic.gdx.math;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Polyline implements Shape2D {
     private float[] localVertices;
     private float[] worldVertices;
@@ -230,7 +232,7 @@ public class Polyline implements Shape2D {
     }
 
     @Override
-    public boolean contains(Vector2 point) {
+    public boolean contains(@NotNull Vector2 point) {
         return false;
     }
 
