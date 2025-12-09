@@ -1,39 +1,39 @@
-package com.badlogic.gdx;
+package com.badlogic.gdx
 
 /**
  * The ApplicationLogger provides an interface for a libGDX Application to log messages and exceptions. A default implementations
  * is provided for each backend, custom implementations can be provided and set using
- * {@link Application#setApplicationLogger(ApplicationLogger) }
+ * [Application.setApplicationLogger]
  */
-public interface ApplicationLogger {
+interface ApplicationLogger {
 
     /**
      * Logs a message with a tag
      */
-    void log(String tag, String message);
+    fun log(tag: String, message: String)
 
     /**
      * Logs a message and exception with a tag
      */
-    void log(String tag, String message, Throwable exception);
+    fun log(tag: String, message: String, exception: Throwable)
 
     /**
      * Logs an error message with a tag
      */
-    void error(String tag, String message);
+    fun error(tag: String, message: String)
 
     /**
      * Logs an error message and exception with a tag
      */
-    void error(String tag, String message, Throwable exception);
+    fun error(tag: String, message: String, exception: Throwable)
 
     /**
      * Logs a debug message with a tag
      */
-    void debug(String tag, String message);
+    fun debug(tag: String, message: String)
 
     /**
      * Logs a debug message and exception with a tag
      */
-    void debug(String tag, String message, Throwable exception);
+    fun debug(tag: String, message: String, exception: Throwable)
 }

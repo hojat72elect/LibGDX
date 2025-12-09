@@ -1,72 +1,64 @@
-package com.badlogic.gdx;
-
-import java.util.Map;
+package com.badlogic.gdx
 
 /**
- * <p>
  * A Preference instance is a hash map holding different values. It is stored alongside your application (SharedPreferences on
  * Android, on the desktop a Java Preferences file in a ".prefs" directory will be created, and on iOS an
  * NSMutableDictionary will be written to the given file). CAUTION: On the desktop platform, all libGDX applications share the
  * same ".prefs" directory. To avoid collisions use specific names like "com.myname.game1.settings" instead of "settings".
- * </p>
  *
- * <p>
- * To persist changes made to a preferences instance {@link #flush()} has to be invoked. With the exception of Android, changes
+ * To persist changes made to a preferences instance [.flush] has to be invoked. With the exception of Android, changes
  * are cached in memory prior to flushing. On iOS changes are not synchronized between different preferences instances.
- * </p>
  *
- * <p>
- * Use {@link Application#getPreferences(String)} to look up a specific preferences instance. Note that on several backends the
+ * Use [Application.getPreferences] to look up a specific preferences instance. Note that on several backends the
  * preferences name will be used as the filename, so make sure the name is valid for a filename.
- * </p>
- *
- *  */
-public interface Preferences {
-    Preferences putBoolean(String key, boolean val);
+ */
+interface Preferences {
 
-    Preferences putInteger(String key, int val);
+    fun putBoolean(key: String, value: Boolean): Preferences
 
-    Preferences putLong(String key, long val);
+    fun putInteger(key: String, value: Int): Preferences
 
-    Preferences putFloat(String key, float val);
+    fun putLong(key: String, value: Long): Preferences
 
-    Preferences putString(String key, String val);
+    fun putFloat(key: String, value: Float): Preferences
 
-    Preferences put(Map<String, ?> vals);
+    fun putString(key: String, value: String): Preferences
 
-    boolean getBoolean(String key);
+    fun put(vals: MutableMap<String, *>): Preferences
 
-    int getInteger(String key);
+    fun getBoolean(key: String): Boolean
 
-    long getLong(String key);
+    fun getInteger(key: String): Int
 
-    float getFloat(String key);
+    fun getLong(key: String): Long
 
-    String getString(String key);
+    fun getFloat(key: String): Float
 
-    boolean getBoolean(String key, boolean defValue);
+    fun getString(key: String): String
 
-    int getInteger(String key, int defValue);
+    fun getBoolean(key: String, defValue: Boolean): Boolean
 
-    long getLong(String key, long defValue);
+    fun getInteger(key: String, defValue: Int): Int
 
-    float getFloat(String key, float defValue);
+    fun getLong(key: String, defValue: Long): Long
 
-    String getString(String key, String defValue);
+    fun getFloat(key: String, defValue: Float): Float
+
+    fun getString(key: String, defValue: String): String
 
     /**
-     * Returns a read only Map<String, Object> with all the key, objects of the preferences.
+     * Returns a read only Map<String, Object> with all the key-objects of the preferences.
      */
-    Map<String, ?> get();
+    fun get(): MutableMap<String, *>
 
-    boolean contains(String key);
+    fun contains(key: String): Boolean
 
-    void clear();
+    fun clear()
 
-    void remove(String key);
+    fun remove(key: String)
 
     /**
      * Makes sure the preferences are persisted.
      */
-    void flush();
+    fun flush()
 }
