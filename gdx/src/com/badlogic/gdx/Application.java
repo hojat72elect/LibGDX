@@ -221,22 +221,17 @@ public interface Application {
     /**
      * Adds a new {@link LifecycleListener} to the application. This can be used by extensions to hook into the lifecycle more
      * easily. The {@link ApplicationListener} methods are sufficient for application level development.
-     *
-     * @param listener
      */
     void addLifecycleListener(LifecycleListener listener);
 
     /**
      * Removes the {@link LifecycleListener}.
-     *
-     * @param listener
      */
     void removeLifecycleListener(LifecycleListener listener);
 
     /**
      * Enumeration of possible {@link Application} types
-     *
-     *      */
+     */
     enum ApplicationType {
         Android, Desktop, HeadlessDesktop, Applet, WebGL, iOS
     }

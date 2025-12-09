@@ -1,53 +1,47 @@
-package com.badlogic.gdx;
+package com.badlogic.gdx
 
-import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Disposable
 
 /**
- * <p>
  * Represents one of many application screens, such as a main menu, a settings menu, the game screen and so on.
- * </p>
- * <p>
- * Note that {@link #dispose()} is not called automatically.
- * </p>
- *
+ * Note that [.dispose] is not called automatically.
  * @see Game
  */
-public interface Screen extends Disposable {
-
+interface Screen : Disposable {
     /**
-     * Called when this screen becomes the current screen for a {@link Game}.
+     * Called when this screen becomes the current screen for a [Game].
      */
-    void show();
+    fun show()
 
     /**
      * Called when the screen should render itself.
      *
      * @param delta The time in seconds since the last render.
      */
-    void render(float delta);
+    fun render(delta: Float)
 
     /**
-     * @see ApplicationListener#resize(int, int)
+     * @see ApplicationListener.resize
      */
-    void resize(int width, int height);
+    fun resize(width: Int, height: Int)
 
     /**
-     * @see ApplicationListener#pause()
+     * @see ApplicationListener.pause
      */
-    void pause();
+    fun pause()
 
     /**
-     * @see ApplicationListener#resume()
+     * @see ApplicationListener.resume
      */
-    void resume();
+    fun resume()
 
     /**
-     * Called when this screen is no longer the current screen for a {@link Game}.
+     * Called when this screen is no longer the current screen for a [Game].
      */
-    void hide();
+    fun hide()
 
     /**
      * Called when this screen should release all resources.
      */
-    void dispose();
+    override fun dispose()
 }
