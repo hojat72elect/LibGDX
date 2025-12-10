@@ -11,8 +11,7 @@ import com.badlogic.gdx.graphics.GL32;
  * use Graphics in a thread that is not the rendering thread.
  * <p>
  * This is normally a design faux pas but in this case is better than the alternatives.
- *
- *  */
+ */
 public class Gdx {
     public static Application app;
     public static Graphics graphics;

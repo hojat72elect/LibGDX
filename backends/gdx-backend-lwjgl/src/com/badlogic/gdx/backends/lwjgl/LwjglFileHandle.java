@@ -6,8 +6,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import java.io.File;
 
-/**
- *  *  */
 public final class LwjglFileHandle extends FileHandle {
     public LwjglFileHandle(String fileName, FileType type) {
         super(fileName, type);

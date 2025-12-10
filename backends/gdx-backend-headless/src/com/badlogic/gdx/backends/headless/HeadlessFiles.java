@@ -5,8 +5,6 @@ import com.badlogic.gdx.files.FileHandle;
 
 import java.io.File;
 
-/**
- *  *  */
 public final class HeadlessFiles implements Files {
     static public final String externalPath = System.getProperty("user.home") + File.separator;
     static public final String localPath = new File("").getAbsolutePath() + File.separator;
