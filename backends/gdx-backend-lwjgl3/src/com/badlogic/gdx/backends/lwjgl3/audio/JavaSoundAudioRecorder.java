@@ -3,13 +3,13 @@ package com.badlogic.gdx.backends.lwjgl3.audio;
 import com.badlogic.gdx.audio.AudioRecorder;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioFormat.Encoding;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.TargetDataLine;
 
-/**
- *  */
 public class JavaSoundAudioRecorder implements AudioRecorder {
     private final TargetDataLine line;
     private byte[] buffer = new byte[1024 * 4];
@@ -26,7 +26,7 @@ public class JavaSoundAudioRecorder implements AudioRecorder {
         }
     }
 
-    public void read(short[] samples, int offset, int numSamples) {
+    public void read(@NotNull short[] samples, int offset, int numSamples) {
         if (buffer.length < numSamples * 2) buffer = new byte[numSamples * 2];
 
         int toRead = numSamples * 2;

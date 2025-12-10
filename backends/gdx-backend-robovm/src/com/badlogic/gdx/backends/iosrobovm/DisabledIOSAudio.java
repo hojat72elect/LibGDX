@@ -7,6 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 public class DisabledIOSAudio implements IOSAudio {
 	@Override
 	public void didBecomeActive () {
@@ -35,12 +37,12 @@ public class DisabledIOSAudio implements IOSAudio {
 	}
 
 	@Override
-	public Sound newSound (FileHandle fileHandle) {
+	public Sound newSound(@NotNull FileHandle fileHandle) {
 		throw new GdxRuntimeException("iOS audio is not enabled by the application config");
 	}
 
 	@Override
-	public Music newMusic (FileHandle file) {
+	public Music newMusic(@NotNull FileHandle file) {
 		throw new GdxRuntimeException("iOS audio is not enabled by the application config");
 	}
 
@@ -49,6 +51,7 @@ public class DisabledIOSAudio implements IOSAudio {
 		return false;
 	}
 
+	@NotNull
 	@Override
 	public String[] getAvailableOutputDevices () {
 		return new String[0];

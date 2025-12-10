@@ -12,6 +12,8 @@ import com.badlogic.gdx.backends.iosrobovm.IOSSound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 public class OALIOSAudio implements IOSAudio {
 
 	private final IOSApplicationConfiguration config;
@@ -33,12 +35,11 @@ public class OALIOSAudio implements IOSAudio {
 
 	@Override
 	public AudioRecorder newAudioRecorder (int samplingRate, boolean isMono) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Sound newSound (FileHandle fileHandle) {
+	public Sound newSound(@NotNull FileHandle fileHandle) {
 		return new IOSSound(fileHandle);
 	}
 
@@ -57,6 +58,7 @@ public class OALIOSAudio implements IOSAudio {
 		return true;
 	}
 
+	@NotNull
 	@Override
 	public String[] getAvailableOutputDevices () {
 		return new String[0];

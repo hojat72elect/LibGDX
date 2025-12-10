@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.IntMap;
 import com.badlogic.gdx.utils.LongMap;
 import com.badlogic.gdx.utils.ObjectMap;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.openal.AL;
@@ -49,8 +50,8 @@ public class OpenALLwjglAudio implements LwjglAudio {
     private LongMap<Integer> soundIdToSource;
     private IntMap<Long> sourceToSoundId;
     private long nextSoundId = 0;
-    private final ObjectMap<String, Class<? extends OpenALSound>> extensionToSoundClass = new ObjectMap();
-    private final ObjectMap<String, Class<? extends OpenALMusic>> extensionToMusicClass = new ObjectMap();
+    private final ObjectMap<String, Class<? extends OpenALSound>> extensionToSoundClass = new ObjectMap<>();
+    private final ObjectMap<String, Class<? extends OpenALMusic>> extensionToMusicClass = new ObjectMap<>();
     private OpenALSound[] recentSounds;
     private int mostRecentSound = -1;
 
@@ -134,7 +135,7 @@ public class OpenALLwjglAudio implements LwjglAudio {
         }
     }
 
-    public OpenALMusic newMusic(FileHandle file) {
+    public OpenALMusic newMusic(@NotNull FileHandle file) {
         if (file == null) throw new IllegalArgumentException("file cannot be null.");
         Class<? extends OpenALMusic> musicClass = extensionToMusicClass.get(file.extension().toLowerCase());
         if (musicClass == null) throw new GdxRuntimeException("Unknown file extension for music: " + file);

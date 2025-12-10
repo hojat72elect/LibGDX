@@ -40,6 +40,7 @@ import com.badlogic.gdx.utils.IntMap;
 import com.badlogic.gdx.utils.LongMap;
 import com.badlogic.gdx.utils.ObjectMap;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.openal.AL;
 import org.lwjgl.openal.AL10;
@@ -212,8 +213,7 @@ public class OpenALLwjgl3Audio implements Lwjgl3Audio {
         return sound;
     }
 
-    public OpenALMusic newMusic(FileHandle file) {
-        if (file == null) throw new IllegalArgumentException("file cannot be null.");
+    public OpenALMusic newMusic(@NotNull FileHandle file) {
         BiFunction<OpenALLwjgl3Audio, FileHandle, OpenALMusic> musicSupplier = extensionToMusicClass
                 .get(file.extension().toLowerCase());
         if (musicSupplier == null) throw new GdxRuntimeException("Unknown file extension for music: " + file);
@@ -232,6 +232,7 @@ public class OpenALLwjgl3Audio implements Lwjgl3Audio {
         return SOFTReopenDevice.alcReopenDeviceSOFT(device, deviceIdentifier, (IntBuffer) null);
     }
 
+    @NotNull
     @Override
     public String[] getAvailableOutputDevices() {
         List<String> devices = ALUtil.getStringList(0, ALC_ALL_DEVICES_SPECIFIER);
@@ -434,7 +435,7 @@ public class OpenALLwjgl3Audio implements Lwjgl3Audio {
     public AudioRecorder newAudioRecorder(int samplingRate, boolean isMono) {
         if (noDevice) return new AudioRecorder() {
             @Override
-            public void read(short[] samples, int offset, int numSamples) {
+            public void read(@NotNull short[] samples, int offset, int numSamples) {
             }
 
             @Override

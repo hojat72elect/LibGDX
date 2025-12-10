@@ -7,6 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.backends.lwjgl3.audio.Lwjgl3Audio;
 import com.badlogic.gdx.files.FileHandle;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * The headless backend does its best to mock elements. This is intended to make code-sharing between server and client as simple
  * as possible.
@@ -24,12 +26,12 @@ public class MockAudio implements Lwjgl3Audio {
     }
 
     @Override
-    public Sound newSound(FileHandle fileHandle) {
+    public Sound newSound(@NotNull FileHandle fileHandle) {
         return new MockSound();
     }
 
     @Override
-    public Music newMusic(FileHandle file) {
+    public Music newMusic(@NotNull FileHandle file) {
         return new MockMusic();
     }
 
@@ -38,6 +40,7 @@ public class MockAudio implements Lwjgl3Audio {
         return true;
     }
 
+    @NotNull
     @Override
     public String[] getAvailableOutputDevices() {
         return new String[0];
