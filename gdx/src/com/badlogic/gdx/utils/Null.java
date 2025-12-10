@@ -5,7 +5,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 /**
- * Indiciates the element may have a {@code null} value. This removes the need for "Can be null" javadoc and can be used by
+ * Indicates the element may have a {@code null} value. This removes the need for "Can be null" javadoc and can be used by
  * static analysis tools to warn about probable runtime errors or contract violations.
  */
 @Documented

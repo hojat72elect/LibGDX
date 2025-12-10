@@ -1,51 +1,47 @@
-package com.badlogic.gdx;
+package com.badlogic.gdx
 
 /**
- * <p>
- * An <code>ApplicationListener</code> is called when the {@link Application} is created, resumed, rendering, paused or destroyed.
+ * An `ApplicationListener` is called when the [Application] is created, resumed, rendering, paused or destroyed.
  * All methods are called in a thread that has the OpenGL context current. You can thus safely create and manipulate graphics
  * resources.
- * </p>
  *
- * <p>
- * The <code>ApplicationListener</code> interface follows the standard Android activity life-cycle and is emulated on the desktop
+ * The `ApplicationListener` interface follows the standard Android activity life-cycle and is emulated on the desktop
  * accordingly.
- * </p>
- *
- *  */
-public interface ApplicationListener {
-    /**
-     * Called when the {@link Application} is first created.
-     */
-    void create();
+ */
+interface ApplicationListener {
 
     /**
-     * Called when the {@link Application} is resized. This can happen at any point during a non-paused state but will never
-     * happen before a call to {@link #create()}.
+     * Called when the [Application] is first created.
+     */
+    fun create()
+
+    /**
+     * Called when the [Application] is resized. This can happen at any point during a non-paused state but will never
+     * happen before a call to [.create].
      *
      * @param width  the new width in pixels
      * @param height the new height in pixels
      */
-    void resize(int width, int height);
+    fun resize(width: Int, height: Int)
 
     /**
-     * Called when the {@link Application} should render itself.
+     * Called when the [Application] should render itself.
      */
-    void render();
+    fun render()
 
     /**
-     * Called when the {@link Application} is paused, usually when it's not active or visible on-screen. An Application is also
+     * Called when the [Application] is paused, usually when it's not active or visible on-screen. An Application is also
      * paused before it is destroyed.
      */
-    void pause();
+    fun pause()
 
     /**
-     * Called when the {@link Application} is resumed from a paused state, usually when it regains focus.
+     * Called when the [Application] is resumed from a paused state, usually when it regains focus.
      */
-    void resume();
+    fun resume()
 
     /**
-     * Called when the {@link Application} is destroyed. Preceded by a call to {@link #pause()}.
+     * Called when the [Application] is destroyed. Preceded by a call to [.pause].
      */
-    void dispose();
+    fun dispose()
 }
