@@ -13,8 +13,7 @@ import org.lwjgl.Sys;
 
 /**
  * LWJGL implementation of the {@link Net} API, it could be reused in other Desktop backends since it doesn't depend on LWJGL.
- *
- *  */
+ */
 public class LwjglNet implements Net {
 
     NetJavaImpl netJavaImpl;
