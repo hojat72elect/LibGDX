@@ -140,7 +140,6 @@ public class FlameMain extends JFrame implements AssetErrorListener {
         lwjglCanvas = new LwjglCanvas(renderer = new AppRenderer());
         addWindowListener(new WindowAdapter() {
             public void windowClosed(WindowEvent event) {
-                // System.exit(0);
                 Gdx.app.exit();
             }
         });

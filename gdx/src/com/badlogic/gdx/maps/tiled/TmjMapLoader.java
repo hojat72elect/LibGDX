@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.ObjectMap;
 
 /**
- * @brief synchronous loader for TMJ maps created with the Tiled tool
+ * synchronous loader for TMJ maps created with the Tiled tool
  */
 public class TmjMapLoader extends BaseTmjMapLoader<BaseTiledMapLoader.Parameters> {
 
@@ -25,8 +25,6 @@ public class TmjMapLoader extends BaseTmjMapLoader<BaseTiledMapLoader.Parameters
 
     /**
      * Creates loader
-     *
-     * @param resolver
      */
     public TmjMapLoader(FileHandleResolver resolver) {
         super(resolver);

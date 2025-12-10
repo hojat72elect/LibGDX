@@ -126,7 +126,7 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
     }
 
     protected VertexAttribute[] parseAttributes(JsonValue attributes) {
-        Array<VertexAttribute> vertexAttributes = new Array<VertexAttribute>();
+        Array<VertexAttribute> vertexAttributes = new Array<>();
         int unit = 0;
         int blendWeightCount = 0;
         for (JsonValue value = attributes.child; value != null; value = value.next) {
@@ -209,7 +209,7 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
 
                         jsonTexture.usage = parseTextureUsage(textureType);
 
-                        if (jsonMaterial.textures == null) jsonMaterial.textures = new Array<ModelTexture>();
+                        if (jsonMaterial.textures == null) jsonMaterial.textures = new Array<>();
                         jsonMaterial.textures.add(jsonTexture);
                     }
                 }
@@ -375,16 +375,16 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
                         final float keytime = keyframe.getFloat("keytime", 0f) / 1000.f;
                         JsonValue translation = keyframe.get("translation");
                         if (translation != null && translation.size == 3) {
-                            if (nodeAnim.translation == null) nodeAnim.translation = new Array<ModelNodeKeyframe<Vector3>>();
-                            ModelNodeKeyframe<Vector3> tkf = new ModelNodeKeyframe<Vector3>();
+                            if (nodeAnim.translation == null) nodeAnim.translation = new Array<>();
+                            ModelNodeKeyframe<Vector3> tkf = new ModelNodeKeyframe<>();
                             tkf.keytime = keytime;
                             tkf.value = new Vector3(translation.getFloat(0), translation.getFloat(1), translation.getFloat(2));
                             nodeAnim.translation.add(tkf);
                         }
                         JsonValue rotation = keyframe.get("rotation");
                         if (rotation != null && rotation.size == 4) {
-                            if (nodeAnim.rotation == null) nodeAnim.rotation = new Array<ModelNodeKeyframe<Quaternion>>();
-                            ModelNodeKeyframe<Quaternion> rkf = new ModelNodeKeyframe<Quaternion>();
+                            if (nodeAnim.rotation == null) nodeAnim.rotation = new Array<>();
+                            ModelNodeKeyframe<Quaternion> rkf = new ModelNodeKeyframe<>();
                             rkf.keytime = keytime;
                             rkf.value = new Quaternion(rotation.getFloat(0), rotation.getFloat(1), rotation.getFloat(2),
                                     rotation.getFloat(3));
@@ -392,7 +392,7 @@ public class G3dModelLoader extends ModelLoader<ModelLoader.ModelParameters> {
                         }
                         JsonValue scale = keyframe.get("scale");
                         if (scale != null && scale.size == 3) {
-                            if (nodeAnim.scaling == null) nodeAnim.scaling = new Array<ModelNodeKeyframe<Vector3>>();
+                            if (nodeAnim.scaling == null) nodeAnim.scaling = new Array<>();
                             ModelNodeKeyframe<Vector3> skf = new ModelNodeKeyframe();
                             skf.keytime = keytime;
                             skf.value = new Vector3(scale.getFloat(0), scale.getFloat(1), scale.getFloat(2));

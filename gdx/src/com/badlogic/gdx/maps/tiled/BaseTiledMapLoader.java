@@ -89,9 +89,7 @@ public abstract class BaseTiledMapLoader<P extends BaseTiledMapLoader.Parameters
     /**
      * Loads the map data, given the root element
      *
-     * @param mapFile       the Filehandle of the map file, .tmx or .tmj supported
-     * @param parameter
-     * @param imageResolver
+     * @param mapFile The FileHandle of the map file, .tmx or .tmj supported
      * @return the {@link TiledMap}
      */
     protected abstract TiledMap loadTiledMap(FileHandle mapFile, P parameter, ImageResolver imageResolver);

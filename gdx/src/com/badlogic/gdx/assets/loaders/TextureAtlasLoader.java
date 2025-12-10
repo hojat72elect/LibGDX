@@ -15,8 +15,7 @@ import com.badlogic.gdx.utils.Array;
  * {@link AssetLoader} to load {@link TextureAtlas} instances. Passing a {@link TextureAtlasParameter} to
  * {@link AssetManager#load(String, Class, AssetLoaderParameters)} allows to specify whether the atlas regions should be flipped
  * on the y-axis or not.
- *
- *  */
+ */
 public class TextureAtlasLoader extends SynchronousAssetLoader<TextureAtlas, TextureAtlasLoader.TextureAtlasParameter> {
     TextureAtlasData data;
 

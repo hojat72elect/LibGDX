@@ -20,7 +20,6 @@ public abstract class AsynchronousAssetLoader<T, P extends AssetLoaderParameters
     /**
      * Loads the non-OpenGL part of the asset and injects any dependencies of the asset into the AssetManager.
      *
-     * @param manager
      * @param fileName  the name of the asset to load
      * @param file      the resolved file to load
      * @param parameter the parameters to use for loading the asset
@@ -45,10 +44,7 @@ public abstract class AsynchronousAssetLoader<T, P extends AssetLoaderParameters
     /**
      * Loads the OpenGL part of the asset.
      *
-     * @param manager
-     * @param fileName
-     * @param file      the resolved file to load
-     * @param parameter
+     * @param file the resolved file to load
      */
     public abstract T loadSync(AssetManager manager, String fileName, FileHandle file, P parameter);
 }

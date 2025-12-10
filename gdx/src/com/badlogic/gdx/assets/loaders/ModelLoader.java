@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import java.util.Iterator;
 
 public abstract class ModelLoader<P extends ModelLoader.ModelParameters> extends AsynchronousAssetLoader<Model, P> {
-    protected Array<ObjectMap.Entry<String, ModelData>> items = new Array<ObjectMap.Entry<String, ModelData>>();
+    protected Array<ObjectMap.Entry<String, ModelData>> items = new Array<>();
     protected ModelParameters defaultParameters = new ModelParameters();
     public ModelLoader(FileHandleResolver resolver) {
         super(resolver);
@@ -66,11 +66,11 @@ public abstract class ModelLoader<P extends ModelLoader.ModelParameters> extends
 
     @Override
     public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, P parameters) {
-        final Array<AssetDescriptor> deps = new Array();
+        final Array<AssetDescriptor> deps = new Array<>();
         ModelData data = loadModelData(file, parameters);
         if (data == null) return deps;
 
-        ObjectMap.Entry<String, ModelData> item = new ObjectMap.Entry<String, ModelData>();
+        ObjectMap.Entry<String, ModelData> item = new ObjectMap.Entry<>();
         item.key = fileName;
         item.value = data;
         synchronized (items) {

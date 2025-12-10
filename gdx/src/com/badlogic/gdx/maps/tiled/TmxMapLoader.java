@@ -27,8 +27,6 @@ public class TmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Parameters
 
     /**
      * Creates loader
-     *
-     * @param resolver
      */
     public TmxMapLoader(FileHandleResolver resolver) {
         super(resolver);
