@@ -66,8 +66,8 @@ public class MultipleRenderTargetTest extends GdxTest {
     ModelCache modelCache;
     ModelInstance floorInstance;
     ModelInstance cannon;
-    Array<Light> lights = new Array<Light>();
-    Array<Renderable> renderables = new Array<Renderable>();
+    Array<Light> lights = new Array<>();
+    Array<Renderable> renderables = new Array<>();
     RenderablePool renerablePool = new RenderablePool();
     float track;
 
@@ -434,7 +434,7 @@ public class MultipleRenderTargetTest extends GdxTest {
     }
 
     protected static class RenderablePool extends Pool<Renderable> {
-        protected Array<Renderable> obtained = new Array<Renderable>();
+        protected Array<Renderable> obtained = new Array<>();
 
         @Override
         protected Renderable newObject() {

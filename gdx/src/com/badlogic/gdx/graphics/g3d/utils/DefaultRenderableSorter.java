@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Comparator;
 
 public class DefaultRenderableSorter implements RenderableSorter, Comparator<Renderable> {
@@ -15,7 +17,7 @@ public class DefaultRenderableSorter implements RenderableSorter, Comparator<Ren
     private Camera camera;
 
     @Override
-    public void sort(final Camera camera, final Array<Renderable> renderables) {
+    public void sort(@NotNull final Camera camera, final Array<Renderable> renderables) {
         this.camera = camera;
         renderables.sort(this);
     }
@@ -38,8 +40,6 @@ public class DefaultRenderableSorter implements RenderableSorter, Comparator<Ren
                 && ((BlendingAttribute) o2.material.get(BlendingAttribute.Type)).blended;
         if (b1 != b2) return b1 ? 1 : -1;
         // FIXME implement better sorting algorithm
-        // final boolean same = o1.shader == o2.shader && o1.mesh == o2.mesh && (o1.lights == null) == (o2.lights == null) &&
-        // o1.material.equals(o2.material);
         getTranslation(o1.worldTransform, o1.meshPart.center, tmpV1);
         getTranslation(o2.worldTransform, o2.meshPart.center, tmpV2);
         final float dst = (int) (1000f * camera.position.dst2(tmpV1)) - (int) (1000f * camera.position.dst2(tmpV2));

@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.FlushablePool;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Comparator;
 
 /**
@@ -20,8 +22,7 @@ import java.util.Comparator;
  * dynamically (e.g. every frame) or statically (e.g. to combine part of scenery). Be aware that any combined vertices are
  * directly transformed, therefore the resulting {@link Renderable#worldTransform} might not be suitable for sorting anymore (such
  * as the default sorter of ModelBatch does).
- *
- *  */
+ */
 public class ModelCache implements Disposable, RenderableProvider {
     private final Array<Renderable> renderables = new Array<>();
     private final FlushablePool<Renderable> renderablesPool = new FlushablePool<Renderable>() {
@@ -259,8 +260,7 @@ public class ModelCache implements Disposable, RenderableProvider {
      * A basic {@link MeshPool} implementation that avoids creating new meshes at the cost of memory usage. It does this by making
      * the mesh always the maximum (64k) size. Use this when for dynamic caching where you need to obtain meshes very frequently
      * (typically every frame).
-     *
-     *      */
+     */
     public static class SimpleMeshPool implements MeshPool {
         // FIXME Make a better (preferable JNI) MeshPool implementation
         private final Array<Mesh> freeMeshes = new Array<>();
@@ -303,11 +303,10 @@ public class ModelCache implements Disposable, RenderableProvider {
 
     /**
      * A tight {@link MeshPool} implementation, which is typically used for static meshes (create once, use many).
-     *
-     *      */
+     */
     public static class TightMeshPool implements MeshPool {
-        private final Array<Mesh> freeMeshes = new Array<Mesh>();
-        private final Array<Mesh> usedMeshes = new Array<Mesh>();
+        private final Array<Mesh> freeMeshes = new Array<>();
+        private final Array<Mesh> usedMeshes = new Array<>();
 
         @Override
         public void flush() {
@@ -345,11 +344,10 @@ public class ModelCache implements Disposable, RenderableProvider {
     /**
      * A {@link RenderableSorter} that sorts by vertex attributes, material attributes and primitive types (in that order), so
      * that meshes can be easily merged.
-     *
-     *      */
+     */
     public static class Sorter implements RenderableSorter, Comparator<Renderable> {
         @Override
-        public void sort(Camera camera, Array<Renderable> renderables) {
+        public void sort(@NotNull Camera camera, Array<Renderable> renderables) {
             renderables.sort(this);
         }
 

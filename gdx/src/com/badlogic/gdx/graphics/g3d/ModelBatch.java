@@ -29,7 +29,7 @@ public class ModelBatch implements Disposable {
     /**
      * list of Renderables to be rendered in the current batch
      **/
-    protected final Array<Renderable> renderables = new Array<Renderable>();
+    protected final Array<Renderable> renderables = new Array<>();
     /**
      * the {@link RenderContext}
      **/
