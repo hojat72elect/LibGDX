@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.IntMap;
  * routines you already implemented.
  */
 public abstract class PluggableGroupStrategy implements GroupStrategy {
-    private final IntMap<GroupPlug> plugs = new IntMap<GroupPlug>();
+    private final IntMap<GroupPlug> plugs = new IntMap<>();
 
     @Override
     public void beforeGroup(int group, Array<Decal> contents) {
