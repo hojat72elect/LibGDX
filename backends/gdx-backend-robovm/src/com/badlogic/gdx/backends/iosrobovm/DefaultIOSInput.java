@@ -18,9 +18,59 @@ import com.badlogic.gdx.utils.Pool;
 import org.robovm.apple.coregraphics.CGPoint;
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
-import org.robovm.apple.foundation.*;
+import org.robovm.apple.foundation.Foundation;
+import org.robovm.apple.foundation.NSArray;
+import org.robovm.apple.foundation.NSAttributedString;
+import org.robovm.apple.foundation.NSData;
+import org.robovm.apple.foundation.NSDictionary;
+import org.robovm.apple.foundation.NSExtensions;
+import org.robovm.apple.foundation.NSIndexPath;
+import org.robovm.apple.foundation.NSObject;
+import org.robovm.apple.foundation.NSRange;
 import org.robovm.apple.gamecontroller.GCKeyboard;
-import org.robovm.apple.uikit.*;
+import org.robovm.apple.uikit.NSAttributedStringAttribute;
+import org.robovm.apple.uikit.UIAlertAction;
+import org.robovm.apple.uikit.UIAlertActionStyle;
+import org.robovm.apple.uikit.UIAlertController;
+import org.robovm.apple.uikit.UIAlertControllerStyle;
+import org.robovm.apple.uikit.UIBarButtonItem;
+import org.robovm.apple.uikit.UIBarButtonSystemItem;
+import org.robovm.apple.uikit.UIButton;
+import org.robovm.apple.uikit.UIButtonType;
+import org.robovm.apple.uikit.UIColor;
+import org.robovm.apple.uikit.UIControlEvents;
+import org.robovm.apple.uikit.UIControlState;
+import org.robovm.apple.uikit.UIEdgeInsets;
+import org.robovm.apple.uikit.UIForceTouchCapability;
+import org.robovm.apple.uikit.UIImage;
+import org.robovm.apple.uikit.UIKey;
+import org.robovm.apple.uikit.UIKeyboardHIDUsage;
+import org.robovm.apple.uikit.UIKeyboardType;
+import org.robovm.apple.uikit.UIListContentConfiguration;
+import org.robovm.apple.uikit.UIReturnKeyType;
+import org.robovm.apple.uikit.UIScreen;
+import org.robovm.apple.uikit.UITableView;
+import org.robovm.apple.uikit.UITableViewCell;
+import org.robovm.apple.uikit.UITableViewCellStyle;
+import org.robovm.apple.uikit.UITableViewDataSourceAdapter;
+import org.robovm.apple.uikit.UITableViewDelegateAdapter;
+import org.robovm.apple.uikit.UITextAutocapitalizationType;
+import org.robovm.apple.uikit.UITextAutocorrectionType;
+import org.robovm.apple.uikit.UITextField;
+import org.robovm.apple.uikit.UITextFieldDelegate;
+import org.robovm.apple.uikit.UITextFieldDelegateAdapter;
+import org.robovm.apple.uikit.UITextFieldViewMode;
+import org.robovm.apple.uikit.UITextInput;
+import org.robovm.apple.uikit.UITextInputTraits;
+import org.robovm.apple.uikit.UITextPosition;
+import org.robovm.apple.uikit.UITextSpellCheckingType;
+import org.robovm.apple.uikit.UITextView;
+import org.robovm.apple.uikit.UITextViewDelegate;
+import org.robovm.apple.uikit.UITextViewDelegateAdapter;
+import org.robovm.apple.uikit.UIToolbar;
+import org.robovm.apple.uikit.UITouch;
+import org.robovm.apple.uikit.UITouchPhase;
+import org.robovm.apple.uikit.UIView;
 import org.robovm.objc.Selector;
 import org.robovm.objc.annotation.Method;
 import org.robovm.objc.block.VoidBlock1;
@@ -55,9 +105,9 @@ public class DefaultIOSInput extends AbstractInput implements IOSInput {
 		}
 	}
 
-	private static final NSObjectWrapper<UITouch> UI_TOUCH_WRAPPER = new NSObjectWrapper<UITouch>(UITouch.class);
-	static final NSObjectWrapper<UIAcceleration> UI_ACCELERATION_WRAPPER = new NSObjectWrapper<UIAcceleration>(
-		UIAcceleration.class);
+	static final NSObjectWrapper<UIAcceleration> UI_ACCELERATION_WRAPPER = new NSObjectWrapper<>(
+			UIAcceleration.class);
+	private static final NSObjectWrapper<UITouch> UI_TOUCH_WRAPPER = new NSObjectWrapper<>(UITouch.class);
 
 	IOSApplication app;
 	IOSApplicationConfiguration config;

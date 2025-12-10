@@ -7,8 +7,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
  * Listener for GL errors detected by {@link GLProfiler}.
- *
- *  * @see GLProfiler
  */
 public interface GLErrorListener {
 

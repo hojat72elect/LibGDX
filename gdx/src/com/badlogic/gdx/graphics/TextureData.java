@@ -23,8 +23,7 @@ import com.badlogic.gdx.graphics.glutils.MipMapGenerator;
  * </p>
  * <p>
  * Look at {@link FileTextureData} and {@link ETC1TextureData} for example implementations of this interface.
- *
- *  */
+ */
 public interface TextureData {
     /**
      * @return the {@link TextureDataType}

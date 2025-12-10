@@ -1,12 +1,12 @@
 package com.badlogic.gdx.graphics.glutils;
 
 import com.badlogic.gdx.utils.Disposable;
+
 import java.nio.ShortBuffer;
 
 /**
  * An IndexData instance holds index data. Can be either a plain short buffer or an OpenGL buffer object.
- *
- *  */
+ */
 public interface IndexData extends Disposable {
     /**
      * @return the number of indices currently stored in this buffer

@@ -8,8 +8,7 @@ import java.nio.FloatBuffer;
 /**
  * A VertexData instance holds vertices for rendering with OpenGL. It is implemented as either a {@link VertexArray} or a
  * {@link VertexBufferObject}. Only the later supports OpenGL ES 2.0.
- *
- *  */
+ */
 public interface VertexData extends Disposable {
     /**
      * @return the number of vertices this VertexData stores
