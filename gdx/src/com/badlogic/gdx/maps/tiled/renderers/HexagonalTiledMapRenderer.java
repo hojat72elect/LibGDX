@@ -46,6 +46,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 
+import org.jetbrains.annotations.NotNull;
+
 public class HexagonalTiledMapRenderer extends BatchTiledMapRenderer {
 
     /**
@@ -284,7 +286,7 @@ public class HexagonalTiledMapRenderer extends BatchTiledMapRenderer {
     }
 
     @Override
-    public void renderImageLayer(TiledMapImageLayer layer) {
+    public void renderImageLayer(@NotNull TiledMapImageLayer layer) {
         final Color batchColor = batch.getColor();
 
         final float color = getImageLayerColor(layer, batchColor);

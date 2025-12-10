@@ -1,8 +1,6 @@
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetDescriptor;
-import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -52,12 +50,7 @@ public class TiledMapGroupLayerWithImagelayerTest extends GdxTest {
         params.textureMagFilter = Texture.TextureFilter.Linear;
 
         assetManager = new AssetManager();
-        assetManager.setErrorListener(new AssetErrorListener() {
-            @Override
-            public void error(AssetDescriptor asset, Throwable throwable) {
-                errorMessage = throwable.getMessage();
-            }
-        });
+        assetManager.setErrorListener((asset, throwable) -> errorMessage = throwable.getMessage());
 
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load(fileName, TiledMap.class);

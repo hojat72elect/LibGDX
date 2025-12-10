@@ -79,7 +79,7 @@ public class TiledMapUniversalLoaderTest extends GdxTest {
 
         assetManager.load(MAP_TMJ_2, TiledMap.class);
 
-        /** This test is just to show off that passing in parameters build from the BaseTiledMapLoader.Parameters would work. Note
+        /* This test is just to show off that passing in parameters build from the BaseTiledMapLoader.Parameters would work. Note
          * that you can not pass in Parameters of a different subclass map loader type. e.g. No TmxMapLoader.Parameters into a .tmj
          * map. */
         BaseTiledMapLoader.Parameters mapTmx3Params = new BaseTiledMapLoader.Parameters();

@@ -49,6 +49,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import org.jetbrains.annotations.NotNull;
+
 public class IsometricTiledMapRenderer extends BatchTiledMapRenderer {
 
     private Matrix4 isoTransform;
@@ -253,7 +255,7 @@ public class IsometricTiledMapRenderer extends BatchTiledMapRenderer {
     }
 
     @Override
-    public void renderImageLayer(TiledMapImageLayer layer) {
+    public void renderImageLayer(@NotNull TiledMapImageLayer layer) {
         final Color batchColor = batch.getColor();
 
         final float color = getImageLayerColor(layer, batchColor);

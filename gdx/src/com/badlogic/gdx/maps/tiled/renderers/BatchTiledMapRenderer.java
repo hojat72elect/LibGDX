@@ -39,6 +39,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 
+import org.jetbrains.annotations.NotNull;
+
 public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposable {
     static protected final int NUM_VERTICES = 20;
 
@@ -163,12 +165,12 @@ public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposa
     }
 
     @Override
-    public void renderObject(MapObject object) {
+    public void renderObject(@NotNull MapObject object) {
 
     }
 
     @Override
-    public void renderImageLayer(TiledMapImageLayer layer) {
+    public void renderImageLayer(@NotNull TiledMapImageLayer layer) {
         final Color batchColor = batch.getColor();
 
         final float color = getImageLayerColor(layer, batchColor);

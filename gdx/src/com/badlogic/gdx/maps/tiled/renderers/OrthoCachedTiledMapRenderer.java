@@ -41,6 +41,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Renders ortho tiles by caching geometry on the GPU. How much is cached is controlled by {@link #setOverCache(float)}. When the
  * view reaches the edge of the cached tiles, the cache is rebuilt at the new view position.
@@ -211,7 +213,7 @@ public class OrthoCachedTiledMapRenderer implements TiledMapRenderer, Disposable
     }
 
     @Override
-    public void renderObject(MapObject object) {
+    public void renderObject(@NotNull MapObject object) {
     }
 
     @Override

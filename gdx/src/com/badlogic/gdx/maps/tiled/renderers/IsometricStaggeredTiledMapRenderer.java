@@ -46,6 +46,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
+import org.jetbrains.annotations.NotNull;
+
 public class IsometricStaggeredTiledMapRenderer extends BatchTiledMapRenderer {
 
     public IsometricStaggeredTiledMapRenderer(TiledMap map) {
@@ -209,7 +211,7 @@ public class IsometricStaggeredTiledMapRenderer extends BatchTiledMapRenderer {
     }
 
     @Override
-    public void renderImageLayer(TiledMapImageLayer layer) {
+    public void renderImageLayer(@NotNull TiledMapImageLayer layer) {
         final Color batchColor = batch.getColor();
 
         final float color = getImageLayerColor(layer, batchColor);
