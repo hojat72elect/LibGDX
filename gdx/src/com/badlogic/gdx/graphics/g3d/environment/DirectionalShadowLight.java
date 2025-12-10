@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 
-/**
- *  */
+import org.jetbrains.annotations.NotNull;
+
 public class DirectionalShadowLight extends DirectionalLight implements ShadowMap, Disposable {
     protected final Vector3 tmpV = new Vector3();
     protected final TextureDescriptor textureDesc;
@@ -80,11 +80,13 @@ public class DirectionalShadowLight extends DirectionalLight implements ShadowMa
         return cam;
     }
 
+    @NotNull
     @Override
     public Matrix4 getProjViewTrans() {
         return cam.combined;
     }
 
+    @NotNull
     @Override
     public TextureDescriptor getDepthMap() {
         textureDesc.texture = fbo.getColorBufferTexture();
