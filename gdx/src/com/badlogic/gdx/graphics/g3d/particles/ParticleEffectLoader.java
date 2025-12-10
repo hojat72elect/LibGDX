@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 import java.io.IOException;
 
@@ -24,11 +23,10 @@ import java.io.IOException;
  * present the batches settings will be loaded automatically. When the load and save parameters are absent, once the effect will
  * be created, one will have to set the required batches manually otherwise the {@link ParticleController} instances contained
  * inside the effect will not be able to render themselves.
- *
- *  */
+ */
 public class ParticleEffectLoader
         extends AsynchronousAssetLoader<ParticleEffect, ParticleEffectLoader.ParticleEffectLoadParameter> {
-    protected Array<ObjectMap.Entry<String, ResourceData<ParticleEffect>>> items = new Array<ObjectMap.Entry<String, ResourceData<ParticleEffect>>>();
+    protected final Array<ObjectMap.Entry<String, ResourceData<ParticleEffect>>> items = new Array<>();
 
     public ParticleEffectLoader(FileHandleResolver resolver) {
         super(resolver);
@@ -39,19 +37,20 @@ public class ParticleEffectLoader
     }
 
     @Override
+    @SuppressWarnings("rawtypes")
     public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, ParticleEffectLoadParameter parameter) {
         Json json = new Json();
         ResourceData<ParticleEffect> data = json.fromJson(ResourceData.class, file);
-        Array<AssetData> assets = null;
+        Array<AssetData> assets;
         synchronized (items) {
-            ObjectMap.Entry<String, ResourceData<ParticleEffect>> entry = new ObjectMap.Entry<String, ResourceData<ParticleEffect>>();
+            ObjectMap.Entry<String, ResourceData<ParticleEffect>> entry = new ObjectMap.Entry<>();
             entry.key = fileName;
             entry.value = data;
             items.add(entry);
             assets = data.getAssets();
         }
 
-        Array<AssetDescriptor> descriptors = new Array<AssetDescriptor>();
+        Array<AssetDescriptor> descriptors = new Array<>();
         for (AssetData<?> assetData : assets) {
 
             // If the asset doesn't exist try to load it from loading effect directory
@@ -72,7 +71,7 @@ public class ParticleEffectLoader
      * Saves the effect to the given file contained in the passed in parameter.
      */
     public void save(ParticleEffect effect, ParticleEffectSaveParameter parameter) throws IOException {
-        ResourceData<ParticleEffect> data = new ResourceData<ParticleEffect>(effect);
+        ResourceData<Object> data = new ResourceData<>(effect);
 
         // effect assets
         effect.save(parameter.manager, data);
@@ -121,19 +120,12 @@ public class ParticleEffectLoader
         if (parameter != null) {
             if (parameter.batches != null) {
                 for (ParticleBatch<?> batch : parameter.batches) {
-                    batch.load(manager, effectData);
+                    batch.load(manager, (ResourceData) effectData);
                 }
             }
             effectData.resource.setBatch(parameter.batches);
         }
         return effectData.resource;
-    }
-
-    private <T> T find(Array<?> array, Class<T> type) {
-        for (Object object : array) {
-            if (ClassReflection.isAssignableFrom(type, object.getClass())) return (T) object;
-        }
-        return null;
     }
 
     public static class ParticleEffectLoadParameter extends AssetLoaderParameters<ParticleEffect> {
@@ -158,10 +150,6 @@ public class ParticleEffectLoader
         JsonWriter.OutputType jsonOutputType;
         boolean prettyPrint;
 
-        public ParticleEffectSaveParameter(FileHandle file, AssetManager manager, Array<ParticleBatch<?>> batches) {
-            this(file, manager, batches, JsonWriter.OutputType.minimal, false);
-        }
-
         public ParticleEffectSaveParameter(FileHandle file, AssetManager manager, Array<ParticleBatch<?>> batches,
                                            JsonWriter.OutputType jsonOutputType, boolean prettyPrint) {
             this.batches = batches;
@@ -169,6 +157,6 @@ public class ParticleEffectLoader
             this.manager = manager;
             this.jsonOutputType = jsonOutputType;
             this.prettyPrint = prettyPrint;
-        }
-    }
+		}
+	}
 }

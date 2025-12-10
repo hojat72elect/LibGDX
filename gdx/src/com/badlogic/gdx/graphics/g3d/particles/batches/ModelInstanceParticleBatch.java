@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g3d.particles.renderers.ModelInstanceController
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class is used to render particles having a model instance channel.
  */
@@ -15,7 +17,7 @@ public class ModelInstanceParticleBatch implements ParticleBatch<ModelInstanceCo
     int bufferedParticlesCount;
 
     public ModelInstanceParticleBatch() {
-        controllersRenderData = new Array<ModelInstanceControllerRenderData>(false, 5);
+        controllersRenderData = new Array<>(false, 5);
     }
 
     @Override
@@ -42,16 +44,16 @@ public class ModelInstanceParticleBatch implements ParticleBatch<ModelInstanceCo
     }
 
     @Override
-    public void draw(ModelInstanceControllerRenderData data) {
+    public void draw(@NotNull ModelInstanceControllerRenderData data) {
         controllersRenderData.add(data);
         bufferedParticlesCount += data.controller.particles.size;
     }
 
     @Override
-    public void save(AssetManager manager, ResourceData assetDependencyData) {
+    public void save(@NotNull AssetManager manager, @NotNull ResourceData assetDependencyData) {
     }
 
     @Override
-    public void load(AssetManager manager, ResourceData assetDependencyData) {
+    public void load(@NotNull AssetManager manager, @NotNull ResourceData assetDependencyData) {
     }
 }

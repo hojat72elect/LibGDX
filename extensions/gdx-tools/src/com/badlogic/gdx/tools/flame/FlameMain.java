@@ -135,7 +135,7 @@ public class FlameMain extends JFrame implements AssetErrorListener {
         assetManager = new AssetManager();
         assetManager.setErrorListener(this);
         assetManager.setLoader(ParticleEffect.class, new ParticleEffectLoader(new InternalFileHandleResolver()));
-        controllersData = new Array<ControllerData>();
+        controllersData = new Array<>();
 
         lwjglCanvas = new LwjglCanvas(renderer = new AppRenderer());
         addWindowListener(new WindowAdapter() {
@@ -162,11 +162,7 @@ public class FlameMain extends JFrame implements AssetErrorListener {
                 break;
             }
         }
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FlameMain();
-            }
-        });
+        EventQueue.invokeLater(FlameMain::new);
     }
 
     public ControllerType getControllerType() {
@@ -183,50 +179,48 @@ public class FlameMain extends JFrame implements AssetErrorListener {
     }
 
     void reloadRows() {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        EventQueue.invokeLater(() -> {
 
-                // Ensure no listener is left watching for events
-                EventManager.get().clear();
+            // Ensure no listener is left watching for events
+            EventManager.get().clear();
 
-                // Clear
-                editorPropertiesPanel.removeAll();
-                influencerBox.removeAllItems();
-                controllerPropertiesPanel.removeAll();
+            // Clear
+            editorPropertiesPanel.removeAll();
+            influencerBox.removeAllItems();
+            controllerPropertiesPanel.removeAll();
 
-                // Editor props
-                addRow(editorPropertiesPanel, new NumericPanel(FlameMain.this, fovValue, "Field of View", ""));
-                addRow(editorPropertiesPanel, new NumericPanel(FlameMain.this, deltaMultiplier, "Delta multiplier", ""));
-                addRow(editorPropertiesPanel, new GradientPanel(FlameMain.this, backgroundColor, "Background color", "", true));
-                addRow(editorPropertiesPanel, new DrawPanel(FlameMain.this, "Draw", ""));
-                addRow(editorPropertiesPanel, new TextureLoaderPanel(FlameMain.this, "Texture", ""));
-                addRow(editorPropertiesPanel, new BillboardBatchPanel(FlameMain.this, renderer.billboardBatch), 1, 1);
-                addRow(editorPropertiesPanel, new PointSpriteBatchPanel(FlameMain.this, renderer.pointSpriteBatch), 1, 1);
-                addRow(editorPropertiesPanel, new SavePanel(FlameMain.this, "Save", ""));
-                editorPropertiesPanel.repaint();
+            // Editor props
+            addRow(editorPropertiesPanel, new NumericPanel(FlameMain.this, fovValue, "Field of View", ""));
+            addRow(editorPropertiesPanel, new NumericPanel(FlameMain.this, deltaMultiplier, "Delta multiplier", ""));
+            addRow(editorPropertiesPanel, new GradientPanel(FlameMain.this, backgroundColor, "Background color", "", true));
+            addRow(editorPropertiesPanel, new DrawPanel(FlameMain.this, "Draw", ""));
+            addRow(editorPropertiesPanel, new TextureLoaderPanel(FlameMain.this, "Texture", ""));
+            addRow(editorPropertiesPanel, new BillboardBatchPanel(FlameMain.this, renderer.billboardBatch), 1, 1);
+            addRow(editorPropertiesPanel, new PointSpriteBatchPanel(FlameMain.this, renderer.pointSpriteBatch), 1, 1);
+            addRow(editorPropertiesPanel, new SavePanel(FlameMain.this, "Save", ""));
+            editorPropertiesPanel.repaint();
 
-                // Controller props
-                ParticleController controller = getEmitter();
-                if (controller != null) {
-                    // Reload available influencers
-                    DefaultComboBoxModel model = (DefaultComboBoxModel) influencerBox.getModel();
-                    ControllerType type = getControllerType();
-                    if (type != null) {
-                        for (Object value : type.wrappers)
-                            model.addElement(value);
-                    }
-                    JPanel panel = null;
-                    addRow(controllerPropertiesPanel, getPanel(controller.emitter));
-                    for (int i = 0, c = controller.influencers.size; i < c; ++i) {
-                        Influencer influencer = controller.influencers.get(i);
-                        panel = getPanel(influencer);
-                        if (panel != null) addRow(controllerPropertiesPanel, panel, 1, i == c - 1 ? 1 : 0);
-                    }
-                    for (Component component : controllerPropertiesPanel.getComponents())
-                        if (component instanceof EditorPanel) ((EditorPanel) component).update(FlameMain.this);
+            // Controller props
+            ParticleController controller = getEmitter();
+            if (controller != null) {
+                // Reload available influencers
+                DefaultComboBoxModel model = (DefaultComboBoxModel) influencerBox.getModel();
+                ControllerType type = getControllerType();
+                if (type != null) {
+                    for (Object value : type.wrappers)
+                        model.addElement(value);
                 }
-                controllerPropertiesPanel.repaint();
+                JPanel panel = null;
+                addRow(controllerPropertiesPanel, getPanel(controller.emitter));
+                for (int i = 0, c = controller.influencers.size; i < c; ++i) {
+                    Influencer influencer = controller.influencers.get(i);
+                    panel = getPanel(influencer);
+                    if (panel != null) addRow(controllerPropertiesPanel, panel, 1, i == c - 1 ? 1 : 0);
+                }
+                for (Component component : controllerPropertiesPanel.getComponents())
+                    if (component instanceof EditorPanel) ((EditorPanel) component).update(FlameMain.this);
             }
+            controllerPropertiesPanel.repaint();
         });
     }
 
