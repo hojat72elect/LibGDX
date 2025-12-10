@@ -32,8 +32,7 @@ import java.nio.ByteBuffer;
 
 /**
  * An implementation of the {@link Graphics} interface based on Lwjgl.
- *
- *  */
+ */
 public class LwjglGraphics extends AbstractGraphics {
 
     /**
