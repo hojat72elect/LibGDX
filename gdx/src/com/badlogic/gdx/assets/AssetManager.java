@@ -50,8 +50,7 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
  * Loads and stores assets like textures, bitmapfonts, tile maps, sounds, music and so on.
- *
- *  */
+ */
 public class AssetManager implements Disposable {
     final ObjectMap<Class, ObjectMap<String, RefCountedContainer>> assets = new ObjectMap();
     final ObjectMap<String, Class> assetTypes = new ObjectMap();
