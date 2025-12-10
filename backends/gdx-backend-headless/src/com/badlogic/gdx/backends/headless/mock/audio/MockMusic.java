@@ -2,6 +2,8 @@ package com.badlogic.gdx.backends.headless.mock.audio;
 
 import com.badlogic.gdx.audio.Music;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * The headless backend does its best to mock elements. This is intended to make code-sharing between server and client as simple
  * as possible.
@@ -68,7 +70,7 @@ public class MockMusic implements Music {
     }
 
     @Override
-    public void setOnCompletionListener(OnCompletionListener listener) {
+    public void setOnCompletionListener(@NotNull OnCompletionListener listener) {
 
     }
 }

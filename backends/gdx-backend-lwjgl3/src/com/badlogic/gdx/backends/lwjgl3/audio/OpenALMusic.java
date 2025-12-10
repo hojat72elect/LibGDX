@@ -32,6 +32,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.openal.AL11;
 
@@ -304,7 +305,7 @@ public abstract class OpenALMusic implements Music {
         onCompletionListener = null;
     }
 
-    public void setOnCompletionListener(OnCompletionListener listener) {
+    public void setOnCompletionListener(@NotNull OnCompletionListener listener) {
         onCompletionListener = listener;
     }
 

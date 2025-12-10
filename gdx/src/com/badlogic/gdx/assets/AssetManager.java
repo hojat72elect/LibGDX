@@ -52,13 +52,13 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
  * Loads and stores assets like textures, bitmapfonts, tile maps, sounds, music and so on.
  */
 public class AssetManager implements Disposable {
-    final ObjectMap<Class, ObjectMap<String, RefCountedContainer>> assets = new ObjectMap();
-    final ObjectMap<String, Class> assetTypes = new ObjectMap();
-    final ObjectMap<String, Array<String>> assetDependencies = new ObjectMap();
-    final ObjectSet<String> injected = new ObjectSet();
+    final ObjectMap<Class, ObjectMap<String, RefCountedContainer>> assets = new ObjectMap<>();
+    final ObjectMap<String, Class> assetTypes = new ObjectMap<>();
+    final ObjectMap<String, Array<String>> assetDependencies = new ObjectMap<>();
+    final ObjectSet<String> injected = new ObjectSet<>();
 
-    final ObjectMap<Class, ObjectMap<String, AssetLoader>> loaders = new ObjectMap();
-    final Array<AssetDescriptor> loadQueue = new Array();
+    final ObjectMap<Class, ObjectMap<String, AssetLoader>> loaders = new ObjectMap<>();
+    final Array<AssetDescriptor> loadQueue = new Array<>();
     final AsyncExecutor executor;
 
     final Array<AssetLoadingTask> tasks = new Array();
@@ -738,7 +738,7 @@ public class AssetManager implements Disposable {
         if (loader == null) throw new IllegalArgumentException("loader cannot be null.");
         log.debug("Loader set: " + ClassReflection.getSimpleName(type) + " -> " + ClassReflection.getSimpleName(loader.getClass()));
         ObjectMap<String, AssetLoader> loaders = this.loaders.get(type);
-        if (loaders == null) this.loaders.put(type, loaders = new ObjectMap<String, AssetLoader>());
+        if (loaders == null) this.loaders.put(type, loaders = new ObjectMap<>());
         loaders.put(suffix == null ? "" : suffix, loader);
     }
 
@@ -801,7 +801,7 @@ public class AssetManager implements Disposable {
         finishLoading();
 
         synchronized (this) {
-            ObjectIntMap<String> dependencyCount = new ObjectIntMap<String>();
+            ObjectIntMap<String> dependencyCount = new ObjectIntMap<>();
             while (assetTypes.size > 0) {
                 // for each asset, figure out how often it was referenced
                 dependencyCount.clear(51);

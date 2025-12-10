@@ -18,6 +18,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,12 +27,11 @@ import java.util.List;
 
 /**
  * An implementation of the {@link Audio} interface for Android.
- *
- *  */
+ */
 public class DefaultAndroidAudio implements AndroidAudio {
     private final SoundPool soundPool;
     private final AudioManager manager;
-    private final List<AndroidMusic> musics = new ArrayList<AndroidMusic>();
+    private final List<AndroidMusic> musics = new ArrayList<>();
 
     public DefaultAndroidAudio(Context context, AndroidApplicationConfiguration config) {
         AudioAttributes audioAttrib = new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME)
@@ -66,19 +67,13 @@ public class DefaultAndroidAudio implements AndroidAudio {
         this.soundPool.autoResume();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public AudioDevice newAudioDevice(int samplingRate, boolean isMono) {
         return new AndroidAudioDevice(samplingRate, isMono);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Music newMusic(FileHandle file) {
+    public Music newMusic(@NotNull FileHandle file) {
         AndroidFileHandle aHandle = (AndroidFileHandle) file;
 
         MediaPlayer mediaPlayer = createMediaPlayer();
@@ -118,6 +113,7 @@ public class DefaultAndroidAudio implements AndroidAudio {
         return true;
     }
 
+    @NotNull
     @Override
     public String[] getAvailableOutputDevices() {
         return new String[0];
@@ -147,11 +143,8 @@ public class DefaultAndroidAudio implements AndroidAudio {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Sound newSound(FileHandle file) {
+    public Sound newSound(@NotNull FileHandle file) {
         AndroidSound androidSound;
         AndroidFileHandle aHandle = (AndroidFileHandle) file;
         if (aHandle.type() == FileType.Internal) {
@@ -173,9 +166,6 @@ public class DefaultAndroidAudio implements AndroidAudio {
         return androidSound;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public AudioRecorder newAudioRecorder(int samplingRate, boolean isMono) {
         return new AndroidAudioRecorder(samplingRate, isMono);
@@ -188,7 +178,7 @@ public class DefaultAndroidAudio implements AndroidAudio {
     public void dispose() {
         synchronized (musics) {
             // gah i hate myself.... music.dispose() removes the music from the list...
-            ArrayList<AndroidMusic> musicsCopy = new ArrayList<AndroidMusic>(musics);
+            ArrayList<AndroidMusic> musicsCopy = new ArrayList<>(musics);
             for (AndroidMusic music : musicsCopy) {
                 music.dispose();
             }

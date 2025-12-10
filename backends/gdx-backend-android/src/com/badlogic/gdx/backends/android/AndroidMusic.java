@@ -2,6 +2,8 @@ package com.badlogic.gdx.backends.android;
 
 import android.media.MediaPlayer;
 
+import androidx.annotation.NonNull;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 
@@ -151,19 +153,16 @@ public class AndroidMusic implements Music, MediaPlayer.OnCompletionListener {
     }
 
     @Override
-    public void setOnCompletionListener(OnCompletionListener listener) {
+    public void setOnCompletionListener(@NonNull OnCompletionListener listener) {
         onCompletionListener = listener;
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
         if (onCompletionListener != null) {
-            Gdx.app.postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (onCompletionListener != null) {
-                        onCompletionListener.onCompletion(AndroidMusic.this);
-                    }
+            Gdx.app.postRunnable(() -> {
+                if (onCompletionListener != null) {
+                    onCompletionListener.onCompletion(AndroidMusic.this);
                 }
             });
         }
