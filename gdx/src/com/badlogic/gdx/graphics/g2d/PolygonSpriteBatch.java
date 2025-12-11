@@ -16,6 +16,8 @@ import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A PolygonSpriteBatch is used to draw 2D polygons that reference a texture (region). The class will batch the drawing commands
  * and optimize them for processing by the GPU.
@@ -197,7 +199,7 @@ public class PolygonSpriteBatch implements PolygonBatch {
     }
 
     @Override
-    public void draw(PolygonRegion region, float x, float y) {
+    public void draw(@NotNull PolygonRegion region, float x, float y) {
         if (!drawing) throw new IllegalStateException("PolygonSpriteBatch.begin must be called before draw.");
 
         final short[] triangles = this.triangles;
@@ -216,8 +218,8 @@ public class PolygonSpriteBatch implements PolygonBatch {
         int vertexIndex = this.vertexIndex;
         final int startVertex = vertexIndex / VERTEX_SIZE;
 
-        for (int i = 0; i < regionTrianglesLength; i++)
-            triangles[triangleIndex++] = (short) (regionTriangles[i] + startVertex);
+        for (short regionTriangle : regionTriangles)
+            triangles[triangleIndex++] = (short) (regionTriangle + startVertex);
         this.triangleIndex = triangleIndex;
 
         final float[] vertices = this.vertices;
@@ -235,7 +237,7 @@ public class PolygonSpriteBatch implements PolygonBatch {
     }
 
     @Override
-    public void draw(PolygonRegion region, float x, float y, float width, float height) {
+    public void draw(@NotNull PolygonRegion region, float x, float y, float width, float height) {
         if (!drawing) throw new IllegalStateException("PolygonSpriteBatch.begin must be called before draw.");
 
         final short[] triangles = this.triangles;
@@ -255,8 +257,8 @@ public class PolygonSpriteBatch implements PolygonBatch {
         int vertexIndex = this.vertexIndex;
         final int startVertex = vertexIndex / VERTEX_SIZE;
 
-        for (int i = 0, n = regionTriangles.length; i < n; i++)
-            triangles[triangleIndex++] = (short) (regionTriangles[i] + startVertex);
+        for (short regionTriangle : regionTriangles)
+            triangles[triangleIndex++] = (short) (regionTriangle + startVertex);
         this.triangleIndex = triangleIndex;
 
         final float[] vertices = this.vertices;
@@ -276,7 +278,7 @@ public class PolygonSpriteBatch implements PolygonBatch {
     }
 
     @Override
-    public void draw(PolygonRegion region, float x, float y, float originX, float originY, float width, float height,
+    public void draw(@NotNull PolygonRegion region, float x, float y, float originX, float originY, float width, float height,
                      float scaleX, float scaleY, float rotation) {
         if (!drawing) throw new IllegalStateException("PolygonSpriteBatch.begin must be called before draw.");
 
@@ -297,8 +299,8 @@ public class PolygonSpriteBatch implements PolygonBatch {
         int vertexIndex = this.vertexIndex;
         final int startVertex = vertexIndex / VERTEX_SIZE;
 
-        for (int i = 0; i < regionTrianglesLength; i++)
-            triangles[triangleIndex++] = (short) (regionTriangles[i] + startVertex);
+        for (short regionTriangle : regionTriangles)
+            triangles[triangleIndex++] = (short) (regionTriangle + startVertex);
         this.triangleIndex = triangleIndex;
 
         final float[] vertices = this.vertices;
@@ -326,7 +328,7 @@ public class PolygonSpriteBatch implements PolygonBatch {
     }
 
     @Override
-    public void draw(Texture texture, float[] polygonVertices, int verticesOffset, int verticesCount, short[] polygonTriangles,
+    public void draw(@NotNull Texture texture, @NotNull float[] polygonVertices, int verticesOffset, int verticesCount, @NotNull short[] polygonTriangles,
                      int trianglesOffset, int trianglesCount) {
         if (!drawing) throw new IllegalStateException("PolygonSpriteBatch.begin must be called before draw.");
 

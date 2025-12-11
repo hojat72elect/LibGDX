@@ -1,22 +1,22 @@
-package com.badlogic.gdx.graphics.g2d;
+package com.badlogic.gdx.graphics.g2d
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture
 
 /**
  * A PolygonBatch is an extension of the Batch interface that provides additional render methods specifically for rendering
  * polygons.
- *
- *  *  */
-public interface PolygonBatch extends Batch {
+ */
+interface PolygonBatch : Batch {
+
     /**
      * Draws a polygon region with the bottom left corner at x,y having the width and height of the region.
      */
-    void draw(PolygonRegion region, float x, float y);
+    fun draw(region: PolygonRegion, x: Float, y: Float)
 
     /**
      * Draws a polygon region with the bottom left corner at x,y and stretching the region to cover the given width and height.
      */
-    void draw(PolygonRegion region, float x, float y, float width, float height);
+    fun draw(region: PolygonRegion, x: Float, y: Float, width: Float, height: Float)
 
     /**
      * Draws the polygon region with the bottom left corner at x,y and stretching the region to cover the given width and height.
@@ -24,13 +24,11 @@ public interface PolygonBatch extends Batch {
      * polygon region should be scaled around originX, originY. Rotation specifies the angle of counter clockwise rotation of the
      * rectangle around originX, originY.
      */
-    void draw(PolygonRegion region, float x, float y, float originX, float originY, float width, float height, float scaleX,
-              float scaleY, float rotation);
+    fun draw(region: PolygonRegion, x: Float, y: Float, originX: Float, originY: Float, width: Float, height: Float, scaleX: Float, scaleY: Float, rotation: Float)
 
     /**
      * Draws the polygon using the given vertices and triangles. Each vertices must be made up of 5 elements in this order: x, y,
      * color, u, v.
      */
-    void draw(Texture texture, float[] polygonVertices, int verticesOffset, int verticesCount, short[] polygonTriangles,
-              int trianglesOffset, int trianglesCount);
+    fun draw(texture: Texture, polygonVertices: FloatArray, verticesOffset: Int, verticesCount: Int, polygonTriangles: ShortArray, trianglesOffset: Int, trianglesCount: Int)
 }
