@@ -3,6 +3,8 @@ package com.badlogic.gdx.graphics.g3d.decals;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.IntMap;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class in combination with the {@link GroupPlug GroupPlugs} allows you to build a modular {@link GroupStrategy} out of
  * routines you already implemented.
@@ -11,7 +13,7 @@ public abstract class PluggableGroupStrategy implements GroupStrategy {
     private final IntMap<GroupPlug> plugs = new IntMap<>();
 
     @Override
-    public void beforeGroup(int group, Array<Decal> contents) {
+    public void beforeGroup(int group, @NotNull Array<Decal> contents) {
         plugs.get(group).beforeGroup(contents);
     }
 

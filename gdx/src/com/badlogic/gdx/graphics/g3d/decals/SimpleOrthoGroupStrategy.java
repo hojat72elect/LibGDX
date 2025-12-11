@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Sort;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * <p>
  * Minimalistic grouping strategy useful for orthogonal scenes where the camera faces the negative z axis. Handles enabling and
@@ -63,7 +65,7 @@ public class SimpleOrthoGroupStrategy implements GroupStrategy {
     }
 
     @Override
-    public void beforeGroup(int group, Array<Decal> contents) {
+    public void beforeGroup(int group, @NotNull Array<Decal> contents) {
         if (group == GROUP_BLEND) {
             Sort.instance().sort(contents, comparator);
             Gdx.gl.glEnable(GL20.GL_BLEND);

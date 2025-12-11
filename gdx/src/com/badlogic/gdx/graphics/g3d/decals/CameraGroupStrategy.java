@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Comparator;
 
 /**
@@ -71,23 +73,20 @@ public class CameraGroupStrategy implements GroupStrategy, Disposable {
     Pool<Array<Decal>> arrayPool = new Pool<Array<Decal>>(16) {
         @Override
         protected Array<Decal> newObject() {
-            return new Array();
+            return new Array<>();
         }
     };
-    Array<Array<Decal>> usedArrays = new Array<Array<Decal>>();
-    ObjectMap<DecalMaterial, Array<Decal>> materialGroups = new ObjectMap<DecalMaterial, Array<Decal>>();
+    Array<Array<Decal>> usedArrays = new Array<>();
+    ObjectMap<DecalMaterial, Array<Decal>> materialGroups = new ObjectMap<>();
     Camera camera;
     ShaderProgram shader;
 
     public CameraGroupStrategy(Camera camera) {
         this.camera = camera;
-        this.cameraSorter = new Comparator<Decal>() {
-            @Override
-            public int compare(Decal o1, Decal o2) {
-                float dist1 = CameraGroupStrategy.this.camera.position.dst(o1.position);
-                float dist2 = CameraGroupStrategy.this.camera.position.dst(o2.position);
-                return (int) Math.signum(dist2 - dist1);
-            }
+        this.cameraSorter = (o1, o2) -> {
+            float dist1 = CameraGroupStrategy.this.camera.position.dst(o1.position);
+            float dist2 = CameraGroupStrategy.this.camera.position.dst(o2.position);
+            return (int) Math.signum(dist2 - dist1);
         };
         createDefaultShader();
     }
@@ -112,7 +111,7 @@ public class CameraGroupStrategy implements GroupStrategy, Disposable {
     }
 
     @Override
-    public void beforeGroup(int group, Array<Decal> contents) {
+    public void beforeGroup(int group, @NotNull Array<Decal> contents) {
         if (group == GROUP_BLEND) {
             Gdx.gl.glEnable(GL20.GL_BLEND);
             Gdx.gl.glDepthMask(false);

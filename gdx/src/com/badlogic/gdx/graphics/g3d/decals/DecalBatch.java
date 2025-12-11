@@ -35,14 +35,14 @@ import com.badlogic.gdx.utils.SortedIntList;
  */
 public class DecalBatch implements Disposable {
     private static final int DEFAULT_SIZE = 1000;
-    private final SortedIntList<Array<Decal>> groupList = new SortedIntList<Array<Decal>>();
+    private final SortedIntList<Array<Decal>> groupList = new SortedIntList<>();
     private final Pool<Array<Decal>> groupPool = new Pool<Array<Decal>>(16) {
         @Override
         protected Array<Decal> newObject() {
-            return new Array<Decal>(false, 100);
+            return new Array<>(false, 100);
         }
     };
-    private final Array<Array<Decal>> usedGroups = new Array<Array<Decal>>(16);
+    private final Array<Array<Decal>> usedGroups = new Array<>(16);
     private float[] vertices;
     private Mesh mesh;
     private GroupStrategy groupStrategy;
@@ -50,8 +50,6 @@ public class DecalBatch implements Disposable {
     /**
      * Creates a new DecalBatch using the given {@link GroupStrategy}. The most commong strategy to use is a
      * {@link CameraGroupStrategy}
-     *
-     * @param groupStrategy
      */
     public DecalBatch(GroupStrategy groupStrategy) {
         this(DEFAULT_SIZE, groupStrategy);
