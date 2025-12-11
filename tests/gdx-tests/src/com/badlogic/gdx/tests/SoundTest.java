@@ -34,7 +34,7 @@ public class SoundTest extends GdxTest {
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         ui = new Stage(new FitViewport(640, 400));
-        final SelectBox<String> soundSelector = new SelectBox<String>(skin);
+        final SelectBox<String> soundSelector = new SelectBox<>(skin);
         soundSelector.setItems(FILENAMES);
         setSound(soundSelector.getSelected());
 
