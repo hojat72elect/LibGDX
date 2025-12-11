@@ -7,8 +7,7 @@ import com.badlogic.gdx.LifecycleListener;
 
 /**
  * Executes tasks in the future on the main loop thread.
- *
- *  */
+ */
 public class Timer {
     // TimerThread access is synchronized using threadLock.
     // Timer access is synchronized using the Timer instance.
@@ -17,7 +16,7 @@ public class Timer {
 
     static final Object threadLock = new Object();
     static TimerThread thread;
-    final Array<Task> tasks = new Array(false, 8);
+    final Array<Task> tasks = new Array<>(false, 8);
     long stopTimeMillis;
 
     public Timer() {
@@ -219,8 +218,7 @@ public class Timer {
 
     /**
      * Runnable that can be scheduled on a {@link Timer}.
-     *
-     *      */
+     */
     static abstract public class Task implements Runnable {
         final Application app;
         long executeTimeMillis, intervalMillis;
@@ -285,19 +283,14 @@ public class Timer {
 
     /**
      * Manages a single thread for updating timers. Uses libgdx application events to pause, resume, and dispose the thread.
-     *
-     *      */
+     */
     static class TimerThread implements Runnable, LifecycleListener {
         final Files files;
         final Application app;
-        final Array<Timer> instances = new Array(1);
-        final Array<Task> postedTasks = new Array(2);
-        final Array<Task> runTasks = new Array(2);
-        private final Runnable runPostedTasks = new Runnable() {
-            public void run() {
-                runPostedTasks();
-            }
-        };
+        final Array<Timer> instances = new Array<>(1);
+        final Array<Task> postedTasks = new Array<>(2);
+        final Array<Task> runTasks = new Array<>(2);
+        private final Runnable runPostedTasks = this::runPostedTasks;
         Timer instance;
         long pauseTimeMillis;
 

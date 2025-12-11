@@ -6,8 +6,7 @@ import com.badlogic.gdx.Gdx;
 /**
  * Simple logger that uses the {@link Application} logging facilities to output messages. The log level set with
  * {@link Application#setLogLevel(int)} overrides the log level set here.
- *
- *  *  */
+ */
 public class Logger {
     static public final int NONE = 0;
     static public final int ERROR = 1;

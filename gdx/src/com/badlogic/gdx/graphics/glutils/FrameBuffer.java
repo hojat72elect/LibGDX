@@ -31,8 +31,6 @@ public class FrameBuffer extends GLFrameBuffer<Texture> {
 
     /**
      * Creates a GLFrameBuffer from the specifications provided by bufferBuilder
-     *
-     * @param bufferBuilder
      **/
     protected FrameBuffer(GLFrameBufferBuilder<? extends GLFrameBuffer<Texture>> bufferBuilder) {
         super(bufferBuilder);

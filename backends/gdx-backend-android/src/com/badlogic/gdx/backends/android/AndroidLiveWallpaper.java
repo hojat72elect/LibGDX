@@ -28,15 +28,16 @@ import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.SnapshotArray;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * An implementation of the {@link Application} interface to be used with an AndroidLiveWallpaperService. Not directly
  * constructable, instead the {@link AndroidLiveWallpaperService} will create this class internally.
- *
- *  */
+ */
 public class AndroidLiveWallpaper implements AndroidApplicationBase {
 
-    protected final Array<Runnable> runnables = new Array<Runnable>();
-    protected final Array<Runnable> executedRunnables = new Array<Runnable>();
+    protected final Array<Runnable> runnables = new Array<>();
+    protected final Array<Runnable> executedRunnables = new Array<>();
     protected final SnapshotArray<LifecycleListener> lifecycleListeners = new SnapshotArray<>(LifecycleListener[]::new);
     protected AndroidLiveWallpaperService service;
     protected AndroidGraphicsLiveWallpaper graphics;
@@ -88,26 +89,7 @@ public class AndroidLiveWallpaper implements AndroidApplicationBase {
 
     public void onPause() {
         if (AndroidLiveWallpaperService.DEBUG) Log.d(AndroidLiveWallpaperService.TAG, " > AndroidLiveWallpaper - onPause()");
-
-        // IMPORTANT!
-        // jw: graphics.pause is never called, graphics.pause works on most devices but not on all..
-        // for example on Samsung Galaxy Tab (GT-P6800) on android 4.0.4 invoking graphics.pause causes "Fatal Signal 11"
-        // near mEglHelper.swap() in GLSurfaceView while processing next onPause event.
-        // See related issue:
-        // http://code.google.com/p/libgdx/issues/detail?id=541
-        // the problem with graphics.pause occurs while using OpenGL 2.0 and original GLSurfaceView while rotating device
-        // in lwp preview
-        // in my opinion it is a bug of android not libgdx, even example Cubic live wallpaper from
-        // Android SDK crashes on affected devices.......... and on some configurations of android emulator too.
-        //
-        // My wallpaper was rejected on Samsung Apps because of this issue, so I decided to disable graphics.pause..
-        // also I moved audio lifecycle methods from AndroidGraphicsLiveWallpaper into this class
-
-        // graphics.pause();
-        // if (AndroidLiveWallpaperService.DEBUG)
-        // Log.d(AndroidLiveWallpaperService.TAG, " > AndroidLiveWallpaper - onPause() application paused!");
         audio.pause();
-
         input.onPause();
 
         if (graphics != null) {
@@ -170,43 +152,50 @@ public class AndroidLiveWallpaper implements AndroidApplicationBase {
         return service;
     }
 
+    @NotNull
     @Override
     public ApplicationListener getApplicationListener() {
         return listener;
     }
 
     @Override
-    public void postRunnable(Runnable runnable) {
+    public void postRunnable(@NotNull Runnable runnable) {
         synchronized (runnables) {
             runnables.add(runnable);
         }
     }
 
+    @NotNull
     @Override
     public Audio getAudio() {
         return audio;
     }
 
+    @NotNull
     @Override
     public Files getFiles() {
         return files;
     }
 
+    @NotNull
     @Override
     public Graphics getGraphics() {
         return graphics;
     }
 
+    @NotNull
     @Override
     public AndroidInput getInput() {
         return input;
     }
 
+    @NotNull
     @Override
     public Net getNet() {
         return net;
     }
 
+    @NotNull
     @Override
     public ApplicationType getType() {
         return ApplicationType.Android;
@@ -227,43 +216,45 @@ public class AndroidLiveWallpaper implements AndroidApplicationBase {
         return Debug.getNativeHeapAllocatedSize();
     }
 
+    @NotNull
     @Override
-    public Preferences getPreferences(String name) {
+    public Preferences getPreferences(@NotNull String name) {
         return new AndroidPreferences(service.getSharedPreferences(name, Context.MODE_PRIVATE));
     }
 
+    @NotNull
     @Override
     public Clipboard getClipboard() {
         return clipboard;
     }
 
     @Override
-    public void debug(String tag, String message) {
+    public void debug(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_DEBUG) getApplicationLogger().debug(tag, message);
     }
 
     @Override
-    public void debug(String tag, String message, Throwable exception) {
+    public void debug(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_DEBUG) getApplicationLogger().debug(tag, message, exception);
     }
 
     @Override
-    public void log(String tag, String message) {
+    public void log(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_INFO) getApplicationLogger().log(tag, message);
     }
 
     @Override
-    public void log(String tag, String message, Throwable exception) {
+    public void log(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_INFO) getApplicationLogger().log(tag, message, exception);
     }
 
     @Override
-    public void error(String tag, String message) {
+    public void error(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_ERROR) getApplicationLogger().error(tag, message);
     }
 
     @Override
-    public void error(String tag, String message, Throwable exception) {
+    public void error(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_ERROR) getApplicationLogger().error(tag, message, exception);
     }
 
@@ -277,13 +268,14 @@ public class AndroidLiveWallpaper implements AndroidApplicationBase {
         this.logLevel = logLevel;
     }
 
+    @NotNull
     @Override
     public ApplicationLogger getApplicationLogger() {
         return applicationLogger;
     }
 
     @Override
-    public void setApplicationLogger(ApplicationLogger applicationLogger) {
+    public void setApplicationLogger(@NotNull ApplicationLogger applicationLogger) {
         this.applicationLogger = applicationLogger;
     }
 
@@ -293,14 +285,14 @@ public class AndroidLiveWallpaper implements AndroidApplicationBase {
     }
 
     @Override
-    public void addLifecycleListener(LifecycleListener listener) {
+    public void addLifecycleListener(@NotNull LifecycleListener listener) {
         synchronized (lifecycleListeners) {
             lifecycleListeners.add(listener);
         }
     }
 
     @Override
-    public void removeLifecycleListener(LifecycleListener listener) {
+    public void removeLifecycleListener(@NotNull LifecycleListener listener) {
         synchronized (lifecycleListeners) {
             lifecycleListeners.removeValue(listener, true);
         }

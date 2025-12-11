@@ -327,7 +327,7 @@ interface Net {
          */
         @Throws(IllegalArgumentException::class)
         fun setFollowRedirects(followRedirects: Boolean) {
-            if (followRedirects || Gdx.app.type != ApplicationType.WebGL) {
+            if (followRedirects || Gdx.app.getType() != ApplicationType.WebGL) {
                 this.followRedirects = followRedirects
             } else {
                 throw IllegalArgumentException("Following redirects can't be disabled!")

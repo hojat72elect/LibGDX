@@ -1,16 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- ******************************************************************************/
-
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Application.ApplicationType;
@@ -170,12 +157,12 @@ public class FilesTest extends GdxTest {
         try {
             handle.delete();
             fail();
-        } catch (Exception expected) {
+        } catch (Exception ignored) {
         }
         try {
             handle.list();
             fail();
-        } catch (Exception expected) {
+        } catch (Exception ignored) {
         }
         try {
             handle.read().close();
@@ -199,7 +186,7 @@ public class FilesTest extends GdxTest {
         try {
             handle.delete();
             fail("Shouldn't be able to delete internal file");
-        } catch (Exception expected) {
+        } catch (Exception ignored) {
         }
         if (handle.list().length != 0) fail("File length shouldn't be 0");
         if (Gdx.app.getType() != ApplicationType.Android) {
@@ -300,7 +287,7 @@ public class FilesTest extends GdxTest {
         if (handle.list().length != 0) fail();
         if (!handle.name().equals("meow")) fail();
         if (!handle.nameWithoutExtension().equals("meow")) fail();
-        if (!handle.extension().equals("")) fail();
+        if (!handle.extension().isEmpty()) fail();
         handle.deleteDirectory();
         if (handle.exists()) fail();
         if (handle.isDirectory()) fail();
@@ -370,7 +357,7 @@ public class FilesTest extends GdxTest {
         if (handle.list().length != 0) fail();
         if (!handle.name().equals("meow")) fail();
         if (!handle.nameWithoutExtension().equals("meow")) fail();
-        if (!handle.extension().equals("")) fail();
+        if (!handle.extension().isEmpty()) fail();
         handle.deleteDirectory();
         if (handle.exists()) fail();
         if (handle.isDirectory()) fail();
@@ -440,7 +427,7 @@ public class FilesTest extends GdxTest {
         if (handle.list().length != 0) fail();
         if (!handle.name().equals("meow")) fail();
         if (!handle.nameWithoutExtension().equals("meow")) fail();
-        if (!handle.extension().equals("")) fail();
+        if (!handle.extension().isEmpty()) fail();
         handle.deleteDirectory();
         if (handle.exists()) fail();
         if (handle.isDirectory()) fail();
