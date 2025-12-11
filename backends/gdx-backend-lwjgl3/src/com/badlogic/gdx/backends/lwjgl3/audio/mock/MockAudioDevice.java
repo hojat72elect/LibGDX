@@ -2,6 +2,8 @@ package com.badlogic.gdx.backends.lwjgl3.audio.mock;
 
 import com.badlogic.gdx.audio.AudioDevice;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * The headless backend does its best to mock elements. This is intended to make code-sharing between server and client as simple
  * as possible.
@@ -14,12 +16,12 @@ public class MockAudioDevice implements AudioDevice {
     }
 
     @Override
-    public void writeSamples(short[] samples, int offset, int numSamples) {
+    public void writeSamples(@NotNull short[] samples, int offset, int numSamples) {
 
     }
 
     @Override
-    public void writeSamples(float[] samples, int offset, int numSamples) {
+    public void writeSamples(@NotNull float[] samples, int offset, int numSamples) {
 
     }
 

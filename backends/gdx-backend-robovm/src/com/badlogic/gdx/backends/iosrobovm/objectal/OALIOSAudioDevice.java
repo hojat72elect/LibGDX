@@ -1,6 +1,11 @@
 package com.badlogic.gdx.backends.iosrobovm.objectal;
 
+import static com.badlogic.gdx.backends.iosrobovm.objectal.ALConsts.AL_FORMAT_MONO16;
+import static com.badlogic.gdx.backends.iosrobovm.objectal.ALConsts.AL_FORMAT_STEREO16;
+
 import com.badlogic.gdx.audio.AudioDevice;
+
+import org.jetbrains.annotations.NotNull;
 import org.robovm.rt.bro.Struct;
 import org.robovm.rt.bro.ptr.ShortPtr;
 import org.robovm.rt.bro.ptr.VoidPtr;
@@ -8,9 +13,6 @@ import org.robovm.rt.bro.ptr.VoidPtr;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.badlogic.gdx.backends.iosrobovm.objectal.ALConsts.AL_FORMAT_MONO16;
-import static com.badlogic.gdx.backends.iosrobovm.objectal.ALConsts.AL_FORMAT_STEREO16;
 
 class OALIOSAudioDevice implements AudioDevice {
 	private ALSource alSource;
@@ -45,7 +47,7 @@ class OALIOSAudioDevice implements AudioDevice {
 	}
 
 	@Override
-	public void writeSamples (short[] samples, int offset, int numSamples) {
+	public void writeSamples(@NotNull short[] samples, int offset, int numSamples) {
 		if (numSamples < 0) throw new IllegalArgumentException("numSamples cannot be < 0.");
 
 		ShortPtr shortPtr;

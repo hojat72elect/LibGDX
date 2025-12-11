@@ -1,19 +1,18 @@
-package com.badlogic.gdx.audio;
+package com.badlogic.gdx.audio
 
-import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Disposable
 
 /**
- * Encapsulates an audio device in mono or stereo mode. Use the {@link #writeSamples(float[], int, int)} and
- * {@link #writeSamples(short[], int, int)} methods to write float or 16-bit signed short PCM data directly to the audio device.
- * Stereo samples are interleaved in the order left channel sample, right channel sample. The {@link #dispose()} method must be
+ * Encapsulates an audio device in mono or stereo mode. Use the [.writeSamples] methods to write float or 16-bit signed short PCM data directly to the audio device.
+ * Stereo samples are interleaved in the order left channel sample, right channel sample. The [.dispose] method must be
  * called when this AudioDevice is no longer needed.
- *
- *  */
-public interface AudioDevice extends Disposable {
+ */
+interface AudioDevice : Disposable {
+
     /**
      * @return whether this AudioDevice is in mono or stereo mode.
      */
-    boolean isMono();
+    fun isMono(): Boolean
 
     /**
      * Writes the array of 16-bit signed PCM samples to the audio device and blocks until they have been processed.
@@ -22,7 +21,7 @@ public interface AudioDevice extends Disposable {
      * @param offset     The offset into the samples array
      * @param numSamples the number of samples to write to the device
      */
-    void writeSamples(short[] samples, int offset, int numSamples);
+    fun writeSamples(samples: ShortArray, offset: Int, numSamples: Int)
 
     /**
      * Writes the array of float PCM samples to the audio device and blocks until they have been processed.
@@ -31,30 +30,30 @@ public interface AudioDevice extends Disposable {
      * @param offset     The offset into the samples array
      * @param numSamples the number of samples to write to the device
      */
-    void writeSamples(float[] samples, int offset, int numSamples);
+    fun writeSamples(samples: FloatArray, offset: Int, numSamples: Int)
 
     /**
      * @return the latency in samples.
      */
-    int getLatency();
+    fun getLatency(): Int
 
     /**
      * Frees all resources associated with this AudioDevice. Needs to be called when the device is no longer needed.
      */
-    void dispose();
+    override fun dispose()
 
     /**
      * Sets the volume in the range [0,1].
      */
-    void setVolume(float volume);
+    fun setVolume(volume: Float)
 
     /**
-     * Pauses the audio device if supported
+     * Pauses the audio device if supported.
      */
-    void pause();
+    fun pause()
 
     /**
-     * Unpauses the audio device if supported
+     * Unpauses the audio device if supported.
      */
-    void resume();
+    fun resume()
 }

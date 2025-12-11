@@ -26,6 +26,7 @@ import com.badlogic.gdx.audio.AudioDevice;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.openal.AL11;
 
@@ -64,7 +65,7 @@ public class OpenALAudioDevice implements AudioDevice {
         tempBuffer = BufferUtils.createByteBuffer(bufferSize);
     }
 
-    public void writeSamples(short[] samples, int offset, int numSamples) {
+    public void writeSamples(@NotNull short[] samples, int offset, int numSamples) {
         if (bytes == null || bytes.length < numSamples * 2) bytes = new byte[numSamples * 2];
         int end = Math.min(offset + numSamples, samples.length);
         for (int i = offset, ii = 0; i < end; i++) {
@@ -75,7 +76,7 @@ public class OpenALAudioDevice implements AudioDevice {
         writeSamples(bytes, 0, numSamples * 2);
     }
 
-    public void writeSamples(float[] samples, int offset, int numSamples) {
+    public void writeSamples(@NotNull float[] samples, int offset, int numSamples) {
         if (bytes == null || bytes.length < numSamples * 2) bytes = new byte[numSamples * 2];
         int end = Math.min(offset + numSamples, samples.length);
         for (int i = offset, ii = 0; i < end; i++) {

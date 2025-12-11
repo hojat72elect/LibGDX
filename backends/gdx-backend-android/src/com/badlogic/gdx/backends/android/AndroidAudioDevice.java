@@ -7,11 +7,12 @@ import android.media.AudioTrack;
 
 import com.badlogic.gdx.audio.AudioDevice;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Implementation of the {@link AudioDevice} interface for Android using the AudioTrack class. You will need to set the
  * permission android.permission.RECORD_AUDIO in your manifest file.
- *
- *  */
+ */
 class AndroidAudioDevice implements AudioDevice {
     /**
      * the audio track
@@ -57,7 +58,7 @@ class AndroidAudioDevice implements AudioDevice {
     }
 
     @Override
-    public void writeSamples(short[] samples, int offset, int numSamples) {
+    public void writeSamples(@NotNull short[] samples, int offset, int numSamples) {
         int writtenSamples = track.write(samples, offset, numSamples);
         while (writtenSamples != numSamples)
             writtenSamples += track.write(samples, offset + writtenSamples, numSamples - writtenSamples);

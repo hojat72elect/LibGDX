@@ -151,6 +151,7 @@ public class OpenALLwjglAudio implements LwjglAudio {
         return true;
     }
 
+    @NotNull
     @Override
     public String[] getAvailableOutputDevices() {
         return new String[0];
@@ -320,11 +321,11 @@ public class OpenALLwjglAudio implements LwjglAudio {
     public AudioDevice newAudioDevice(int sampleRate, final boolean isMono) {
         if (noDevice) return new AudioDevice() {
             @Override
-            public void writeSamples(float[] samples, int offset, int numSamples) {
+            public void writeSamples(@NotNull float[] samples, int offset, int numSamples) {
             }
 
             @Override
-            public void writeSamples(short[] samples, int offset, int numSamples) {
+            public void writeSamples(@NotNull short[] samples, int offset, int numSamples) {
             }
 
             @Override
@@ -359,7 +360,7 @@ public class OpenALLwjglAudio implements LwjglAudio {
     public AudioRecorder newAudioRecorder(int samplingRate, boolean isMono) {
         if (noDevice) return new AudioRecorder() {
             @Override
-            public void read(short[] samples, int offset, int numSamples) {
+            public void read(@NotNull short[] samples, int offset, int numSamples) {
             }
 
             @Override
