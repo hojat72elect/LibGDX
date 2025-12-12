@@ -13,8 +13,7 @@ import java.util.Map;
  * Make sure to call {@link #newRequest()} first, then set the request up and obtain it via {@link #build()} when you are done.
  * <p>
  * It also offers a few utility methods to deal with content encoding and HTTP headers.
- *
- *  */
+ */
 public class HttpRequestBuilder {
 
     /**
