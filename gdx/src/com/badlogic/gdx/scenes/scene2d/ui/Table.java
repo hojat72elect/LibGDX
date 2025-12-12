@@ -29,8 +29,7 @@ import java.util.Arrays;
  * By default, {@link #getTouchable()} is {@link Touchable#childrenOnly}.
  * <p>
  * The preferred and minimum sizes are that of the children laid out in columns and rows.
- *
- *  */
+ */
 public class Table extends WidgetGroup {
     static final Pool<Cell> cellPool = new Pool<Cell>() {
         protected Cell newObject() {
@@ -42,8 +41,7 @@ public class Table extends WidgetGroup {
     static public Color debugActorColor = new Color(0, 1, 0, 1);
     /**
      * Value that is the top padding of the table's background.
-     *
-     *      */
+     */
     static public Value backgroundTop = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -52,8 +50,7 @@ public class Table extends WidgetGroup {
     };
     /**
      * Value that is the left padding of the table's background.
-     *
-     *      */
+     */
     static public Value backgroundLeft = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -62,8 +59,7 @@ public class Table extends WidgetGroup {
     };
     /**
      * Value that is the bottom padding of the table's background.
-     *
-     *      */
+     */
     static public Value backgroundBottom = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -72,8 +68,7 @@ public class Table extends WidgetGroup {
     };
     /**
      * Value that is the right padding of the table's background.
-     *
-     *      */
+     */
     static public Value backgroundRight = new Value() {
         public float get(@Null Actor context) {
             Drawable background = ((Table) context).background;
@@ -81,9 +76,9 @@ public class Table extends WidgetGroup {
         }
     };
     static private float[] columnWeightedWidth, rowWeightedHeight;
-    private final Array<Cell> cells = new Array(4);
+    private final Array<Cell> cells = new Array<>(4);
     private final Cell cellDefaults;
-    private final Array<Cell> columnDefaults = new Array(2);
+    private final Array<Cell> columnDefaults = new Array<>(2);
     Value padTop = backgroundTop, padLeft = backgroundLeft, padBottom = backgroundBottom, padRight = backgroundRight;
     int align = Align.center;
     Debug debug = Debug.none;
@@ -300,8 +295,8 @@ public class Table extends WidgetGroup {
     }
 
     public Table add(Actor... actors) {
-        for (int i = 0, n = actors.length; i < n; i++)
-            add(actors[i]);
+        for (Actor actor : actors)
+            add(actor);
         return this;
     }
 
@@ -356,8 +351,8 @@ public class Table extends WidgetGroup {
     public Cell<Stack> stack(@Null Actor... actors) {
         Stack stack = new Stack();
         if (actors != null) {
-            for (int i = 0, n = actors.length; i < n; i++)
-                stack.addActor(actors[i]);
+            for (Actor actor : actors)
+                stack.addActor(actor);
         }
         return add(stack);
     }
@@ -1331,7 +1326,7 @@ public class Table extends WidgetGroup {
     }
 
     private void clearDebugRects() {
-        if (debugRects == null) debugRects = new Array();
+        if (debugRects == null) debugRects = new Array<>();
         DebugRect.pool.freeAll(debugRects);
         debugRects.clear();
     }

@@ -26,8 +26,7 @@ import com.badlogic.gdx.utils.Null;
  * <p>
  * The preferred size of a SplitPane is that of the child widgets and the size of the {@link SplitPaneStyle#handle}. The widgets
  * are sized depending on the SplitPane size and the {@link #setSplitAmount(float) split position}.
- *
- *  *  */
+ */
 public class SplitPane extends WidgetGroup implements Styleable<SplitPane.SplitPaneStyle> {
     final Rectangle handleBounds = new Rectangle();
     private final Rectangle firstWidgetBounds = new Rectangle();
@@ -404,8 +403,7 @@ public class SplitPane extends WidgetGroup implements Styleable<SplitPane.SplitP
 
     /**
      * The style for a splitpane, see {@link SplitPane}.
-     *
-     *      *      */
+     */
     static public class SplitPaneStyle {
         public Drawable handle;
 

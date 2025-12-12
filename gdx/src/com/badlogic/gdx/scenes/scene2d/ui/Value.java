@@ -7,8 +7,7 @@ import com.badlogic.gdx.utils.Null;
 /**
  * Value placeholder, allowing the value to be computed on request. Values can be provided an actor for context to reduce the
  * number of value instances that need to be created and reduce verbosity in code that specifies values.
- *
- *  */
+ */
 abstract public class Value {
     /**
      * A value that is always zero.
@@ -129,8 +128,7 @@ abstract public class Value {
 
     /**
      * A fixed value that is not computed each time it is used.
-     *
-     *      */
+     */
     static public class Fixed extends Value {
         static final Fixed[] cache = new Fixed[111];
 

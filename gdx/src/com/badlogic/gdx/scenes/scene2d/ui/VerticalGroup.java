@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * <p>
  * Widgets are sized using their {@link Layout#getPrefWidth() preferred height}, so widgets which return 0 as their preferred
  * height will be given a height of 0.
- *
- *  */
+ */
 public class VerticalGroup extends WidgetGroup {
     private float prefWidth, prefHeight, lastPrefWidth;
     private boolean sizeInvalid = true;

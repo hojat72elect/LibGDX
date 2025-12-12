@@ -17,8 +17,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * See {@link Layout} for details on how a widget group should participate in layout. A widget group's mutator methods should call
  * {@link #invalidate()} or {@link #invalidateHierarchy()} as needed. By default, invalidateHierarchy is called when child widgets
  * are added and removed.
- *
- *  */
+ */
 public class WidgetGroup extends Group implements Layout {
     private boolean needsLayout = true;
     private boolean fillParent;

@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
  * <p>
  * Widgets are sized using their {@link Layout#getPrefWidth() preferred width}, so widgets which return 0 as their preferred width
  * will be given a width of 0 (eg, a label with {@link Label#setWrap(boolean) word wrap} enabled).
- *
- *  */
+ */
 public class HorizontalGroup extends WidgetGroup {
     private float prefWidth, prefHeight, lastPrefHeight;
     private boolean sizeInvalid = true;

@@ -15,8 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Layout;
  * <p>
  * See {@link Layout} for details on how a widget should participate in layout. A widget's mutator methods should call
  * {@link #invalidate()} or {@link #invalidateHierarchy()} as needed.
- *
- *  *  */
+ */
 public class Widget extends Actor implements Layout {
     private boolean needsLayout = true;
     private boolean fillParent;
