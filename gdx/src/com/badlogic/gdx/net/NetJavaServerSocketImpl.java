@@ -3,12 +3,13 @@ package com.badlogic.gdx.net;
 import com.badlogic.gdx.Net.Protocol;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.InetSocketAddress;
 
 /**
  * Server socket implementation using java.net.ServerSocket.
- *
- *  */
+ */
 public class NetJavaServerSocketImpl implements ServerSocket {
 
     private final Protocol protocol;
@@ -55,13 +56,15 @@ public class NetJavaServerSocketImpl implements ServerSocket {
         }
     }
 
+    @NotNull
     @Override
     public Protocol getProtocol() {
         return protocol;
     }
 
+    @NotNull
     @Override
-    public Socket accept(SocketHints hints) {
+    public Socket accept(@NotNull SocketHints hints) {
         try {
             return new NetJavaSocketImpl(server.accept(), hints);
         } catch (Exception e) {
