@@ -1,43 +1,35 @@
-package com.badlogic.gdx.maps;
+package com.badlogic.gdx.maps
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.math.Matrix4
 
 /**
- * Models a common way of rendering {@link Map} objects
+ * This interface describes a common way of rendering [Map] objects.
  */
-public interface MapRenderer {
+interface MapRenderer {
+
     /**
      * Sets the projection matrix and viewbounds from the given camera. If the camera changes, you have to call this method again.
      * The viewbounds are taken from the camera's position and viewport size as well as the scale. This method will only work if
      * the camera's direction vector is (0,0,-1) and its up vector is (0, 1, 0), which are the defaults.
-     *
-     * @param camera the {@link OrthographicCamera}
+     * @param camera the [OrthographicCamera]
      */
-    void setView(OrthographicCamera camera);
+    fun setView(camera: OrthographicCamera)
 
     /**
      * Sets the projection matrix for rendering, as well as the bounds of the map which should be rendered. Make sure that the
      * frustum spanned by the projection matrix coincides with the viewbounds.
-     *
-     * @param projectionMatrix
-     * @param viewboundsX
-     * @param viewboundsY
-     * @param viewboundsWidth
-     * @param viewboundsHeight
      */
-    void setView(Matrix4 projectionMatrix, float viewboundsX, float viewboundsY, float viewboundsWidth,
-                 float viewboundsHeight);
+    fun setView(projectionMatrix: Matrix4, viewboundsX: Float, viewboundsY: Float, viewboundsWidth: Float, viewboundsHeight: Float)
 
     /**
      * Renders all the layers of a map.
      */
-    void render();
+    fun render()
 
     /**
      * Renders the given layers of a map.
-     *
      * @param layers the layers to render.
      */
-    void render(int[] layers);
+    fun render(layers: IntArray)
 }
