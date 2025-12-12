@@ -20,6 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 import com.badlogic.gdx.utils.Null;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A group that scrolls a child actor using scrollbars and/or mouse or touch dragging.
  * <p>
@@ -28,8 +30,7 @@ import com.badlogic.gdx.utils.Null;
  * <p>
  * The scroll pane's preferred size is that of the child actor. At this size, the child actor will not need to scroll, so the
  * scroll pane is typically sized by ignoring the preferred size in one or both directions.
- *
- *  *  */
+ */
 public class ScrollPane extends WidgetGroup implements Styleable<ScrollPane.ScrollPaneStyle> {
     final Rectangle actorArea = new Rectangle();
     final Rectangle hScrollBounds = new Rectangle(), hKnobBounds = new Rectangle();
@@ -196,7 +197,7 @@ public class ScrollPane extends WidgetGroup implements Styleable<ScrollPane.Scro
                 }
             }
 
-            public boolean handle(Event event) {
+            public boolean handle(@NotNull Event event) {
                 if (super.handle(event)) {
                     if (((InputEvent) event).getType() == InputEvent.Type.touchDown) flingTimer = 0;
                     return true;
@@ -1156,8 +1157,7 @@ public class ScrollPane extends WidgetGroup implements Styleable<ScrollPane.Scro
 
     /**
      * The style for a scroll pane, see {@link ScrollPane}.
-     *
-     *      *      */
+     */
     static public class ScrollPaneStyle {
         public @Null Drawable background, corner;
         public @Null Drawable hScroll, hScrollKnob;
