@@ -2,7 +2,6 @@ package com.badlogic.gdx.graphics;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetLoaderParameters.LoadedCallback;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.AssetLoader;
 import com.badlogic.gdx.assets.loaders.TextureLoader.TextureParameter;
@@ -29,10 +28,9 @@ import java.util.Map;
  * course not extremely fast so use it with care. It also only works with unmanaged textures.
  * <p>
  * A Texture must be disposed when it is no longer used
- *
- *  */
+ */
 public class Texture extends GLTexture {
-    final static Map<Application, Array<Texture>> managedTextures = new HashMap<Application, Array<Texture>>();
+    final static Map<Application, Array<Texture>> managedTextures = new HashMap<>();
     private static AssetManager assetManager;
     TextureData data;
 
@@ -84,7 +82,7 @@ public class Texture extends GLTexture {
 
     private static void addManagedTexture(Application app, Texture texture) {
         Array<Texture> managedTextureArray = managedTextures.get(app);
-        if (managedTextureArray == null) managedTextureArray = new Array<Texture>();
+        if (managedTextureArray == null) managedTextureArray = new Array<>();
         managedTextureArray.add(texture);
         managedTextures.put(app, managedTextureArray);
     }
@@ -116,7 +114,7 @@ public class Texture extends GLTexture {
 
             // next we go through each texture and reload either directly or via the
             // asset manager.
-            Array<Texture> textures = new Array<Texture>(managedTextureArray);
+            Array<Texture> textures = new Array<>(managedTextureArray);
             for (Texture texture : textures) {
                 String fileName = assetManager.getAssetFileName(texture);
                 if (fileName == null) {
@@ -140,12 +138,7 @@ public class Texture extends GLTexture {
                     params.wrapV = texture.getVWrap();
                     params.genMipMaps = texture.data.useMipMaps(); // not sure about this?
                     params.texture = texture; // special parameter which will ensure that the references stay the same.
-                    params.loadedCallback = new LoadedCallback() {
-                        @Override
-                        public void finishedLoading(AssetManager assetManager, String fileName, Class type) {
-                            assetManager.setReferenceCount(fileName, refCount);
-                        }
-                    };
+                    params.loadedCallback = (assetManager, fileName1, type) -> assetManager.setReferenceCount(fileName1, refCount);
 
                     // unload the texture, create a new gl handle then reload it.
                     assetManager.unload(fileName);

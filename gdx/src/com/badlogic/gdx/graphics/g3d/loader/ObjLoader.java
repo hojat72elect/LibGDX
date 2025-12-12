@@ -59,7 +59,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
     final FloatArray verts = new FloatArray(300);
     final FloatArray norms = new FloatArray(300);
     final FloatArray uvs = new FloatArray(200);
-    final Array<Group> groups = new Array<Group>(10);
+    final Array<Group> groups = new Array<>(10);
     public ObjLoader() {
         this(null);
     }
@@ -101,10 +101,8 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
                 tokens = line.split("\\s+");
                 if (tokens.length < 1) break;
 
-                if (tokens[0].length() == 0) {
-                    continue;
+                if (tokens[0].isEmpty()) {
                 } else if ((firstChar = tokens[0].toLowerCase().charAt(0)) == '#') {
-                    continue;
                 } else if (firstChar == 'v') {
                     if (tokens[0].length() == 1) {
                         verts.add(Float.parseFloat(tokens[1]));
@@ -128,18 +126,18 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
                             if (i == 1) activeGroup.hasNorms = true;
                             faces.add(getIndex(parts[2], norms.size));
                         }
-                        if (parts.length > 1 && parts[1].length() > 0) {
+                        if (parts.length > 1 && !parts[1].isEmpty()) {
                             if (i == 1) activeGroup.hasUVs = true;
                             faces.add(getIndex(parts[1], uvs.size));
                         }
                         parts = tokens[++i].split("/");
                         faces.add(getIndex(parts[0], verts.size));
                         if (parts.length > 2) faces.add(getIndex(parts[2], norms.size));
-                        if (parts.length > 1 && parts[1].length() > 0) faces.add(getIndex(parts[1], uvs.size));
+                        if (parts.length > 1 && !parts[1].isEmpty()) faces.add(getIndex(parts[1], uvs.size));
                         parts = tokens[++i].split("/");
                         faces.add(getIndex(parts[0], verts.size));
                         if (parts.length > 2) faces.add(getIndex(parts[2], norms.size));
-                        if (parts.length > 1 && parts[1].length() > 0) faces.add(getIndex(parts[1], uvs.size));
+                        if (parts.length > 1 && !parts[1].isEmpty()) faces.add(getIndex(parts[1], uvs.size));
                         activeGroup.numFaces++;
                     }
                 } else if (firstChar == 'o' || firstChar == 'g') {
@@ -218,7 +216,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
                 }
             }
 
-            Array<VertexAttribute> attributes = new Array<VertexAttribute>();
+            Array<VertexAttribute> attributes = new Array<>();
             attributes.add(new VertexAttribute(Usage.Position, 3, ShaderProgram.POSITION_ATTRIBUTE));
             if (hasNorms) attributes.add(new VertexAttribute(Usage.Normal, 3, ShaderProgram.NORMAL_ATTRIBUTE));
             if (hasUVs) attributes.add(new VertexAttribute(Usage.TextureCoordinates, 2, ShaderProgram.TEXCOORD_ATTRIBUTE + "0"));
@@ -279,7 +277,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
     }
 
     private int getIndex(String index, int size) {
-        if (index == null || index.length() == 0) return 0;
+        if (index == null || index.isEmpty()) return 0;
         final int idx = Integer.parseInt(index);
         if (idx < 0)
             return size + idx;
@@ -309,7 +307,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
 
         Group(String name) {
             this.name = name;
-            this.faces = new Array<Integer>(200);
+            this.faces = new Array<>(200);
             this.numFaces = 0;
             this.mat = new Material("");
             this.materialName = "default";
@@ -318,7 +316,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
 }
 
 class MtlLoader {
-    public Array<ModelMaterial> materials = new Array<ModelMaterial>();
+    public Array<ModelMaterial> materials = new Array<>();
 
     /**
      * loads .mtl file
@@ -335,48 +333,60 @@ class MtlLoader {
         try {
             while ((line = reader.readLine()) != null) {
 
-                if (line.length() > 0 && line.charAt(0) == '\t') line = line.substring(1).trim();
+                if (!line.isEmpty() && line.charAt(0) == '\t') line = line.substring(1).trim();
 
                 tokens = line.split("\\s+");
 
-                if (tokens[0].length() == 0) {
-                    continue;
-                } else if (tokens[0].charAt(0) == '#')
-                    continue;
+                if (tokens[0].isEmpty()) {
+                } else if (tokens[0].charAt(0) == '#') {
+                }
                 else {
                     final String key = tokens[0].toLowerCase();
-                    if (key.equals("newmtl")) {
-                        ModelMaterial mat = currentMaterial.build();
-                        materials.add(mat);
+                    switch (key) {
+                        case "newmtl":
+                            ModelMaterial mat = currentMaterial.build();
+                            materials.add(mat);
 
-                        if (tokens.length > 1) {
-                            currentMaterial.materialName = tokens[1];
-                            currentMaterial.materialName = currentMaterial.materialName.replace('.', '_');
-                        } else {
-                            currentMaterial.materialName = "default";
-                        }
+                            if (tokens.length > 1) {
+                                currentMaterial.materialName = tokens[1];
+                                currentMaterial.materialName = currentMaterial.materialName.replace('.', '_');
+                            } else {
+                                currentMaterial.materialName = "default";
+                            }
 
-                        currentMaterial.reset();
-                    } else if (key.equals("ka")) {
-                        currentMaterial.ambientColor = parseColor(tokens);
-                    } else if (key.equals("kd")) {
-                        currentMaterial.diffuseColor = parseColor(tokens);
-                    } else if (key.equals("ks")) {
-                        currentMaterial.specularColor = parseColor(tokens);
-                    } else if (key.equals("tr") || key.equals("d")) {
-                        currentMaterial.opacity = Float.parseFloat(tokens[1]);
-                    } else if (key.equals("ns")) {
-                        currentMaterial.shininess = Float.parseFloat(tokens[1]);
-                    } else if (key.equals("map_d")) {
-                        currentMaterial.alphaTexFilename = file.parent().child(tokens[1]).path();
-                    } else if (key.equals("map_ka")) {
-                        currentMaterial.ambientTexFilename = file.parent().child(tokens[1]).path();
-                    } else if (key.equals("map_kd")) {
-                        currentMaterial.diffuseTexFilename = file.parent().child(tokens[1]).path();
-                    } else if (key.equals("map_ks")) {
-                        currentMaterial.specularTexFilename = file.parent().child(tokens[1]).path();
-                    } else if (key.equals("map_ns")) {
-                        currentMaterial.shininessTexFilename = file.parent().child(tokens[1]).path();
+                            currentMaterial.reset();
+                            break;
+                        case "ka":
+                            currentMaterial.ambientColor = parseColor(tokens);
+                            break;
+                        case "kd":
+                            currentMaterial.diffuseColor = parseColor(tokens);
+                            break;
+                        case "ks":
+                            currentMaterial.specularColor = parseColor(tokens);
+                            break;
+                        case "tr":
+                        case "d":
+                            currentMaterial.opacity = Float.parseFloat(tokens[1]);
+                            break;
+                        case "ns":
+                            currentMaterial.shininess = Float.parseFloat(tokens[1]);
+                            break;
+                        case "map_d":
+                            currentMaterial.alphaTexFilename = file.parent().child(tokens[1]).path();
+                            break;
+                        case "map_ka":
+                            currentMaterial.ambientTexFilename = file.parent().child(tokens[1]).path();
+                            break;
+                        case "map_kd":
+                            currentMaterial.diffuseTexFilename = file.parent().child(tokens[1]).path();
+                            break;
+                        case "map_ks":
+                            currentMaterial.specularTexFilename = file.parent().child(tokens[1]).path();
+                            break;
+                        case "map_ns":
+                            currentMaterial.shininessTexFilename = file.parent().child(tokens[1]).path();
+                            break;
                     }
                 }
             }
@@ -451,7 +461,7 @@ class MtlLoader {
                 ModelTexture tex = new ModelTexture();
                 tex.usage = usage;
                 tex.fileName = texFilename;
-                if (mat.textures == null) mat.textures = new Array<ModelTexture>(1);
+                if (mat.textures == null) mat.textures = new Array<>(1);
                 mat.textures.add(tex);
             }
         }

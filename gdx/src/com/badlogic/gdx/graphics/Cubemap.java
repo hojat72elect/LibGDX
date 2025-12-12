@@ -2,7 +2,6 @@ package com.badlogic.gdx.graphics;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetLoaderParameters.LoadedCallback;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.AssetLoader;
 import com.badlogic.gdx.assets.loaders.CubemapLoader.CubemapParameter;
@@ -19,10 +18,9 @@ import java.util.Map;
 
 /**
  * Wraps a standard OpenGL ES Cubemap. Must be disposed when it is no longer used.
- *
- *  */
+ */
 public class Cubemap extends GLTexture {
-    final static Map<Application, Array<Cubemap>> managedCubemaps = new HashMap<Application, Array<Cubemap>>();
+    final static Map<Application, Array<Cubemap>> managedCubemaps = new HashMap<>();
     private static AssetManager assetManager;
     protected CubemapData data;
 
@@ -96,7 +94,7 @@ public class Cubemap extends GLTexture {
 
     private static void addManagedCubemap(Application app, Cubemap cubemap) {
         Array<Cubemap> managedCubemapArray = managedCubemaps.get(app);
-        if (managedCubemapArray == null) managedCubemapArray = new Array<Cubemap>();
+        if (managedCubemapArray == null) managedCubemapArray = new Array<>();
         managedCubemapArray.add(cubemap);
         managedCubemaps.put(app, managedCubemapArray);
     }
@@ -128,7 +126,7 @@ public class Cubemap extends GLTexture {
 
             // next we go through each cubemap and reload either directly or via the
             // asset manager.
-            Array<Cubemap> cubemaps = new Array<Cubemap>(managedCubemapArray);
+            Array<Cubemap> cubemaps = new Array<>(managedCubemapArray);
             for (Cubemap cubemap : cubemaps) {
                 String fileName = assetManager.getAssetFileName(cubemap);
                 if (fileName == null) {
@@ -151,12 +149,7 @@ public class Cubemap extends GLTexture {
                     params.wrapU = cubemap.getUWrap();
                     params.wrapV = cubemap.getVWrap();
                     params.cubemap = cubemap; // special parameter which will ensure that the references stay the same.
-                    params.loadedCallback = new LoadedCallback() {
-                        @Override
-                        public void finishedLoading(AssetManager assetManager, String fileName, Class type) {
-                            assetManager.setReferenceCount(fileName, refCount);
-                        }
-                    };
+                    params.loadedCallback = (assetManager, fileName1, type) -> assetManager.setReferenceCount(fileName1, refCount);
 
                     // unload the c, create a new gl handle then reload it.
                     assetManager.unload(fileName);

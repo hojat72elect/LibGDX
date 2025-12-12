@@ -2,12 +2,15 @@ package com.badlogic.gdx.graphics.profiling;
 
 import com.badlogic.gdx.graphics.GL20;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 /**
- *  *  */
+ * *
+ */
 public class GL20Interceptor extends GLInterceptor implements GL20 {
 
     protected final GL20 gl20;
@@ -84,7 +87,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
 
     @Override
     public void glCompressedTexImage2D(int target, int level, int internalformat, int width, int height, int border,
-                                       int imageSize, Buffer data) {
+                                       int imageSize, @NotNull Buffer data) {
         calls++;
         gl20.glCompressedTexImage2D(target, level, internalformat, width, height, border, imageSize, data);
         check();
@@ -92,7 +95,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
 
     @Override
     public void glCompressedTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format,
-                                          int imageSize, Buffer data) {
+                                          int imageSize, @NotNull Buffer data) {
         calls++;
         gl20.glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, imageSize, data);
         check();
@@ -120,7 +123,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glDeleteTextures(int n, IntBuffer textures) {
+    public void glDeleteTextures(int n, @NotNull IntBuffer textures) {
         calls++;
         gl20.glDeleteTextures(n, textures);
         check();
@@ -171,7 +174,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glDrawElements(int mode, int count, int type, Buffer indices) {
+    public void glDrawElements(int mode, int count, int type, @NotNull Buffer indices) {
         vertexCount.put(count);
         drawCalls++;
         calls++;
@@ -208,7 +211,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGenTextures(int n, IntBuffer textures) {
+    public void glGenTextures(int n, @NotNull IntBuffer textures) {
         calls++;
         gl20.glGenTextures(n, textures);
         check();
@@ -230,12 +233,13 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGetIntegerv(int pname, IntBuffer params) {
+    public void glGetIntegerv(int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetIntegerv(pname, params);
         check();
     }
 
+    @NotNull
     @Override
     public String glGetString(int name) {
         calls++;
@@ -273,7 +277,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glReadPixels(int x, int y, int width, int height, int format, int type, Buffer pixels) {
+    public void glReadPixels(int x, int y, int width, int height, int format, int type, @NotNull Buffer pixels) {
         calls++;
         gl20.glReadPixels(x, y, width, height, format, type, pixels);
         check();
@@ -309,7 +313,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
 
     @Override
     public void glTexImage2D(int target, int level, int internalformat, int width, int height, int border, int format, int type,
-                             Buffer pixels) {
+                             @NotNull Buffer pixels) {
         calls++;
         gl20.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
         check();
@@ -324,7 +328,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
 
     @Override
     public void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int type,
-                                Buffer pixels) {
+                                @NotNull Buffer pixels) {
         calls++;
         gl20.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
         check();
@@ -345,7 +349,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glBindAttribLocation(int program, int index, String name) {
+    public void glBindAttribLocation(int program, int index, @NotNull String name) {
         calls++;
         gl20.glBindAttribLocation(program, index, name);
         check();
@@ -401,14 +405,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glBufferData(int target, int size, Buffer data, int usage) {
+    public void glBufferData(int target, int size, @NotNull Buffer data, int usage) {
         calls++;
         gl20.glBufferData(target, size, data, usage);
         check();
     }
 
     @Override
-    public void glBufferSubData(int target, int offset, int size, Buffer data) {
+    public void glBufferSubData(int target, int offset, int size, @NotNull Buffer data) {
         calls++;
         gl20.glBufferSubData(target, offset, size, data);
         check();
@@ -453,7 +457,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glDeleteBuffers(int n, IntBuffer buffers) {
+    public void glDeleteBuffers(int n, @NotNull IntBuffer buffers) {
         calls++;
         gl20.glDeleteBuffers(n, buffers);
         check();
@@ -467,7 +471,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glDeleteFramebuffers(int n, IntBuffer framebuffers) {
+    public void glDeleteFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         calls++;
         gl20.glDeleteFramebuffers(n, framebuffers);
         check();
@@ -488,7 +492,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glDeleteRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glDeleteRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         calls++;
         gl20.glDeleteRenderbuffers(n, renderbuffers);
         check();
@@ -554,7 +558,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGenBuffers(int n, IntBuffer buffers) {
+    public void glGenBuffers(int n, @NotNull IntBuffer buffers) {
         calls++;
         gl20.glGenBuffers(n, buffers);
         check();
@@ -576,7 +580,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGenFramebuffers(int n, IntBuffer framebuffers) {
+    public void glGenFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         calls++;
         gl20.glGenFramebuffers(n, framebuffers);
         check();
@@ -591,22 +595,24 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGenRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glGenRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         calls++;
         gl20.glGenRenderbuffers(n, renderbuffers);
         check();
     }
 
+    @NotNull
     @Override
-    public String glGetActiveAttrib(int program, int index, IntBuffer size, IntBuffer type) {
+    public String glGetActiveAttrib(int program, int index, @NotNull IntBuffer size, @NotNull IntBuffer type) {
         calls++;
         String result = gl20.glGetActiveAttrib(program, index, size, type);
         check();
         return result;
     }
 
+    @NotNull
     @Override
-    public String glGetActiveUniform(int program, int index, IntBuffer size, IntBuffer type) {
+    public String glGetActiveUniform(int program, int index, @NotNull IntBuffer size, @NotNull IntBuffer type) {
         calls++;
         String result = gl20.glGetActiveUniform(program, index, size, type);
         check();
@@ -614,14 +620,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGetAttachedShaders(int program, int maxcount, Buffer count, IntBuffer shaders) {
+    public void glGetAttachedShaders(int program, int maxcount, @NotNull Buffer count, @NotNull IntBuffer shaders) {
         calls++;
         gl20.glGetAttachedShaders(program, maxcount, count, shaders);
         check();
     }
 
     @Override
-    public int glGetAttribLocation(int program, String name) {
+    public int glGetAttribLocation(int program, @NotNull String name) {
         calls++;
         int result = gl20.glGetAttribLocation(program, name);
         check();
@@ -629,40 +635,41 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGetBooleanv(int pname, Buffer params) {
+    public void glGetBooleanv(int pname, @NotNull Buffer params) {
         calls++;
         gl20.glGetBooleanv(pname, params);
         check();
     }
 
     @Override
-    public void glGetBufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetBufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetBufferParameteriv(target, pname, params);
         check();
     }
 
     @Override
-    public void glGetFloatv(int pname, FloatBuffer params) {
+    public void glGetFloatv(int pname, @NotNull FloatBuffer params) {
         calls++;
         gl20.glGetFloatv(pname, params);
         check();
     }
 
     @Override
-    public void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, IntBuffer params) {
+    public void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetFramebufferAttachmentParameteriv(target, attachment, pname, params);
         check();
     }
 
     @Override
-    public void glGetProgramiv(int program, int pname, IntBuffer params) {
+    public void glGetProgramiv(int program, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetProgramiv(program, pname, params);
         check();
     }
 
+    @NotNull
     @Override
     public String glGetProgramInfoLog(int program) {
         calls++;
@@ -672,19 +679,20 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGetRenderbufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetRenderbufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetRenderbufferParameteriv(target, pname, params);
         check();
     }
 
     @Override
-    public void glGetShaderiv(int shader, int pname, IntBuffer params) {
+    public void glGetShaderiv(int shader, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetShaderiv(shader, pname, params);
         check();
     }
 
+    @NotNull
     @Override
     public String glGetShaderInfoLog(int shader) {
         calls++;
@@ -694,42 +702,42 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGetShaderPrecisionFormat(int shadertype, int precisiontype, IntBuffer range, IntBuffer precision) {
+    public void glGetShaderPrecisionFormat(int shadertype, int precisiontype, @NotNull IntBuffer range, @NotNull IntBuffer precision) {
         calls++;
         gl20.glGetShaderPrecisionFormat(shadertype, precisiontype, range, precision);
         check();
     }
 
     @Override
-    public void glGetTexParameterfv(int target, int pname, FloatBuffer params) {
+    public void glGetTexParameterfv(int target, int pname, @NotNull FloatBuffer params) {
         calls++;
         gl20.glGetTexParameterfv(target, pname, params);
         check();
     }
 
     @Override
-    public void glGetTexParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetTexParameteriv(int target, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetTexParameteriv(target, pname, params);
         check();
     }
 
     @Override
-    public void glGetUniformfv(int program, int location, FloatBuffer params) {
+    public void glGetUniformfv(int program, int location, @NotNull FloatBuffer params) {
         calls++;
         gl20.glGetUniformfv(program, location, params);
         check();
     }
 
     @Override
-    public void glGetUniformiv(int program, int location, IntBuffer params) {
+    public void glGetUniformiv(int program, int location, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetUniformiv(program, location, params);
         check();
     }
 
     @Override
-    public int glGetUniformLocation(int program, String name) {
+    public int glGetUniformLocation(int program, @NotNull String name) {
         calls++;
         int result = gl20.glGetUniformLocation(program, name);
         check();
@@ -737,21 +745,21 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glGetVertexAttribfv(int index, int pname, FloatBuffer params) {
+    public void glGetVertexAttribfv(int index, int pname, @NotNull FloatBuffer params) {
         calls++;
         gl20.glGetVertexAttribfv(index, pname, params);
         check();
     }
 
     @Override
-    public void glGetVertexAttribiv(int index, int pname, IntBuffer params) {
+    public void glGetVertexAttribiv(int index, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glGetVertexAttribiv(index, pname, params);
         check();
     }
 
     @Override
-    public void glGetVertexAttribPointerv(int index, int pname, Buffer pointer) {
+    public void glGetVertexAttribPointerv(int index, int pname, @NotNull Buffer pointer) {
         calls++;
         gl20.glGetVertexAttribPointerv(index, pname, pointer);
         check();
@@ -842,14 +850,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glShaderBinary(int n, IntBuffer shaders, int binaryformat, Buffer binary, int length) {
+    public void glShaderBinary(int n, @NotNull IntBuffer shaders, int binaryformat, @NotNull Buffer binary, int length) {
         calls++;
         gl20.glShaderBinary(n, shaders, binaryformat, binary, length);
         check();
     }
 
     @Override
-    public void glShaderSource(int shader, String string) {
+    public void glShaderSource(int shader, @NotNull String string) {
         calls++;
         gl20.glShaderSource(shader, string);
         check();
@@ -877,7 +885,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glTexParameterfv(int target, int pname, FloatBuffer params) {
+    public void glTexParameterfv(int target, int pname, @NotNull FloatBuffer params) {
         calls++;
         gl20.glTexParameterfv(target, pname, params);
         check();
@@ -891,7 +899,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glTexParameteriv(int target, int pname, IntBuffer params) {
+    public void glTexParameteriv(int target, int pname, @NotNull IntBuffer params) {
         calls++;
         gl20.glTexParameteriv(target, pname, params);
         check();
@@ -905,14 +913,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform1fv(int location, int count, FloatBuffer v) {
+    public void glUniform1fv(int location, int count, @NotNull FloatBuffer v) {
         calls++;
         gl20.glUniform1fv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform1fv(int location, int count, float[] v, int offset) {
+    public void glUniform1fv(int location, int count, @NotNull float[] v, int offset) {
         calls++;
         gl20.glUniform1fv(location, count, v, offset);
         check();
@@ -926,14 +934,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform1iv(int location, int count, IntBuffer v) {
+    public void glUniform1iv(int location, int count, @NotNull IntBuffer v) {
         calls++;
         gl20.glUniform1iv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform1iv(int location, int count, int[] v, int offset) {
+    public void glUniform1iv(int location, int count, @NotNull int[] v, int offset) {
         calls++;
         gl20.glUniform1iv(location, count, v, offset);
         check();
@@ -947,14 +955,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform2fv(int location, int count, FloatBuffer v) {
+    public void glUniform2fv(int location, int count, @NotNull FloatBuffer v) {
         calls++;
         gl20.glUniform2fv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform2fv(int location, int count, float[] v, int offset) {
+    public void glUniform2fv(int location, int count, @NotNull float[] v, int offset) {
         calls++;
         gl20.glUniform2fv(location, count, v, offset);
         check();
@@ -968,14 +976,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform2iv(int location, int count, IntBuffer v) {
+    public void glUniform2iv(int location, int count, @NotNull IntBuffer v) {
         calls++;
         gl20.glUniform2iv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform2iv(int location, int count, int[] v, int offset) {
+    public void glUniform2iv(int location, int count, @NotNull int[] v, int offset) {
         calls++;
         gl20.glUniform2iv(location, count, v, offset);
         check();
@@ -989,14 +997,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform3fv(int location, int count, FloatBuffer v) {
+    public void glUniform3fv(int location, int count, @NotNull FloatBuffer v) {
         calls++;
         gl20.glUniform3fv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform3fv(int location, int count, float[] v, int offset) {
+    public void glUniform3fv(int location, int count, @NotNull float[] v, int offset) {
         calls++;
         gl20.glUniform3fv(location, count, v, offset);
         check();
@@ -1010,14 +1018,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform3iv(int location, int count, IntBuffer v) {
+    public void glUniform3iv(int location, int count, @NotNull IntBuffer v) {
         calls++;
         gl20.glUniform3iv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform3iv(int location, int count, int[] v, int offset) {
+    public void glUniform3iv(int location, int count, @NotNull int[] v, int offset) {
         calls++;
         gl20.glUniform3iv(location, count, v, offset);
         check();
@@ -1031,14 +1039,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform4fv(int location, int count, FloatBuffer v) {
+    public void glUniform4fv(int location, int count, @NotNull FloatBuffer v) {
         calls++;
         gl20.glUniform4fv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform4fv(int location, int count, float[] v, int offset) {
+    public void glUniform4fv(int location, int count, @NotNull float[] v, int offset) {
         calls++;
         gl20.glUniform4fv(location, count, v, offset);
         check();
@@ -1052,56 +1060,56 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glUniform4iv(int location, int count, IntBuffer v) {
+    public void glUniform4iv(int location, int count, @NotNull IntBuffer v) {
         calls++;
         gl20.glUniform4iv(location, count, v);
         check();
     }
 
     @Override
-    public void glUniform4iv(int location, int count, int[] v, int offset) {
+    public void glUniform4iv(int location, int count, @NotNull int[] v, int offset) {
         calls++;
         gl20.glUniform4iv(location, count, v, offset);
         check();
     }
 
     @Override
-    public void glUniformMatrix2fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix2fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         calls++;
         gl20.glUniformMatrix2fv(location, count, transpose, value);
         check();
     }
 
     @Override
-    public void glUniformMatrix2fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix2fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         calls++;
         gl20.glUniformMatrix2fv(location, count, transpose, value, offset);
         check();
     }
 
     @Override
-    public void glUniformMatrix3fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix3fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         calls++;
         gl20.glUniformMatrix3fv(location, count, transpose, value);
         check();
     }
 
     @Override
-    public void glUniformMatrix3fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix3fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         calls++;
         gl20.glUniformMatrix3fv(location, count, transpose, value, offset);
         check();
     }
 
     @Override
-    public void glUniformMatrix4fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix4fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         calls++;
         gl20.glUniformMatrix4fv(location, count, transpose, value);
         check();
     }
 
     @Override
-    public void glUniformMatrix4fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix4fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         calls++;
         gl20.glUniformMatrix4fv(location, count, transpose, value, offset);
         check();
@@ -1130,7 +1138,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glVertexAttrib1fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib1fv(int indx, @NotNull FloatBuffer values) {
         calls++;
         gl20.glVertexAttrib1fv(indx, values);
         check();
@@ -1144,7 +1152,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glVertexAttrib2fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib2fv(int indx, @NotNull FloatBuffer values) {
         calls++;
         gl20.glVertexAttrib2fv(indx, values);
         check();
@@ -1158,7 +1166,7 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glVertexAttrib3fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib3fv(int indx, @NotNull FloatBuffer values) {
         calls++;
         gl20.glVertexAttrib3fv(indx, values);
         check();
@@ -1172,14 +1180,14 @@ public class GL20Interceptor extends GLInterceptor implements GL20 {
     }
 
     @Override
-    public void glVertexAttrib4fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib4fv(int indx, @NotNull FloatBuffer values) {
         calls++;
         gl20.glVertexAttrib4fv(indx, values);
         check();
     }
 
     @Override
-    public void glVertexAttribPointer(int indx, int size, int type, boolean normalized, int stride, Buffer ptr) {
+    public void glVertexAttribPointer(int indx, int size, int type, boolean normalized, int stride, @NotNull Buffer ptr) {
         calls++;
         gl20.glVertexAttribPointer(indx, size, type, normalized, stride, ptr);
         check();

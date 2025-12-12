@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -23,8 +25,7 @@ import java.nio.ByteBuffer;
  * <p>
  * A Pixmap stores its data in native heap memory. It is mandatory to call {@link Pixmap#dispose()} when the pixmap is no longer
  * needed, otherwise memory leaks will result
- *
- *  */
+ */
 public class Pixmap implements Disposable {
     final Gdx2DPixmap pixmap;
     int color = 0;
@@ -101,8 +102,6 @@ public class Pixmap implements Disposable {
 
     /**
      * Constructs a new Pixmap from a {@link Gdx2DPixmap}.
-     *
-     * @param pixmap
      */
     public Pixmap(Gdx2DPixmap pixmap) {
         this.pixmap = pixmap;
@@ -139,17 +138,14 @@ public class Pixmap implements Disposable {
         request.setUrl(url);
         Gdx.net.sendHttpRequest(request, new Net.HttpResponseListener() {
             @Override
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
+            public void handleHttpResponse(@NotNull Net.HttpResponse httpResponse) {
                 final byte[] result = httpResponse.getResult();
-                Gdx.app.postRunnable(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Pixmap pixmap = new Pixmap(result, 0, result.length);
-                            responseListener.downloadComplete(pixmap);
-                        } catch (Throwable t) {
-                            failed(t);
-                        }
+                Gdx.app.postRunnable(() -> {
+                    try {
+                        Pixmap pixmap = new Pixmap(result, 0, result.length);
+                        responseListener.downloadComplete(pixmap);
+                    } catch (Throwable t) {
+                        failed(t);
                     }
                 });
             }
@@ -273,13 +269,6 @@ public class Pixmap implements Disposable {
                            int dstHeight) {
         this.pixmap.drawPixmap(pixmap.pixmap, srcx, srcy, srcWidth, srcHeight, dstx, dsty, dstWidth, dstHeight);
     }
-
-// /**
-// * Sets the width in pixels of strokes.
-// *
-// * @param width The stroke width in pixels.
-// */
-// public void setStrokeWidth (int width);
 
     /**
      * Fills a rectangle starting at x, y extending by width to the right and by height downwards (y-axis points downwards) using
@@ -490,8 +479,7 @@ public class Pixmap implements Disposable {
 
     /**
      * Different pixel formats.
-     *
-     *      */
+     */
     public enum Format {
         Alpha, Intensity, LuminanceAlpha, RGB565, RGBA4444, RGB888, RGBA8888;
 
@@ -527,16 +515,14 @@ public class Pixmap implements Disposable {
 
     /**
      * Blending functions to be set with {@link Pixmap#setBlending}.
-     *
-     *      */
+     */
     public enum Blending {
         None, SourceOver
     }
 
     /**
      * Filters to be used with {@link Pixmap#drawPixmap(Pixmap, int, int, int, int, int, int, int, int)}.
-     *
-     *      */
+     */
     public enum Filter {
         NearestNeighbour, BiLinear
     }
@@ -548,8 +534,6 @@ public class Pixmap implements Disposable {
 
         /**
          * Called on the render thread when image was downloaded successfully.
-         *
-         * @param pixmap
          */
         void downloadComplete(Pixmap pixmap);
 

@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.glutils.GLVersion;
 import com.badlogic.gdx.graphics.glutils.HdpiMode;
 import com.badlogic.gdx.utils.Array;
 
+import org.jetbrains.annotations.NotNull;
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSObject;
 import org.robovm.apple.glkit.GLKView;
@@ -283,7 +284,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setGL20 (GL20 gl20) {
+	public void setGL20(@NotNull GL20 gl20) {
 		this.gl20 = gl20;
 		if (gl30 == null) {
 			Gdx.gl = gl20;
@@ -302,7 +303,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setGL30 (GL30 gl30) {
+	public void setGL30(@NotNull GL30 gl30) {
 		this.gl30 = gl30;
 		if (gl30 != null) {
 			this.gl20 = gl30;
@@ -324,7 +325,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setGL31 (GL31 gl31) {
+	public void setGL31(@NotNull GL31 gl31) {
 
 	}
 
@@ -339,7 +340,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setGL32 (GL32 gl32) {
+	public void setGL32(@NotNull GL32 gl32) {
 
 	}
 
@@ -386,11 +387,13 @@ public class IOSGraphics extends AbstractGraphics {
 		return fps;
 	}
 
+	@NotNull
 	@Override
 	public GraphicsType getType () {
 		return GraphicsType.iOSGL;
 	}
 
+	@NotNull
 	@Override
 	public GLVersion getGLVersion () {
 		return glVersion;
@@ -426,39 +429,46 @@ public class IOSGraphics extends AbstractGraphics {
 		return false;
 	}
 
+	@NotNull
 	@Override
 	public DisplayMode[] getDisplayModes () {
 		return new DisplayMode[] {getDisplayMode()};
 	}
 
+	@NotNull
 	@Override
 	public DisplayMode getDisplayMode () {
 		return new IOSDisplayMode(getWidth(), getHeight(), (int)(viewController.getPreferredFramesPerSecond()),
 			bufferFormat.r + bufferFormat.g + bufferFormat.b + bufferFormat.a);
 	}
 
+	@NotNull
 	@Override
 	public Monitor getPrimaryMonitor () {
 		return new IOSMonitor(0, 0, "Primary Monitor");
 	}
 
+	@NotNull
 	@Override
 	public Monitor getMonitor () {
 		return getPrimaryMonitor();
 	}
 
+	@NotNull
 	@Override
 	public Monitor[] getMonitors () {
 		return new Monitor[] {getPrimaryMonitor()};
 	}
 
+	@NotNull
 	@Override
-	public DisplayMode[] getDisplayModes (Monitor monitor) {
+	public DisplayMode[] getDisplayModes(@NotNull Monitor monitor) {
 		return getDisplayModes();
 	}
 
+	@NotNull
 	@Override
-	public DisplayMode getDisplayMode (Monitor monitor) {
+	public DisplayMode getDisplayMode(@NotNull Monitor monitor) {
 		return getDisplayMode();
 	}
 
@@ -502,7 +512,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public boolean setFullscreenMode (DisplayMode displayMode) {
+	public boolean setFullscreenMode(@NotNull DisplayMode displayMode) {
 		return false;
 	}
 
@@ -512,7 +522,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setTitle (String title) {
+	public void setTitle(@NotNull String title) {
 	}
 
 	@Override
@@ -536,13 +546,14 @@ public class IOSGraphics extends AbstractGraphics {
 		viewController.setPreferredFramesPerSecond(fps);
 	}
 
+	@NotNull
 	@Override
 	public BufferFormat getBufferFormat () {
 		return bufferFormat;
 	}
 
 	@Override
-	public boolean supportsExtension (String extension) {
+	public boolean supportsExtension(@NotNull String extension) {
 		if (extensions == null) extensions = Gdx.gl.glGetString(GL20.GL_EXTENSIONS);
 		return extensions.contains(extension);
 	}
@@ -580,16 +591,16 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public Cursor newCursor (Pixmap pixmap, int xHotspot, int yHotspot) {
+	public Cursor newCursor(@NotNull Pixmap pixmap, int xHotspot, int yHotspot) {
 		return null;
 	}
 
 	@Override
-	public void setCursor (Cursor cursor) {
+	public void setCursor(@NotNull Cursor cursor) {
 	}
 
 	@Override
-	public void setSystemCursor (SystemCursor systemCursor) {
+	public void setSystemCursor(@NotNull SystemCursor systemCursor) {
 	}
 
 	private class IOSViewDelegate extends NSObject implements GLKViewDelegate, GLKViewControllerDelegate {
