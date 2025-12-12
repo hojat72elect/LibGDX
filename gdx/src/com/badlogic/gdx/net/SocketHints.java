@@ -2,8 +2,7 @@ package com.badlogic.gdx.net;
 
 /**
  * Options for {@link Socket} instances.
- *
- *  *  */
+ */
 public class SocketHints {
 
     /**

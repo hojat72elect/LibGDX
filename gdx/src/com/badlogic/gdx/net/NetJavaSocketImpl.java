@@ -3,14 +3,15 @@ package com.badlogic.gdx.net;
 import com.badlogic.gdx.Net.Protocol;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 /**
  * Socket implementation using java.net.Socket.
- *
- *  */
+ */
 public class NetJavaSocketImpl implements Socket {
 
     /**
@@ -68,6 +69,7 @@ public class NetJavaSocketImpl implements Socket {
         }
     }
 
+    @NotNull
     @Override
     public InputStream getInputStream() {
         try {
@@ -77,6 +79,7 @@ public class NetJavaSocketImpl implements Socket {
         }
     }
 
+    @NotNull
     @Override
     public OutputStream getOutputStream() {
         try {
@@ -86,6 +89,7 @@ public class NetJavaSocketImpl implements Socket {
         }
     }
 
+    @NotNull
     @Override
     public String getRemoteAddress() {
         return socket.getRemoteSocketAddress().toString();
