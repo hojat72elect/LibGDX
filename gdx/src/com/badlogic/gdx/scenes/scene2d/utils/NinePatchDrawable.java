@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Drawable for a {@link NinePatch}.
  * <p>
@@ -13,8 +15,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
  * <p>
  * The min size is set to the ninepatch total size by default. It could be set to the left+right and top+bottom, excluding the
  * middle size, to allow the drawable to be sized down as small as possible.
- *
- *  */
+ */
 public class NinePatchDrawable extends BaseDrawable implements TransformDrawable {
     private NinePatch patch;
 
@@ -37,7 +38,7 @@ public class NinePatchDrawable extends BaseDrawable implements TransformDrawable
         patch.draw(batch, x, y, width, height);
     }
 
-    public void draw(Batch batch, float x, float y, float originX, float originY, float width, float height, float scaleX,
+    public void draw(@NotNull Batch batch, float x, float y, float originX, float originY, float width, float height, float scaleX,
                      float scaleY, float rotation) {
         patch.draw(batch, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
     }

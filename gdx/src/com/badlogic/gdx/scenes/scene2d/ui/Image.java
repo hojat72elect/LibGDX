@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TransformDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Scaling;
@@ -17,8 +16,7 @@ import com.badlogic.gdx.utils.Scaling;
 /**
  * Displays a {@link Drawable}, scaled various way within the widgets bounds. The preferred size is the min size of the drawable.
  * Only when using a {@link TextureRegionDrawable} will the actor's scale, rotation, and origin be used when drawing.
- *
- *  */
+ */
 public class Image extends Widget {
     private Scaling scaling;
     private int align = Align.center;
@@ -130,10 +128,10 @@ public class Image extends Widget {
         float scaleX = getScaleX();
         float scaleY = getScaleY();
 
-        if (drawable instanceof TransformDrawable) {
+        if (drawable instanceof NewTransformDrawable) {
             float rotation = getRotation();
             if (scaleX != 1 || scaleY != 1 || rotation != 0) {
-                ((TransformDrawable) drawable).draw(batch, x + imageX, y + imageY, getOriginX() - imageX, getOriginY() - imageY,
+                ((NewTransformDrawable) drawable).draw(batch, x + imageX, y + imageY, getOriginX() - imageX, getOriginY() - imageY,
                         imageWidth, imageHeight, scaleX, scaleY, rotation);
                 return;
             }
