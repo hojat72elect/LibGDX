@@ -210,7 +210,7 @@ public class NoncontinuousRenderingTest extends GdxTest {
         Slider slider = new Slider(0, 100, 1, false, sliderStyle);
         root.add(slider).row();
 
-        SelectBox<Pixmap.Format> selectBox = new SelectBox(skin);
+        SelectBox<Pixmap.Format> selectBox = new SelectBox<>(skin);
         selectBox.setItems(Pixmap.Format.values());
         root.add(selectBox).row();
 

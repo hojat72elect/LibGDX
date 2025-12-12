@@ -26,12 +26,11 @@ import com.badlogic.gdx.utils.Pool;
  * {@link ChangeEvent} is fired when the list selection changes.
  * <p>
  * The preferred size of the list is determined by the text bounds of the items and the size of the {@link ListStyle#selection}.
- *
- *  *  */
+ */
 public class List<T> extends Widget implements Cullable, Styleable<List.ListStyle> {
-    final Array<T> items = new Array();
+    final Array<T> items = new Array<>();
     ListStyle style;
-    ArraySelection<T> selection = new ArraySelection(items);
+    ArraySelection<T> selection = new ArraySelection<>(items);
     float itemHeight;
     int pressedIndex = -1, overIndex = -1;
     boolean typeToSelect;
@@ -449,8 +448,7 @@ public class List<T> extends Widget implements Cullable, Styleable<List.ListStyl
 
     /**
      * The style for a list, see {@link List}.
-     *
-     *      *      */
+     */
     static public class ListStyle {
         public BitmapFont font;
         public Color fontColorSelected = new Color(1, 1, 1, 1);

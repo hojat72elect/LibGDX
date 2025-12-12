@@ -21,8 +21,7 @@ import com.badlogic.gdx.utils.Null;
  * <p>
  * The preferred size of a window is the preferred size of the title text and the children as laid out by the table. After adding
  * children to the window, it can be convenient to call {@link #pack()} to size the window to the size of the children.
- *
- *  */
+ */
 public class Window extends Table implements Styleable<Window.WindowStyle> {
     static private final Vector2 tmpPosition = new Vector2();
     static private final Vector2 tmpSize = new Vector2();
@@ -328,8 +327,7 @@ public class Window extends Table implements Styleable<Window.WindowStyle> {
 
     /**
      * The style for a window, see {@link Window}.
-     *
-     *      */
+     */
     static public class WindowStyle {
         public @Null Drawable background;
         public BitmapFont titleFont;

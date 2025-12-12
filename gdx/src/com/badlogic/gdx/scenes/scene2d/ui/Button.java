@@ -213,7 +213,7 @@ public class Button extends Table implements Disableable, Styleable<Button.Butto
 
         setBackground(getBackgroundDrawable());
 
-        float offsetX = 0, offsetY = 0;
+        float offsetX, offsetY;
         if (isPressed() && !isDisabled()) {
             offsetX = style.pressedOffsetX;
             offsetY = style.pressedOffsetY;

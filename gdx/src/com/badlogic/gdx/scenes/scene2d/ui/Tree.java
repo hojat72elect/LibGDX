@@ -616,7 +616,7 @@ public class Tree<N extends Node, V> extends WidgetGroup implements Styleable<Tr
      * @param <A> The type for the node's actor.
      *      */
     static abstract public class Node<N extends Node, V, A extends Actor> {
-        final Array<N> children = new Array(0);
+        final Array<N> children = new Array<>(0);
         A actor;
         N parent;
         boolean selectable = true;

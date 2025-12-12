@@ -39,8 +39,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  * The new* methods return a copy of an instance in the skin.
  * <p>
  * See the <a href="https://libgdx.com/wiki/graphics/2d/scene2d/skin">documentation</a> for more.
- *
- *  */
+ */
 public class Skin implements Disposable {
     static private final Class[] defaultTagClasses = {BitmapFont.class, Color.class, TintedDrawable.class, NinePatchDrawable.class,
             SpriteDrawable.class, TextureRegionDrawable.class, TiledDrawable.class, Button.ButtonStyle.class,
@@ -49,8 +48,8 @@ public class Skin implements Disposable {
             SelectBox.SelectBoxStyle.class, Slider.SliderStyle.class, SplitPane.SplitPaneStyle.class, TextButton.TextButtonStyle.class,
             TextField.TextFieldStyle.class, TextTooltip.TextTooltipStyle.class, Touchpad.TouchpadStyle.class, Tree.TreeStyle.class,
             Window.WindowStyle.class};
-    private final ObjectMap<String, Class> jsonClassTags = new ObjectMap(defaultTagClasses.length);
-    ObjectMap<Class, ObjectMap<String, Object>> resources = new ObjectMap();
+    private final ObjectMap<String, Class> jsonClassTags = new ObjectMap<>(defaultTagClasses.length);
+    ObjectMap<Class, ObjectMap<String, Object>> resources = new ObjectMap<>();
     TextureAtlas atlas;
     float scale = 1;
 
@@ -101,8 +100,7 @@ public class Skin implements Disposable {
 
     static private @Null Method findMethod(Class type, String name) {
         Method[] methods = ClassReflection.getMethods(type);
-        for (int i = 0, n = methods.length; i < n; i++) {
-            Method method = methods[i];
+        for (Method method : methods) {
             if (method.getName().equals(name)) return method;
         }
         return null;
@@ -143,7 +141,7 @@ public class Skin implements Disposable {
         if (resource == null) throw new IllegalArgumentException("resource cannot be null.");
         ObjectMap<String, Object> typeResources = resources.get(type);
         if (typeResources == null) {
-            typeResources = new ObjectMap(type == TextureRegion.class || type == Drawable.class || type == Sprite.class ? 256 : 64);
+            typeResources = new ObjectMap<>(type == TextureRegion.class || type == Drawable.class || type == Sprite.class ? 256 : 64);
             resources.put(type, typeResources);
         }
         typeResources.put(name, resource);
@@ -242,7 +240,7 @@ public class Skin implements Disposable {
         int i = 0;
         TextureRegion region = optional(regionName + "_" + (i++), TextureRegion.class);
         if (region != null) {
-            regions = new Array<TextureRegion>();
+            regions = new Array<>();
             while (region != null) {
                 regions.add(region);
                 region = optional(regionName + "_" + (i++), TextureRegion.class);

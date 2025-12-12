@@ -6,8 +6,7 @@ import com.badlogic.gdx.utils.Null;
 
 /**
  * A tooltip that shows a label.
- *
- *  */
+ */
 public class TextTooltip extends Tooltip<Label> implements Styleable<TextTooltip.TextTooltipStyle> {
     private TextTooltipStyle style;
 
@@ -63,8 +62,7 @@ public class TextTooltip extends Tooltip<Label> implements Styleable<TextTooltip
 
     /**
      * The style for a text tooltip, see {@link TextTooltip}.
-     *
-     *      */
+     */
     static public class TextTooltipStyle {
         public LabelStyle label;
         public @Null Drawable background;

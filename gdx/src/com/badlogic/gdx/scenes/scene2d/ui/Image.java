@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TransformDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Scaling;
@@ -128,10 +129,10 @@ public class Image extends Widget {
         float scaleX = getScaleX();
         float scaleY = getScaleY();
 
-        if (drawable instanceof NewTransformDrawable) {
+        if (drawable instanceof TransformDrawable) {
             float rotation = getRotation();
             if (scaleX != 1 || scaleY != 1 || rotation != 0) {
-                ((NewTransformDrawable) drawable).draw(batch, x + imageX, y + imageY, getOriginX() - imageX, getOriginY() - imageY,
+                ((TransformDrawable) drawable).draw(batch, x + imageX, y + imageY, getOriginX() - imageX, getOriginY() - imageY,
                         imageWidth, imageHeight, scaleX, scaleY, rotation);
                 return;
             }

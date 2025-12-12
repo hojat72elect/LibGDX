@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Align;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Draws a {@link TextureRegion} repeatedly to fill the area, instead of stretching it.
  */
@@ -235,7 +237,7 @@ public class TiledDrawable extends TextureRegionDrawable {
         }
     }
 
-    public void draw(Batch batch, float x, float y, float width, float height) {
+    public void draw(@NotNull Batch batch, float x, float y, float width, float height) {
         float oldColor = batch.getPackedColor();
         batch.setColor(batch.getColor().mul(color));
 
@@ -244,7 +246,7 @@ public class TiledDrawable extends TextureRegionDrawable {
         batch.setPackedColor(oldColor);
     }
 
-    public void draw(Batch batch, float x, float y, float originX, float originY, float width, float height, float scaleX,
+    public void draw(@NotNull Batch batch, float x, float y, float originX, float originY, float width, float height, float scaleX,
                      float scaleY, float rotation) {
         throw new UnsupportedOperationException();
     }

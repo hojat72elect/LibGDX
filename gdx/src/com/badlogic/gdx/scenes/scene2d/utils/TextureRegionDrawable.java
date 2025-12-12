@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Drawable for a {@link TextureRegion}.
  */
@@ -33,11 +35,11 @@ public class TextureRegionDrawable extends BaseDrawable implements TransformDraw
         setRegion(drawable.region);
     }
 
-    public void draw(Batch batch, float x, float y, float width, float height) {
+    public void draw(@NotNull Batch batch, float x, float y, float width, float height) {
         batch.draw(region, x, y, width, height);
     }
 
-    public void draw(Batch batch, float x, float y, float originX, float originY, float width, float height, float scaleX,
+    public void draw(@NotNull Batch batch, float x, float y, float originX, float originY, float width, float height, float scaleX,
                      float scaleY, float rotation) {
         batch.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
     }

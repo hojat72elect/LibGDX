@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Drawable for a {@link Sprite}.
  */
@@ -26,7 +28,7 @@ public class SpriteDrawable extends BaseDrawable implements TransformDrawable {
         setSprite(drawable.sprite);
     }
 
-    public void draw(Batch batch, float x, float y, float width, float height) {
+    public void draw(@NotNull Batch batch, float x, float y, float width, float height) {
         Color spriteColor = sprite.getColor();
         float oldColor = sprite.getPackedColor();
         sprite.setColor(spriteColor.mul(batch.getColor()));

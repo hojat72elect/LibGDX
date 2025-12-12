@@ -10,8 +10,7 @@ import com.badlogic.gdx.utils.Scaling;
  * image centered on the button. If the image is the size of the button, a {@link Button} without any children can be used, where
  * the {@link Button.ButtonStyle#up}, {@link Button.ButtonStyle#down}, and {@link Button.ButtonStyle#checked} nine patches define
  * the image.
- *
- *  */
+ */
 public class ImageButton extends Button {
     private final Image image;
     private ImageButtonStyle style;
@@ -117,8 +116,7 @@ public class ImageButton extends Button {
 
     /**
      * The style for an image button, see {@link ImageButton}.
-     *
-     *      */
+     */
     static public class ImageButtonStyle extends ButtonStyle {
         public @Null Drawable imageUp, imageDown, imageOver, imageDisabled;
         public @Null Drawable imageChecked, imageCheckedDown, imageCheckedOver;

@@ -4,10 +4,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Drawable that stores the size information but doesn't draw anything.
- *
- *  */
+ */
 public class BaseDrawable implements Drawable {
     private @Null String name;
     private float leftWidth, rightWidth, topHeight, bottomHeight, minWidth, minHeight;
@@ -28,7 +29,7 @@ public class BaseDrawable implements Drawable {
         minHeight = drawable.getMinHeight();
     }
 
-    public void draw(Batch batch, float x, float y, float width, float height) {
+    public void draw(@NotNull Batch batch, float x, float y, float width, float height) {
     }
 
     public float getLeftWidth() {
