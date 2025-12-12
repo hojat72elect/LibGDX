@@ -6,16 +6,17 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.OrderedSet;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 
 /**
  * Manages selected objects. Optionally fires a {@link ChangeEvent} on an actor. Selection changes can be vetoed via
  * {@link ChangeEvent#cancel()}.
- *
- *  */
+ */
 public class Selection<T> implements Disableable, Iterable<T> {
-    final OrderedSet<T> selected = new OrderedSet();
-    private final OrderedSet<T> old = new OrderedSet();
+    final OrderedSet<T> selected = new OrderedSet<>();
+    private final OrderedSet<T> old = new OrderedSet<>();
     boolean isDisabled;
     boolean multiple;
     boolean required;
@@ -269,6 +270,7 @@ public class Selection<T> implements Disableable, Iterable<T> {
         return null;
     }
 
+    @NotNull
     public Iterator<T> iterator() {
         return selected.iterator();
     }
