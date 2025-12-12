@@ -14,8 +14,7 @@ import com.badlogic.gdx.utils.async.AsyncTask;
 
 /**
  * Responsible for loading an asset through an {@link AssetLoader} based on an {@link AssetDescriptor}.
- *
- *  */
+ */
 class AssetLoadingTask implements AsyncTask<Void> {
     final AssetDescriptor assetDesc;
     final AssetLoader loader;
@@ -70,7 +69,7 @@ class AssetLoadingTask implements AsyncTask<Void> {
      * {@link AsynchronousAssetLoader#loadSync(AssetManager, String, FileHandle, AssetLoaderParameters)}.
      *
      * @return true in case the asset was fully loaded, false otherwise
-     * @throws GdxRuntimeException
+     * @throws GdxRuntimeException for some reason, it might crash.
      */
     public boolean update() {
         if (loader instanceof SynchronousAssetLoader)
