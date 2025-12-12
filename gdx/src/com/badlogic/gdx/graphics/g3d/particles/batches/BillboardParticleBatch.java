@@ -28,10 +28,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class is used to render billboard particles.
- *
- *  */
+ */
 public class BillboardParticleBatch extends BufferedParticleBatch<BillboardControllerRenderData> {
     protected static final Vector3 TMP_V1 = new Vector3(), TMP_V2 = new Vector3(), TMP_V3 = new Vector3(), TMP_V4 = new Vector3(),
             TMP_V5 = new Vector3(), TMP_V6 = new Vector3();
@@ -89,7 +90,6 @@ public class BillboardParticleBatch extends BufferedParticleBatch<BillboardContr
     /**
      * Create a new BillboardParticleBatch
      *
-     * @param mode
      * @param useGPU             Allow to use GPU instead of CPU
      * @param capacity           Max particle displayed
      * @param blendingAttribute  Blending attribute used by the batch
@@ -98,7 +98,7 @@ public class BillboardParticleBatch extends BufferedParticleBatch<BillboardContr
     public BillboardParticleBatch(AlignMode mode, boolean useGPU, int capacity, BlendingAttribute blendingAttribute,
                                   DepthTestAttribute depthTestAttribute) {
         super(BillboardControllerRenderData[]::new);
-        renderables = new Array<Renderable>();
+        renderables = new Array<>();
         renderablePool = new RenderablePool();
         this.blendingAttribute = blendingAttribute;
         this.depthTestAttribute = depthTestAttribute;
@@ -516,16 +516,11 @@ public class BillboardParticleBatch extends BufferedParticleBatch<BillboardContr
 
         // fill vertices
         if (useGPU) {
-            // if(mode != AlignMode.ParticleDirection)
             fillVerticesGPU(offsets);
-            // else
-            // fillVerticesToParticleDirectionGPU(offsets);
         } else {
             if (mode == AlignMode.Screen)
                 fillVerticesToScreenCPU(offsets);
             else if (mode == AlignMode.ViewPoint) fillVerticesToViewPointCPU(offsets);
-            // else
-            // fillVerticesToParticleDirectionCPU(offsets);
         }
 
         // send vertices to meshes
@@ -627,7 +622,7 @@ public class BillboardParticleBatch extends BufferedParticleBatch<BillboardContr
     }
 
     @Override
-    public void load(AssetManager manager, ResourceData resources) {
+    public void load(@NotNull AssetManager manager, ResourceData resources) {
         SaveData data = resources.getSaveData("billboardBatch");
         if (data != null) {
             setTexture((Texture) manager.get(data.loadAsset()));

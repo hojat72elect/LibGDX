@@ -7,8 +7,7 @@ import java.util.Arrays;
 
 /**
  * A quad tree that stores a float for each point.
- *
- *  */
+ */
 public class QuadTreeFloat implements Poolable {
     static public final int VALUE = 0, X = 1, Y = 2, DISTSQR = 3;
 

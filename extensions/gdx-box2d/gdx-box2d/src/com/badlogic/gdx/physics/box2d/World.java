@@ -36,8 +36,7 @@ import java.util.Iterator;
 /**
  * The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient
  * memory management facilities.
- *
- *  */
+ */
 public final class World implements Disposable {
     // @off
 	/*JNI
@@ -208,24 +207,24 @@ b2ContactFilter defaultFilter;
     /**
      * all known bodies
      **/
-    final LongMap<Body> bodies = new LongMap<Body>(100);
+    final LongMap<Body> bodies = new LongMap<>(100);
 
     /**
      * all known fixtures
      **/
-    final LongMap<Fixture> fixtures = new LongMap<Fixture>(100);
+    final LongMap<Fixture> fixtures = new LongMap<>(100);
 
     /**
      * all known joints
      **/
-    private final LongMap<Joint> joints = new LongMap<Joint>(100);
+    private final LongMap<Joint> joints = new LongMap<>(100);
     /**
      * Get the global gravity vector.
      */
     final float[] tmpGravity = new float[2];
     final Vector2 gravity = new Vector2();
-    private final Array<Contact> contacts = new Array<Contact>();
-    private final Array<Contact> freeContacts = new Array<Contact>();
+    private final Array<Contact> contacts = new Array<>();
+    private final Array<Contact> freeContacts = new Array<>();
     private final Contact contact = new Contact(this, 0);
     private final Manifold manifold = new Manifold(0);
     private final ContactImpulse impulse = new ContactImpulse(this, 0);
@@ -339,7 +338,7 @@ b2ContactFilter defaultFilter;
      * Bodies created by this method are pooled internally by the World object.
      * They will be freed upon calling {@link World#destroyBody(Body)}
      *
-     * @warning This function is locked during callbacks.
+     * warning : This function is locked during callbacks.
      * @see Pool
      */
     public Body createBody(BodyDef def) {
@@ -378,9 +377,8 @@ b2ContactFilter defaultFilter;
     /**
      * Destroy a rigid body given a definition. No reference to the definition is retained. This function is locked during
      * callbacks.
-     *
-     * @warning This automatically deletes all associated shapes and joints.
-     * @warning This function is locked during callbacks.
+     * warning : This automatically deletes all associated shapes and joints.
+     * warning : This function is locked during callbacks.
      */
     public void destroyBody(Body body) {
         Array<JointEdge> jointList = body.getJointList();
@@ -415,9 +413,6 @@ b2ContactFilter defaultFilter;
     /**
      * Internal method for fixture destruction with notifying custom
      * contact listener
-     *
-     * @param body
-     * @param fixture
      */
     void destroyFixture(Body body, Fixture fixture) {
         jniDestroyFixture(addr, body.addr, fixture.addr);
@@ -439,8 +434,6 @@ b2ContactFilter defaultFilter;
     /**
      * Internal method for body deactivation with notifying custom
      * contact listener
-     *
-     * @param body
      */
     void deactivateBody(Body body) {
         jniDeactivateBody(addr, body.addr);
@@ -461,8 +454,7 @@ b2ContactFilter defaultFilter;
     /**
      * Create a joint to constrain bodies together. No reference to the definition is retained. This may cause the connected bodies
      * to cease colliding.
-     *
-     * @warning This function is locked during callbacks.
+     * warning : This function is locked during callbacks.
      */
     public Joint createJoint(JointDef def) {
         long jointAddr = createProperJoint(def);
@@ -737,8 +729,7 @@ b2ContactFilter defaultFilter;
 
     /**
      * Destroy a joint. This may cause the connected bodies to begin colliding.
-     *
-     * @warning This function is locked during callbacks.
+     * warning : This function is locked during callbacks.
      */
     public void destroyJoint(Joint joint) {
         joint.setUserData(null);

@@ -1394,14 +1394,10 @@ public class Table extends WidgetGroup {
         this.skin = skin;
     }
 
-    /**
-     *      */
     public enum Debug {
         none, all, table, cell, actor
     }
 
-    /**
-     *      */
     static public class DebugRect extends Rectangle {
         static Pool<DebugRect> pool = new DefaultPool<>(DebugRect::new);
         Color color;

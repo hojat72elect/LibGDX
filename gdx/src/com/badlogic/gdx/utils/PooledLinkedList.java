@@ -2,8 +2,7 @@ package com.badlogic.gdx.utils;
 
 /**
  * A simple linked list that pools its nodes.
- *
- *  */
+ */
 public class PooledLinkedList<T> {
     private final Pool<Item<T>> pool;
     private Item<T> head;
@@ -16,7 +15,7 @@ public class PooledLinkedList<T> {
         this.pool = new Pool<Item<T>>(16, maxPoolSize) {
             @Override
             protected Item<T> newObject() {
-                return new Item<T>();
+                return new Item<>();
             }
         };
     }

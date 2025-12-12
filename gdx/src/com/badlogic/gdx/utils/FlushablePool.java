@@ -1,12 +1,13 @@
 package com.badlogic.gdx.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A {@link Pool} which keeps track of the obtained items (see {@link #obtain()}), which can be free'd all at once using the
  * {@link #flush()} method.
- *
- *  */
+ */
 public abstract class FlushablePool<T> extends Pool<T> {
-    protected Array<T> obtained = new Array<T>();
+    protected Array<T> obtained = new Array<>();
 
     public FlushablePool() {
         super();
@@ -42,7 +43,7 @@ public abstract class FlushablePool<T> extends Pool<T> {
     }
 
     @Override
-    public void freeAll(Array<T> objects) {
+    public void freeAll(@NotNull Array<T> objects) {
         obtained.removeAll(objects, true);
         super.freeAll(objects);
     }

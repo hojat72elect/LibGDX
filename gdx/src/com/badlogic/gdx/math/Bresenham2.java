@@ -9,10 +9,9 @@ import com.badlogic.gdx.utils.Pool;
  * <p>
  * Instances of this class own the returned array of points and the points themselves to avoid garbage collection as much as
  * possible. Calling any of the methods will result in the reuse of the previously returned array and vectors, expect
- *
  */
 public class Bresenham2 {
-    private final Array<GridPoint2> points = new Array<GridPoint2>();
+    private final Array<GridPoint2> points = new Array<>();
     private final Pool<GridPoint2> pool = new Pool<GridPoint2>() {
         @Override
         protected GridPoint2 newObject() {

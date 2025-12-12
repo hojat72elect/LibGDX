@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2020 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
-
 package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.math.collision.BoundingBox;
@@ -113,7 +97,6 @@ public class Octree<T> {
     /**
      * Method to retrieve all the geometries.
      *
-     * @param resultSet
      * @return the result set
      */
     public ObjectSet<T> getAll(ObjectSet<T> resultSet) {
@@ -151,8 +134,6 @@ public class Octree<T> {
 
     /**
      * Method to get nodes as bounding boxes. Useful for debug purpose.
-     *
-     * @param boxes
      */
     public ObjectSet<BoundingBox> getNodesBoxes(ObjectSet<BoundingBox> boxes) {
         root.getBoundingBox(boxes);
@@ -169,8 +150,6 @@ public class Octree<T> {
         /**
          * Method to calculate intersection between aabb and the geometry.
          *
-         * @param nodeBounds
-         * @param geometry
          * @return if they are intersecting
          */
         boolean intersects(BoundingBox nodeBounds, T geometry);
@@ -178,8 +157,6 @@ public class Octree<T> {
         /**
          * Method to calculate intersection between frustum and the geometry.
          *
-         * @param frustum
-         * @param geometry
          * @return if they are intersecting
          */
         boolean intersects(Frustum frustum, T geometry);
@@ -187,8 +164,6 @@ public class Octree<T> {
         /**
          * Method to calculate intersection between ray and the geometry.
          *
-         * @param ray
-         * @param geometry
          * @return distance between ray and geometry
          */
         float intersects(Ray ray, T geometry);
@@ -203,7 +178,7 @@ public class Octree<T> {
     protected class OctreeNode {
 
         final BoundingBox bounds = new BoundingBox();
-        private final Array<T> geometries = new Array<T>(Math.min(16, maxItemsPerNode));
+        private final Array<T> geometries = new Array<>(Math.min(16, maxItemsPerNode));
         int level;
         boolean leaf;
         private Octree.OctreeNode[] children; // May be null when leaf is true.
@@ -291,7 +266,7 @@ public class Octree<T> {
                 }
 
                 if (removed) {
-                    ObjectSet<T> geometrySet = new ObjectSet<T>();
+                    ObjectSet<T> geometrySet = new ObjectSet<>();
                     for (Octree.OctreeNode node : children) {
                         node.getAll(geometrySet);
                     }
@@ -380,8 +355,6 @@ public class Octree<T> {
 
         /**
          * Get all geometries using Depth-First Search recursion.
-         *
-         * @param resultSet
          */
         protected void getAll(ObjectSet<T> resultSet) {
             if (!leaf) {
@@ -394,8 +367,6 @@ public class Octree<T> {
 
         /**
          * Get bounding boxes using Depth-First Search recursion.
-         *
-         * @param bounds
          */
         protected void getBoundingBox(ObjectSet<BoundingBox> bounds) {
             if (!leaf) {

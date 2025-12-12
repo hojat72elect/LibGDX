@@ -26,10 +26,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class is used to draw particles as point sprites.
- *
- *  */
+ */
 public class PointSpriteParticleBatch extends BufferedParticleBatch<PointSpriteControllerRenderData> {
     protected static final Vector3 TMP_V1 = new Vector3();
     protected static final int sizeAndRotationUsage = 1 << 9;
@@ -168,7 +169,7 @@ public class PointSpriteParticleBatch extends BufferedParticleBatch<PointSpriteC
     }
 
     @Override
-    public void load(AssetManager manager, ResourceData resources) {
+    public void load(@NotNull AssetManager manager, ResourceData resources) {
         SaveData data = resources.getSaveData("pointSpriteBatch");
         if (data != null) setTexture((Texture) manager.get(data.loadAsset()));
     }

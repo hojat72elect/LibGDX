@@ -13,8 +13,7 @@ import com.badlogic.gdx.utils.Pool;
 
 /**
  * It's an {@link Influencer} which controls which {@link Model} will be assigned to the particles as {@link ModelInstance}.
- *
- *  */
+ */
 public abstract class ModelInfluencer extends Influencer {
 
     public Array<Model> models;
@@ -24,7 +23,7 @@ public abstract class ModelInfluencer extends Influencer {
         this.models = new Array<>(true, 1, Model[]::new);
     }
     public ModelInfluencer(Model... models) {
-        this.models = new Array<Model>(models);
+        this.models = new Array<>(models);
     }
 
     public ModelInfluencer(ModelInfluencer influencer) {

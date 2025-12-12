@@ -14,8 +14,7 @@ import com.badlogic.gdx.utils.PoolManager;
 
 /**
  * Static convenience methods for using pooled actions, intended for static import.
- *
- *  */
+ */
 public class Actions {
 
     public static final PoolManager ACTION_POOLS = new PoolManager();
@@ -440,8 +439,7 @@ public class Actions {
 
     static public SequenceAction sequence(Action... actions) {
         SequenceAction action = action(SequenceAction.class);
-        for (int i = 0, n = actions.length; i < n; i++)
-            action.addAction(actions[i]);
+        for (Action value : actions) action.addAction(value);
         return action;
     }
 
@@ -491,8 +489,7 @@ public class Actions {
 
     static public ParallelAction parallel(Action... actions) {
         ParallelAction action = action(ParallelAction.class);
-        for (int i = 0, n = actions.length; i < n; i++)
-            action.addAction(actions[i]);
+        for (Action value : actions) action.addAction(value);
         return action;
     }
 

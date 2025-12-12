@@ -5,8 +5,7 @@ import com.badlogic.gdx.utils.Pool;
 
 /**
  * Executes a number of actions one at a time.
- *
- *  */
+ */
 public class SequenceAction extends ParallelAction {
     private int index;
 

@@ -9,13 +9,11 @@ import com.badlogic.gdx.physics.bullet.collision.btPersistentManifold;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
-/**
- *  */
 public class CollisionTest extends ShootTest {
     BulletEntity projectile;
-    Array<BulletEntity> hits = new Array<BulletEntity>();
-    Array<BulletEntity> contacts = new Array<BulletEntity>();
-    Array<Color> colors = new Array<Color>();
+    Array<BulletEntity> hits = new Array<>();
+    Array<BulletEntity> contacts = new Array<>();
+    Array<Color> colors = new Array<>();
     TestContactResultCallback contactCB;
     private final Pool<Color> colorPool = new Pool<Color>() {
         @Override
