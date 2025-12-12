@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.reflect.ArrayReflection;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -12,8 +14,7 @@ import java.util.Objects;
 /**
  * A resizable, ordered or unordered array of objects. If unordered, this class avoids a memory copy when removing elements (the
  * last element is moved to the removed element's position).
- *
- *  */
+ */
 public class Array<T> implements Iterable<T> {
     /**
      * Provides direct access to the underlying array. If the Array's generic type is not Object, this field may only be accessed
@@ -47,7 +48,7 @@ public class Array<T> implements Iterable<T> {
      * @param capacity Any elements added beyond this will cause the backing array to be grown.
      */
     public Array(boolean ordered, int capacity) {
-        this(ordered, capacity, ArraySupplier.object());
+        this(ordered, capacity, ArraySupplier.objects());
     }
 
     /**
@@ -145,7 +146,7 @@ public class Array<T> implements Iterable<T> {
      */
     @Deprecated
     static public <T> Array<T> of(Class<T> arrayType) {
-        return new Array(arrayType);
+        return new Array<>(arrayType);
     }
 
     /**
@@ -664,9 +665,10 @@ public class Array<T> implements Iterable<T> {
      * If {@link Collections#allocateIterators} is false, the same iterator instance is returned each time this method is called.
      * Use the {@link ArrayIterator} constructor for nested or multithreaded iteration.
      */
+    @NotNull
     public ArrayIterator<T> iterator() {
-        if (Collections.allocateIterators) return new ArrayIterator<T>(this, true);
-        if (iterable == null) iterable = new ArrayIterable<T>(this);
+        if (Collections.allocateIterators) return new ArrayIterator<>(this, true);
+        if (iterable == null) iterable = new ArrayIterable<>(this);
         return iterable.iterator();
     }
 
@@ -677,9 +679,9 @@ public class Array<T> implements Iterable<T> {
      * Use the {@link Predicate.PredicateIterable} constructor for nested or multithreaded iteration.
      */
     public Iterable<T> select(Predicate<T> predicate) {
-        if (Collections.allocateIterators) return new Predicate.PredicateIterable<T>(this, predicate);
+        if (Collections.allocateIterators) return new Predicate.PredicateIterable<>(this, predicate);
         if (predicateIterable == null)
-            predicateIterable = new Predicate.PredicateIterable<T>(this, predicate);
+            predicateIterable = new Predicate.PredicateIterable<>(this, predicate);
         else
             predicateIterable.set(this, predicate);
         return predicateIterable;
@@ -847,6 +849,7 @@ public class Array<T> implements Iterable<T> {
             index = 0;
         }
 
+        @NotNull
         public ArrayIterator<T> iterator() {
             return this;
         }
@@ -871,15 +874,12 @@ public class Array<T> implements Iterable<T> {
         /**
          * @see Collections#allocateIterators
          */
+        @NotNull
         public ArrayIterator<T> iterator() {
-            if (Collections.allocateIterators) return new ArrayIterator<T>(array, allowRemove);
-// lastAcquire.getBuffer().setLength(0);
-// new Throwable().printStackTrace(new java.io.PrintWriter(lastAcquire));
+            if (Collections.allocateIterators) return new ArrayIterator<>(array, allowRemove);
             if (iterator1 == null) {
-                iterator1 = new ArrayIterator<T>(array, allowRemove);
-                iterator2 = new ArrayIterator<T>(array, allowRemove);
-// iterator1.iterable = this;
-// iterator2.iterable = this;
+                iterator1 = new ArrayIterator<>(array, allowRemove);
+                iterator2 = new ArrayIterator<>(array, allowRemove);
             }
             if (!iterator1.valid) {
                 iterator1.index = 0;

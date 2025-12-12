@@ -24,8 +24,7 @@ import java.util.Comparator;
  * }
  * array.end();
  * </pre>
- *
- *  */
+ */
 public class SnapshotArray<T> extends Array<T> {
     private T[] snapshot, recycled;
     private int snapshots;
@@ -76,7 +75,7 @@ public class SnapshotArray<T> extends Array<T> {
      * @see #SnapshotArray(Object[])
      */
     static public <T> SnapshotArray<T> with(T... array) {
-        return new SnapshotArray(array);
+        return new SnapshotArray<>(array);
     }
 
     /**

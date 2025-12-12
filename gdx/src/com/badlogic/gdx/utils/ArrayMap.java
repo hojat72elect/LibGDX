@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.ObjectMap.Entry;
 import com.badlogic.gdx.utils.reflect.ArrayReflection;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -14,8 +16,7 @@ import java.util.NoSuchElementException;
  * implementation, but may be acceptable for small maps and has the benefits that keys and values can be accessed by index, which
  * makes iteration fast. Like {@link Array}, if ordered is false, this class avoids a memory copy when removing elements (the last
  * element is moved to the removed element's position).
- *
- *  */
+ */
 public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
     public K[] keys;
     public V[] values;
@@ -46,7 +47,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
      * @param capacity Any elements added beyond this will cause the backing arrays to be grown.
      */
     public ArrayMap(boolean ordered, int capacity) {
-        this(ordered, capacity, ArraySupplier.object(), ArraySupplier.object());
+        this(ordered, capacity, ArraySupplier.objects(), ArraySupplier.objects());
     }
 
     /**
@@ -522,6 +523,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
         return buffer.toString();
     }
 
+    @NotNull
     public Iterator<Entry<K, V>> iterator() {
         return entries();
     }
@@ -535,7 +537,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
      * @see Collections#allocateIterators
      */
     public Entries<K, V> entries() {
-        if (Collections.allocateIterators) return new Entries(this);
+        if (Collections.allocateIterators) return new Entries<>(this);
         if (entries1 == null) {
             entries1 = new Entries(this);
             entries2 = new Entries(this);
@@ -619,6 +621,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
             return index < map.size;
         }
 
+        @NotNull
         public Iterator<Entry<K, V>> iterator() {
             return this;
         }
@@ -658,6 +661,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
             return index < map.size;
         }
 
+        @NotNull
         public Iterator<V> iterator() {
             return this;
         }
@@ -701,6 +705,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
             return index < map.size;
         }
 
+        @NotNull
         public Iterator<K> iterator() {
             return this;
         }
@@ -721,7 +726,7 @@ public class ArrayMap<K, V> implements Iterable<ObjectMap.Entry<K, V>> {
         }
 
         public Array<K> toArray() {
-            return new Array(true, map.keys, index, map.size - index);
+            return new Array<>(true, map.keys, index, map.size - index);
         }
 
         public Array<K> toArray(Array array) {

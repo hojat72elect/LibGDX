@@ -12,8 +12,7 @@ import java.util.Arrays;
  * These arrays are called {@link Channel} and are represented by {@link ChannelDescriptor}. It's not necessary to store primitive
  * types in the channels but doing so will "exploit" data locality in the JVM, which is ensured for primitive types. Use
  * {@link FloatChannel}, {@link IntChannel}, {@link ObjectChannel} to store the data.
- *
- *  */
+ */
 public class ParallelArray {
 
     /**

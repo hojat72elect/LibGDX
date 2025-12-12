@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g3d.particles.renderers.ParticleControllerRende
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArraySupplier;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Base class of all the batches requiring to buffer {@link ParticleControllerRenderData}
  */
@@ -32,16 +34,13 @@ public abstract class BufferedParticleBatch<T extends ParticleControllerRenderDa
     }
 
     @Override
-    public void draw(T data) {
+    public void draw(@NotNull T data) {
         if (data.controller.particles.size > 0) {
             renderData.add(data);
             bufferedParticlesCount += data.controller.particles.size;
         }
     }
 
-    /**
-     *
-     */
     public void end() {
         if (bufferedParticlesCount > 0) {
             ensureCapacity(bufferedParticlesCount);
