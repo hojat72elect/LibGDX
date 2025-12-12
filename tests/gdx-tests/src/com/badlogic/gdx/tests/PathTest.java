@@ -15,8 +15,6 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-/**
- *  */
 public class PathTest extends GdxTest {
     final Vector2 tmpV = new Vector2();
     final Vector2 tmpV2 = new Vector2();
@@ -29,7 +27,7 @@ public class PathTest extends GdxTest {
     ImmediateModeRenderer20 renderer;
     Sprite obj;
     Sprite obj2;
-    Array<Path<Vector2>> paths = new Array<Path<Vector2>>();
+    Array<Path<Vector2>> paths = new Array<>();
     int currentPath = 0;
     float t;
     float t2;
@@ -56,16 +54,16 @@ public class PathTest extends GdxTest {
         float w = Gdx.graphics.getWidth() - obj.getWidth();
         float h = Gdx.graphics.getHeight() - obj.getHeight();
 
-        paths.add(new Bezier<Vector2>(new Vector2(0, 0), new Vector2(w, h)));
-        paths.add(new Bezier<Vector2>(new Vector2(0, 0), new Vector2(0, h), new Vector2(w, h)));
-        paths.add(new Bezier<Vector2>(new Vector2(0, 0), new Vector2(w, 0), new Vector2(0, h), new Vector2(w, h)));
+        paths.add(new Bezier<>(new Vector2(0, 0), new Vector2(w, h)));
+        paths.add(new Bezier<>(new Vector2(0, 0), new Vector2(0, h), new Vector2(w, h)));
+        paths.add(new Bezier<>(new Vector2(0, 0), new Vector2(w, 0), new Vector2(0, h), new Vector2(w, h)));
 
         Vector2[] cp = new Vector2[]{new Vector2(0, 0), new Vector2(w * 0.25f, h * 0.5f), new Vector2(0, h),
                 new Vector2(w * 0.5f, h * 0.75f), new Vector2(w, h), new Vector2(w * 0.75f, h * 0.5f), new Vector2(w, 0),
                 new Vector2(w * 0.5f, h * 0.25f)};
-        paths.add(new BSpline<Vector2>(cp, 3, true));
+        paths.add(new BSpline<>(cp, 3, true));
 
-        paths.add(new CatmullRomSpline<Vector2>(cp, true));
+        paths.add(new CatmullRomSpline<>(cp, true));
 
         pathLength = paths.get(currentPath).approxLength(500);
         avg_speed = speed * pathLength;
@@ -106,8 +104,6 @@ public class PathTest extends GdxTest {
             t2 += avg_speed * Gdx.graphics.getDeltaTime() / tmpV3.len();
 
             paths.get(currentPath).valueAt(tmpV4, t2);
-            // obj.setRotation(tmpV2.angle());
-            // obj2.setRotation(tmpV3.angle());
 
             if (zigzag) {
                 tmpV2.nor();

@@ -2,8 +2,6 @@ package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.utils.Array;
 
-/**
- *  */
 public class BSpline<T extends Vector<T>> implements Path<T> {
     private final static float d6 = 1f / 6f;
     public T[] controlPoints;
@@ -161,9 +159,8 @@ public class BSpline<T extends Vector<T>> implements Path<T> {
      */
     public static <T extends Vector<T>> T calculate(final T out, final int i, final float u, final T[] points, final int degree,
                                                     final boolean continuous, final T tmp) {
-        switch (degree) {
-            case 3:
-                return cubic(out, i, u, points, continuous, tmp);
+        if (degree == 3) {
+            return cubic(out, i, u, points, continuous, tmp);
         }
         throw new IllegalArgumentException();
     }
@@ -182,9 +179,8 @@ public class BSpline<T extends Vector<T>> implements Path<T> {
      */
     public static <T extends Vector<T>> T derivative(final T out, final int i, final float u, final T[] points, final int degree,
                                                      final boolean continuous, final T tmp) {
-        switch (degree) {
-            case 3:
-                return cubic_derivative(out, i, u, points, continuous, tmp);
+        if (degree == 3) {
+            return cubic_derivative(out, i, u, points, continuous, tmp);
         }
         throw new IllegalArgumentException();
     }
@@ -200,7 +196,7 @@ public class BSpline<T extends Vector<T>> implements Path<T> {
         // We use knots.size instead of storing another variable in each BSpline.
         int knotCount = continuous ? controlPoints.length : controlPoints.length - 1;
         if (knots == null)
-            knots = new Array<T>(knotCount);
+            knots = new Array<>(knotCount);
         else {
             knots.clear();
             knots.ensureCapacity(knotCount);
