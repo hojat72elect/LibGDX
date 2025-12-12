@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
-
 package com.badlogic.gdx.tests;
 
 import com.badlogic.gdx.Gdx;
@@ -105,7 +89,7 @@ public class NoncontinuousRenderingTest extends GdxTest {
         Camera cam = stage.getCamera();
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
-        batch.draw(region, cam.position.x - texture.getWidth() / 2, cam.position.y - texture.getHeight() / 2,
+        batch.draw(region, cam.position.x - texture.getWidth() / 2F, cam.position.y - texture.getHeight() / 2F,
                 texture.getWidth() / 2f, texture.getHeight() / 2f, (float) texture.getWidth(), (float) texture.getHeight(), 1f, 1f,
                 -((elapsed / 2f) % 1f) * 360f);
         batch.end();
@@ -134,19 +118,13 @@ public class NoncontinuousRenderingTest extends GdxTest {
         Button button1 = new TextButton(str1, skin);
         button1.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException ignored) {
-                        }
-                        nextColor();
-                        Gdx.app.postRunnable(new Runnable() {
-                            public void run() {
-                                Gdx.app.log(str1, "Posted runnable to Gdx.app");
-                            }
-                        });
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ignored) {
                     }
+                    nextColor();
+                    Gdx.app.postRunnable(() -> Gdx.app.log(str1, "Posted runnable to Gdx.app"));
                 }).start();
             }
         });
@@ -157,16 +135,14 @@ public class NoncontinuousRenderingTest extends GdxTest {
         button2.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 final Graphics graphics = Gdx.graphics; // caching necessary to ensure call on this window
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException ignored) {
-                        }
-                        nextColor();
-                        graphics.requestRendering();
-                        Gdx.app.log(str2, "Called Gdx.graphics.requestRendering()");
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ignored) {
                     }
+                    nextColor();
+                    graphics.requestRendering();
+                    Gdx.app.log(str2, "Called Gdx.graphics.requestRendering()");
                 }).start();
             }
         });
@@ -179,11 +155,7 @@ public class NoncontinuousRenderingTest extends GdxTest {
                 Timer.schedule(new Task() {
                     public void run() {
                         nextColor();
-                        Gdx.app.postRunnable(new Runnable() {
-                            public void run() {
-                                Gdx.app.log(str3, "Posted runnable to Gdx.app");
-                            }
-                        });
+                        Gdx.app.postRunnable(() -> Gdx.app.log(str3, "Posted runnable to Gdx.app"));
                     }
                 }, 2f);
             }
@@ -194,11 +166,9 @@ public class NoncontinuousRenderingTest extends GdxTest {
         Button button4 = new TextButton(str4, skin);
         button4.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
-                stage.addAction(Actions.sequence(Actions.delay(2), Actions.run(new Runnable() {
-                    public void run() {
-                        nextColor();
-                        Gdx.app.log(str4, "RunnableAction executed");
-                    }
+                stage.addAction(Actions.sequence(Actions.delay(2), Actions.run(() -> {
+                    nextColor();
+                    Gdx.app.log(str4, "RunnableAction executed");
                 })));
             }
         });
@@ -209,18 +179,16 @@ public class NoncontinuousRenderingTest extends GdxTest {
         button5.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 final Graphics graphics = Gdx.graphics; // caching necessary to ensure call on this window
-                new Thread(new Runnable() {
-                    public void run() {
-                        for (int i = 0; i < 2; i++) {
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException ignored) {
-                            }
-                            nextColor();
-                            boolean continuous = graphics.isContinuousRendering();
-                            graphics.setContinuousRendering(!continuous);
-                            Gdx.app.log(str5, "Toggled continuous");
+                new Thread(() -> {
+                    for (int i = 0; i < 2; i++) {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException ignored) {
                         }
+                        nextColor();
+                        boolean continuous = graphics.isContinuousRendering();
+                        graphics.setContinuousRendering(!continuous);
+                        Gdx.app.log(str5, "Toggled continuous");
                     }
                 }).start();
             }

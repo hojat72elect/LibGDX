@@ -12,8 +12,7 @@ import com.badlogic.gdx.math.collision.Ray;
 
 /**
  * Base class for {@link OrthographicCamera} and {@link PerspectiveCamera}.
- *
- *  */
+ */
 public abstract class Camera {
     /**
      * the position of the camera
