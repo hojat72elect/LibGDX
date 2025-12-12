@@ -3,12 +3,13 @@ package com.badlogic.gdx.math;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.NumberUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
 /**
  * Encapsulates a 2D vector. Allows chaining methods by returning a reference to itself
- *
- *  */
+ */
 public class Vector2 implements Serializable, Vector<Vector2> {
     public final static Vector2 X = new Vector2(1, 0);
     public final static Vector2 Y = new Vector2(0, 1);
@@ -92,6 +93,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return (float) Math.atan2(y, x);
     }
 
+    @NotNull
     @Override
     public Vector2 cpy() {
         return new Vector2(this);
@@ -107,6 +109,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return x * x + y * y;
     }
 
+    @NotNull
     @Override
     public Vector2 set(Vector2 v) {
         x = v.x;
@@ -127,6 +130,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 sub(Vector2 v) {
         x -= v.x;
@@ -147,6 +151,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 nor() {
         float len = len();
@@ -157,6 +162,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 add(Vector2 v) {
         x += v.x;
@@ -186,6 +192,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return x * ox + y * oy;
     }
 
+    @NotNull
     @Override
     public Vector2 scl(float scalar) {
         x *= scalar;
@@ -204,6 +211,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 scl(Vector2 v) {
         this.x *= v.x;
@@ -211,6 +219,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 mulAdd(Vector2 vec, float scalar) {
         this.x += vec.x * scalar;
@@ -218,6 +227,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 mulAdd(Vector2 vec, Vector2 mulVec) {
         this.x += vec.x * mulVec.x;
@@ -271,11 +281,13 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return x_d * x_d + y_d * y_d;
     }
 
+    @NotNull
     @Override
     public Vector2 limit(float limit) {
         return limit2(limit * limit);
     }
 
+    @NotNull
     @Override
     public Vector2 limit2(float limit2) {
         float len2 = len2();
@@ -285,6 +297,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 clamp(float min, float max) {
         final float len2 = len2();
@@ -296,11 +309,13 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 setLength(float len) {
         return setLength2(len * len);
     }
 
+    @NotNull
     @Override
     public Vector2 setLength2(float len2) {
         float oldLen2 = len2();
@@ -548,6 +563,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector2 lerp(Vector2 target, float alpha) {
         final float invAlpha = 1.0f - alpha;
@@ -556,11 +572,13 @@ public class Vector2 implements Serializable, Vector<Vector2> {
         return this;
     }
 
+    @NotNull
     @Override
-    public Vector2 interpolate(Vector2 target, float alpha, Interpolation interpolation) {
+    public Vector2 interpolate(@NotNull Vector2 target, float alpha, Interpolation interpolation) {
         return lerp(target, interpolation.apply(alpha));
     }
 
+    @NotNull
     @Override
     public Vector2 setToRandomDirection() {
         float theta = MathUtils.random(0f, MathUtils.PI2);
@@ -587,7 +605,7 @@ public class Vector2 implements Serializable, Vector<Vector2> {
     }
 
     @Override
-    public boolean epsilonEquals(Vector2 other, float epsilon) {
+    public boolean epsilonEquals(@NotNull Vector2 other, float epsilon) {
         if (other == null) return false;
         if (Math.abs(other.x - x) > epsilon) return false;
         return !(Math.abs(other.y - y) > epsilon);
@@ -655,45 +673,46 @@ public class Vector2 implements Serializable, Vector<Vector2> {
     }
 
     @Override
-    public boolean isCollinear(Vector2 other, float epsilon) {
+    public boolean isCollinear(@NotNull Vector2 other, float epsilon) {
         return isOnLine(other, epsilon) && dot(other) > 0f;
     }
 
     @Override
-    public boolean isCollinear(Vector2 other) {
+    public boolean isCollinear(@NotNull Vector2 other) {
         return isOnLine(other) && dot(other) > 0f;
     }
 
     @Override
-    public boolean isCollinearOpposite(Vector2 other, float epsilon) {
+    public boolean isCollinearOpposite(@NotNull Vector2 other, float epsilon) {
         return isOnLine(other, epsilon) && dot(other) < 0f;
     }
 
     @Override
-    public boolean isCollinearOpposite(Vector2 other) {
+    public boolean isCollinearOpposite(@NotNull Vector2 other) {
         return isOnLine(other) && dot(other) < 0f;
     }
 
     @Override
-    public boolean isPerpendicular(Vector2 vector) {
+    public boolean isPerpendicular(@NotNull Vector2 vector) {
         return MathUtils.isZero(dot(vector));
     }
 
     @Override
-    public boolean isPerpendicular(Vector2 vector, float epsilon) {
+    public boolean isPerpendicular(@NotNull Vector2 vector, float epsilon) {
         return MathUtils.isZero(dot(vector), epsilon);
     }
 
     @Override
-    public boolean hasSameDirection(Vector2 vector) {
+    public boolean hasSameDirection(@NotNull Vector2 vector) {
         return dot(vector) > 0;
     }
 
     @Override
-    public boolean hasOppositeDirection(Vector2 vector) {
+    public boolean hasOppositeDirection(@NotNull Vector2 vector) {
         return dot(vector) < 0;
     }
 
+    @NotNull
     @Override
     public Vector2 setZero() {
         this.x = 0;

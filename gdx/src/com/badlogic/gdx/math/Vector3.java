@@ -3,12 +3,13 @@ package com.badlogic.gdx.math;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.NumberUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
 /**
  * Encapsulates a 3D vector. Allows chaining operations by returning a reference to itself in all modification methods.
- *
- *  */
+ */
 public class Vector3 implements Serializable, Vector<Vector3> {
     public final static Vector3 X = new Vector3(1, 0, 0);
     public final static Vector3 Y = new Vector3(0, 1, 0);
@@ -131,6 +132,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector3 set(final Vector3 vector) {
         return this.set(vector.x, vector.y, vector.z);
@@ -174,6 +176,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this.set(cosAzim * sinPolar, sinAzim * sinPolar, cosPolar);
     }
 
+    @NotNull
     @Override
     public Vector3 setToRandomDirection() {
         float u = MathUtils.random();
@@ -185,11 +188,13 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this.setFromSpherical(theta, phi);
     }
 
+    @NotNull
     @Override
     public Vector3 cpy() {
         return new Vector3(this);
     }
 
+    @NotNull
     @Override
     public Vector3 add(final Vector3 vector) {
         return this.add(vector.x, vector.y, vector.z);
@@ -217,6 +222,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this.set(this.x + values, this.y + values, this.z + values);
     }
 
+    @NotNull
     @Override
     public Vector3 sub(final Vector3 a_vec) {
         return this.sub(a_vec.x, a_vec.y, a_vec.z);
@@ -244,11 +250,13 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this.set(this.x - value, this.y - value, this.z - value);
     }
 
+    @NotNull
     @Override
     public Vector3 scl(float scalar) {
         return this.set(this.x * scalar, this.y * scalar, this.z * scalar);
     }
 
+    @NotNull
     @Override
     public Vector3 scl(final Vector3 other) {
         return this.set(x * other.x, y * other.y, z * other.z);
@@ -266,6 +274,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this.set(this.x * vx, this.y * vy, this.z * vz);
     }
 
+    @NotNull
     @Override
     public Vector3 mulAdd(Vector3 vec, float scalar) {
         this.x += vec.x * scalar;
@@ -274,6 +283,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector3 mulAdd(Vector3 vec, Vector3 mulVec) {
         this.x += vec.x * mulVec.x;
@@ -343,6 +353,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return a * a + b * b + c * c;
     }
 
+    @NotNull
     @Override
     public Vector3 nor() {
         final float len2 = this.len2();
@@ -604,45 +615,46 @@ public class Vector3 implements Serializable, Vector<Vector3> {
     }
 
     @Override
-    public boolean isCollinear(Vector3 other, float epsilon) {
+    public boolean isCollinear(@NotNull Vector3 other, float epsilon) {
         return isOnLine(other, epsilon) && hasSameDirection(other);
     }
 
     @Override
-    public boolean isCollinear(Vector3 other) {
+    public boolean isCollinear(@NotNull Vector3 other) {
         return isOnLine(other) && hasSameDirection(other);
     }
 
     @Override
-    public boolean isCollinearOpposite(Vector3 other, float epsilon) {
+    public boolean isCollinearOpposite(@NotNull Vector3 other, float epsilon) {
         return isOnLine(other, epsilon) && hasOppositeDirection(other);
     }
 
     @Override
-    public boolean isCollinearOpposite(Vector3 other) {
+    public boolean isCollinearOpposite(@NotNull Vector3 other) {
         return isOnLine(other) && hasOppositeDirection(other);
     }
 
     @Override
-    public boolean isPerpendicular(Vector3 vector) {
+    public boolean isPerpendicular(@NotNull Vector3 vector) {
         return MathUtils.isZero(dot(vector));
     }
 
     @Override
-    public boolean isPerpendicular(Vector3 vector, float epsilon) {
+    public boolean isPerpendicular(@NotNull Vector3 vector, float epsilon) {
         return MathUtils.isZero(dot(vector), epsilon);
     }
 
     @Override
-    public boolean hasSameDirection(Vector3 vector) {
+    public boolean hasSameDirection(@NotNull Vector3 vector) {
         return dot(vector) > 0;
     }
 
     @Override
-    public boolean hasOppositeDirection(Vector3 vector) {
+    public boolean hasOppositeDirection(@NotNull Vector3 vector) {
         return dot(vector) < 0;
     }
 
+    @NotNull
     @Override
     public Vector3 lerp(final Vector3 target, float alpha) {
         x += alpha * (target.x - x);
@@ -651,8 +663,9 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this;
     }
 
+    @NotNull
     @Override
-    public Vector3 interpolate(Vector3 target, float alpha, Interpolation interpolator) {
+    public Vector3 interpolate(@NotNull Vector3 target, float alpha, Interpolation interpolator) {
         return lerp(target, interpolator.apply(0f, 1f, alpha));
     }
 
@@ -716,11 +729,13 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         throw new GdxRuntimeException("Malformed Vector3: " + v);
     }
 
+    @NotNull
     @Override
     public Vector3 limit(float limit) {
         return limit2(limit * limit);
     }
 
+    @NotNull
     @Override
     public Vector3 limit2(float limit2) {
         float len2 = len2();
@@ -730,17 +745,20 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return this;
     }
 
+    @NotNull
     @Override
     public Vector3 setLength(float len) {
         return setLength2(len * len);
     }
 
+    @NotNull
     @Override
     public Vector3 setLength2(float len2) {
         float oldLen2 = len2();
         return (oldLen2 == 0 || oldLen2 == len2) ? this : scl((float) Math.sqrt(len2 / oldLen2));
     }
 
+    @NotNull
     @Override
     public Vector3 clamp(float min, float max) {
         final float len2 = len2();
@@ -774,8 +792,8 @@ public class Vector3 implements Serializable, Vector<Vector3> {
     }
 
     @Override
-    public boolean epsilonEquals(final Vector3 other, float epsilon) {
-        if (other == null) return false;
+    public boolean epsilonEquals(@NotNull final Vector3 other, float epsilon) {
+//        if (other == null) return false;
         if (Math.abs(other.x - x) > epsilon) return false;
         if (Math.abs(other.y - y) > epsilon) return false;
         return !(Math.abs(other.z - z) > epsilon);
@@ -814,6 +832,7 @@ public class Vector3 implements Serializable, Vector<Vector3> {
         return epsilonEquals(x, y, z, MathUtils.FLOAT_ROUNDING_ERROR);
     }
 
+    @NotNull
     @Override
     public Vector3 setZero() {
         this.x = 0;
