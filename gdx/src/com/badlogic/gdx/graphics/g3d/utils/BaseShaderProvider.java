@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
-public abstract class BaseShaderProvider implements ShaderProvider {
-    protected Array<Shader> shaders = new Array<Shader>();
+import org.jetbrains.annotations.NotNull;
 
+public abstract class BaseShaderProvider implements ShaderProvider {
+    protected Array<Shader> shaders = new Array<>();
+
+    @NotNull
     @Override
     public Shader getShader(Renderable renderable) {
         Shader suggestedShader = renderable.shader;

@@ -163,9 +163,6 @@ public interface ShadowSystem {
 
     /**
      * Begin shadow system with main camera and renderable providers.
-     *
-     * @param camera
-     * @param renderableProviders
      */
     <T extends RenderableProvider> void begin(Camera camera, Iterable<T> renderableProviders);
 

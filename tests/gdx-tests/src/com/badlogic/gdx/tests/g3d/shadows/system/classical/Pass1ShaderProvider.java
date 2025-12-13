@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.g3d.utils.DefaultShaderProvider;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  *  */
 public class Pass1ShaderProvider extends DefaultShaderProvider {
@@ -12,6 +14,7 @@ public class Pass1ShaderProvider extends DefaultShaderProvider {
         return new Pass1Shader(renderable);
     }
 
+    @NotNull
     @Override
     public Shader getShader(Renderable renderable) {
         for (Shader shader : shaders) {

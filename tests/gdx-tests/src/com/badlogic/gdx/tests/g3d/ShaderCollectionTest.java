@@ -32,6 +32,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ObjectMap;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ShaderCollectionTest extends BaseG3dHudTest {
     /**
      * Desktop only: Set this to an absolute path to load the shader files from an alternative location.
@@ -313,6 +315,7 @@ public class ShaderCollectionTest extends BaseG3dHudTest {
             return true;
         }
 
+        @NotNull
         @Override
         public Shader getShader(Renderable renderable) {
             try {

@@ -47,15 +47,15 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
     /**
      * Cameras linked with spot lights
      */
-    protected ObjectMap<SpotLight, LightProperties> spotCameras = new ObjectMap<SpotLight, LightProperties>();
+    protected ObjectMap<SpotLight, LightProperties> spotCameras = new ObjectMap<>();
     /**
      * Cameras linked with directional lights
      */
-    protected ObjectMap<DirectionalLight, LightProperties> dirCameras = new ObjectMap<DirectionalLight, LightProperties>();
+    protected ObjectMap<DirectionalLight, LightProperties> dirCameras = new ObjectMap<>();
     /**
      * Cameras linked with point lights
      */
-    protected ObjectMap<PointLight, PointLightProperties> pointCameras = new ObjectMap<PointLight, PointLightProperties>();
+    protected ObjectMap<PointLight, PointLightProperties> pointCameras = new ObjectMap<>();
     /**
      * Analyzer of near and far for spot and point lights
      */
@@ -471,6 +471,6 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
      * This class handles LightProperties for each side of PointLight.
      */
     public static class PointLightProperties {
-        public ObjectMap<CubemapSide, LightProperties> properties = new ObjectMap<CubemapSide, LightProperties>(6);
+        public ObjectMap<CubemapSide, LightProperties> properties = new ObjectMap<>(6);
     }
 }
