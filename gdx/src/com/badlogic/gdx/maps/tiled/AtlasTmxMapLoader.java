@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.XmlReader.Element;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A TiledMap Loader which loads tiles from a TextureAtlas instead of separate images.
  * <p>
@@ -25,7 +27,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
  */
 public class AtlasTmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Parameters> {
 
-    protected Array<Texture> trackedTextures = new Array<Texture>();
+    protected Array<Texture> trackedTextures = new Array<>();
     protected AtlasResolver atlasResolver;
 
     public AtlasTmxMapLoader() {
@@ -69,7 +71,7 @@ public class AtlasTmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Param
         this.atlasResolver = new AtlasResolver.DirectAtlasResolver(atlas);
 
         TiledMap map = loadTiledMap(tmxFile, parameter, atlasResolver);
-        map.setOwnedResources(new Array<TextureAtlas>(new TextureAtlas[]{atlas}));
+        map.setOwnedResources(new Array<>(new TextureAtlas[]{atlas}));
         setTextureFilters(parameter.textureMinFilter, parameter.textureMagFilter);
         return map;
     }
@@ -94,7 +96,7 @@ public class AtlasTmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Param
     @Override
     protected Array<AssetDescriptor> getDependencyAssetDescriptors(FileHandle tmxFile,
                                                                    TextureLoader.TextureParameter textureParameter) {
-        Array<AssetDescriptor> descriptors = new Array<AssetDescriptor>();
+        Array<AssetDescriptor> descriptors = new Array<>();
 
         // Atlas dependencies
         final FileHandle atlasFileHandle = getAtlasFileHandle(tmxFile);
@@ -126,7 +128,7 @@ public class AtlasTmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Param
         props.put("margin", margin);
         props.put("spacing", spacing);
 
-        if (imageSource != null && imageSource.length() > 0) {
+        if (imageSource != null && !imageSource.isEmpty()) {
             int lastgid = firstgid + ((imageWidth / tilewidth) * (imageHeight / tileheight)) - 1;
             for (AtlasRegion region : atlas.findRegions(regionsName)) {
                 // Handle unused tileIds
@@ -204,7 +206,7 @@ public class AtlasTmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Param
             }
 
             @Override
-            public TextureRegion getImage(String name) {
+            public TextureRegion getImage(@NotNull String name) {
                 // check for imagelayer and strip if needed
                 String regionName = parseRegionName(name);
                 return atlas.findRegion(regionName);
@@ -226,7 +228,7 @@ public class AtlasTmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Param
             }
 
             @Override
-            public TextureRegion getImage(String name) {
+            public TextureRegion getImage(@NotNull String name) {
                 // check for imagelayer and strip if needed
                 String regionName = parseRegionName(name);
                 return getAtlas().findRegion(regionName);
