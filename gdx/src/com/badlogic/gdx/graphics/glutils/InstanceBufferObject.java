@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -42,6 +44,7 @@ public class InstanceBufferObject implements InstanceData {
         setUsage(isStatic ? GL20.GL_STATIC_DRAW : GL20.GL_DYNAMIC_DRAW);
     }
 
+    @NotNull
     @Override
     public VertexAttributes getAttributes() {
         return attributes;
@@ -60,6 +63,7 @@ public class InstanceBufferObject implements InstanceData {
     /**
      * @deprecated use {@link #getBuffer(boolean)} instead
      */
+    @NotNull
     @Override
     @Deprecated
     public FloatBuffer getBuffer() {
@@ -67,6 +71,7 @@ public class InstanceBufferObject implements InstanceData {
         return buffer;
     }
 
+    @NotNull
     @Override
     public FloatBuffer getBuffer(boolean forWriting) {
         isDirty |= forWriting;
@@ -75,10 +80,6 @@ public class InstanceBufferObject implements InstanceData {
 
     /**
      * Low level method to reset the buffer and attributes to the specified values. Use with care!
-     *
-     * @param data
-     * @param ownsBuffer
-     * @param value
      */
     protected void setBuffer(Buffer data, boolean ownsBuffer, VertexAttributes value) {
         if (isBound) throw new GdxRuntimeException("Cannot change attributes while VBO is bound");
@@ -106,7 +107,7 @@ public class InstanceBufferObject implements InstanceData {
     }
 
     @Override
-    public void setInstanceData(float[] data, int offset, int count) {
+    public void setInstanceData(@NotNull float[] data, int offset, int count) {
         isDirty = true;
         BufferUtils.copy(data, byteBuffer, count, offset);
         ((Buffer) buffer).position(0);
@@ -115,7 +116,7 @@ public class InstanceBufferObject implements InstanceData {
     }
 
     @Override
-    public void setInstanceData(FloatBuffer data, int count) {
+    public void setInstanceData(@NotNull FloatBuffer data, int count) {
         isDirty = true;
         BufferUtils.copy(data, byteBuffer, count);
         ((Buffer) buffer).position(0);
@@ -124,7 +125,7 @@ public class InstanceBufferObject implements InstanceData {
     }
 
     @Override
-    public void updateInstanceData(int targetOffset, float[] data, int sourceOffset, int count) {
+    public void updateInstanceData(int targetOffset, @NotNull float[] data, int sourceOffset, int count) {
         isDirty = true;
         final int pos = byteBuffer.position();
         ((Buffer) byteBuffer).position(targetOffset * 4);
@@ -135,7 +136,7 @@ public class InstanceBufferObject implements InstanceData {
     }
 
     @Override
-    public void updateInstanceData(int targetOffset, FloatBuffer data, int sourceOffset, int count) {
+    public void updateInstanceData(int targetOffset, @NotNull FloatBuffer data, int sourceOffset, int count) {
         isDirty = true;
         final int pos = byteBuffer.position();
         ((Buffer) byteBuffer).position(targetOffset * 4);
@@ -169,12 +170,12 @@ public class InstanceBufferObject implements InstanceData {
      * @param shader the shader
      */
     @Override
-    public void bind(ShaderProgram shader) {
+    public void bind(@NotNull ShaderProgram shader) {
         bind(shader, null);
     }
 
     @Override
-    public void bind(ShaderProgram shader, int[] locations) {
+    public void bind(@NotNull ShaderProgram shader, int[] locations) {
         final GL20 gl = Gdx.gl20;
 
         gl.glBindBuffer(GL20.GL_ARRAY_BUFFER, bufferHandle);
@@ -219,12 +220,12 @@ public class InstanceBufferObject implements InstanceData {
      * @param shader the shader
      */
     @Override
-    public void unbind(final ShaderProgram shader) {
+    public void unbind(@NotNull final ShaderProgram shader) {
         unbind(shader, null);
     }
 
     @Override
-    public void unbind(final ShaderProgram shader, final int[] locations) {
+    public void unbind(@NotNull final ShaderProgram shader, final int[] locations) {
         final GL20 gl = Gdx.gl20;
         final int numAttributes = attributes.size();
         if (locations == null) {
