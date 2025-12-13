@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.SnapshotArray;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 
@@ -32,8 +33,8 @@ public class LwjglApplication implements LwjglApplicationBase {
     protected final LwjglInput input;
     protected final LwjglNet net;
     protected final ApplicationListener listener;
-    protected final Array<Runnable> runnables = new Array<Runnable>();
-    protected final Array<Runnable> executedRunnables = new Array<Runnable>();
+    protected final Array<Runnable> runnables = new Array<>();
+    protected final Array<Runnable> executedRunnables = new Array<>();
     protected final SnapshotArray<LifecycleListener> lifecycleListeners = new SnapshotArray<>(LifecycleListener[]::new);
     protected LwjglAudio audio;
     protected Thread mainLoopThread;
@@ -42,7 +43,7 @@ public class LwjglApplication implements LwjglApplicationBase {
     protected ApplicationLogger applicationLogger;
     protected String preferencesdir;
     protected Files.FileType preferencesFileType;
-    ObjectMap<String, Preferences> preferences = new ObjectMap<String, Preferences>();
+    ObjectMap<String, Preferences> preferences = new ObjectMap<>();
 
     public LwjglApplication(ApplicationListener listener, String title, int width, int height) {
         this(listener, createConfig(title, width, height));
@@ -253,51 +254,61 @@ public class LwjglApplication implements LwjglApplicationBase {
         return true;
     }
 
+    @NotNull
     @Override
     public ApplicationListener getApplicationListener() {
         return listener;
     }
 
+    @NotNull
     protected Files createFiles() {
         return new LwjglFiles();
     }
 
+    @NotNull
     @Override
-    public LwjglAudio createAudio(LwjglApplicationConfiguration config) {
+    public LwjglAudio createAudio(@NotNull LwjglApplicationConfiguration config) {
         return new OpenALLwjglAudio(config.audioDeviceSimultaneousSources, config.audioDeviceBufferCount,
                 config.audioDeviceBufferSize);
     }
 
+    @NotNull
     @Override
-    public LwjglInput createInput(LwjglApplicationConfiguration config) {
+    public LwjglInput createInput(@NotNull LwjglApplicationConfiguration config) {
         return new DefaultLwjglInput();
     }
 
+    @NotNull
     @Override
     public Audio getAudio() {
         return audio;
     }
 
+    @NotNull
     @Override
     public Files getFiles() {
         return files;
     }
 
+    @NotNull
     @Override
     public LwjglGraphics getGraphics() {
         return graphics;
     }
 
+    @NotNull
     @Override
     public Input getInput() {
         return input;
     }
 
+    @NotNull
     @Override
     public Net getNet() {
         return net;
     }
 
+    @NotNull
     @Override
     public ApplicationType getType() {
         return ApplicationType.Desktop;
@@ -312,7 +323,7 @@ public class LwjglApplication implements LwjglApplicationBase {
         running = false;
         try {
             mainLoopThread.join();
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -326,8 +337,9 @@ public class LwjglApplication implements LwjglApplicationBase {
         return getJavaHeap();
     }
 
+    @NotNull
     @Override
-    public Preferences getPreferences(String name) {
+    public Preferences getPreferences(@NotNull String name) {
         if (preferences.containsKey(name)) {
             return preferences.get(name);
         } else {
@@ -337,13 +349,14 @@ public class LwjglApplication implements LwjglApplicationBase {
         }
     }
 
+    @NotNull
     @Override
     public Clipboard getClipboard() {
         return new LwjglClipboard();
     }
 
     @Override
-    public void postRunnable(Runnable runnable) {
+    public void postRunnable(@NotNull Runnable runnable) {
         synchronized (runnables) {
             runnables.add(runnable);
             Gdx.graphics.requestRendering();
@@ -351,32 +364,32 @@ public class LwjglApplication implements LwjglApplicationBase {
     }
 
     @Override
-    public void debug(String tag, String message) {
+    public void debug(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_DEBUG) getApplicationLogger().debug(tag, message);
     }
 
     @Override
-    public void debug(String tag, String message, Throwable exception) {
+    public void debug(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_DEBUG) getApplicationLogger().debug(tag, message, exception);
     }
 
     @Override
-    public void log(String tag, String message) {
+    public void log(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_INFO) getApplicationLogger().log(tag, message);
     }
 
     @Override
-    public void log(String tag, String message, Throwable exception) {
+    public void log(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_INFO) getApplicationLogger().log(tag, message, exception);
     }
 
     @Override
-    public void error(String tag, String message) {
+    public void error(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_ERROR) getApplicationLogger().error(tag, message);
     }
 
     @Override
-    public void error(String tag, String message, Throwable exception) {
+    public void error(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_ERROR) getApplicationLogger().error(tag, message, exception);
     }
 
@@ -390,35 +403,31 @@ public class LwjglApplication implements LwjglApplicationBase {
         this.logLevel = logLevel;
     }
 
+    @NotNull
     @Override
     public ApplicationLogger getApplicationLogger() {
         return applicationLogger;
     }
 
     @Override
-    public void setApplicationLogger(ApplicationLogger applicationLogger) {
+    public void setApplicationLogger(@NotNull ApplicationLogger applicationLogger) {
         this.applicationLogger = applicationLogger;
     }
 
     @Override
     public void exit() {
-        postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                running = false;
-            }
-        });
+        postRunnable(() -> running = false);
     }
 
     @Override
-    public void addLifecycleListener(LifecycleListener listener) {
+    public void addLifecycleListener(@NotNull LifecycleListener listener) {
         synchronized (lifecycleListeners) {
             lifecycleListeners.add(listener);
         }
     }
 
     @Override
-    public void removeLifecycleListener(LifecycleListener listener) {
+    public void removeLifecycleListener(@NotNull LifecycleListener listener) {
         synchronized (lifecycleListeners) {
             lifecycleListeners.removeValue(listener, true);
         }

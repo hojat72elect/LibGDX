@@ -2,15 +2,15 @@ package com.badlogic.gdx.backends.lwjgl;
 
 import com.badlogic.gdx.ApplicationListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 
 /**
  * An OpenGL surface in an applet.
- *
- *  */
-@SuppressWarnings("removal")
+ */
 public class LwjglApplet extends Applet {
     final Canvas canvas;
     LwjglApplication app;
@@ -70,6 +70,7 @@ public class LwjglApplet extends Applet {
             super(listener, config, canvas);
         }
 
+        @NotNull
         @Override
         public ApplicationType getType() {
             return ApplicationType.Applet;
