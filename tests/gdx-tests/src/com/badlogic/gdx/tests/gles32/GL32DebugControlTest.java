@@ -14,13 +14,11 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
  * see https://www.khronos.org/opengl/wiki/Debug_Output
- *
- *  */
+ */
 @GdxTestConfig(requireGL32 = true)
 public class GL32DebugControlTest extends GdxTest {
     private SpriteBatch batch;
@@ -114,12 +112,7 @@ public class GL32DebugControlTest extends GdxTest {
         /**
          * callback debug message version
          */
-        public static final DebugProc loggingCallback = new DebugProc() {
-            @Override
-            public void onMessage(int source, int type, int id, int severity, String message) {
-                GLDebug.log(source, type, id, severity, message);
-            }
-        };
+        public static final DebugProc loggingCallback = GLDebug::log;
         /**
          * can only be used when {@link #setCallback(DebugProc)} is set to null.
          */
