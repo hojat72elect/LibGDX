@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
- * @brief Represents a tiled map, adds the concept of tiles and tilesets.
+ * Represents a tiled map, adds the concept of tiles and tilesets.
  * @see Map
  */
 public class TiledMap extends Map {
@@ -30,8 +30,6 @@ public class TiledMap extends Map {
     /**
      * Used by loaders to set resources when loading the map directly, without {@link AssetManager}. To be disposed in
      * {@link #dispose()}.
-     *
-     * @param resources
      */
     public void setOwnedResources(Array<? extends Disposable> resources) {
         this.ownedResources = resources;
