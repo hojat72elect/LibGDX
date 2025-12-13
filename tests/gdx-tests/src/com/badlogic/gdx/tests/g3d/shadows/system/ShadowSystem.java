@@ -69,49 +69,42 @@ public interface ShadowSystem {
 
     /**
      * Return number of pass
-     *
      * @return int
      */
     int getPassQuantity();
 
     /**
      * Return shaderProvider of the pass n
-     *
      * @return ShaderProvider
      */
     ShaderProvider getPassShaderProvider(int n);
 
     /**
      * Return shaderProvider used for main rendering
-     *
      * @return ShaderProvider
      */
     ShaderProvider getShaderProvider();
 
     /**
      * Add spot light in shadow system
-     *
      * @param spot SpotLight to add in the ShadowSystem
      */
     void addLight(SpotLight spot);
 
     /**
      * Add directional light in shadow system
-     *
      * @param dir DirectionalLight to add in the ShadowSystem
      */
     void addLight(DirectionalLight dir);
 
     /**
      * Add point light in shadow system
-     *
      * @param point PointLight to add in the ShadowSystem
      */
     void addLight(PointLight point);
 
     /**
      * Add point light in shadow system
-     *
      * @param point PointLight to add in the ShadowSystem
      * @param sides Set of side
      */
@@ -119,21 +112,18 @@ public interface ShadowSystem {
 
     /**
      * Remove light from the shadowSystem
-     *
      * @param spot SpotLight to remove in the ShadowSystem
      */
     void removeLight(SpotLight spot);
 
     /**
      * Remove light from the shadowSystem
-     *
      * @param dir DirectionalLight to remove in the ShadowSystem
      */
     void removeLight(DirectionalLight dir);
 
     /**
      * Remove light from the shadowSystem
-     *
      * @param point PointLight to remove in the ShadowSystem
      */
     void removeLight(PointLight point);
@@ -168,14 +158,12 @@ public interface ShadowSystem {
 
     /**
      * Begin pass n rendering.
-     *
      * @param n Pass number
      */
     void begin(int n);
 
     /**
      * Switch light
-     *
      * @return Current camera
      */
     Camera next();
