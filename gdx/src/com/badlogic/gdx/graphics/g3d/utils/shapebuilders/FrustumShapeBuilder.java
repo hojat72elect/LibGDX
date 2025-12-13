@@ -8,8 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 
 /**
  * FrustumShapeBuilder builds camera or frustum.
- *
- *  */
+ */
 public class FrustumShapeBuilder extends BaseShapeBuilder {
 
     /**
@@ -25,14 +24,6 @@ public class FrustumShapeBuilder extends BaseShapeBuilder {
 
     /**
      * Build Camera with custom colors
-     *
-     * @param builder
-     * @param camera
-     * @param frustumColor
-     * @param coneColor
-     * @param upColor
-     * @param targetColor
-     * @param crossColor
      */
     public static void build(MeshPartBuilder builder, Camera camera, Color frustumColor, Color coneColor, Color upColor,
                              Color targetColor, Color crossColor) {
@@ -63,11 +54,6 @@ public class FrustumShapeBuilder extends BaseShapeBuilder {
 
     /**
      * Build Frustum with custom colors
-     *
-     * @param builder
-     * @param frustum
-     * @param frustumColor
-     * @param crossColor
      */
     public static void build(MeshPartBuilder builder, Frustum frustum, Color frustumColor, Color crossColor) {
         Vector3[] planePoints = frustum.planePoints;
@@ -118,9 +104,6 @@ public class FrustumShapeBuilder extends BaseShapeBuilder {
     /**
      * Return center point's rectangle
      *
-     * @param point0
-     * @param point1
-     * @param point2
      * @return the center point
      */
     private static Vector3 centerPoint(Vector3 point0, Vector3 point1, Vector3 point2) {

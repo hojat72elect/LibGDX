@@ -29,13 +29,14 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.IntIntMap;
 import com.badlogic.gdx.utils.ShortArray;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Class to construct a mesh, optionally splitting it into one or more mesh parts. Before you can call any other method you must
  * call {@link #begin(VertexAttributes)} or {@link #begin(VertexAttributes, int)}. To use mesh parts you must call
  * {@link #part(String, int)} before you start building the part. The MeshPart itself is only valid after the call to
  * {@link #end()}.
- *
- *  */
+ */
 public class MeshBuilder implements MeshPartBuilder {
     /**
      * maximum number of vertices mesh builder can hold (64k)
@@ -130,7 +131,7 @@ public class MeshBuilder implements MeshPartBuilder {
     /**
      * The parts created between begin and end
      */
-    private final Array<MeshPart> parts = new Array<MeshPart>();
+    private final Array<MeshPart> parts = new Array<>();
     private boolean hasColor = false;
     /**
      * The current primitiveType
@@ -150,7 +151,7 @@ public class MeshBuilder implements MeshPartBuilder {
      *              TextureCoordinates is supported.
      */
     public static VertexAttributes createAttributes(long usage) {
-        final Array<VertexAttribute> attrs = new Array<VertexAttribute>();
+        final Array<VertexAttribute> attrs = new Array<>();
         if ((usage & Usage.Position) == Usage.Position)
             attrs.add(new VertexAttribute(Usage.Position, 3, ShaderProgram.POSITION_ATTRIBUTE));
         if ((usage & Usage.ColorUnpacked) == Usage.ColorUnpacked)
@@ -426,11 +427,13 @@ public class MeshBuilder implements MeshPartBuilder {
         return indices.items;
     }
 
+    @NotNull
     @Override
     public VertexAttributes getAttributes() {
         return attributes;
     }
 
+    @NotNull
     @Override
     public MeshPart getMeshPart() {
         return part;
@@ -473,6 +476,7 @@ public class MeshBuilder implements MeshPartBuilder {
         }
     }
 
+    @NotNull
     @Override
     public Matrix4 getVertexTransform(Matrix4 out) {
         return out.set(positionTransform);
@@ -723,13 +727,13 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void line(VertexInfo p1, VertexInfo p2) {
+    public void line(@NotNull VertexInfo p1, @NotNull VertexInfo p2) {
         ensureVertices(2);
         line(vertex(p1), vertex(p2));
     }
 
     @Override
-    public void line(Vector3 p1, Vector3 p2) {
+    public void line(@NotNull Vector3 p1, @NotNull Vector3 p2) {
         line(vertTmp1.set(p1, null, null, null), vertTmp2.set(p2, null, null, null));
     }
 
@@ -739,7 +743,7 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void line(Vector3 p1, Color c1, Vector3 p2, Color c2) {
+    public void line(@NotNull Vector3 p1, @NotNull Color c1, @NotNull Vector3 p2, @NotNull Color c2) {
         line(vertTmp1.set(p1, null, c1, null), vertTmp2.set(p2, null, c2, null));
     }
 
@@ -754,18 +758,18 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void triangle(VertexInfo p1, VertexInfo p2, VertexInfo p3) {
+    public void triangle(@NotNull VertexInfo p1, @NotNull VertexInfo p2, @NotNull VertexInfo p3) {
         ensureVertices(3);
         triangle(vertex(p1), vertex(p2), vertex(p3));
     }
 
     @Override
-    public void triangle(Vector3 p1, Vector3 p2, Vector3 p3) {
+    public void triangle(@NotNull Vector3 p1, @NotNull Vector3 p2, @NotNull Vector3 p3) {
         triangle(vertTmp1.set(p1, null, null, null), vertTmp2.set(p2, null, null, null), vertTmp3.set(p3, null, null, null));
     }
 
     @Override
-    public void triangle(Vector3 p1, Color c1, Vector3 p2, Color c2, Vector3 p3, Color c3) {
+    public void triangle(@NotNull Vector3 p1, @NotNull Color c1, @NotNull Vector3 p2, @NotNull Color c2, @NotNull Vector3 p3, @NotNull Color c3) {
         triangle(vertTmp1.set(p1, null, c1, null), vertTmp2.set(p2, null, c2, null), vertTmp3.set(p3, null, c3, null));
     }
 
@@ -782,13 +786,13 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void rect(VertexInfo corner00, VertexInfo corner10, VertexInfo corner11, VertexInfo corner01) {
+    public void rect(@NotNull VertexInfo corner00, @NotNull VertexInfo corner10, @NotNull VertexInfo corner11, @NotNull VertexInfo corner01) {
         ensureVertices(4);
         rect(vertex(corner00), vertex(corner10), vertex(corner11), vertex(corner01));
     }
 
     @Override
-    public void rect(Vector3 corner00, Vector3 corner10, Vector3 corner11, Vector3 corner01, Vector3 normal) {
+    public void rect(@NotNull Vector3 corner00, @NotNull Vector3 corner10, @NotNull Vector3 corner11, @NotNull Vector3 corner01, @NotNull Vector3 normal) {
         rect(vertTmp1.set(corner00, normal, null, null).setUV(0f, 1f), vertTmp2.set(corner10, normal, null, null).setUV(1f, 1f),
                 vertTmp3.set(corner11, normal, null, null).setUV(1f, 0f), vertTmp4.set(corner01, normal, null, null).setUV(0f, 0f));
     }
@@ -803,7 +807,7 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void addMesh(Mesh mesh) {
+    public void addMesh(@NotNull Mesh mesh) {
         addMesh(mesh, 0, mesh.getNumIndices());
     }
 
@@ -834,7 +838,7 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void addMesh(float[] vertices, short[] indices, int indexOffset, int numIndices) {
+    public void addMesh(@NotNull float[] vertices, @NotNull short[] indices, int indexOffset, int numIndices) {
         if (indicesMap == null)
             indicesMap = new IntIntMap(numIndices);
         else {
@@ -843,7 +847,7 @@ public class MeshBuilder implements MeshPartBuilder {
         }
         ensureIndices(numIndices);
         final int numVertices = vertices.length / stride;
-        ensureVertices(numVertices < numIndices ? numVertices : numIndices);
+        ensureVertices(Math.min(numVertices, numIndices));
         for (int i = 0; i < numIndices; i++) {
             final int sidx = indices[indexOffset + i] & 0xFFFF;
             int didx = indicesMap.get(sidx, -1);
@@ -856,7 +860,7 @@ public class MeshBuilder implements MeshPartBuilder {
     }
 
     @Override
-    public void addMesh(float[] vertices, short[] indices) {
+    public void addMesh(float[] vertices, @NotNull short[] indices) {
         final int offset = lastIndex + 1;
 
         final int numVertices = vertices.length / stride;
@@ -873,14 +877,14 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void patch(VertexInfo corner00, VertexInfo corner10, VertexInfo corner11, VertexInfo corner01, int divisionsU,
+    public void patch(@NotNull VertexInfo corner00, @NotNull VertexInfo corner10, @NotNull VertexInfo corner11, @NotNull VertexInfo corner01, int divisionsU,
                       int divisionsV) {
         PatchShapeBuilder.build(this, corner00, corner10, corner11, corner01, divisionsU, divisionsV);
     }
 
     @Override
     @Deprecated
-    public void patch(Vector3 corner00, Vector3 corner10, Vector3 corner11, Vector3 corner01, Vector3 normal, int divisionsU,
+    public void patch(@NotNull Vector3 corner00, @NotNull Vector3 corner10, @NotNull Vector3 corner11, @NotNull Vector3 corner01, @NotNull Vector3 normal, int divisionsU,
                       int divisionsV) {
         PatchShapeBuilder.build(this, corner00, corner10, corner11, corner01, normal, divisionsU, divisionsV);
     }
@@ -895,21 +899,21 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void box(VertexInfo corner000, VertexInfo corner010, VertexInfo corner100, VertexInfo corner110, VertexInfo corner001,
-                    VertexInfo corner011, VertexInfo corner101, VertexInfo corner111) {
+    public void box(@NotNull VertexInfo corner000, @NotNull VertexInfo corner010, @NotNull VertexInfo corner100, @NotNull VertexInfo corner110, @NotNull VertexInfo corner001,
+                    @NotNull VertexInfo corner011, @NotNull VertexInfo corner101, @NotNull VertexInfo corner111) {
         BoxShapeBuilder.build(this, corner000, corner010, corner100, corner110, corner001, corner011, corner101, corner111);
     }
 
     @Override
     @Deprecated
-    public void box(Vector3 corner000, Vector3 corner010, Vector3 corner100, Vector3 corner110, Vector3 corner001,
-                    Vector3 corner011, Vector3 corner101, Vector3 corner111) {
+    public void box(@NotNull Vector3 corner000, @NotNull Vector3 corner010, @NotNull Vector3 corner100, @NotNull Vector3 corner110, @NotNull Vector3 corner001,
+                    @NotNull Vector3 corner011, @NotNull Vector3 corner101, @NotNull Vector3 corner111) {
         BoxShapeBuilder.build(this, corner000, corner010, corner100, corner110, corner001, corner011, corner101, corner111);
     }
 
     @Override
     @Deprecated
-    public void box(Matrix4 transform) {
+    public void box(@NotNull Matrix4 transform) {
         BoxShapeBuilder.build(this, transform);
     }
 
@@ -934,14 +938,14 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void circle(float radius, int divisions, final Vector3 center, final Vector3 normal) {
+    public void circle(float radius, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal) {
         EllipseShapeBuilder.build(this, radius, divisions, center, normal);
     }
 
     @Override
     @Deprecated
-    public void circle(float radius, int divisions, final Vector3 center, final Vector3 normal, final Vector3 tangent,
-                       final Vector3 binormal) {
+    public void circle(float radius, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal, @NotNull final Vector3 tangent,
+                       @NotNull final Vector3 binormal) {
         EllipseShapeBuilder.build(this, radius, divisions, center, normal, tangent, binormal);
     }
 
@@ -963,7 +967,7 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void circle(float radius, int divisions, final Vector3 center, final Vector3 normal, float angleFrom, float angleTo) {
+    public void circle(float radius, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal, float angleFrom, float angleTo) {
         EllipseShapeBuilder.build(this, radius, divisions, center, normal, angleFrom, angleTo);
     }
 
@@ -993,14 +997,14 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void ellipse(float width, float height, int divisions, final Vector3 center, final Vector3 normal) {
+    public void ellipse(float width, float height, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal) {
         EllipseShapeBuilder.build(this, width, height, divisions, center, normal);
     }
 
     @Override
     @Deprecated
-    public void ellipse(float width, float height, int divisions, final Vector3 center, final Vector3 normal,
-                        final Vector3 tangent, final Vector3 binormal) {
+    public void ellipse(float width, float height, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal,
+                        @NotNull final Vector3 tangent, @NotNull final Vector3 binormal) {
         EllipseShapeBuilder.build(this, width, height, divisions, center, normal, tangent, binormal);
     }
 
@@ -1023,15 +1027,15 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void ellipse(float width, float height, int divisions, final Vector3 center, final Vector3 normal, float angleFrom,
+    public void ellipse(float width, float height, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal, float angleFrom,
                         float angleTo) {
         EllipseShapeBuilder.build(this, width, height, divisions, center, normal, angleFrom, angleTo);
     }
 
     @Override
     @Deprecated
-    public void ellipse(float width, float height, int divisions, final Vector3 center, final Vector3 normal,
-                        final Vector3 tangent, final Vector3 binormal, float angleFrom, float angleTo) {
+    public void ellipse(float width, float height, int divisions, @NotNull final Vector3 center, @NotNull final Vector3 normal,
+                        @NotNull final Vector3 tangent, @NotNull final Vector3 binormal, float angleFrom, float angleTo) {
         EllipseShapeBuilder.build(this, width, height, divisions, center, normal, tangent, binormal, angleFrom, angleTo);
     }
 
@@ -1046,8 +1050,8 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void ellipse(float width, float height, float innerWidth, float innerHeight, int divisions, Vector3 center,
-                        Vector3 normal) {
+    public void ellipse(float width, float height, float innerWidth, float innerHeight, int divisions, @NotNull Vector3 center,
+                        @NotNull Vector3 normal) {
         EllipseShapeBuilder.build(this, width, height, innerWidth, innerHeight, divisions, center, normal);
     }
 
@@ -1114,7 +1118,7 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void sphere(final Matrix4 transform, float width, float height, float depth, int divisionsU, int divisionsV) {
+    public void sphere(@NotNull final Matrix4 transform, float width, float height, float depth, int divisionsU, int divisionsV) {
         SphereShapeBuilder.build(this, transform, width, height, depth, divisionsU, divisionsV);
     }
 
@@ -1127,7 +1131,7 @@ public class MeshBuilder implements MeshPartBuilder {
 
     @Override
     @Deprecated
-    public void sphere(final Matrix4 transform, float width, float height, float depth, int divisionsU, int divisionsV,
+    public void sphere(@NotNull final Matrix4 transform, float width, float height, float depth, int divisionsU, int divisionsV,
                        float angleUFrom, float angleUTo, float angleVFrom, float angleVTo) {
         SphereShapeBuilder.build(this, transform, width, height, depth, divisionsU, divisionsV, angleUFrom, angleUTo, angleVFrom,
                 angleVTo);

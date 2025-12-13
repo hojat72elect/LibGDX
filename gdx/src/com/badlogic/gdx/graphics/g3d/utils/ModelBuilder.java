@@ -22,8 +22,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * {@link #node()} method to start a new node. Use one of the #part(...) methods to add a part within a node. The
  * {@link #part(String, int, VertexAttributes, Material)} method will return a {@link MeshPartBuilder} which can be used to build
  * the node part.
- *
- *  */
+ */
 public class ModelBuilder {
     /**
      * The model currently being build
@@ -36,7 +35,7 @@ public class ModelBuilder {
     /**
      * The mesh builders created between begin and end
      */
-    private final Array<MeshBuilder> builders = new Array<MeshBuilder>();
+    private final Array<MeshBuilder> builders = new Array<>();
 
     private final Matrix4 tmpTransform = new Matrix4();
 
@@ -492,7 +491,6 @@ public class ModelBuilder {
      * Convenience method to create a model with an arrow. The resources the Material might contain are not managed, use
      * {@link Model#manageDisposable(Disposable)} to add those to the model.
      *
-     * @param material
      * @param capLength     is the height of the cap in percentage, must be in (0,1)
      * @param stemThickness is the percentage of stem diameter compared to cap diameter, must be in (0,1]
      * @param divisions     the amount of vertices used to generate the cap and stem ellipsoidal bases

@@ -25,8 +25,6 @@ import com.badlogic.gdx.physics.bullet.collision.btPairCachingGhostObject;
 import com.badlogic.gdx.physics.bullet.collision.btPersistentManifoldArray;
 import com.badlogic.gdx.utils.Array;
 
-/**
- *  */
 public class FrustumCullingTest extends BaseBulletTest {
     /**
      * Only show entities inside the frustum
@@ -51,8 +49,8 @@ public class FrustumCullingTest extends BaseBulletTest {
     final static Vector3 tmpV = new Vector3();
     final static Matrix4 tmpM = new Matrix4();
     final static int[] ptrs = new int[512];
-    final static Array<btCollisionObject> visibleObjects = new Array<btCollisionObject>();
-    private final Array<BulletEntity> visibleEntities = new Array<BulletEntity>();
+    final static Array<btCollisionObject> visibleObjects = new Array<>();
+    private final Array<BulletEntity> visibleEntities = new Array<>();
     int state = 0; // 0 = No culling, look from above
     private float angleX, angleY, angleZ;
     private btPairCachingGhostObject frustumObject;
@@ -70,15 +68,13 @@ public class FrustumCullingTest extends BaseBulletTest {
             final Vector3 centerFar = new Vector3(points[6]).sub(points[4]).scl(0.5f).add(points[4]);
             final Vector3 center = new Vector3(centerFar).sub(centerNear).scl(0.5f).add(centerNear);
             final btConvexHullShape hullShape = new btConvexHullShape();
-            for (int i = 0; i < points.length; i++)
-                hullShape.addPoint(tmpV.set(points[i]).sub(center));
+            for (Vector3 point : points) hullShape.addPoint(tmpV.set(point).sub(center));
             final btCompoundShape shape = new btCompoundShape();
             shape.addChildShape(tmpM.setToTranslation(center), hullShape);
             result.setCollisionShape(shape);
         } else {
             final btConvexHullShape shape = new btConvexHullShape();
-            for (int i = 0; i < points.length; i++)
-                shape.addPoint(points[i]);
+            for (Vector3 point : points) shape.addPoint(point);
             result.setCollisionShape(shape);
         }
         result.setCollisionFlags(btCollisionObject.CollisionFlags.CF_NO_CONTACT_RESPONSE);
