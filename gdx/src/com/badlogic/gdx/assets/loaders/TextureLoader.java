@@ -16,8 +16,7 @@ import com.badlogic.gdx.utils.Array;
  * rendering thread, synchronously. Passing a {@link TextureParameter} to
  * {@link AssetManager#load(String, Class, AssetLoaderParameters)} allows one to specify parameters as can be passed to the
  * various Texture constructors, e.g. filtering, whether to generate mipmaps and so on.
- *
- *  */
+ */
 public class TextureLoader extends AsynchronousAssetLoader<Texture, TextureLoader.TextureParameter> {
     TextureLoaderInfo info = new TextureLoaderInfo();
 
