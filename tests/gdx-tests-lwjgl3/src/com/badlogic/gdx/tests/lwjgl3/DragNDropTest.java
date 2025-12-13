@@ -12,6 +12,8 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -33,7 +35,7 @@ public class DragNDropTest extends GdxTest {
         config.setTitle("Drag files in this window");
         config.setWindowListener(new Lwjgl3WindowAdapter() {
             @Override
-            public void filesDropped(String[] files) {
+            public void filesDropped(@NotNull String[] files) {
                 for (String file : files) {
                     Gdx.app.log("GLWF Drop", file);
                 }

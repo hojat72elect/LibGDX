@@ -20,6 +20,8 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.image.BufferedImage;
 
 public class Lwjgl3DebugStarter {
@@ -74,13 +76,6 @@ public class Lwjgl3DebugStarter {
 
                         if (character == 'f') {
                             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-// DisplayMode[] modes = Gdx.graphics.getDisplayModes();
-// for(DisplayMode mode: modes) {
-// if(mode.width == 1920 && mode.height == 1080) {
-// Gdx.graphics.setFullscreenMode(mode);
-// break;
-// }
-// }
                         }
                         if (character == 'w') {
                             Gdx.graphics.setWindowedMode(MathUtils.random(400, 800), MathUtils.random(400, 800));
@@ -158,7 +153,7 @@ public class Lwjgl3DebugStarter {
         config.setWindowedMode(640, 480);
         config.setWindowListener(new Lwjgl3WindowListener() {
             @Override
-            public void created(Lwjgl3Window window) {
+            public void created(@NotNull Lwjgl3Window window) {
                 Gdx.app.log("Window", "created");
             }
 
@@ -189,7 +184,7 @@ public class Lwjgl3DebugStarter {
             }
 
             @Override
-            public void filesDropped(String[] files) {
+            public void filesDropped(@NotNull String[] files) {
                 for (String file : files) {
                     Gdx.app.log("Window", "File dropped: " + file);
                 }

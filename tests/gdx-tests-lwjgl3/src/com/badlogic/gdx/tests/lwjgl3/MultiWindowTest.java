@@ -23,6 +23,8 @@ import com.badlogic.gdx.tests.g3d.ShaderCollectionTest;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MultiWindowTest {
     static Texture sharedTexture;
     static SpriteBatch sharedSpriteBatch;
@@ -65,7 +67,7 @@ public class MultiWindowTest {
                 config.useVsync(false);
                 config.setWindowListener(new Lwjgl3WindowAdapter() {
                     @Override
-                    public void created(Lwjgl3Window window) {
+                    public void created(@NotNull Lwjgl3Window window) {
                         latestWindow = window;
                     }
                 });

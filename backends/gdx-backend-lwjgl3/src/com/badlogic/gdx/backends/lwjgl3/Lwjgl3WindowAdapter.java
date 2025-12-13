@@ -1,12 +1,14 @@
 package com.badlogic.gdx.backends.lwjgl3;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Convenience implementation of {@link Lwjgl3WindowListener}. Derive from this class and only overwrite the methods you are
  * interested in.
  */
 public class Lwjgl3WindowAdapter implements Lwjgl3WindowListener {
     @Override
-    public void created(Lwjgl3Window window) {
+    public void created(@NotNull Lwjgl3Window window) {
     }
 
     @Override
@@ -31,7 +33,7 @@ public class Lwjgl3WindowAdapter implements Lwjgl3WindowListener {
     }
 
     @Override
-    public void filesDropped(String[] files) {
+    public void filesDropped(@NotNull String[] files) {
     }
 
     @Override

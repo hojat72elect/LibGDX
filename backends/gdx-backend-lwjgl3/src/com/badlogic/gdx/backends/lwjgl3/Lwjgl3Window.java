@@ -28,20 +28,17 @@ public class Lwjgl3Window implements Disposable {
     final Lwjgl3ApplicationBase application;
     private final Array<LifecycleListener> lifecycleListeners;
     private final Lwjgl3ApplicationConfiguration config;
-    private final Array<Runnable> runnables = new Array<Runnable>();
-    private final Array<Runnable> executedRunnables = new Array<Runnable>();
+    private final Array<Runnable> runnables = new Array<>();
+    private final Array<Runnable> executedRunnables = new Array<>();
     private final IntBuffer tmpBuffer;
     private final IntBuffer tmpBuffer2;
     Lwjgl3WindowListener windowListener;
     private final GLFWWindowMaximizeCallback maximizeCallback = new GLFWWindowMaximizeCallback() {
         @Override
         public void invoke(long windowHandle, final boolean maximized) {
-            postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (windowListener != null) {
-                        windowListener.maximized(maximized);
-                    }
+            postRunnable(() -> {
+                if (windowListener != null) {
+                    windowListener.maximized(maximized);
                 }
             });
         }
@@ -49,13 +46,10 @@ public class Lwjgl3Window implements Disposable {
     private final GLFWWindowCloseCallback closeCallback = new GLFWWindowCloseCallback() {
         @Override
         public void invoke(final long windowHandle) {
-            postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (windowListener != null) {
-                        if (!windowListener.closeRequested()) {
-                            GLFW.glfwSetWindowShouldClose(windowHandle, false);
-                        }
+            postRunnable(() -> {
+                if (windowListener != null) {
+                    if (!windowListener.closeRequested()) {
+                        GLFW.glfwSetWindowShouldClose(windowHandle, false);
                     }
                 }
             });
@@ -68,12 +62,9 @@ public class Lwjgl3Window implements Disposable {
             for (int i = 0; i < count; i++) {
                 files[i] = getName(names, i);
             }
-            postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (windowListener != null) {
-                        windowListener.filesDropped(files);
-                    }
+            postRunnable(() -> {
+                if (windowListener != null) {
+                    windowListener.filesDropped(files);
                 }
             });
         }
@@ -81,12 +72,9 @@ public class Lwjgl3Window implements Disposable {
     private final GLFWWindowRefreshCallback refreshCallback = new GLFWWindowRefreshCallback() {
         @Override
         public void invoke(long windowHandle) {
-            postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (windowListener != null) {
-                        windowListener.refreshRequested();
-                    }
+            postRunnable(() -> {
+                if (windowListener != null) {
+                    windowListener.refreshRequested();
                 }
             });
         }
@@ -95,31 +83,28 @@ public class Lwjgl3Window implements Disposable {
     private final GLFWWindowIconifyCallback iconifyCallback = new GLFWWindowIconifyCallback() {
         @Override
         public void invoke(long windowHandle, final boolean iconified) {
-            postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (windowListener != null) {
-                        windowListener.iconified(iconified);
+            postRunnable(() -> {
+                if (windowListener != null) {
+                    windowListener.iconified(iconified);
+                }
+                Lwjgl3Window.this.iconified = iconified;
+                if (iconified) {
+                    if (config.pauseWhenMinimized) {
+                        synchronized (lifecycleListeners) {
+                            for (LifecycleListener lifecycleListener : lifecycleListeners) {
+                                lifecycleListener.pause();
+                            }
+                        }
+                        listener.pause();
                     }
-                    Lwjgl3Window.this.iconified = iconified;
-                    if (iconified) {
-                        if (config.pauseWhenMinimized) {
-                            synchronized (lifecycleListeners) {
-                                for (LifecycleListener lifecycleListener : lifecycleListeners) {
-                                    lifecycleListener.pause();
-                                }
+                } else {
+                    if (config.pauseWhenMinimized) {
+                        synchronized (lifecycleListeners) {
+                            for (LifecycleListener lifecycleListener : lifecycleListeners) {
+                                lifecycleListener.resume();
                             }
-                            listener.pause();
                         }
-                    } else {
-                        if (config.pauseWhenMinimized) {
-                            synchronized (lifecycleListeners) {
-                                for (LifecycleListener lifecycleListener : lifecycleListeners) {
-                                    lifecycleListener.resume();
-                                }
-                            }
-                            listener.resume();
-                        }
+                        listener.resume();
                     }
                 }
             });
@@ -129,36 +114,33 @@ public class Lwjgl3Window implements Disposable {
     private final GLFWWindowFocusCallback focusCallback = new GLFWWindowFocusCallback() {
         @Override
         public void invoke(long windowHandle, final boolean focused) {
-            postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    if (focused) {
-                        if (config.pauseWhenLostFocus) {
-                            synchronized (lifecycleListeners) {
-                                for (LifecycleListener lifecycleListener : lifecycleListeners) {
-                                    lifecycleListener.resume();
-                                }
+            postRunnable(() -> {
+                if (focused) {
+                    if (config.pauseWhenLostFocus) {
+                        synchronized (lifecycleListeners) {
+                            for (LifecycleListener lifecycleListener : lifecycleListeners) {
+                                lifecycleListener.resume();
                             }
-                            listener.resume();
                         }
-                        if (windowListener != null) {
-                            windowListener.focusGained();
-                        }
-                    } else {
-                        if (windowListener != null) {
-                            windowListener.focusLost();
-                        }
-                        if (config.pauseWhenLostFocus) {
-                            synchronized (lifecycleListeners) {
-                                for (LifecycleListener lifecycleListener : lifecycleListeners) {
-                                    lifecycleListener.pause();
-                                }
-                            }
-                            listener.pause();
-                        }
+                        listener.resume();
                     }
-                    Lwjgl3Window.this.focused = focused;
+                    if (windowListener != null) {
+                        windowListener.focusGained();
+                    }
+                } else {
+                    if (windowListener != null) {
+                        windowListener.focusLost();
+                    }
+                    if (config.pauseWhenLostFocus) {
+                        synchronized (lifecycleListeners) {
+                            for (LifecycleListener lifecycleListener : lifecycleListeners) {
+                                lifecycleListener.pause();
+                            }
+                        }
+                        listener.pause();
+                    }
                 }
+                Lwjgl3Window.this.focused = focused;
             });
         }
     };

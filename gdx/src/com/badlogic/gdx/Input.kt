@@ -664,6 +664,7 @@ interface Input {
          * @return a human readable representation of the keycode. The returned value can be used in
          * [Input.Keys.valueOf]
          */
+        @JvmStatic
         fun toString(keycode: Int): String? {
             require(keycode >= 0) { "keycode cannot be negative, keycode: $keycode" }
             require(keycode <= MAX_KEYCODE) { "keycode cannot be greater than 255, keycode: $keycode" }
