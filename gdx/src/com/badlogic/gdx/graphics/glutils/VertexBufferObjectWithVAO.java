@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.IntArray;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -92,6 +94,7 @@ public class VertexBufferObjectWithVAO implements VertexData {
         createVAO();
     }
 
+    @NotNull
     @Override
     public VertexAttributes getAttributes() {
         return attributes;
@@ -110,6 +113,7 @@ public class VertexBufferObjectWithVAO implements VertexData {
     /**
      * @deprecated use {@link #getBuffer(boolean)} instead
      */
+    @NotNull
     @Override
     @Deprecated
     public FloatBuffer getBuffer() {
@@ -117,6 +121,7 @@ public class VertexBufferObjectWithVAO implements VertexData {
         return buffer;
     }
 
+    @NotNull
     @Override
     public FloatBuffer getBuffer(boolean forWriting) {
         isDirty |= forWriting;
@@ -132,7 +137,7 @@ public class VertexBufferObjectWithVAO implements VertexData {
     }
 
     @Override
-    public void setVertices(float[] vertices, int offset, int count) {
+    public void setVertices(@NotNull float[] vertices, int offset, int count) {
         isDirty = true;
         BufferUtils.copy(vertices, byteBuffer, count, offset);
         ((Buffer) buffer).position(0);
@@ -141,7 +146,7 @@ public class VertexBufferObjectWithVAO implements VertexData {
     }
 
     @Override
-    public void updateVertices(int targetOffset, float[] vertices, int sourceOffset, int count) {
+    public void updateVertices(int targetOffset, @NotNull float[] vertices, int sourceOffset, int count) {
         isDirty = true;
         final int pos = byteBuffer.position();
         ((Buffer) byteBuffer).position(targetOffset * 4);
@@ -157,21 +162,18 @@ public class VertexBufferObjectWithVAO implements VertexData {
      * @param shader the shader
      */
     @Override
-    public void bind(ShaderProgram shader) {
+    public void bind(@NotNull ShaderProgram shader) {
         bind(shader, null);
     }
 
     @Override
-    public void bind(ShaderProgram shader, int[] locations) {
+    public void bind(@NotNull ShaderProgram shader, int[] locations) {
         GL30 gl = Gdx.gl30;
-
         gl.glBindVertexArray(vaoHandle);
-
         bindAttributes(shader, locations);
 
         // if our data has changed upload it:
         bindData(gl);
-
         isBound = true;
     }
 
@@ -248,12 +250,12 @@ public class VertexBufferObjectWithVAO implements VertexData {
      * @param shader the shader
      */
     @Override
-    public void unbind(final ShaderProgram shader) {
+    public void unbind(@NotNull final ShaderProgram shader) {
         unbind(shader, null);
     }
 
     @Override
-    public void unbind(final ShaderProgram shader, final int[] locations) {
+    public void unbind(@NotNull final ShaderProgram shader, final int[] locations) {
         GL30 gl = Gdx.gl30;
         gl.glBindVertexArray(0);
         isBound = false;

@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.utils.BufferUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -57,12 +59,14 @@ public class VertexArray implements VertexData {
     /**
      * @deprecated use {@link #getBuffer(boolean)} instead
      */
+    @NotNull
     @Override
     @Deprecated
     public FloatBuffer getBuffer() {
         return buffer;
     }
 
+    @NotNull
     @Override
     public FloatBuffer getBuffer(boolean forWriting) {
         return buffer;
@@ -78,14 +82,14 @@ public class VertexArray implements VertexData {
     }
 
     @Override
-    public void setVertices(float[] vertices, int offset, int count) {
+    public void setVertices(@NotNull float[] vertices, int offset, int count) {
         BufferUtils.copy(vertices, byteBuffer, count, offset);
         ((Buffer) buffer).position(0);
         ((Buffer) buffer).limit(count);
     }
 
     @Override
-    public void updateVertices(int targetOffset, float[] vertices, int sourceOffset, int count) {
+    public void updateVertices(int targetOffset, @NotNull float[] vertices, int sourceOffset, int count) {
         final int pos = byteBuffer.position();
         ((Buffer) byteBuffer).position(targetOffset * 4);
         BufferUtils.copy(vertices, sourceOffset, count, byteBuffer);
@@ -93,12 +97,12 @@ public class VertexArray implements VertexData {
     }
 
     @Override
-    public void bind(final ShaderProgram shader) {
+    public void bind(@NotNull final ShaderProgram shader) {
         bind(shader, null);
     }
 
     @Override
-    public void bind(final ShaderProgram shader, final int[] locations) {
+    public void bind(@NotNull final ShaderProgram shader, final int[] locations) {
         final int numAttributes = attributes.size();
         ((Buffer) byteBuffer).limit(buffer.limit() * 4);
         if (locations == null) {
@@ -145,12 +149,12 @@ public class VertexArray implements VertexData {
      * @param shader the shader
      */
     @Override
-    public void unbind(ShaderProgram shader) {
+    public void unbind(@NotNull ShaderProgram shader) {
         unbind(shader, null);
     }
 
     @Override
-    public void unbind(ShaderProgram shader, int[] locations) {
+    public void unbind(@NotNull ShaderProgram shader, int[] locations) {
         final int numAttributes = attributes.size();
         if (locations == null) {
             for (int i = 0; i < numAttributes; i++) {
@@ -165,6 +169,7 @@ public class VertexArray implements VertexData {
         isBound = false;
     }
 
+    @NotNull
     @Override
     public VertexAttributes getAttributes() {
         return attributes;

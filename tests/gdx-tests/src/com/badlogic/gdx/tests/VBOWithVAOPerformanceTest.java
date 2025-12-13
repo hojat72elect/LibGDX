@@ -21,6 +21,8 @@ import com.badlogic.gdx.tests.utils.GdxTestConfig;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -316,6 +318,7 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
             usage = isStatic ? GL20.GL_STATIC_DRAW : GL20.GL_DYNAMIC_DRAW;
         }
 
+        @NotNull
         @Override
         public VertexAttributes getAttributes() {
             return attributes;
@@ -331,6 +334,7 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
             return byteBuffer.capacity() / attributes.vertexSize;
         }
 
+        @NotNull
         @Deprecated
         @Override
         public FloatBuffer getBuffer() {
@@ -338,6 +342,7 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
             return buffer;
         }
 
+        @NotNull
         @Override
         public FloatBuffer getBuffer(boolean forWriting) {
             isDirty |= forWriting;
@@ -352,7 +357,7 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
         }
 
         @Override
-        public void setVertices(float[] vertices, int offset, int count) {
+        public void setVertices(@NotNull float[] vertices, int offset, int count) {
             isDirty = true;
             BufferUtils.copy(vertices, byteBuffer, count, offset);
             ((Buffer) buffer).position(0);
@@ -361,7 +366,7 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
         }
 
         @Override
-        public void updateVertices(int targetOffset, float[] vertices, int sourceOffset, int count) {
+        public void updateVertices(int targetOffset, @NotNull float[] vertices, int sourceOffset, int count) {
             isDirty = true;
             final int pos = byteBuffer.position();
             ((Buffer) byteBuffer).position(targetOffset * 4);
@@ -372,12 +377,12 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
         }
 
         @Override
-        public void bind(ShaderProgram shader) {
+        public void bind(@NotNull ShaderProgram shader) {
             bind(shader, null);
         }
 
         @Override
-        public void bind(ShaderProgram shader, int[] locations) {
+        public void bind(@NotNull ShaderProgram shader, int[] locations) {
             GL30 gl = Gdx.gl30;
             if (vaoDirty || !gl.glIsVertexArray(vaoHandle)) {
                 // initialize the VAO with our vertex attributes and buffer:
@@ -436,12 +441,12 @@ public class VBOWithVAOPerformanceTest extends GdxTest {
         }
 
         @Override
-        public void unbind(final ShaderProgram shader) {
+        public void unbind(@NotNull final ShaderProgram shader) {
             unbind(shader, null);
         }
 
         @Override
-        public void unbind(final ShaderProgram shader, final int[] locations) {
+        public void unbind(@NotNull final ShaderProgram shader, final int[] locations) {
             GL30 gl = Gdx.gl30;
             gl.glBindVertexArray(0);
             isBound = false;
