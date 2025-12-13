@@ -3,6 +3,8 @@ package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 import com.badlogic.gdx.tools.hiero.unicodefont.GlyphPage;
 import com.badlogic.gdx.tools.hiero.unicodefont.effects.ConfigurableEffect.Value;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,8 +13,6 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
@@ -31,8 +31,7 @@ import javax.swing.SpinnerNumberModel;
 
 /**
  * Provides utility methods for effects.
- *
- *  */
+ */
 public class EffectUtil {
     static private final BufferedImage scratchImage = new BufferedImage(GlyphPage.MAX_GLYPH_SIZE, GlyphPage.MAX_GLYPH_SIZE,
             BufferedImage.TYPE_INT_ARGB);
@@ -59,6 +58,7 @@ public class EffectUtil {
                 if (newColor != null) value = EffectUtil.toString(newColor);
             }
 
+            @NotNull
             public Object getObject() {
                 return EffectUtil.fromString(value);
             }
@@ -75,6 +75,7 @@ public class EffectUtil {
                 if (showValueDialog(spinner, description)) value = String.valueOf(spinner.getValue());
             }
 
+            @NotNull
             public Object getObject() {
                 return Integer.valueOf(value);
             }
@@ -92,6 +93,7 @@ public class EffectUtil {
                 if (showValueDialog(spinner, description)) value = String.valueOf(((Double) spinner.getValue()).floatValue());
             }
 
+            @NotNull
             public Object getObject() {
                 return Float.valueOf(value);
             }
@@ -109,6 +111,7 @@ public class EffectUtil {
                 if (showValueDialog(checkBox, description)) value = String.valueOf(checkBox.isSelected());
             }
 
+            @NotNull
             public Object getObject() {
                 return Boolean.valueOf(value);
             }
@@ -147,6 +150,7 @@ public class EffectUtil {
                 return "";
             }
 
+            @NotNull
             public Object getObject() {
                 return value;
             }
@@ -154,7 +158,7 @@ public class EffectUtil {
     }
 
     /**
-     * Convers a color to a string.
+     * Converts a color to a string.
      */
     static public String toString(Color color) {
         if (color == null) throw new IllegalArgumentException("color cannot be null.");
@@ -188,14 +192,16 @@ public class EffectUtil {
             this.name = name;
         }
 
+        @NotNull
         public String getString() {
             return value;
         }
 
-        public void setString(String value) {
+        public void setString(@NotNull String value) {
             this.value = value;
         }
 
+        @NotNull
         public String getName() {
             return name;
         }
@@ -209,13 +215,11 @@ public class EffectUtil {
             ValueDialog dialog = new ValueDialog(component, name, description);
             dialog.setTitle(name);
             dialog.setLocationRelativeTo(null);
-            EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    JComponent focusComponent = component;
-                    if (focusComponent instanceof JSpinner)
-                        focusComponent = ((JSpinner.DefaultEditor) ((JSpinner) component).getEditor()).getTextField();
-                    focusComponent.requestFocusInWindow();
-                }
+            EventQueue.invokeLater(() -> {
+                JComponent focusComponent = component;
+                if (focusComponent instanceof JSpinner)
+                    focusComponent = ((JSpinner.DefaultEditor) ((JSpinner) component).getEditor()).getTextField();
+                focusComponent.requestFocusInWindow();
             });
             dialog.setVisible(true);
             return dialog.okPressed;
@@ -264,21 +268,15 @@ public class EffectUtil {
             {
                 JButton okButton = new JButton("OK");
                 buttonPanel.add(okButton);
-                okButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        okPressed = true;
-                        setVisible(false);
-                    }
+                okButton.addActionListener(evt -> {
+                    okPressed = true;
+                    setVisible(false);
                 });
             }
             {
                 JButton cancelButton = new JButton("Cancel");
                 buttonPanel.add(cancelButton);
-                cancelButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        setVisible(false);
-                    }
-                });
+                cancelButton.addActionListener(evt -> setVisible(false));
             }
 
             setSize(new Dimension(320, 175));

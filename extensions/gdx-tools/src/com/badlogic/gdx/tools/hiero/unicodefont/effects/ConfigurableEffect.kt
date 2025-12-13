@@ -1,23 +1,21 @@
-package com.badlogic.gdx.tools.hiero.unicodefont.effects;
-
-import java.util.List;
+package com.badlogic.gdx.tools.hiero.unicodefont.effects
 
 /**
  * An effect that has a number of configuration values. This allows the effect to be configured in the Hiero GUI and to be saved
  * and loaded to and from a file.
- *
- *  */
-public interface ConfigurableEffect extends Effect {
-    /**
-     * Returns the list of {@link Value}s for this effect. This list is not typically backed by the effect, so changes to the
-     * values will not take affect until {@link #setValues(List)} is called.
-     */
-    List getValues();
+ */
+interface ConfigurableEffect : Effect {
 
     /**
-     * Sets the list of {@link Value}s for this effect.
+     * Returns the list of [Value]s for this effect. This list is not typically backed by the effect, so changes to the
+     * values will not take affect until [.setValues] is called.
      */
-    void setValues(List values);
+    fun getValues(): List<Value>
+
+    /**
+     * Sets the list of [Value]s for this effect.
+     */
+    fun setValues(values: List<*>)
 
     /**
      * Represents a configurable value for an effect.
@@ -26,26 +24,26 @@ public interface ConfigurableEffect extends Effect {
         /**
          * Returns the name of the value.
          */
-        String getName();
+        fun getName(): String
 
         /**
          * Gets the string representation of the value.
          */
-        String getString();
+        fun getString(): String
 
         /**
          * Sets the string representation of the value.
          */
-        void setString(String value);
+        fun setString(value: String)
 
         /**
          * Gets the object representation of the value.
          */
-        Object getObject();
+        fun getObject(): Any
 
         /**
          * Shows a dialog allowing a user to configure this value.
          */
-        void showDialog();
+        fun showDialog()
     }
 }

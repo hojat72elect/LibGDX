@@ -3,18 +3,18 @@ package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 import com.badlogic.gdx.tools.hiero.unicodefont.Glyph;
 import com.badlogic.gdx.tools.hiero.unicodefont.UnicodeFont;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Paints glyphs with a gradient fill.
- *
- *  */
+ */
 public class GradientEffect implements ConfigurableEffect {
     private Color topColor = Color.cyan, bottomColor = Color.blue;
     private int offset = 0;
@@ -33,7 +33,7 @@ public class GradientEffect implements ConfigurableEffect {
     public void draw(BufferedImage image, Graphics2D g, UnicodeFont unicodeFont, Glyph glyph) {
         int ascent = unicodeFont.getAscent();
         float height = (ascent) * scale;
-        float top = -glyph.getYOffset() + unicodeFont.getDescent() + offset + ascent / 2 - height / 2;
+        float top = -glyph.getYOffset() + unicodeFont.getDescent() + offset + ascent / 2F - height / 2;
         g.setPaint(new GradientPaint(0, top, topColor, 0, top + height, bottomColor, cyclic));
         g.fill(glyph.getShape());
     }
@@ -91,6 +91,7 @@ public class GradientEffect implements ConfigurableEffect {
         return "Gradient";
     }
 
+    @NotNull
     public List getValues() {
         List values = new ArrayList();
         values.add(EffectUtil.colorValue("Top color", topColor));
@@ -104,8 +105,8 @@ public class GradientEffect implements ConfigurableEffect {
     }
 
     public void setValues(List values) {
-        for (Iterator iter = values.iterator(); iter.hasNext(); ) {
-            Value value = (Value) iter.next();
+        for (Object o : values) {
+            Value value = (Value) o;
             if (value.getName().equals("Top color")) {
                 topColor = (Color) value.getObject();
             } else if (value.getName().equals("Bottom color")) {

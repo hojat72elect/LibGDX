@@ -3,6 +3,8 @@ package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 import com.badlogic.gdx.tools.hiero.unicodefont.Glyph;
 import com.badlogic.gdx.tools.hiero.unicodefont.UnicodeFont;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -14,8 +16,7 @@ import java.util.List;
 
 /**
  * Strokes glyphs with an outline.
- *
- *  */
+ */
 public class OutlineEffect implements ConfigurableEffect {
     private float width = 2;
     private Color color = Color.black;
@@ -89,6 +90,7 @@ public class OutlineEffect implements ConfigurableEffect {
         return "Outline";
     }
 
+    @NotNull
     public List getValues() {
         List values = new ArrayList();
         values.add(EffectUtil.colorValue("Color", color));

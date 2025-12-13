@@ -1,5 +1,7 @@
 package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Shape;
@@ -26,6 +28,7 @@ public class OutlineWobbleEffect extends OutlineEffect {
         return "Outline (Wobble)";
     }
 
+    @NotNull
     public List getValues() {
         List values = super.getValues();
         values.remove(2); // Remove "Join".

@@ -3,17 +3,17 @@ package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 import com.badlogic.gdx.tools.hiero.unicodefont.Glyph;
 import com.badlogic.gdx.tools.hiero.unicodefont.UnicodeFont;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Makes glyphs a solid color.
- *
- *  */
+ */
 public class ColorEffect implements ConfigurableEffect {
     private Color color = Color.white;
 
@@ -45,6 +45,7 @@ public class ColorEffect implements ConfigurableEffect {
         return "Color";
     }
 
+    @NotNull
     public List getValues() {
         List values = new ArrayList();
         values.add(EffectUtil.colorValue("Color", color));
@@ -52,8 +53,8 @@ public class ColorEffect implements ConfigurableEffect {
     }
 
     public void setValues(List values) {
-        for (Iterator iter = values.iterator(); iter.hasNext(); ) {
-            Value value = (Value) iter.next();
+        for (Object o : values) {
+            Value value = (Value) o;
             if (value.getName().equals("Color")) {
                 setColor((Color) value.getObject());
             }

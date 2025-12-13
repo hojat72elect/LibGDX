@@ -3,6 +3,8 @@ package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 import com.badlogic.gdx.tools.hiero.unicodefont.Glyph;
 import com.badlogic.gdx.tools.hiero.unicodefont.UnicodeFont;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
@@ -15,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- *  */
 public class ShadowEffect implements ConfigurableEffect {
     /**
      * The numberof kernels to apply
@@ -95,8 +95,8 @@ public class ShadowEffect implements ConfigurableEffect {
         g.fill(glyph.getShape());
 
         // Also shadow the outline, if one exists.
-        for (Iterator iter = unicodeFont.getEffects().iterator(); iter.hasNext(); ) {
-            Effect effect = (Effect) iter.next();
+        for (Object o : unicodeFont.getEffects()) {
+            Effect effect = (Effect) o;
             if (effect instanceof OutlineEffect) {
                 Composite composite = g.getComposite();
                 g.setComposite(AlphaComposite.Src); // Prevent shadow and outline shadow alpha from combining.
@@ -191,6 +191,7 @@ public class ShadowEffect implements ConfigurableEffect {
         return "Shadow";
     }
 
+    @NotNull
     public List getValues() {
         List values = new ArrayList();
         values.add(EffectUtil.colorValue("Color", color));

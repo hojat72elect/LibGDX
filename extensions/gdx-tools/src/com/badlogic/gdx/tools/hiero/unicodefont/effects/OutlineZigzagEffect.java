@@ -1,5 +1,7 @@
 package com.badlogic.gdx.tools.hiero.unicodefont.effects;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Shape;
@@ -28,6 +30,7 @@ public class OutlineZigzagEffect extends OutlineEffect {
         return "Outline (Zigzag)";
     }
 
+    @NotNull
     public List getValues() {
         List values = super.getValues();
         values.add(EffectUtil.floatValue("Wavelength", wavelength, 1, 100, "This setting controls the wavelength of the outline. "

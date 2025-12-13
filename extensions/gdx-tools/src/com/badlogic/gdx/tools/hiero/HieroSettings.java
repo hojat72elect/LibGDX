@@ -14,13 +14,11 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Holds the settings needed to configure a UnicodeFont.
- *
- *  */
+ */
 public class HieroSettings {
     private static final String RENDER_TYPE = "render_type";
     private final List effects = new ArrayList();
@@ -49,7 +47,7 @@ public class HieroSettings {
                 String line = reader.readLine();
                 if (line == null) break;
                 line = line.trim();
-                if (line.length() == 0) continue;
+                if (line.isEmpty()) continue;
                 String[] pieces = line.split("=", 2);
                 String name = pieces[0].trim();
                 String value = pieces[1];
@@ -104,8 +102,8 @@ public class HieroSettings {
                     name = name.substring(7);
                     ConfigurableEffect effect = (ConfigurableEffect) effects.get(effects.size() - 1);
                     List values = effect.getValues();
-                    for (Iterator iter = values.iterator(); iter.hasNext(); ) {
-                        Value effectValue = (Value) iter.next();
+                    for (Object o : values) {
+                        Value effectValue = (Value) o;
                         if (effectValue.getName().equals(name)) {
                             effectValue.setString(value);
                             break;
@@ -382,11 +380,10 @@ public class HieroSettings {
         out.println();
         out.println(RENDER_TYPE + "=" + renderType);
         out.println();
-        for (Iterator iter = effects.iterator(); iter.hasNext(); ) {
-            ConfigurableEffect effect = (ConfigurableEffect) iter.next();
+        for (Object o : effects) {
+            ConfigurableEffect effect = (ConfigurableEffect) o;
             out.println("effect.class=" + effect.getClass().getName());
-            for (Iterator iter2 = effect.getValues().iterator(); iter2.hasNext(); ) {
-                Value value = (Value) iter2.next();
+            for (Value value : effect.getValues()) {
                 out.println("effect." + value.getName() + "=" + value.getString());
             }
             out.println();
