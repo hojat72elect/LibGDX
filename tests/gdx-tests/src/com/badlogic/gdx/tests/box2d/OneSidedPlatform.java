@@ -5,7 +5,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -58,16 +57,12 @@ public class OneSidedPlatform extends Box2DTest {
             m_state = State.Unknown;
         }
 
-        world.setContactFilter(new ContactFilter() {
-
-            @Override
-            public boolean shouldCollide(Fixture fixtureA, Fixture fixtureB) {
-                if ((fixtureA == m_platform && fixtureB == m_character) || (fixtureB == m_platform && fixtureA == m_character)) {
-                    Vector2 position = m_character.getBody().getPosition();
-                    return !(position.y < m_top + m_radius - 3.0f * 0.005f);
-                } else
-                    return true;
-            }
+        world.setContactFilter((fixtureA, fixtureB) -> {
+            if ((fixtureA == m_platform && fixtureB == m_character) || (fixtureB == m_platform && fixtureA == m_character)) {
+                Vector2 position = m_character.getBody().getPosition();
+                return !(position.y < m_top + m_radius - 3.0f * 0.005f);
+            } else
+                return true;
         });
     }
 

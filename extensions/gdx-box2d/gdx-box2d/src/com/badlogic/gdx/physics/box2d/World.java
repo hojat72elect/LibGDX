@@ -1058,8 +1058,6 @@ b2ContactFilter defaultFilter;
     /**
      * Internal method called from JNI in case a contact happens
      *
-     * @param fixtureA
-     * @param fixtureB
      * @return whether the things collided
      */
     private boolean contactFilter(long fixtureA, long fixtureB) {
@@ -1073,8 +1071,7 @@ b2ContactFilter defaultFilter;
                 return filterA.groupIndex > 0;
             }
 
-            boolean collide = (filterA.maskBits & filterB.categoryBits) != 0 && (filterA.categoryBits & filterB.maskBits) != 0;
-            return collide;
+            return (filterA.maskBits & filterB.categoryBits) != 0 && (filterA.categoryBits & filterB.maskBits) != 0;
         }
     }
 
