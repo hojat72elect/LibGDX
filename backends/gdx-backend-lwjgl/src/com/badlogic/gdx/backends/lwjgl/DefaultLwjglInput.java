@@ -133,7 +133,7 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
                     }
 
                     private void updated() {
-                        placeholderLabel.setVisible(textField.getText().length() == 0);
+                        placeholderLabel.setVisible(textField.getText().isEmpty());
                     }
                 });
 

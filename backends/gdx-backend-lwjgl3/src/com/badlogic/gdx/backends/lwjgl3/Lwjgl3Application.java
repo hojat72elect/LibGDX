@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Os;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.AMDDebugOutput;
@@ -45,15 +46,15 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
     private static GLFWErrorCallback errorCallback;
     private static GLVersion glVersion;
     private static Callback glDebugCallback;
-    final Array<Lwjgl3Window> windows = new Array<Lwjgl3Window>();
+    final Array<Lwjgl3Window> windows = new Array<>();
     private final Lwjgl3ApplicationConfiguration config;
     private final Files files;
     private final Net net;
-    private final ObjectMap<String, Preferences> preferences = new ObjectMap<String, Preferences>();
+    private final ObjectMap<String, Preferences> preferences = new ObjectMap<>();
     private final Lwjgl3Clipboard clipboard;
-    private final Array<Runnable> runnables = new Array<Runnable>();
-    private final Array<Runnable> executedRunnables = new Array<Runnable>();
-    private final Array<LifecycleListener> lifecycleListeners = new Array<LifecycleListener>();
+    private final Array<Runnable> runnables = new Array<>();
+    private final Array<Runnable> executedRunnables = new Array<>();
+    private final Array<LifecycleListener> lifecycleListeners = new Array<>();
     private final Sync sync;
     private volatile Lwjgl3Window currentWindow;
     private Lwjgl3Audio audio;
@@ -340,7 +341,7 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
     }
 
     protected void loop() {
-        Array<Lwjgl3Window> closedWindows = new Array<Lwjgl3Window>();
+        Array<Lwjgl3Window> closedWindows = new Array<>();
         while (running && windows.size > 0) {
             // FIXME put it on a separate thread
             audio.update();
@@ -437,63 +438,69 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
         GLFW.glfwTerminate();
     }
 
+    @NotNull
     @Override
     public ApplicationListener getApplicationListener() {
         return currentWindow.getListener();
     }
 
+    @NotNull
     @Override
     public Graphics getGraphics() {
         return currentWindow.getGraphics();
     }
 
+    @NotNull
     @Override
     public Audio getAudio() {
         return audio;
     }
 
+    @NotNull
     @Override
     public Input getInput() {
         return currentWindow.getInput();
     }
 
+    @NotNull
     @Override
     public Files getFiles() {
         return files;
     }
 
+    @NotNull
     @Override
     public Net getNet() {
         return net;
     }
 
     @Override
-    public void debug(String tag, String message) {
+    public void debug(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_DEBUG) getApplicationLogger().debug(tag, message);
     }
 
     @Override
-    public void debug(String tag, String message, Throwable exception) {
+    public void debug(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_DEBUG) getApplicationLogger().debug(tag, message, exception);
     }
 
     @Override
-    public void log(String tag, String message) {
+    public void log(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_INFO) getApplicationLogger().log(tag, message);
     }
 
     @Override
-    public void log(String tag, String message, Throwable exception) {
+    public void log(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_INFO) getApplicationLogger().log(tag, message, exception);
     }
 
     @Override
-    public void error(String tag, String message) {
+    public void error(@NotNull String tag, @NotNull String message) {
         if (logLevel >= LOG_ERROR) getApplicationLogger().error(tag, message);
     }
 
     @Override
-    public void error(String tag, String message, Throwable exception) {
+    public void error(@NotNull String tag, @NotNull String message, @NotNull Throwable exception) {
         if (logLevel >= LOG_ERROR) getApplicationLogger().error(tag, message, exception);
     }
 
@@ -507,16 +514,18 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
         this.logLevel = logLevel;
     }
 
+    @NotNull
     @Override
     public ApplicationLogger getApplicationLogger() {
         return applicationLogger;
     }
 
     @Override
-    public void setApplicationLogger(ApplicationLogger applicationLogger) {
+    public void setApplicationLogger(@NotNull ApplicationLogger applicationLogger) {
         this.applicationLogger = applicationLogger;
     }
 
+    @NotNull
     @Override
     public ApplicationType getType() {
         return ApplicationType.Desktop;
@@ -537,8 +546,9 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
         return getJavaHeap();
     }
 
+    @NotNull
     @Override
-    public Preferences getPreferences(String name) {
+    public Preferences getPreferences(@NotNull String name) {
         if (preferences.containsKey(name)) {
             return preferences.get(name);
         } else {
@@ -549,13 +559,14 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
         }
     }
 
+    @NotNull
     @Override
     public Clipboard getClipboard() {
         return clipboard;
     }
 
     @Override
-    public void postRunnable(Runnable runnable) {
+    public void postRunnable(@NotNull Runnable runnable) {
         synchronized (runnables) {
             runnables.add(runnable);
         }
@@ -567,27 +578,29 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
     }
 
     @Override
-    public void addLifecycleListener(LifecycleListener listener) {
+    public void addLifecycleListener(@NotNull LifecycleListener listener) {
         synchronized (lifecycleListeners) {
             lifecycleListeners.add(listener);
         }
     }
 
     @Override
-    public void removeLifecycleListener(LifecycleListener listener) {
+    public void removeLifecycleListener(@NotNull LifecycleListener listener) {
         synchronized (lifecycleListeners) {
             lifecycleListeners.removeValue(listener, true);
         }
     }
 
+    @NotNull
     @Override
     public Lwjgl3Audio createAudio(Lwjgl3ApplicationConfiguration config) {
         return new OpenALLwjgl3Audio(config.audioDeviceSimultaneousSources, config.audioDeviceBufferCount,
                 config.audioDeviceBufferSize);
     }
 
+    @NotNull
     @Override
-    public Lwjgl3Input createInput(Lwjgl3Window window) {
+    public Lwjgl3Input createInput(@NotNull Lwjgl3Window window) {
         return new DefaultLwjgl3Input(window);
     }
 
@@ -616,11 +629,9 @@ public class Lwjgl3Application implements Lwjgl3ApplicationBase {
             createWindow(window, config, sharedContext);
         } else {
             // creation of additional windows is deferred to avoid GL context trouble
-            postRunnable(new Runnable() {
-                public void run() {
-                    createWindow(window, config, sharedContext);
-                    windows.add(window);
-                }
+            postRunnable(() -> {
+                createWindow(window, config, sharedContext);
+                windows.add(window);
             });
         }
         return window;
