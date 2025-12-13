@@ -60,8 +60,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
-/**
- *  */
 public class OpenALLwjgl3Audio implements Lwjgl3Audio {
     private final int deviceBufferSize;
     private final int deviceBufferCount;
