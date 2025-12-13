@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
@@ -114,7 +116,7 @@ public class IndexBufferObject implements IndexData {
      * @param offset  the offset to start copying the data from
      * @param count   the number of shorts to copy
      */
-    public void setIndices(short[] indices, int offset, int count) {
+    public void setIndices(@NotNull short[] indices, int offset, int count) {
         isDirty = true;
         ((Buffer) buffer).clear();
         buffer.put(indices, offset, count);
@@ -145,7 +147,7 @@ public class IndexBufferObject implements IndexData {
     }
 
     @Override
-    public void updateIndices(int targetOffset, short[] indices, int offset, int count) {
+    public void updateIndices(int targetOffset, @NotNull short[] indices, int offset, int count) {
         isDirty = true;
         final int pos = byteBuffer.position();
         ((Buffer) byteBuffer).position(targetOffset * 2);
@@ -162,6 +164,7 @@ public class IndexBufferObject implements IndexData {
     /**
      * @deprecated use {@link #getBuffer(boolean)} instead
      */
+    @NotNull
     @Override
     @Deprecated
     public ShortBuffer getBuffer() {
@@ -169,6 +172,7 @@ public class IndexBufferObject implements IndexData {
         return buffer;
     }
 
+    @NotNull
     @Override
     public ShortBuffer getBuffer(boolean forWriting) {
         isDirty |= forWriting;

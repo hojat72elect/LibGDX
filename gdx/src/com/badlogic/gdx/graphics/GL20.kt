@@ -61,7 +61,7 @@ interface GL20 {
     fun glBlendEquation(mode: Int)
     fun glBlendEquationSeparate(modeRGB: Int, modeAlpha: Int)
     fun glBlendFuncSeparate(srcRGB: Int, dstRGB: Int, srcAlpha: Int, dstAlpha: Int)
-    fun glBufferData(target: Int, size: Int, data: Buffer, usage: Int)
+    fun glBufferData(target: Int, size: Int, data: Buffer?, usage: Int)
     fun glBufferSubData(target: Int, offset: Int, size: Int, data: Buffer)
     fun glCheckFramebufferStatus(target: Int): Int
     fun glCompileShader(shader: Int)
