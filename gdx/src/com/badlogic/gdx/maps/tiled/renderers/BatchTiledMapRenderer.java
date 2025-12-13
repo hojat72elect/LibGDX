@@ -103,7 +103,7 @@ public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposa
     }
 
     @Override
-    public void setView(OrthographicCamera camera) {
+    public void setView(@NotNull OrthographicCamera camera) {
         batch.setProjectionMatrix(camera.combined);
         float width = camera.viewportWidth * camera.zoom;
         float height = camera.viewportHeight * camera.zoom;
@@ -113,7 +113,7 @@ public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposa
     }
 
     @Override
-    public void setView(Matrix4 projection, float x, float y, float width, float height) {
+    public void setView(@NotNull Matrix4 projection, float x, float y, float width, float height) {
         batch.setProjectionMatrix(projection);
         viewBounds.set(x, y, width, height);
     }
@@ -128,7 +128,7 @@ public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposa
     }
 
     @Override
-    public void render(int[] layers) {
+    public void render(@NotNull int[] layers) {
         beginRender();
         for (int layerIdx : layers) {
             MapLayer layer = map.getLayers().get(layerIdx);
@@ -158,7 +158,7 @@ public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposa
     }
 
     @Override
-    public void renderObjects(MapLayer layer) {
+    public void renderObjects(@NotNull MapLayer layer) {
         for (MapObject object : layer.getObjects()) {
             renderObject(object);
         }
@@ -166,7 +166,6 @@ public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposa
 
     @Override
     public void renderObject(@NotNull MapObject object) {
-
     }
 
     @Override

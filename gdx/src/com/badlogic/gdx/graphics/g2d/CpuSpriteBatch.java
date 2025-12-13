@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * CpuSpriteBatch behaves like SpriteBatch, except it doesn't flush automatically whenever the transformation matrix changes.
  * Instead, the vertices get adjusted on subsequent draws to match the running batch. This can improve performance through longer
@@ -102,6 +104,7 @@ public class CpuSpriteBatch extends SpriteBatch {
         }
     }
 
+    @NotNull
     @Override
     public Matrix4 getTransformMatrix() {
         return (adjustNeeded ? virtualMatrix : super.getTransformMatrix());
@@ -114,7 +117,7 @@ public class CpuSpriteBatch extends SpriteBatch {
      * restoring the original matrix, or by calling {@link #flushAndSyncTransformMatrix()}.
      */
     @Override
-    public void setTransformMatrix(Matrix4 transform) {
+    public void setTransformMatrix(@NotNull Matrix4 transform) {
         Matrix4 realMatrix = super.getTransformMatrix();
 
         if (checkEqual(realMatrix, transform)) {
@@ -173,7 +176,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX,
+    public void draw(@NotNull Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX,
                      float scaleY, float rotation, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY) {
         if (!adjustNeeded) {
             super.draw(texture, x, y, originX, originY, width, height, scaleX, scaleY, rotation, srcX, srcY, srcWidth, srcHeight,
@@ -185,7 +188,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth,
+    public void draw(@NotNull Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth,
                      int srcHeight, boolean flipX, boolean flipY) {
         if (!adjustNeeded) {
             super.draw(texture, x, y, width, height, srcX, srcY, srcWidth, srcHeight, flipX, flipY);
@@ -195,7 +198,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float x, float y, int srcX, int srcY, int srcWidth, int srcHeight) {
+    public void draw(@NotNull Texture texture, float x, float y, int srcX, int srcY, int srcWidth, int srcHeight) {
         if (!adjustNeeded) {
             super.draw(texture, x, y, srcX, srcY, srcWidth, srcHeight);
         } else {
@@ -204,7 +207,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float x, float y, float width, float height, float u, float v, float u2, float v2) {
+    public void draw(@NotNull Texture texture, float x, float y, float width, float height, float u, float v, float u2, float v2) {
         if (!adjustNeeded) {
             super.draw(texture, x, y, width, height, u, v, u2, v2);
         } else {
@@ -213,7 +216,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float x, float y) {
+    public void draw(@NotNull Texture texture, float x, float y) {
         if (!adjustNeeded) {
             super.draw(texture, x, y);
         } else {
@@ -222,7 +225,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float x, float y, float width, float height) {
+    public void draw(@NotNull Texture texture, float x, float y, float width, float height) {
         if (!adjustNeeded) {
             super.draw(texture, x, y, width, height);
         } else {
@@ -231,7 +234,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(TextureRegion region, float x, float y) {
+    public void draw(@NotNull TextureRegion region, float x, float y) {
         if (!adjustNeeded) {
             super.draw(region, x, y);
         } else {
@@ -240,7 +243,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(TextureRegion region, float x, float y, float width, float height) {
+    public void draw(@NotNull TextureRegion region, float x, float y, float width, float height) {
         if (!adjustNeeded) {
             super.draw(region, x, y, width, height);
         } else {
@@ -249,7 +252,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(TextureRegion region, float x, float y, float originX, float originY, float width, float height,
+    public void draw(@NotNull TextureRegion region, float x, float y, float originX, float originY, float width, float height,
                      float scaleX, float scaleY, float rotation) {
         if (!adjustNeeded) {
             super.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
@@ -259,7 +262,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(TextureRegion region, float x, float y, float originX, float originY, float width, float height,
+    public void draw(@NotNull TextureRegion region, float x, float y, float originX, float originY, float width, float height,
                      float scaleX, float scaleY, float rotation, boolean clockwise) {
         if (!adjustNeeded) {
             super.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation, clockwise);
@@ -269,7 +272,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(Texture texture, float[] spriteVertices, int offset, int count) {
+    public void draw(@NotNull Texture texture, float[] spriteVertices, int offset, int count) {
         if (count % Sprite.SPRITE_SIZE != 0) throw new GdxRuntimeException("invalid vertex count");
 
         if (!adjustNeeded) {
@@ -280,7 +283,7 @@ public class CpuSpriteBatch extends SpriteBatch {
     }
 
     @Override
-    public void draw(TextureRegion region, float width, float height, Affine2 transform) {
+    public void draw(@NotNull TextureRegion region, float width, float height, @NotNull Affine2 transform) {
         if (!adjustNeeded) {
             super.draw(region, width, height, transform);
         } else {

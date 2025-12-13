@@ -83,9 +83,9 @@ public class ParticleEmitter {
     }
 
     public ParticleEmitter(ParticleEmitter emitter) {
-        sprites = new Array<Sprite>(emitter.sprites);
+        sprites = new Array<>(emitter.sprites);
         name = emitter.name;
-        imagePaths = new Array<String>(emitter.imagePaths);
+        imagePaths = new Array<>(emitter.imagePaths);
         setMaxParticleCount(emitter.maxParticleCount);
         minParticleCount = emitter.minParticleCount;
         delayValue.load(emitter.delayValue);
@@ -145,8 +145,8 @@ public class ParticleEmitter {
     }
 
     private void initialize() {
-        sprites = new Array<Sprite>();
-        imagePaths = new Array<String>();
+        sprites = new Array<>();
+        imagePaths = new Array<>();
         durationValue.setAlwaysActive(true);
         emissionValue.setAlwaysActive(true);
         lifeValue.setAlwaysActive(true);
@@ -713,8 +713,7 @@ public class ParticleEmitter {
     public void setSprites(Array<Sprite> sprites) {
         this.sprites = sprites;
         if (sprites.size == 0) return;
-        for (int i = 0, n = particles.length; i < n; i++) {
-            Particle particle = particles[i];
+        for (Particle particle : particles) {
             if (particle == null) break;
             Sprite sprite = null;
             switch (spriteMode) {
@@ -875,8 +874,6 @@ public class ParticleEmitter {
      * <p>
      * IMPORTANT: If set to false and if the next object to use this Batch expects alpha blending, you are responsible for setting
      * the Batch's blend function to (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) before that next object is drawn.
-     *
-     * @param cleansUpBlendFunction
      */
     public void setCleansUpBlendFunction(boolean cleansUpBlendFunction) {
         this.cleansUpBlendFunction = cleansUpBlendFunction;
@@ -952,8 +949,7 @@ public class ParticleEmitter {
         this.flipX = flipX;
         this.flipY = flipY;
         if (particles == null) return;
-        for (int i = 0, n = particles.length; i < n; i++) {
-            Particle particle = particles[i];
+        for (Particle particle : particles) {
             if (particle != null) particle.flip(flipX, flipY);
         }
     }
@@ -1219,7 +1215,7 @@ public class ParticleEmitter {
                 line = reader.readLine();
             }
 
-            Array<String> imagePaths = new Array<String>();
+            Array<String> imagePaths = new Array<>();
             while ((line = reader.readLine()) != null && !line.isEmpty()) {
                 imagePaths.add(line);
             }

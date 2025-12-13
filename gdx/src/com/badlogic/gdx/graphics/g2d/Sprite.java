@@ -33,8 +33,7 @@ import com.badlogic.gdx.math.Rectangle;
  * bottom left corner of that rectangle. A Sprite also has an origin around which rotations and scaling are performed (that is,
  * the origin is not modified by rotation and scaling). The origin is given relative to the bottom left corner of the Sprite, its
  * position.
- *
- *  *  */
+ */
 public class Sprite extends TextureRegion {
     static final int VERTEX_SIZE = 2 + 1 + 2;
     static final int SPRITE_SIZE = 4 * VERTEX_SIZE;
@@ -417,8 +416,8 @@ public class Sprite extends TextureRegion {
     public void rotate90(boolean clockwise) {
         float[] vertices = this.vertices;
 
+        float temp = vertices[V1];
         if (clockwise) {
-            float temp = vertices[V1];
             vertices[V1] = vertices[V4];
             vertices[V4] = vertices[V3];
             vertices[V3] = vertices[V2];
@@ -430,7 +429,6 @@ public class Sprite extends TextureRegion {
             vertices[U3] = vertices[U2];
             vertices[U2] = temp;
         } else {
-            float temp = vertices[V1];
             vertices[V1] = vertices[V2];
             vertices[V2] = vertices[V3];
             vertices[V3] = vertices[V4];
@@ -561,21 +559,21 @@ public class Sprite extends TextureRegion {
         float maxx = vertices[X1];
         float maxy = vertices[Y1];
 
-        minx = minx > vertices[X2] ? vertices[X2] : minx;
-        minx = minx > vertices[X3] ? vertices[X3] : minx;
-        minx = minx > vertices[X4] ? vertices[X4] : minx;
+        minx = Math.min(minx, vertices[X2]);
+        minx = Math.min(minx, vertices[X3]);
+        minx = Math.min(minx, vertices[X4]);
 
-        maxx = maxx < vertices[X2] ? vertices[X2] : maxx;
-        maxx = maxx < vertices[X3] ? vertices[X3] : maxx;
-        maxx = maxx < vertices[X4] ? vertices[X4] : maxx;
+        maxx = Math.max(maxx, vertices[X2]);
+        maxx = Math.max(maxx, vertices[X3]);
+        maxx = Math.max(maxx, vertices[X4]);
 
-        miny = miny > vertices[Y2] ? vertices[Y2] : miny;
-        miny = miny > vertices[Y3] ? vertices[Y3] : miny;
-        miny = miny > vertices[Y4] ? vertices[Y4] : miny;
+        miny = Math.min(miny, vertices[Y2]);
+        miny = Math.min(miny, vertices[Y3]);
+        miny = Math.min(miny, vertices[Y4]);
 
-        maxy = maxy < vertices[Y2] ? vertices[Y2] : maxy;
-        maxy = maxy < vertices[Y3] ? vertices[Y3] : maxy;
-        maxy = maxy < vertices[Y4] ? vertices[Y4] : maxy;
+        maxy = Math.max(maxy, vertices[Y2]);
+        maxy = Math.max(maxy, vertices[Y3]);
+        maxy = Math.max(maxy, vertices[Y4]);
 
         if (bounds == null) bounds = new Rectangle();
         bounds.x = minx;

@@ -1,106 +1,79 @@
-package com.badlogic.gdx.graphics.g2d;
+package com.badlogic.gdx.graphics.g2d
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.math.Affine2;
-import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.glutils.ShaderProgram
+import com.badlogic.gdx.math.Affine2
+import com.badlogic.gdx.math.Matrix4
+import com.badlogic.gdx.utils.Disposable
 
 /**
  * A Batch is used to draw 2D rectangles that reference a texture (region). The class will batch the drawing commands and
  * optimize them for processing by the GPU.
- * <p>
- * To draw something with a Batch one has to first call the {@link Batch#begin()} method which will setup appropriate render
- * states. When you are done with drawing you have to call {@link Batch#end()} which will actually draw the things you specified.
- * <p>
+ * To draw something with a Batch one has to first call the [Batch.begin] method which will setup appropriate render
+ * states. When you are done with drawing you have to call [Batch.end] which will actually draw the things you specified.
  * All drawing commands of the Batch operate in screen coordinates. The screen coordinate system has an x-axis pointing to the
  * right, an y-axis pointing upwards and the origin is in the lower left corner of the screen. You can also provide your own
  * transformation and projection matrices if you so wish.
- * <p>
  * A Batch is managed. In case the OpenGL context is lost all OpenGL resources a Batch uses internally get invalidated. A context
  * is lost when a user switches to another application or receives an incoming call on Android. A Batch will be automatically
  * reloaded after the OpenGL context is restored.
- * <p>
  * A Batch is a pretty heavy object so you should only ever have one in your program.
- * <p>
  * A Batch works with OpenGL ES 2.0. It will use its own custom shader to draw all provided sprites. You can set your own custom
- * shader via {@link #setShader(ShaderProgram)}.
- * <p>
+ * shader via [.setShader].
  * A Batch has to be disposed if it is no longer used.
- *
- *  *  */
-public interface Batch extends Disposable {
-    int X1 = 0;
-    int Y1 = 1;
-    int C1 = 2;
-    int U1 = 3;
-    int V1 = 4;
-    int X2 = 5;
-    int Y2 = 6;
-    int C2 = 7;
-    int U2 = 8;
-    int V2 = 9;
-    int X3 = 10;
-    int Y3 = 11;
-    int C3 = 12;
-    int U3 = 13;
-    int V3 = 14;
-    int X4 = 15;
-    int Y4 = 16;
-    int C4 = 17;
-    int U4 = 18;
-    int V4 = 19;
+ */
+interface Batch : Disposable {
 
     /**
      * Sets up the Batch for drawing. This will disable depth buffer writing. It enables blending and texturing. If you have more
      * texture units enabled than the first one you have to disable them before calling this. Uses a screen coordinate system by
      * default where everything is given in pixels. You can specify your own projection and modelview matrices via
-     * {@link #setProjectionMatrix(Matrix4)} and {@link #setTransformMatrix(Matrix4)}.
+     * [.setProjectionMatrix] and [.setTransformMatrix].
      */
-    void begin();
+    fun begin()
 
     /**
      * Finishes off rendering. Enables depth writes, disables blending and texturing. Must always be called after a call to
-     * {@link #begin()}
+     * [.begin]
      */
-    void end();
+    fun end()
 
     /**
-     * @see #setColor(Color)
+     * @see .setColor
      */
-    void setColor(float r, float g, float b, float a);
+    fun setColor(r: Float, g: Float, b: Float, a: Float)
 
     /**
-     * @return the rendering color of this Batch. If the returned instance is manipulated, {@link #setColor(Color)} must be called
+     * @return the rendering color of this Batch. If the returned instance is manipulated, [.setColor] must be called
      * afterward.
      */
-    Color getColor();
+    fun getColor(): Color
 
     /**
-     * Sets the color used to tint images when they are added to the Batch. Default is {@link Color#WHITE}.
+     * Sets the color used to tint images when they are added to the Batch. Default is [Color.WHITE].
      */
-    void setColor(Color tint);
+    fun setColor(tint: Color)
 
     /**
      * @return the rendering color of this Batch in vertex format (alpha compressed to 0-254)
-     * @see Color#toFloatBits()
+     * @see Color.toFloatBits
      */
-    float getPackedColor();
+    fun getPackedColor(): Float
 
     /**
      * Sets the rendering color of this Batch, expanding the alpha from 0-254 to 0-255.
      *
-     * @see #setColor(Color)
-     * @see Color#toFloatBits()
+     * @see .setColor
+     * @see Color.toFloatBits
      */
-    void setPackedColor(float packedColor);
+    fun setPackedColor(packedColor: Float)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y having the given width and height in pixels. The rectangle is offset
      * by originX, originY relative to the origin. Scale specifies the scaling factor by which the rectangle should be scaled
      * around originX, originY. Rotation specifies the angle of counter clockwise rotation of the rectangle around originX,
-     * originY. The portion of the {@link Texture} given by srcX, srcY and srcWidth, srcHeight is used. These coordinates and sizes
+     * originY. The portion of the [Texture] given by srcX, srcY and srcWidth, srcHeight is used. These coordinates and sizes
      * are given in texels. FlipX and flipY specify whether the texture portion should be flipped horizontally or vertically.
      *
      * @param x         the x-coordinate in screen space
@@ -119,12 +92,28 @@ public interface Batch extends Disposable {
      * @param flipX     whether to flip the sprite horizontally
      * @param flipY     whether to flip the sprite vertically
      */
-    void draw(Texture texture, float x, float y, float originX, float originY, float width, float height, float scaleX,
-              float scaleY, float rotation, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY);
+    fun draw(
+        texture: Texture,
+        x: Float,
+        y: Float,
+        originX: Float,
+        originY: Float,
+        width: Float,
+        height: Float,
+        scaleX: Float,
+        scaleY: Float,
+        rotation: Float,
+        srcX: Int,
+        srcY: Int,
+        srcWidth: Int,
+        srcHeight: Int,
+        flipX: Boolean,
+        flipY: Boolean
+    )
 
     /**
      * Draws a rectangle with the bottom left corner at x,y having the given width and height in pixels. The portion of the
-     * {@link Texture} given by srcX, srcY and srcWidth, srcHeight is used. These coordinates and sizes are given in texels. FlipX
+     * [Texture] given by srcX, srcY and srcWidth, srcHeight is used. These coordinates and sizes are given in texels. FlipX
      * and flipY specify whether the texture portion should be flipped horizontally or vertically.
      *
      * @param x         the x-coordinate in screen space
@@ -138,12 +127,11 @@ public interface Batch extends Disposable {
      * @param flipX     whether to flip the sprite horizontally
      * @param flipY     whether to flip the sprite vertically
      */
-    void draw(Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth,
-              int srcHeight, boolean flipX, boolean flipY);
+    fun draw(texture: Texture, x: Float, y: Float, width: Float, height: Float, srcX: Int, srcY: Int, srcWidth: Int, srcHeight: Int, flipX: Boolean, flipY: Boolean)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y having the given width and height in pixels. The portion of the
-     * {@link Texture} given by srcX, srcY and srcWidth, srcHeight are used. These coordinates and sizes are given in texels.
+     * [Texture] given by srcX, srcY and srcWidth, srcHeight are used. These coordinates and sizes are given in texels.
      *
      * @param x         the x-coordinate in screen space
      * @param y         the y-coordinate in screen space
@@ -152,19 +140,19 @@ public interface Batch extends Disposable {
      * @param srcWidth  the source with in texels
      * @param srcHeight the source height in texels
      */
-    void draw(Texture texture, float x, float y, int srcX, int srcY, int srcWidth, int srcHeight);
+    fun draw(texture: Texture, x: Float, y: Float, srcX: Int, srcY: Int, srcWidth: Int, srcHeight: Int)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y having the given width and height in pixels. The portion of the
-     * {@link Texture} given by u, v and u2, v2 are used. These coordinates and sizes are given in texture size percentage. The
-     * rectangle will have the given tint {@link Color}.
+     * [Texture] given by u, v and u2, v2 are used. These coordinates and sizes are given in texture size percentage. The
+     * rectangle will have the given tint [Color].
      *
      * @param x      the x-coordinate in screen space
      * @param y      the y-coordinate in screen space
      * @param width  the width in pixels
      * @param height the height in pixels
      */
-    void draw(Texture texture, float x, float y, float width, float height, float u, float v, float u2, float v2);
+    fun draw(texture: Texture, x: Float, y: Float, width: Float, height: Float, u: Float, v: Float, u2: Float, v2: Float)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y having the width and height of the texture.
@@ -172,28 +160,28 @@ public interface Batch extends Disposable {
      * @param x the x-coordinate in screen space
      * @param y the y-coordinate in screen space
      */
-    void draw(Texture texture, float x, float y);
+    fun draw(texture: Texture, x: Float, y: Float)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y and stretching the region to cover the given width and height.
      */
-    void draw(Texture texture, float x, float y, float width, float height);
+    fun draw(texture: Texture, x: Float, y: Float, width: Float, height: Float)
 
     /**
      * Draws a rectangle using the given vertices. There must be 4 vertices, each made up of 5 elements in this order: x, y,
-     * color, u, v. The {@link #getColor()} from the Batch is not applied.
+     * color, u, v. The [.getColor] from the Batch is not applied.
      */
-    void draw(Texture texture, float[] spriteVertices, int offset, int count);
+    fun draw(texture: Texture, spriteVertices: FloatArray?, offset: Int, count: Int)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y having the width and height of the region.
      */
-    void draw(TextureRegion region, float x, float y);
+    fun draw(region: TextureRegion, x: Float, y: Float)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y and stretching the region to cover the given width and height.
      */
-    void draw(TextureRegion region, float x, float y, float width, float height);
+    fun draw(region: TextureRegion, x: Float, y: Float, width: Float, height: Float)
 
     /**
      * Draws a rectangle with the bottom left corner at x,y and stretching the region to cover the given width and height. The
@@ -203,8 +191,7 @@ public interface Batch extends Disposable {
      *
      * @param rotation rotation in degrees
      */
-    void draw(TextureRegion region, float x, float y, float originX, float originY, float width, float height,
-              float scaleX, float scaleY, float rotation);
+    fun draw(region: TextureRegion, x: Float, y: Float, originX: Float, originY: Float, width: Float, height: Float, scaleX: Float, scaleY: Float, rotation: Float)
 
     /**
      * Draws a rectangle with the texture coordinates rotated 90 degrees. The bottom left corner at x,y and stretching the region
@@ -214,30 +201,29 @@ public interface Batch extends Disposable {
      *
      * @param rotation  rotation in degrees
      * @param clockwise If true, the texture coordinates are rotated 90 degrees clockwise. If false, they are rotated 90 degrees
-     *                  counter clockwise.
+     * counter clockwise.
      */
-    void draw(TextureRegion region, float x, float y, float originX, float originY, float width, float height,
-              float scaleX, float scaleY, float rotation, boolean clockwise);
+    fun draw(region: TextureRegion, x: Float, y: Float, originX: Float, originY: Float, width: Float, height: Float, scaleX: Float, scaleY: Float, rotation: Float, clockwise: Boolean)
 
     /**
      * Draws a rectangle transformed by the given matrix.
      */
-    void draw(TextureRegion region, float width, float height, Affine2 transform);
+    fun draw(region: TextureRegion, width: Float, height: Float, transform: Affine2)
 
     /**
      * Causes any pending sprites to be rendered, without ending the Batch.
      */
-    void flush();
+    fun flush()
 
     /**
-     * Disables blending for drawing sprites. Calling this within {@link #begin()}/{@link #end()} will flush the batch.
+     * Disables blending for drawing sprites. Calling this within [.begin]/[.end] will flush the batch.
      */
-    void disableBlending();
+    fun disableBlending()
 
     /**
-     * Enables blending for drawing sprites. Calling this within {@link #begin()}/{@link #end()} will flush the batch.
+     * Enables blending for drawing sprites. Calling this within [.begin]/[.end] will flush the batch.
      */
-    void enableBlending();
+    fun enableBlending()
 
     /**
      * Sets the blending function to be used when rendering sprites.
@@ -245,78 +231,98 @@ public interface Batch extends Disposable {
      * @param srcFunc the source function, e.g. GL20.GL_SRC_ALPHA. If set to -1, Batch won't change the blending function.
      * @param dstFunc the destination function, e.g. GL20.GL_ONE_MINUS_SRC_ALPHA
      */
-    void setBlendFunction(int srcFunc, int dstFunc);
+    fun setBlendFunction(srcFunc: Int, dstFunc: Int)
 
     /**
      * Sets separate (color/alpha) blending function to be used when rendering sprites.
      *
      * @param srcFuncColor the source color function, e.g. GL20.GL_SRC_ALPHA. If set to -1, Batch won't change the blending
-     *                     function.
+     * function.
      * @param dstFuncColor the destination color function, e.g. GL20.GL_ONE_MINUS_SRC_ALPHA.
      * @param srcFuncAlpha the source alpha function, e.g. GL20.GL_SRC_ALPHA.
      * @param dstFuncAlpha the destination alpha function, e.g. GL20.GL_ONE_MINUS_SRC_ALPHA.
      */
-    void setBlendFunctionSeparate(int srcFuncColor, int dstFuncColor, int srcFuncAlpha, int dstFuncAlpha);
+    fun setBlendFunctionSeparate(srcFuncColor: Int, dstFuncColor: Int, srcFuncAlpha: Int, dstFuncAlpha: Int)
 
-    int getBlendSrcFunc();
+    fun getBlendSrcFunc(): Int
 
-    int getBlendDstFunc();
+    fun getBlendDstFunc(): Int
 
-    int getBlendSrcFuncAlpha();
+    fun getBlendSrcFuncAlpha(): Int
 
-    int getBlendDstFuncAlpha();
+    fun getBlendDstFuncAlpha(): Int
 
     /**
-     * Returns the current projection matrix. Changing this within {@link #begin()}/{@link #end()} results in undefined
+     * Returns the current projection matrix. Changing this within [.begin]/[.end] results in undefined
      * behaviour.
      */
-    Matrix4 getProjectionMatrix();
+    fun getProjectionMatrix(): Matrix4
 
     /**
-     * Sets the projection matrix to be used by this Batch. If this is called inside a {@link #begin()}/{@link #end()} block, the
+     * Sets the projection matrix to be used by this Batch. If this is called inside a [.begin]/[.end] block, the
      * current batch is flushed to the gpu.
      */
-    void setProjectionMatrix(Matrix4 projection);
+    fun setProjectionMatrix(projection: Matrix4)
 
     /**
-     * Returns the current transform matrix. Changing this within {@link #begin()}/{@link #end()} results in undefined
+     * Returns the current transform matrix. Changing this within [.begin]/[.end] results in undefined
      * behaviour.
      */
-    Matrix4 getTransformMatrix();
+    fun getTransformMatrix(): Matrix4
 
     /**
      * Sets the transform matrix to be used by this Batch.
      */
-    void setTransformMatrix(Matrix4 transform);
+    fun setTransformMatrix(transform: Matrix4)
 
     /**
-     * @return the current {@link ShaderProgram} set by {@link #setShader(ShaderProgram)} or the defaultShader
+     * @return the current [ShaderProgram] set by [.setShader] or the defaultShader
      */
-    ShaderProgram getShader();
+    fun getShader(): ShaderProgram
 
     /**
      * Sets the shader to be used in a GLES 2.0 environment. Vertex position attribute is called "a_position", the texture
      * coordinates attribute is called "a_texCoord0", the color attribute is called "a_color". See
-     * {@link ShaderProgram#POSITION_ATTRIBUTE}, {@link ShaderProgram#COLOR_ATTRIBUTE} and {@link ShaderProgram#TEXCOORD_ATTRIBUTE}
+     * [ShaderProgram.POSITION_ATTRIBUTE], [ShaderProgram.COLOR_ATTRIBUTE] and [ShaderProgram.TEXCOORD_ATTRIBUTE]
      * which gets "0" appended to indicate the use of the first texture unit. The combined transform and projection matrx is
      * uploaded via a mat4 uniform called "u_projTrans". The texture sampler is passed via a uniform called "u_texture".
-     * <p>
      * Call this method with a null argument to use the default shader.
-     * <p>
-     * This method will flush the batch before setting the new shader, you can call it in between {@link #begin()} and
-     * {@link #end()}.
-     *
-     * @param shader the {@link ShaderProgram} or null to use the default shader.
+     * This method will flush the batch before setting the new shader, you can call it in between [.begin] and
+     * [.end].
+     * @param shader the [ShaderProgram] or null to use the default shader.
      */
-    void setShader(ShaderProgram shader);
+    fun setShader(shader: ShaderProgram?)
 
     /**
      * @return true if blending for sprites is enabled
      */
-    boolean isBlendingEnabled();
+    fun isBlendingEnabled(): Boolean
 
     /**
      * @return true if currently between begin and end.
      */
-    boolean isDrawing();
+    fun isDrawing(): Boolean
+
+    companion object {
+        const val X1 = 0
+        const val Y1 = 1
+        const val C1 = 2
+        const val U1 = 3
+        const val V1 = 4
+        const val X2 = 5
+        const val Y2 = 6
+        const val C2 = 7
+        const val U2 = 8
+        const val V2 = 9
+        const val X3 = 10
+        const val Y3 = 11
+        const val C3 = 12
+        const val U3 = 13
+        const val V3 = 14
+        const val X4 = 15
+        const val Y4 = 16
+        const val C4 = 17
+        const val U4 = 18
+        const val V4 = 19
+    }
 }

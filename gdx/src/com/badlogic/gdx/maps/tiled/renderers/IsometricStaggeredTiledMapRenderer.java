@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2013 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
-
 package com.badlogic.gdx.maps.tiled.renderers;
 
 import static com.badlogic.gdx.graphics.g2d.SpriteBatch.C1;
@@ -67,7 +51,7 @@ public class IsometricStaggeredTiledMapRenderer extends BatchTiledMapRenderer {
     }
 
     @Override
-    public void renderTileLayer(TiledMapTileLayer layer) {
+    public void renderTileLayer(@NotNull TiledMapTileLayer layer) {
         final Color batchColor = batch.getColor();
         final float color = getTileLayerColor(layer, batchColor);
 
@@ -224,7 +208,7 @@ public class IsometricStaggeredTiledMapRenderer extends BatchTiledMapRenderer {
             return;
         }
 
-        /** Must offset imagelayer x position by half of tileWidth to match position */
+        /* Must offset imagelayer x position by half of tileWidth to match position */
         int tileWidth = getMap().getProperties().get("tilewidth", Integer.class);
         float halfTileWidth = (tileWidth * 0.5f) * unitScale;
 

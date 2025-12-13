@@ -20,7 +20,7 @@ public class BitmapFontCache {
     static private final Color tempColor = new Color(1, 1, 1, 1);
 
     private final BitmapFont font;
-    private final Array<GlyphLayout> layouts = new Array(1);
+    private final Array<GlyphLayout> layouts = new Array<>(1);
     private final FlushablePool<GlyphLayout> pooledLayouts = new FlushablePool<GlyphLayout>() {
         @Override
         protected GlyphLayout newObject() {
@@ -583,8 +583,6 @@ public class BitmapFontCache {
 
     /**
      * Specifies whether to use integer positions or not. Default is to use them so filtering doesn't kick in as badly.
-     *
-     * @param use
      */
     public void setUseIntegerPositions(boolean use) {
         this.integer = use;
