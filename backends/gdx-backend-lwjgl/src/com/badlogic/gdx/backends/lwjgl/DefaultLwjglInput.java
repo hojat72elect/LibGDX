@@ -8,6 +8,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.NativeInputConfiguration;
 import com.badlogic.gdx.utils.IntSet;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -31,8 +32,7 @@ import javax.swing.event.DocumentListener;
 
 /**
  * An implementation of the {@link LwjglInput} interface hooking a LWJGL panel for input.
- *
- *  */
+ */
 final public class DefaultLwjglInput extends AbstractInput implements LwjglInput {
     static public float keyRepeatInitialTime = 0.4f;
     static public float keyRepeatTime = 0.1f;
@@ -84,13 +84,13 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
     }
 
     @Override
-    public void getTextInput(TextInputListener listener, String title, String text, String hint) {
+    public void getTextInput(@NotNull TextInputListener listener, @NotNull String title, @NotNull String text, @NotNull String hint) {
         getTextInput(listener, title, text, hint, OnscreenKeyboardType.Default);
     }
 
     @Override
-    public void getTextInput(final TextInputListener listener, final String title, final String text, final String hint,
-                             OnscreenKeyboardType type) {
+    public void getTextInput(@NotNull final TextInputListener listener, @NotNull final String title, @NotNull final String text, @NotNull final String hint,
+                             @NotNull OnscreenKeyboardType type) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -232,11 +232,11 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
     }
 
     @Override
-    public void setOnscreenKeyboardVisible(boolean visible, OnscreenKeyboardType type) {
+    public void setOnscreenKeyboardVisible(boolean visible, @NotNull OnscreenKeyboardType type) {
     }
 
     @Override
-    public void openTextInputField(NativeInputConfiguration configuration) {
+    public void openTextInputField(@NotNull NativeInputConfiguration configuration) {
 
     }
 
@@ -246,7 +246,7 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
     }
 
     @Override
-    public void setKeyboardHeightObserver(KeyboardHeightObserver observer) {
+    public void setKeyboardHeightObserver(@NotNull KeyboardHeightObserver observer) {
 
     }
 
@@ -635,7 +635,7 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
     }
 
     @Override
-    public void vibrate(VibrationType vibrationType) {
+    public void vibrate(@NotNull VibrationType vibrationType) {
     }
 
     @Override
@@ -686,7 +686,7 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
     }
 
     @Override
-    public boolean isPeripheralAvailable(Peripheral peripheral) {
+    public boolean isPeripheralAvailable(@NotNull Peripheral peripheral) {
         return peripheral == Peripheral.HardwareKeyboard;
     }
 
@@ -695,6 +695,7 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
         return 0;
     }
 
+    @NotNull
     @Override
     public Orientation getNativeOrientation() {
         return Orientation.Landscape;
@@ -743,6 +744,6 @@ final public class DefaultLwjglInput extends AbstractInput implements LwjglInput
     }
 
     @Override
-    public void getRotationMatrix(float[] matrix) {
+    public void getRotationMatrix(@NotNull float[] matrix) {
     }
 }

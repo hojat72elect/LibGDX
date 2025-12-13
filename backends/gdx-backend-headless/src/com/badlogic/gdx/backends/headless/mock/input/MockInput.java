@@ -5,6 +5,8 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.NativeInputConfiguration;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * The headless backend does its best to mock elements. This is intended to make code-sharing between server and client as simple
  * as possible.
@@ -134,12 +136,12 @@ public class MockInput implements Input {
     }
 
     @Override
-    public void getTextInput(TextInputListener listener, String title, String text, String hint) {
+    public void getTextInput(@NotNull TextInputListener listener, @NotNull String title, @NotNull String text, @NotNull String hint) {
 
     }
 
     @Override
-    public void getTextInput(TextInputListener listener, String title, String text, String hint, OnscreenKeyboardType type) {
+    public void getTextInput(@NotNull TextInputListener listener, @NotNull String title, @NotNull String text, @NotNull String hint, @NotNull OnscreenKeyboardType type) {
 
     }
 
@@ -149,12 +151,12 @@ public class MockInput implements Input {
     }
 
     @Override
-    public void setOnscreenKeyboardVisible(boolean visible, OnscreenKeyboardType type) {
+    public void setOnscreenKeyboardVisible(boolean visible, @NotNull OnscreenKeyboardType type) {
 
     }
 
     @Override
-    public void openTextInputField(NativeInputConfiguration configuration) {
+    public void openTextInputField(@NotNull NativeInputConfiguration configuration) {
 
     }
 
@@ -164,7 +166,7 @@ public class MockInput implements Input {
     }
 
     @Override
-    public void setKeyboardHeightObserver(KeyboardHeightObserver observer) {
+    public void setKeyboardHeightObserver(@NotNull KeyboardHeightObserver observer) {
 
     }
 
@@ -182,7 +184,7 @@ public class MockInput implements Input {
     }
 
     @Override
-    public void vibrate(VibrationType vibrationType) {
+    public void vibrate(@NotNull VibrationType vibrationType) {
     }
 
     @Override
@@ -201,7 +203,7 @@ public class MockInput implements Input {
     }
 
     @Override
-    public void getRotationMatrix(float[] matrix) {
+    public void getRotationMatrix(@NotNull float[] matrix) {
 
     }
 
@@ -234,7 +236,7 @@ public class MockInput implements Input {
     }
 
     @Override
-    public boolean isPeripheralAvailable(Peripheral peripheral) {
+    public boolean isPeripheralAvailable(@NotNull Peripheral peripheral) {
         return false;
     }
 
@@ -243,6 +245,7 @@ public class MockInput implements Input {
         return 0;
     }
 
+    @NotNull
     @Override
     public Orientation getNativeOrientation() {
         return Orientation.Landscape;
