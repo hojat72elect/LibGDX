@@ -61,29 +61,29 @@ public class Model implements Disposable {
      * the materials of the model, used by nodes that have a graphical representation FIXME not sure if superfluous, allows
      * modification of materials without having to traverse the nodes
      **/
-    public final Array<Material> materials = new Array();
+    public final Array<Material> materials = new Array<>();
     /**
      * root nodes of the model
      **/
-    public final Array<Node> nodes = new Array();
+    public final Array<Node> nodes = new Array<>();
     /**
      * animations of the model, modifying node transformations
      **/
-    public final Array<Animation> animations = new Array();
+    public final Array<Animation> animations = new Array<>();
     /**
      * the meshes of the model
      **/
-    public final Array<Mesh> meshes = new Array();
+    public final Array<Mesh> meshes = new Array<>();
     /**
      * parts of meshes, used by nodes that have a graphical representation FIXME not sure if superfluous, stored in Nodes as well,
      * could be useful to create bullet meshes
      **/
-    public final Array<MeshPart> meshParts = new Array();
+    public final Array<MeshPart> meshParts = new Array<>();
     /**
      * Array of disposable resources like textures or meshes the Model is responsible for disposing
      **/
-    protected final Array<Disposable> disposables = new Array();
-    private final ObjectMap<NodePart, ArrayMap<String, Matrix4>> nodePartBones = new ObjectMap<NodePart, ArrayMap<String, Matrix4>>();
+    protected final Array<Disposable> disposables = new Array<>();
+    private final ObjectMap<NodePart, ArrayMap<String, Matrix4>> nodePartBones = new ObjectMap<>();
 
     /**
      * Constructs an empty model. Manual created models do not manage their resources by default. Use
@@ -131,32 +131,32 @@ public class Model implements Disposable {
                 nodeAnim.node = node;
 
                 if (nanim.translation != null) {
-                    nodeAnim.translation = new Array<NodeKeyframe<Vector3>>();
+                    nodeAnim.translation = new Array<>();
                     nodeAnim.translation.ensureCapacity(nanim.translation.size);
                     for (ModelNodeKeyframe<Vector3> kf : nanim.translation) {
                         if (kf.keytime > animation.duration) animation.duration = kf.keytime;
                         nodeAnim.translation
-                                .add(new NodeKeyframe<Vector3>(kf.keytime, new Vector3(kf.value == null ? node.translation : kf.value)));
+                                .add(new NodeKeyframe<>(kf.keytime, new Vector3(kf.value == null ? node.translation : kf.value)));
                     }
                 }
 
                 if (nanim.rotation != null) {
-                    nodeAnim.rotation = new Array<NodeKeyframe<Quaternion>>();
+                    nodeAnim.rotation = new Array<>();
                     nodeAnim.rotation.ensureCapacity(nanim.rotation.size);
                     for (ModelNodeKeyframe<Quaternion> kf : nanim.rotation) {
                         if (kf.keytime > animation.duration) animation.duration = kf.keytime;
                         nodeAnim.rotation
-                                .add(new NodeKeyframe<Quaternion>(kf.keytime, new Quaternion(kf.value == null ? node.rotation : kf.value)));
+                                .add(new NodeKeyframe<>(kf.keytime, new Quaternion(kf.value == null ? node.rotation : kf.value)));
                     }
                 }
 
                 if (nanim.scaling != null) {
-                    nodeAnim.scaling = new Array<NodeKeyframe<Vector3>>();
+                    nodeAnim.scaling = new Array<>();
                     nodeAnim.scaling.ensureCapacity(nanim.scaling.size);
                     for (ModelNodeKeyframe<Vector3> kf : nanim.scaling) {
                         if (kf.keytime > animation.duration) animation.duration = kf.keytime;
                         nodeAnim.scaling
-                                .add(new NodeKeyframe<Vector3>(kf.keytime, new Vector3(kf.value == null ? node.scale : kf.value)));
+                                .add(new NodeKeyframe<>(kf.keytime, new Vector3(kf.value == null ? node.scale : kf.value)));
                     }
                 }
 
@@ -289,7 +289,7 @@ public class Model implements Disposable {
         if (mtl.shininess > 0f) result.set(new FloatAttribute(FloatAttribute.Shininess, mtl.shininess));
         if (mtl.opacity != 1.f) result.set(new BlendingAttribute(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, mtl.opacity));
 
-        ObjectMap<String, Texture> textures = new ObjectMap<String, Texture>();
+        ObjectMap<String, Texture> textures = new ObjectMap<>();
 
         // FIXME uvScaling/uvTranslation totally ignored
         if (mtl.textures != null) {
