@@ -9,6 +9,8 @@ import com.badlogic.gdx.tests.g3d.shadows.utils.LightFilter;
 import com.badlogic.gdx.tests.g3d.shadows.utils.NearFarAnalyzer;
 import com.badlogic.gdx.tests.g3d.shadows.utils.ShadowMapAllocator;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Set;
 
 /**
@@ -53,7 +55,7 @@ public class RealisticShadowSystem extends FirstPassBaseShadowSystem {
      * No point light support
      */
     @Override
-    public void addLight(PointLight point, Set<CubemapSide> sides) {
+    public void addLight(@NotNull PointLight point, @NotNull Set<CubemapSide> sides) {
     }
 
     /**

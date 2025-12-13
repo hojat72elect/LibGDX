@@ -29,6 +29,8 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectMap.Entries;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -149,11 +151,13 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
     @Override
     public abstract int getPassQuantity();
 
+    @NotNull
     @Override
     public ShaderProvider getPassShaderProvider(int n) {
         return passShaderProviders[n];
     }
 
+    @NotNull
     @Override
     public ShaderProvider getShaderProvider() {
         return mainShaderProvider;
@@ -182,13 +186,13 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
     }
 
     @Override
-    public void addLight(PointLight point) {
+    public void addLight(@NotNull PointLight point) {
         addLight(point, EnumSet.of(CubemapSide.PositiveX, CubemapSide.NegativeX, CubemapSide.PositiveY, CubemapSide.NegativeY,
                 CubemapSide.PositiveZ, CubemapSide.NegativeZ));
     }
 
     @Override
-    public void addLight(PointLight point, Set<CubemapSide> sides) {
+    public void addLight(@NotNull PointLight point, @NotNull Set<CubemapSide> sides) {
         PointLightProperties plProperty = new PointLightProperties();
         for (int i = 0; i < 6; i++) {
             CubemapSide cubemapSide = Cubemap.CubemapSide.values()[i];
@@ -208,32 +212,32 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
     }
 
     @Override
-    public void removeLight(SpotLight spot) {
+    public void removeLight(@NotNull SpotLight spot) {
         spotCameras.remove(spot);
     }
 
     @Override
-    public void removeLight(DirectionalLight dir) {
+    public void removeLight(@NotNull DirectionalLight dir) {
         dirCameras.remove(dir);
     }
 
     @Override
-    public void removeLight(PointLight point) {
+    public void removeLight(@NotNull PointLight point) {
         pointCameras.remove(point);
     }
 
     @Override
-    public boolean hasLight(SpotLight spot) {
+    public boolean hasLight(@NotNull SpotLight spot) {
         return spotCameras.containsKey(spot);
     }
 
     @Override
-    public boolean hasLight(DirectionalLight dir) {
+    public boolean hasLight(@NotNull DirectionalLight dir) {
         return dirCameras.containsKey(dir);
     }
 
     @Override
-    public boolean hasLight(PointLight point) {
+    public boolean hasLight(@NotNull PointLight point) {
         return pointCameras.containsKey(point);
     }
 
@@ -258,7 +262,7 @@ public abstract class BaseShadowSystem implements ShadowSystem, Disposable {
     }
 
     @Override
-    public <T extends RenderableProvider> void begin(Camera camera, final Iterable<T> renderableProviders) {
+    public <T extends RenderableProvider> void begin(@NotNull Camera camera, @NotNull Iterable<? extends T> renderableProviders) {
         if (this.renderableProviders != null || this.camera != null) throw new GdxRuntimeException("Call end() first.");
 
         this.camera = camera;

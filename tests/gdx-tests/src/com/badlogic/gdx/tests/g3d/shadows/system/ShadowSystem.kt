@@ -1,28 +1,26 @@
-package com.badlogic.gdx.tests.g3d.shadows.system;
+package com.badlogic.gdx.tests.g3d.shadows.system
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Cubemap.CubemapSide;
-import com.badlogic.gdx.graphics.g3d.RenderableProvider;
-import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
-import com.badlogic.gdx.graphics.g3d.environment.PointLight;
-import com.badlogic.gdx.graphics.g3d.environment.SpotLight;
-import com.badlogic.gdx.graphics.g3d.utils.ShaderProvider;
-
-import java.util.Set;
+import com.badlogic.gdx.graphics.Camera
+import com.badlogic.gdx.graphics.Cubemap.CubemapSide
+import com.badlogic.gdx.graphics.g3d.RenderableProvider
+import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight
+import com.badlogic.gdx.graphics.g3d.environment.PointLight
+import com.badlogic.gdx.graphics.g3d.environment.SpotLight
+import com.badlogic.gdx.graphics.g3d.utils.ShaderProvider
 
 /**
  * Shadow system provides functionalities to render shadows.
- * <p>
- * Typical use: <br />
  *
- * <pre>
+ * Typical use: <br></br>
+ *
+ * ```
  * // Init system:
  * Array&lt;ModelBatch&gt; passBatches = new Array&lt;ModelBatch&gt;();
  * ModelBatch mainBatch;
  * ShadowSystem system = new XXXShadowSystem();
  * system.init();
  * for (int i = 0; i &lt; system.getPassQuantity(); i++) {
- * 	passBatches.add(new ModelBatch(system.getPassShaderProvider(i)));
+ * passBatches.add(new ModelBatch(system.getPassShaderProvider(i)));
  * }
  * mainBatch = new ModelBatch(system.getShaderProvider());
  *
@@ -30,15 +28,15 @@ import java.util.Set;
  * system.begin(camera, instances);
  * system.update();
  * for (int i = 0; i &lt; system.getPassQuantity(); i++) {
- * 	system.begin(i);
- * 	Camera camera;
- * 	while ((camera = system.next()) != null) {
- * 		passBatches.get(i).begin(camera);
- * 		passBatches.get(i).render(instances, environment);
- * 		passBatches.get(i).end();
- *    }
- * 	camera = null;
- * 	system.end(i);
+ * system.begin(i);
+ * Camera camera;
+ * while ((camera = system.next()) != null) {
+ * passBatches.get(i).begin(camera);
+ * passBatches.get(i).render(instances, environment);
+ * passBatches.get(i).end();
+ * }
+ * camera = null;
+ * system.end(i);
  * }
  * system.end();
  *
@@ -49,132 +47,123 @@ import java.util.Set;
  * mainBatch.begin(cam);
  * mainBatch.render(instances, environment);
  * mainBatch.end();
- * </pre>
+ * ```
  *
- * </p>
- *
- * <p>
  * Current environnment should be alway be synchonized with shadow system lights. It means that if you add or remove light from
- * environment, you should do it in shadow system too. <br />
+ * environment, you should do it in shadow system too. <br></br>
  * If you have two different environments, when you switch, you should add and remove all lights in shadow system.
- * </p>
- *
- *  */
-public interface ShadowSystem {
+ */
+interface ShadowSystem {
+    /**
+     * Initialize system.
+     */
+    fun init()
 
     /**
-     * Initialize system
+     * Return number of pass.
      */
-    void init();
+    fun getPassQuantity(): Int
 
     /**
-     * Return number of pass
-     * @return int
+     * Return shaderProvider of the pass n.
      */
-    int getPassQuantity();
+    fun getPassShaderProvider(n: Int): ShaderProvider
 
     /**
-     * Return shaderProvider of the pass n
-     * @return ShaderProvider
+     * Return shaderProvider used for main rendering.
      */
-    ShaderProvider getPassShaderProvider(int n);
+    fun getShaderProvider(): ShaderProvider
 
     /**
-     * Return shaderProvider used for main rendering
-     * @return ShaderProvider
+     * Add spot light in shadow system.
+     * @param spot SpotLight to add in the ShadowSystem.
      */
-    ShaderProvider getShaderProvider();
+    fun addLight(spot: SpotLight)
 
     /**
-     * Add spot light in shadow system
-     * @param spot SpotLight to add in the ShadowSystem
+     * Add directional light in shadow system.
+     * @param dir DirectionalLight to add in the ShadowSystem.
      */
-    void addLight(SpotLight spot);
+    fun addLight(dir: DirectionalLight)
 
     /**
-     * Add directional light in shadow system
-     * @param dir DirectionalLight to add in the ShadowSystem
+     * Add point light in shadow system.
+     * @param point PointLight to add in the ShadowSystem.
      */
-    void addLight(DirectionalLight dir);
-
-    /**
-     * Add point light in shadow system
-     * @param point PointLight to add in the ShadowSystem
-     */
-    void addLight(PointLight point);
+    fun addLight(point: PointLight)
 
     /**
      * Add point light in shadow system
      * @param point PointLight to add in the ShadowSystem
      * @param sides Set of side
      */
-    void addLight(PointLight point, Set<CubemapSide> sides);
+    fun addLight(point: PointLight, sides: MutableSet<CubemapSide>)
 
     /**
      * Remove light from the shadowSystem
      * @param spot SpotLight to remove in the ShadowSystem
      */
-    void removeLight(SpotLight spot);
+    fun removeLight(spot: SpotLight)
 
     /**
      * Remove light from the shadowSystem
      * @param dir DirectionalLight to remove in the ShadowSystem
      */
-    void removeLight(DirectionalLight dir);
+    fun removeLight(dir: DirectionalLight)
 
     /**
      * Remove light from the shadowSystem
      * @param point PointLight to remove in the ShadowSystem
      */
-    void removeLight(PointLight point);
+    fun removeLight(point: PointLight)
 
     /**
      * @param spot SpotLight to check
      * @return true if light analyzed
      */
-    boolean hasLight(SpotLight spot);
+    fun hasLight(spot: SpotLight): Boolean
 
     /**
      * @param dir Directional Light to check
      * @return true if light analyzed
      */
-    boolean hasLight(DirectionalLight dir);
+    fun hasLight(dir: DirectionalLight): Boolean
 
     /**
      * @param point PointLight to check
      * @return true if light analyzed
      */
-    boolean hasLight(PointLight point);
+    fun hasLight(point: PointLight): Boolean
 
     /**
      * Update shadowSystem
      */
-    void update();
+    fun update()
 
     /**
      * Begin shadow system with main camera and renderable providers.
      */
-    <T extends RenderableProvider> void begin(Camera camera, Iterable<T> renderableProviders);
+    fun <T : RenderableProvider> begin(camera: Camera, renderableProviders: Iterable<T>)
 
     /**
      * Begin pass n rendering.
      * @param n Pass number
      */
-    void begin(int n);
+    fun begin(n: Int)
 
     /**
      * Switch light
-     * @return Current camera
+     * @return Current camera or null if there's no camera or an error happens.
      */
-    Camera next();
+    fun next(): Camera?
 
     /**
      * End shadow system
      */
-    void end();
+    fun end()
 
     /**
      * End pass n rendering
      */
-    void end(int n);
+    fun end(n: Int)
 }
