@@ -16,6 +16,8 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -148,23 +150,18 @@ public class ContactListenerTest extends Box2DTest implements ContactListener {
     }
 
     @Override
-    public void beginContact(Contact contact) {
+    public void beginContact(@NotNull Contact contact) {
         System.out.printf("beginContact() addr=%d%n", getContactAddr(contact));
         System.out.printf("beginContact() addrA=%d, addrB=%d%n", getFixtureAddrA(contact), getFixtureAddrB(contact));
         System.out.printf("beginContact() fixA=%s, fixB=%s%n", contact.getFixtureA(), contact.getFixtureB());
 
         final Body toRemove = contact.getFixtureA().getBody().getType() == BodyType.DynamicBody ? contact.getFixtureA().getBody()
                 : contact.getFixtureB().getBody();
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                world.destroyBody(toRemove);
-            }
-        });
+        Gdx.app.postRunnable(() -> world.destroyBody(toRemove));
     }
 
     @Override
-    public void endContact(Contact contact) {
+    public void endContact(@NotNull Contact contact) {
         System.out.printf("  endContact() addr=%d%n", getContactAddr(contact));
         System.out.printf("  endContact() addrA=%d, addrB=%d%n", getFixtureAddrA(contact), getFixtureAddrB(contact));
         System.out.printf("  endContact() fixA=%s, fixB=%s%n", contact.getFixtureA(), contact.getFixtureB());
@@ -177,13 +174,13 @@ public class ContactListenerTest extends Box2DTest implements ContactListener {
     }
 
     @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
+    public void preSolve(@NotNull Contact contact, @NotNull Manifold oldManifold) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
+    public void postSolve(@NotNull Contact contact, @NotNull ContactImpulse impulse) {
         // TODO Auto-generated method stub
 
     }

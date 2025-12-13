@@ -14,6 +14,8 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ConveyorBelt extends Box2DTest implements ContactListener {
     Fixture m_platform;
 
@@ -59,7 +61,7 @@ public class ConveyorBelt extends Box2DTest implements ContactListener {
         }
     }
 
-    public void preSolve(Contact contact, Manifold oldManifold) {
+    public void preSolve(Contact contact, @NotNull Manifold oldManifold) {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
@@ -69,15 +71,15 @@ public class ConveyorBelt extends Box2DTest implements ContactListener {
     }
 
     @Override
-    public void beginContact(Contact contact) {
+    public void beginContact(@NotNull Contact contact) {
 
     }
 
     @Override
-    public void endContact(Contact contact) {
+    public void endContact(@NotNull Contact contact) {
     }
 
     @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
+    public void postSolve(@NotNull Contact contact, @NotNull ContactImpulse impulse) {
     }
 }

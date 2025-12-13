@@ -36,6 +36,8 @@ import com.badlogic.gdx.tests.utils.GdxTest;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Box2DTest extends GdxTest implements InputProcessor {
@@ -97,7 +99,7 @@ public class Box2DTest extends GdxTest implements InputProcessor {
     /**
      * our boxes
      **/
-    private final ArrayList<Body> boxes = new ArrayList<Body>();
+    private final ArrayList<Body> boxes = new ArrayList<>();
     /**
      * our mouse joint
      **/
@@ -182,40 +184,25 @@ public class Box2DTest extends GdxTest implements InputProcessor {
 
         createBoxes();
 
-        Array<Fixture> fixtures = new Array<Fixture>();
+        Array<Fixture> fixtures = new Array<>();
         world.getFixtures(fixtures);
 
         // You can savely ignore the rest of this method :)
         world.setContactListener(new ContactListener() {
             @Override
-            public void beginContact(Contact contact) {
-// System.out.println("begin contact");
+            public void beginContact(@NotNull Contact contact) {
             }
 
             @Override
-            public void endContact(Contact contact) {
-// System.out.println("end contact");
+            public void endContact(@NotNull Contact contact) {
             }
 
             @Override
-            public void preSolve(Contact contact, Manifold oldManifold) {
-// Manifold.ManifoldType type = oldManifold.getType();
-// Vector2 localPoint = oldManifold.getLocalPoint();
-// Vector2 localNormal = oldManifold.getLocalNormal();
-// int pointCount = oldManifold.getPointCount();
-// ManifoldPoint[] points = oldManifold.getPoints();
-// System.out.println("pre solve, " + type +
-// ", point: " + localPoint +
-// ", local normal: " + localNormal +
-// ", #points: " + pointCount +
-// ", [" + points[0] + ", " + points[1] + "]");
+            public void preSolve(@NotNull Contact contact, @NotNull Manifold oldManifold) {
             }
 
             @Override
-            public void postSolve(Contact contact, ContactImpulse impulse) {
-// float[] ni = impulse.getNormalImpulses();
-// float[] ti = impulse.getTangentImpulses();
-// System.out.println("post solve, normal impulses: " + ni[0] + ", " + ni[1] + ", tangent impulses: " + ti[0] + ", " + ti[1]);
+            public void postSolve(@NotNull Contact contact, @NotNull ContactImpulse impulse) {
             }
         });
     }
