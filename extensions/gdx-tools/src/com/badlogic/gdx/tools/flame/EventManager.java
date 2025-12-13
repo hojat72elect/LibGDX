@@ -3,14 +3,12 @@ package com.badlogic.gdx.tools.flame;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
-/**
- *  */
 public class EventManager {
     private static EventManager mInstance;
     private final ObjectMap<Integer, Array<Listener>> mListeners;
 
     private EventManager() {
-        mListeners = new ObjectMap<Integer, Array<Listener>>();
+        mListeners = new ObjectMap<>();
     }
 
     public static EventManager get() {
@@ -22,7 +20,7 @@ public class EventManager {
         boolean isNew = false;
         Array<Listener> listeners = mListeners.get(aEventType);
         if (listeners == null) {
-            listeners = new Array<EventManager.Listener>();
+            listeners = new Array<>();
             mListeners.put(aEventType, listeners);
             isNew = true;
         }

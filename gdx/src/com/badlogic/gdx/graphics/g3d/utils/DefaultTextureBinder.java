@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.GLTexture;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.IntBuffer;
 
 /**
  * Class that you assign a range of texture units and binds textures for you within that range. It does some basic usage tracking
  * to avoid unnecessary bind calls.
- *
- *  */
+ */
 public final class DefaultTextureBinder implements TextureBinder {
     public final static int ROUNDROBIN = 0;
     public final static int LRU = 1;
@@ -45,8 +46,8 @@ public final class DefaultTextureBinder implements TextureBinder {
      * Flag to indicate the current texture is reused
      */
     private boolean reused;
-    private int reuseCount = 0; // TODO remove debug code
-    private int bindCount = 0; // TODO remove debug code
+    private int reuseCount = 0;
+    private int bindCount = 0;
     private int currentTexture = 0;
 
     /**
@@ -99,12 +100,12 @@ public final class DefaultTextureBinder implements TextureBinder {
     }
 
     @Override
-    public int bind(final TextureDescriptor textureDesc) {
+    public int bind(@NotNull final TextureDescriptor textureDesc) {
         return bindTexture(textureDesc, false);
     }
 
     @Override
-    public int bind(final GLTexture texture) {
+    public int bind(@NotNull final GLTexture texture) {
         tempDesc.set(texture, null, null, null, null);
         return bindTexture(tempDesc, false);
     }
