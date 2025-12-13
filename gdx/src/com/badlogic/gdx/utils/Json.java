@@ -26,8 +26,7 @@ import java.util.Map;
 /**
  * Reads/writes Java objects to/from JSON, automatically. See the wiki for usage:
  * https://libgdx.com/wiki/utils/reading-and-writing-json
- *
- *  */
+ */
 public class Json {
     static private final boolean debug = false;
     private final ObjectMap<Class, OrderedMap<String, FieldMetadata>> typeToFields = new ObjectMap();
