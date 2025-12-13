@@ -33,8 +33,7 @@ import java.util.List;
 
 /**
  * Stores a number of glyphs on a single texture.
- *
- *  */
+ */
 public class GlyphPage {
     static public final int MAX_GLYPH_SIZE = 256;
     static private final ByteBuffer scratchByteBuffer = ByteBuffer.allocateDirect(MAX_GLYPH_SIZE * MAX_GLYPH_SIZE * 4);
@@ -55,9 +54,9 @@ public class GlyphPage {
     private final UnicodeFont unicodeFont;
     private final int pageWidth, pageHeight;
     private final Texture texture;
-    private final List<Glyph> pageGlyphs = new ArrayList(32);
-    private final List<String> hashes = new ArrayList(32);
-    Array<Row> rows = new Array();
+    private final List<Glyph> pageGlyphs = new ArrayList<>(32);
+    private final List<String> hashes = new ArrayList<>(32);
+    Array<Row> rows = new Array<>();
 
     /**
      * @param pageWidth  The width of the backing texture.
@@ -174,8 +173,8 @@ public class GlyphPage {
         } else {
             // Draw the glyph to the scratch image using Java2D.
             if (unicodeFont.getRenderType() == RenderType.Native) {
-                for (Iterator iter = unicodeFont.getEffects().iterator(); iter.hasNext(); ) {
-                    Effect effect = (Effect) iter.next();
+                for (Object o : unicodeFont.getEffects()) {
+                    Effect effect = (Effect) o;
                     if (effect instanceof ColorEffect) scratchGraphics.setColor(((ColorEffect) effect).getColor());
                 }
                 scratchGraphics.setColor(java.awt.Color.white);
@@ -183,8 +182,7 @@ public class GlyphPage {
                 scratchGraphics.drawString("" + (char) glyph.getCodePoint(), 0, unicodeFont.getAscent());
             } else if (unicodeFont.getRenderType() == RenderType.Java) {
                 scratchGraphics.setColor(java.awt.Color.white);
-                for (Iterator iter = unicodeFont.getEffects().iterator(); iter.hasNext(); )
-                    ((Effect) iter.next()).draw(scratchImage, scratchGraphics, unicodeFont, glyph);
+                for (Object o : unicodeFont.getEffects()) ((Effect) o).draw(scratchImage, scratchGraphics, unicodeFont, glyph);
                 glyph.setShape(null); // The shape will never be needed again.
             }
 
@@ -207,7 +205,7 @@ public class GlyphPage {
             md.update(glyphPixels);
             BigInteger bigInt = new BigInteger(1, md.digest());
             hash = bigInt.toString(16);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (NoSuchAlgorithmException ignored) {
         }
         ((Buffer) scratchByteBuffer).clear();
         ((Buffer) scratchIntBuffer).clear();

@@ -40,8 +40,7 @@ import java.util.Map;
  * <p>
  * For efficiency, glyphs are packed on to textures. Glyphs can be loaded to the textures on the fly, when they are first needed
  * for display. However, it is best to load the glyphs that are known to be needed at startup.
- *
- *  */
+ */
 public class UnicodeFont {
     static private final int DISPLAY_LIST_CACHE_SIZE = 200;
     static private final int MAX_GLYPH_CODE = 0x10FFFF;
@@ -52,15 +51,11 @@ public class UnicodeFont {
     /**
      * Sorts glyphs by height, tallest first.
      */
-    static private final Comparator heightComparator = new Comparator() {
-        public int compare(Object o1, Object o2) {
-            return ((Glyph) o2).getHeight() - ((Glyph) o1).getHeight();
-        }
-    };
+    static private final Comparator heightComparator = (o1, o2) -> ((Glyph) o2).getHeight() - ((Glyph) o1).getHeight();
     private final Glyph[][] glyphs = new Glyph[PAGES][];
-    private final List<GlyphPage> glyphPages = new ArrayList();
-    private final List<Glyph> queuedGlyphs = new ArrayList(256);
-    private final List<Effect> effects = new ArrayList();
+    private final List<GlyphPage> glyphPages = new ArrayList<>();
+    private final List<Glyph> queuedGlyphs = new ArrayList<>(256);
+    private final List<Effect> effects = new ArrayList<>();
     RenderType renderType;
     BitmapFont bitmapFont;
     private Font font;
@@ -261,8 +256,7 @@ public class UnicodeFont {
         Collections.sort(queuedGlyphs, heightComparator);
 
         // Add to existing pages.
-        for (Iterator iter = glyphPages.iterator(); iter.hasNext(); ) {
-            GlyphPage glyphPage = (GlyphPage) iter.next();
+        for (GlyphPage glyphPage : glyphPages) {
             maxGlyphsToLoad -= glyphPage.loadGlyphs(queuedGlyphs, maxGlyphsToLoad);
             if (maxGlyphsToLoad == 0 || queuedGlyphs.isEmpty()) return true;
         }
@@ -283,8 +277,7 @@ public class UnicodeFont {
      * needed.
      */
     public void dispose() {
-        for (Iterator iter = glyphPages.iterator(); iter.hasNext(); ) {
-            GlyphPage page = (GlyphPage) iter.next();
+        for (GlyphPage page : glyphPages) {
             page.getTexture().dispose();
         }
         if (bitmapFont != null) {
@@ -295,7 +288,7 @@ public class UnicodeFont {
 
     public void drawString(float x, float y, String text, Color color, int startIndex, int endIndex) {
         if (text == null) throw new IllegalArgumentException("text cannot be null.");
-        if (text.length() == 0) return;
+        if (text.isEmpty()) return;
         if (color == null) throw new IllegalArgumentException("color cannot be null.");
 
         x -= paddingLeft;
@@ -460,7 +453,7 @@ public class UnicodeFont {
 
     public int getWidth(String text) {
         if (text == null) throw new IllegalArgumentException("text cannot be null.");
-        if (text.length() == 0) return 0;
+        if (text.isEmpty()) return 0;
 
         char[] chars = text.toCharArray();
         GlyphVector vector = font.layoutGlyphVector(GlyphPage.renderContext, chars, 0, chars.length, Font.LAYOUT_LEFT_TO_RIGHT);
@@ -486,7 +479,7 @@ public class UnicodeFont {
 
     public int getHeight(String text) {
         if (text == null) throw new IllegalArgumentException("text cannot be null.");
-        if (text.length() == 0) return 0;
+        if (text.isEmpty()) return 0;
 
         char[] chars = text.toCharArray();
         GlyphVector vector = font.layoutGlyphVector(GlyphPage.renderContext, chars, 0, chars.length, Font.LAYOUT_LEFT_TO_RIGHT);
@@ -761,7 +754,7 @@ public class UnicodeFont {
             }
             if (ttfFileRef == null) ttfFileRef = "";
         }
-        if (ttfFileRef.length() == 0) return null;
+        if (ttfFileRef.isEmpty()) return null;
         return ttfFileRef;
     }
 

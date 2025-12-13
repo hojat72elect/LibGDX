@@ -88,7 +88,7 @@ public class ShadowEffect implements ConfigurableEffect {
         return triangle;
     }
 
-    public void draw(BufferedImage image, Graphics2D g, UnicodeFont unicodeFont, Glyph glyph) {
+    public void draw(@NotNull BufferedImage image, @NotNull Graphics2D g, UnicodeFont unicodeFont, Glyph glyph) {
         g = (Graphics2D) g.create();
         g.translate(xDistance, yDistance);
         g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), Math.round(opacity * 255)));
