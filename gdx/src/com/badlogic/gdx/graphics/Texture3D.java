@@ -12,11 +12,10 @@ import java.util.Map;
 
 /**
  * Open GLES wrapper for Texture3D
- *
- *  */
+ */
 public class Texture3D extends GLTexture {
 
-    final static Map<Application, Array<Texture3D>> managedTexture3Ds = new HashMap<Application, Array<Texture3D>>();
+    final static Map<Application, Array<Texture3D>> managedTexture3Ds = new HashMap<>();
     protected TextureWrap rWrap = TextureWrap.ClampToEdge;
     private Texture3DData data;
 
@@ -38,7 +37,7 @@ public class Texture3D extends GLTexture {
 
     private static void addManagedTexture(Application app, Texture3D texture) {
         Array<Texture3D> managedTextureArray = managedTexture3Ds.get(app);
-        if (managedTextureArray == null) managedTextureArray = new Array<Texture3D>();
+        if (managedTextureArray == null) managedTextureArray = new Array<>();
         managedTextureArray.add(texture);
         managedTexture3Ds.put(app, managedTextureArray);
     }
