@@ -22,8 +22,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  * of serialization, because the per object {@link SaveData} blocks are stored as an {@link Array} within the {@link ResourceData}
  * , while the global {@link SaveData} instances can be accessed in any order because require a unique {@link String} and are
  * stored in an {@link ObjectMap}.
- *
- *  */
+ */
 public class ResourceData<T> implements Json.Serializable {
 
     public T resource;
@@ -43,9 +42,9 @@ public class ResourceData<T> implements Json.Serializable {
     private int currentLoadIndex;
 
     public ResourceData() {
-        uniqueData = new ObjectMap<String, SaveData>();
+        uniqueData = new ObjectMap<>();
         data = new Array<>(true, 3, SaveData[]::new);
-        sharedAssets = new Array<AssetData>();
+        sharedAssets = new Array<>();
         currentLoadIndex = 0;
     }
     public ResourceData(T resource) {
@@ -65,7 +64,7 @@ public class ResourceData<T> implements Json.Serializable {
     }
 
     public Array<AssetDescriptor> getAssetDescriptors() {
-        Array<AssetDescriptor> descriptors = new Array<AssetDescriptor>();
+        Array<AssetDescriptor> descriptors = new Array<>();
         for (AssetData data : sharedAssets) {
             descriptors.add(new AssetDescriptor<T>(data.filename, data.type));
         }
@@ -154,13 +153,13 @@ public class ResourceData<T> implements Json.Serializable {
         private int loadIndex;
 
         public SaveData() {
-            data = new ObjectMap<String, Object>();
+            data = new ObjectMap<>();
             assets = new IntArray();
             loadIndex = 0;
         }
 
         public SaveData(ResourceData resources) {
-            data = new ObjectMap<String, Object>();
+            data = new ObjectMap<>();
             assets = new IntArray();
             loadIndex = 0;
             this.resources = resources;
