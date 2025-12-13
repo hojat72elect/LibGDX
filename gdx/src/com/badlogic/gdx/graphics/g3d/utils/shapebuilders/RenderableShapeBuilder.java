@@ -11,21 +11,17 @@ import com.badlogic.gdx.utils.FlushablePool;
 
 /**
  * RenderableShapeBuilder builds various properties of a renderable.
- *
- *  */
+ */
 public class RenderableShapeBuilder extends BaseShapeBuilder {
 
     private final static RenderablePool renderablesPool = new RenderablePool();
-    private final static Array<Renderable> renderables = new Array<Renderable>();
+    private final static Array<Renderable> renderables = new Array<>();
     private static final int FLOAT_BYTES = 4;
     private static short[] indices;
     private static float[] vertices;
 
     /**
      * Builds normal, tangent and binormal of a RenderableProvider with default colors (normal blue, tangent red, binormal green).
-     *
-     * @param builder
-     * @param renderableProvider
      * @param vectorSize         Size of the normal vector
      */
     public static void buildNormals(MeshPartBuilder builder, RenderableProvider renderableProvider, float vectorSize) {
@@ -35,9 +31,6 @@ public class RenderableShapeBuilder extends BaseShapeBuilder {
 
     /**
      * Builds normal, tangent and binormal of a RenderableProvider.
-     *
-     * @param builder
-     * @param renderableProvider
      * @param vectorSize         Size of the normal vector
      * @param normalColor        Normal vector's color
      * @param tangentColor       Tangent vector's color
@@ -58,9 +51,6 @@ public class RenderableShapeBuilder extends BaseShapeBuilder {
 
     /**
      * Builds normal, tangent and binormal of a Renderable.
-     *
-     * @param builder
-     * @param renderable
      * @param vectorSize    Size of the normal vector
      * @param normalColor   Normal vector's color
      * @param tangentColor  Tangent vector's color
@@ -168,15 +158,13 @@ public class RenderableShapeBuilder extends BaseShapeBuilder {
 
     private static short minVerticeInIndices() {
         short min = (short) 32767;
-        for (int i = 0; i < indices.length; i++)
-            if (indices[i] < min) min = indices[i];
+        for (short index : indices) if (index < min) min = index;
         return min;
     }
 
     private static short maxVerticeInIndices() {
         short max = (short) -32768;
-        for (int i = 0; i < indices.length; i++)
-            if (indices[i] > max) max = indices[i];
+        for (short index : indices) if (index > max) max = index;
         return max;
     }
 

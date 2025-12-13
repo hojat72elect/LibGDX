@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A relatively lightweight class which can be used to render basic shapes which don't need a node structure and alike. Can be
  * used for batching both static and dynamic shapes which share the same {@link Material} and transformation {@link Matrix4}
@@ -68,7 +70,6 @@ public class ShapeCache implements Disposable, RenderableProvider {
      * @param maxVertices   max vertices in mesh
      * @param maxIndices    max indices in mesh
      * @param attributes    vertex attributes
-     * @param primitiveType
      */
     public ShapeCache(int maxVertices, int maxIndices, VertexAttributes attributes, int primitiveType) {
         // Init mesh
@@ -115,7 +116,7 @@ public class ShapeCache implements Disposable, RenderableProvider {
     }
 
     @Override
-    public void getRenderables(Array<Renderable> renderables, Pool<Renderable> pool) {
+    public void getRenderables(Array<Renderable> renderables, @NotNull Pool<Renderable> pool) {
         renderables.add(renderable);
     }
 

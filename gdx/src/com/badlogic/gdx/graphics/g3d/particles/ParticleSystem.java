@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g3d.particles.batches.ParticleBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Singleton class which manages the particle effects. It's a utility class to ease particle batches management and particle
  * effects update.
@@ -102,7 +104,7 @@ public final class ParticleSystem implements RenderableProvider {
     }
 
     @Override
-    public void getRenderables(Array<Renderable> renderables, Pool<Renderable> pool) {
+    public void getRenderables(@NotNull Array<Renderable> renderables, @NotNull Pool<Renderable> pool) {
         for (ParticleBatch<?> batch : batches)
             batch.getRenderables(renderables, pool);
     }

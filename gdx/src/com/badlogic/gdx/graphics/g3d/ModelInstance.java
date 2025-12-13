@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.Pool;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * An instance of a {@link Model}, allows to specify global transform and modify the materials, as it has a copy of the model's
  * materials. Multiple instances can be created from the same Model, all sharing the meshes and textures of the Model. The Model
@@ -31,11 +33,11 @@ public class ModelInstance implements RenderableProvider {
      * the materials of the model, used by nodes that have a graphical representation FIXME not sure if superfluous, allows
      * modification of materials without having to traverse the nodes
      **/
-    public final Array<Material> materials = new Array();
+    public final Array<Material> materials = new Array<>();
     /**
      * root nodes of the model
      **/
-    public final Array<Node> nodes = new Array();
+    public final Array<Node> nodes = new Array<>();
     /**
      * animations of the model, modifying node transformations
      **/
@@ -381,19 +383,19 @@ public class ModelInstance implements RenderableProvider {
                 nodeAnim.scaling = nanim.scaling;
             } else {
                 if (nanim.translation != null) {
-                    nodeAnim.translation = new Array<NodeKeyframe<Vector3>>();
+                    nodeAnim.translation = new Array<>();
                     for (final NodeKeyframe<Vector3> kf : nanim.translation)
-                        nodeAnim.translation.add(new NodeKeyframe<Vector3>(kf.keytime, kf.value));
+                        nodeAnim.translation.add(new NodeKeyframe<>(kf.keytime, kf.value));
                 }
                 if (nanim.rotation != null) {
-                    nodeAnim.rotation = new Array<NodeKeyframe<Quaternion>>();
+                    nodeAnim.rotation = new Array<>();
                     for (final NodeKeyframe<Quaternion> kf : nanim.rotation)
-                        nodeAnim.rotation.add(new NodeKeyframe<Quaternion>(kf.keytime, kf.value));
+                        nodeAnim.rotation.add(new NodeKeyframe<>(kf.keytime, kf.value));
                 }
                 if (nanim.scaling != null) {
-                    nodeAnim.scaling = new Array<NodeKeyframe<Vector3>>();
+                    nodeAnim.scaling = new Array<>();
                     for (final NodeKeyframe<Vector3> kf : nanim.scaling)
-                        nodeAnim.scaling.add(new NodeKeyframe<Vector3>(kf.keytime, kf.value));
+                        nodeAnim.scaling.add(new NodeKeyframe<>(kf.keytime, kf.value));
                 }
             }
             if (nodeAnim.translation != null || nodeAnim.rotation != null || nodeAnim.scaling != null)
@@ -409,7 +411,7 @@ public class ModelInstance implements RenderableProvider {
      * @param renderables the output array
      * @param pool        the pool to obtain Renderables from
      */
-    public void getRenderables(Array<Renderable> renderables, Pool<Renderable> pool) {
+    public void getRenderables(@NotNull Array<Renderable> renderables, @NotNull Pool<Renderable> pool) {
         for (Node node : nodes) {
             getRenderables(node, renderables, pool);
         }

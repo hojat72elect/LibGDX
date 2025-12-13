@@ -218,7 +218,7 @@ public class ModelCache implements Disposable, RenderableProvider {
     }
 
     @Override
-    public void getRenderables(Array<Renderable> renderables, Pool<Renderable> pool) {
+    public void getRenderables(@NotNull Array<Renderable> renderables, @NotNull Pool<Renderable> pool) {
         if (building) throw new GdxRuntimeException("Cannot render a ModelCache in between .begin() and .end()");
         for (Renderable r : this.renderables) {
             r.shader = null;
