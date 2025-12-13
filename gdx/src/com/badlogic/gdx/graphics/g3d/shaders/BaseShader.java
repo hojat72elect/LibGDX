@@ -21,14 +21,16 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.IntIntMap;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A BaseShader is a wrapper around a ShaderProgram that keeps track of the uniform and attribute locations. It
  * does not manage the ShaderPogram, you are still responsible for disposing the ShaderProgram.
  */
 public abstract class BaseShader implements Shader {
-    private final Array<String> uniforms = new Array<String>();
-    private final Array<Validator> validators = new Array<Validator>();
-    private final Array<Setter> setters = new Array<Setter>();
+    private final Array<String> uniforms = new Array<>();
+    private final Array<Validator> validators = new Array<>();
+    private final Array<Setter> setters = new Array<>();
     private final IntArray globalUniforms = new IntArray();
     private final IntArray localUniforms = new IntArray();
     private final IntIntMap attributes = new IntIntMap();
@@ -149,7 +151,7 @@ public abstract class BaseShader implements Shader {
     }
 
     @Override
-    public void begin(Camera camera, RenderContext context) {
+    public void begin(@NotNull Camera camera, @NotNull RenderContext context) {
         this.camera = camera;
         this.context = context;
         program.bind();

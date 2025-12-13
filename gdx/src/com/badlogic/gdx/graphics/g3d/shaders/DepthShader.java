@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 public class DepthShader extends DefaultShader {
     private final static Attributes tmpAttributes = new Attributes();
     private static String defaultVertexShader = null;
@@ -79,7 +81,7 @@ public class DepthShader extends DefaultShader {
     }
 
     @Override
-    public void begin(Camera camera, RenderContext context) {
+    public void begin(@NotNull Camera camera, @NotNull RenderContext context) {
         super.begin(camera, context);
         // Gdx.gl20.glEnable(GL20.GL_POLYGON_OFFSET_FILL);
         // Gdx.gl20.glPolygonOffset(2.f, 100.f);

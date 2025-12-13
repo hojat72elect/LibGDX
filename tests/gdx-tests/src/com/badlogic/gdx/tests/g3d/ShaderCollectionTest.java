@@ -59,7 +59,7 @@ public class ShaderCollectionTest extends BaseG3dHudTest {
     protected FileHandle shaderRoot;
     protected ModelBatch shaderBatch;
     protected CollapsableWindow shadersWindow, materialsWindow, environmentsWindow;
-    protected ObjectMap<ModelInstance, AnimationController> animationControllers = new ObjectMap<ModelInstance, AnimationController>();
+    protected ObjectMap<ModelInstance, AnimationController> animationControllers = new ObjectMap<>();
     protected String currentModel = null;
     protected String currentMaterial = null;
     protected boolean loadingMaterial = false;

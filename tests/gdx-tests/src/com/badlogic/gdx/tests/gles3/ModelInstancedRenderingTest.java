@@ -18,6 +18,8 @@ import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 
@@ -84,7 +86,7 @@ public class ModelInstancedRenderingTest extends GdxTest {
             }
 
             @Override
-            public boolean canRender(Renderable instance) {
+            public boolean canRender(@NotNull Renderable instance) {
                 return true;
             }
         };

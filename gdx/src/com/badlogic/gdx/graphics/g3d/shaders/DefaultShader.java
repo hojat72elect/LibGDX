@@ -32,6 +32,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 public class DefaultShader extends BaseShader {
     /**
      * Attributes which are not required but always supported.
@@ -428,7 +430,7 @@ public class DefaultShader extends BaseShader {
     }
 
     @Override
-    public void begin(final Camera camera, final RenderContext context) {
+    public void begin(@NotNull final Camera camera, @NotNull final RenderContext context) {
         super.begin(camera, context);
 
         for (final DirectionalLight dirLight : directionalLights)

@@ -21,11 +21,12 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This is a custom shader to render the particles. Usually is not required, because the {@link DefaultShader} will be used
  * instead. This shader will be used when dealing with billboards using GPU mode or point sprites.
- *
- *  */
+ */
 public class ParticleShader extends BaseShader {
     static final Vector3 TMP_VECTOR3 = new Vector3();
     /**
@@ -106,8 +107,6 @@ public class ParticleShader extends BaseShader {
             if (config.align == AlignMode.Screen)
                 prefix += "#define screenFacing\n";
             else if (config.align == AlignMode.ViewPoint) prefix += "#define viewPointFacing\n";
-            // else if(config.align == AlignMode.ParticleDirection)
-            // prefix += "#define paticleDirectionFacing\n";
         }
         return prefix;
     }
@@ -143,7 +142,7 @@ public class ParticleShader extends BaseShader {
     }
 
     @Override
-    public void begin(final Camera camera, final RenderContext context) {
+    public void begin(@NotNull final Camera camera, @NotNull final RenderContext context) {
         super.begin(camera, context);
     }
 

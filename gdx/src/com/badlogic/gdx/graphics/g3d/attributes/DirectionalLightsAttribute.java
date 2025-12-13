@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Array;
  * An {@link Attribute} which can be used to send an {@link Array} of {@link DirectionalLight} instances to the {@link Shader}.
  * The lights are stored by reference, the {@link #copy()} or {@link #DirectionalLightsAttribute(DirectionalLightsAttribute)}
  * method will not create new lights.
- *
- *  */
+ */
 public class DirectionalLightsAttribute extends Attribute {
     public final static String Alias = "directionalLights";
     public final static long Type = register(Alias);
@@ -18,7 +17,7 @@ public class DirectionalLightsAttribute extends Attribute {
 
     public DirectionalLightsAttribute() {
         super(Type);
-        lights = new Array<DirectionalLight>(1);
+        lights = new Array<>(1);
     }
 
     public DirectionalLightsAttribute(final DirectionalLightsAttribute copyFrom) {

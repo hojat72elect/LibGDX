@@ -9,8 +9,7 @@ import com.badlogic.gdx.utils.Array;
  * An {@link Attribute} which can be used to send an {@link Array} of {@link PointLight} instances to the {@link Shader}. The
  * lights are stored by reference, the {@link #copy()} or {@link #PointLightsAttribute(PointLightsAttribute)} method will not
  * create new lights.
- *
- *  */
+ */
 public class PointLightsAttribute extends Attribute {
     public final static String Alias = "pointLights";
     public final static long Type = register(Alias);
@@ -18,7 +17,7 @@ public class PointLightsAttribute extends Attribute {
 
     public PointLightsAttribute() {
         super(Type);
-        lights = new Array<PointLight>(1);
+        lights = new Array<>(1);
     }
 
     public PointLightsAttribute(final PointLightsAttribute copyFrom) {

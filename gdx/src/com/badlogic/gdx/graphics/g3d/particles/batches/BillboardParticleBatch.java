@@ -609,7 +609,7 @@ public class BillboardParticleBatch extends BufferedParticleBatch<BillboardContr
      */
 
     @Override
-    public void getRenderables(Array<Renderable> renderables, Pool<Renderable> pool) {
+    public void getRenderables(@NotNull Array<Renderable> renderables, @NotNull Pool<Renderable> pool) {
         for (Renderable renderable : this.renderables)
             renderables.add(pool.obtain().set(renderable));
     }
