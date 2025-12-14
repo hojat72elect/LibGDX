@@ -16,8 +16,7 @@ import java.util.Set;
 /**
  * The Realistic shadow system creates real shadows. Indeed, with this system, a shadow is the absence of light. This system
  * performs only one render pass for each light and then render the scene.
- *
- *  */
+ */
 public class RealisticShadowSystem extends FirstPassBaseShadowSystem {
 
     /**

@@ -3,6 +3,8 @@ package com.badlogic.gdx.tests.g3d.shadows.utils;
 import com.badlogic.gdx.graphics.g3d.environment.BaseLight;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * FixedShadowMapAllocator behavior is naive. It separates the texture in several parts and for each light increments the region.
  * The larger the size, the better the quality or quantity.
@@ -95,7 +97,7 @@ public class FixedShadowMapAllocator implements ShadowMapAllocator {
     }
 
     @Override
-    public ShadowMapRegion nextResult(BaseLight light) {
+    public ShadowMapRegion nextResult(@NotNull BaseLight light) {
         if (!allocating) {
             throw new GdxRuntimeException("Allocator must begin before call");
         }

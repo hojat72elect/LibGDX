@@ -11,8 +11,7 @@ import com.badlogic.gdx.tests.g3d.shadows.utils.ShadowMapAllocator;
 
 /**
  * FirstPassBaseShadowSystem assumes that the first pass renders all depth map in one texture.
- *
- *  */
+ */
 public abstract class FirstPassBaseShadowSystem extends BaseShadowSystem {
 
     protected static int FIRST_PASS = 0;
