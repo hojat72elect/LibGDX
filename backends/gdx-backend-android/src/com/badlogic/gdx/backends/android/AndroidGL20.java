@@ -4,6 +4,8 @@ import android.opengl.GLES20;
 
 import com.badlogic.gdx.graphics.GL20;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -22,7 +24,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glAttachShader(program, shader);
     }
 
-    public void glBindAttribLocation(int program, int index, String name) {
+    public void glBindAttribLocation(int program, int index, @NotNull String name) {
         GLES20.glBindAttribLocation(program, index, name);
     }
 
@@ -66,7 +68,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glBufferData(target, size, data, usage);
     }
 
-    public void glBufferSubData(int target, int offset, int size, Buffer data) {
+    public void glBufferSubData(int target, int offset, int size, @NotNull Buffer data) {
         GLES20.glBufferSubData(target, offset, size, data);
     }
 
@@ -99,12 +101,12 @@ public class AndroidGL20 implements GL20 {
     }
 
     public void glCompressedTexImage2D(int target, int level, int internalformat, int width, int height, int border,
-                                       int imageSize, Buffer data) {
+                                       int imageSize, @NotNull Buffer data) {
         GLES20.glCompressedTexImage2D(target, level, internalformat, width, height, border, imageSize, data);
     }
 
     public void glCompressedTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format,
-                                          int imageSize, Buffer data) {
+                                          int imageSize, @NotNull Buffer data) {
         GLES20.glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, imageSize, data);
     }
 
@@ -128,7 +130,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glCullFace(mode);
     }
 
-    public void glDeleteBuffers(int n, IntBuffer buffers) {
+    public void glDeleteBuffers(int n, @NotNull IntBuffer buffers) {
         GLES20.glDeleteBuffers(n, buffers);
     }
 
@@ -137,7 +139,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glDeleteBuffers(1, ints, 0);
     }
 
-    public void glDeleteFramebuffers(int n, IntBuffer framebuffers) {
+    public void glDeleteFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         GLES20.glDeleteFramebuffers(n, framebuffers);
     }
 
@@ -150,7 +152,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glDeleteProgram(program);
     }
 
-    public void glDeleteRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glDeleteRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         GLES20.glDeleteRenderbuffers(n, renderbuffers);
     }
 
@@ -163,7 +165,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glDeleteShader(shader);
     }
 
-    public void glDeleteTextures(int n, IntBuffer textures) {
+    public void glDeleteTextures(int n, @NotNull IntBuffer textures) {
         GLES20.glDeleteTextures(n, textures);
     }
 
@@ -200,7 +202,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glDrawArrays(mode, first, count);
     }
 
-    public void glDrawElements(int mode, int count, int type, Buffer indices) {
+    public void glDrawElements(int mode, int count, int type, @NotNull Buffer indices) {
         GLES20.glDrawElements(mode, count, type, indices);
     }
 
@@ -236,7 +238,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glFrontFace(mode);
     }
 
-    public void glGenBuffers(int n, IntBuffer buffers) {
+    public void glGenBuffers(int n, @NotNull IntBuffer buffers) {
         GLES20.glGenBuffers(n, buffers);
     }
 
@@ -249,7 +251,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glGenerateMipmap(target);
     }
 
-    public void glGenFramebuffers(int n, IntBuffer framebuffers) {
+    public void glGenFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         GLES20.glGenFramebuffers(n, framebuffers);
     }
 
@@ -258,7 +260,7 @@ public class AndroidGL20 implements GL20 {
         return ints[0];
     }
 
-    public void glGenRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glGenRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         GLES20.glGenRenderbuffers(n, renderbuffers);
     }
 
@@ -267,7 +269,7 @@ public class AndroidGL20 implements GL20 {
         return ints[0];
     }
 
-    public void glGenTextures(int n, IntBuffer textures) {
+    public void glGenTextures(int n, @NotNull IntBuffer textures) {
         GLES20.glGenTextures(n, textures);
     }
 
@@ -276,6 +278,7 @@ public class AndroidGL20 implements GL20 {
         return ints[0];
     }
 
+    @NotNull
     public String glGetActiveAttrib(int program, int index, IntBuffer size, IntBuffer type) {
         GLES20.glGetActiveAttrib(program, index, buffer.length, ints, 0, ints2, 0, ints3, 0, buffer, 0);
 
@@ -287,6 +290,7 @@ public class AndroidGL20 implements GL20 {
         return new String(buffer, 0, ints[0]);
     }
 
+    @NotNull
     public String glGetActiveUniform(int program, int index, IntBuffer size, IntBuffer type) {
         GLES20.glGetActiveUniform(program, index, buffer.length, ints, 0, ints2, 0, ints3, 0, buffer, 0);
 
@@ -298,19 +302,19 @@ public class AndroidGL20 implements GL20 {
         return new String(buffer, 0, ints[0]);
     }
 
-    public void glGetAttachedShaders(int program, int maxcount, Buffer count, IntBuffer shaders) {
+    public void glGetAttachedShaders(int program, int maxcount, @NotNull Buffer count, @NotNull IntBuffer shaders) {
         GLES20.glGetAttachedShaders(program, maxcount, (IntBuffer) count, shaders);
     }
 
-    public int glGetAttribLocation(int program, String name) {
+    public int glGetAttribLocation(int program, @NotNull String name) {
         return GLES20.glGetAttribLocation(program, name);
     }
 
-    public void glGetBooleanv(int pname, Buffer params) {
+    public void glGetBooleanv(int pname, @NotNull Buffer params) {
         GLES20.glGetBooleanv(pname, (IntBuffer) params);
     }
 
-    public void glGetBufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetBufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GLES20.glGetBufferParameteriv(target, pname, params);
     }
 
@@ -318,75 +322,78 @@ public class AndroidGL20 implements GL20 {
         return GLES20.glGetError();
     }
 
-    public void glGetFloatv(int pname, FloatBuffer params) {
+    public void glGetFloatv(int pname, @NotNull FloatBuffer params) {
         GLES20.glGetFloatv(pname, params);
     }
 
-    public void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, IntBuffer params) {
+    public void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, @NotNull IntBuffer params) {
         GLES20.glGetFramebufferAttachmentParameteriv(target, attachment, pname, params);
     }
 
-    public void glGetIntegerv(int pname, IntBuffer params) {
+    public void glGetIntegerv(int pname, @NotNull IntBuffer params) {
         GLES20.glGetIntegerv(pname, params);
     }
 
-    public void glGetProgramiv(int program, int pname, IntBuffer params) {
+    public void glGetProgramiv(int program, int pname, @NotNull IntBuffer params) {
         GLES20.glGetProgramiv(program, pname, params);
     }
 
+    @NotNull
     public String glGetProgramInfoLog(int program) {
         return GLES20.glGetProgramInfoLog(program);
     }
 
-    public void glGetRenderbufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetRenderbufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GLES20.glGetRenderbufferParameteriv(target, pname, params);
     }
 
-    public void glGetShaderiv(int shader, int pname, IntBuffer params) {
+    public void glGetShaderiv(int shader, int pname, @NotNull IntBuffer params) {
         GLES20.glGetShaderiv(shader, pname, params);
     }
 
+    @NotNull
     public String glGetShaderInfoLog(int shader) {
         return GLES20.glGetShaderInfoLog(shader);
     }
 
-    public void glGetShaderPrecisionFormat(int shadertype, int precisiontype, IntBuffer range, IntBuffer precision) {
+    public void glGetShaderPrecisionFormat(int shadertype, int precisiontype, @NotNull IntBuffer range, @NotNull IntBuffer precision) {
         GLES20.glGetShaderPrecisionFormat(shadertype, precisiontype, range, precision);
     }
 
+    @NotNull
     public String glGetString(int name) {
         return GLES20.glGetString(name);
     }
 
-    public void glGetTexParameterfv(int target, int pname, FloatBuffer params) {
+    public void glGetTexParameterfv(int target, int pname, @NotNull FloatBuffer params) {
         GLES20.glGetTexParameterfv(target, pname, params);
     }
 
-    public void glGetTexParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetTexParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GLES20.glGetTexParameteriv(target, pname, params);
     }
 
-    public void glGetUniformfv(int program, int location, FloatBuffer params) {
+    public void glGetUniformfv(int program, int location, @NotNull FloatBuffer params) {
         GLES20.glGetUniformfv(program, location, params);
     }
 
-    public void glGetUniformiv(int program, int location, IntBuffer params) {
+    public void glGetUniformiv(int program, int location, @NotNull IntBuffer params) {
         GLES20.glGetUniformiv(program, location, params);
     }
 
-    public int glGetUniformLocation(int program, String name) {
+    public int glGetUniformLocation(int program, @NotNull String name) {
         return GLES20.glGetUniformLocation(program, name);
     }
 
-    public void glGetVertexAttribfv(int index, int pname, FloatBuffer params) {
+    public void glGetVertexAttribfv(int index, int pname, @NotNull FloatBuffer params) {
         GLES20.glGetVertexAttribfv(index, pname, params);
     }
 
-    public void glGetVertexAttribiv(int index, int pname, IntBuffer params) {
+    public void glGetVertexAttribiv(int index, int pname, @NotNull IntBuffer params) {
         GLES20.glGetVertexAttribiv(index, pname, params);
     }
 
-    public void glGetVertexAttribPointerv(int index, int pname, Buffer pointer) {
+    public void glGetVertexAttribPointerv(int index, int pname, @NotNull Buffer pointer) {
         // FIXME won't implement this shit
     }
 
@@ -438,7 +445,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glPolygonOffset(factor, units);
     }
 
-    public void glReadPixels(int x, int y, int width, int height, int format, int type, Buffer pixels) {
+    public void glReadPixels(int x, int y, int width, int height, int format, int type, @NotNull Buffer pixels) {
         GLES20.glReadPixels(x, y, width, height, format, type, pixels);
     }
 
@@ -458,11 +465,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glScissor(x, y, width, height);
     }
 
-    public void glShaderBinary(int n, IntBuffer shaders, int binaryformat, Buffer binary, int length) {
+    public void glShaderBinary(int n, @NotNull IntBuffer shaders, int binaryformat, @NotNull Buffer binary, int length) {
         GLES20.glShaderBinary(n, shaders, binaryformat, binary, length);
     }
 
-    public void glShaderSource(int shader, String string) {
+    public void glShaderSource(int shader, @NotNull String string) {
         GLES20.glShaderSource(shader, string);
     }
 
@@ -491,7 +498,7 @@ public class AndroidGL20 implements GL20 {
     }
 
     public void glTexImage2D(int target, int level, int internalformat, int width, int height, int border, int format, int type,
-                             Buffer pixels) {
+                             @NotNull Buffer pixels) {
         GLES20.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
@@ -499,7 +506,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glTexParameterf(target, pname, param);
     }
 
-    public void glTexParameterfv(int target, int pname, FloatBuffer params) {
+    public void glTexParameterfv(int target, int pname, @NotNull FloatBuffer params) {
         GLES20.glTexParameterfv(target, pname, params);
     }
 
@@ -507,12 +514,12 @@ public class AndroidGL20 implements GL20 {
         GLES20.glTexParameteri(target, pname, param);
     }
 
-    public void glTexParameteriv(int target, int pname, IntBuffer params) {
+    public void glTexParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GLES20.glTexParameteriv(target, pname, params);
     }
 
     public void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int type,
-                                Buffer pixels) {
+                                @NotNull Buffer pixels) {
         GLES20.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
@@ -520,11 +527,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform1f(location, x);
     }
 
-    public void glUniform1fv(int location, int count, FloatBuffer v) {
+    public void glUniform1fv(int location, int count, @NotNull FloatBuffer v) {
         GLES20.glUniform1fv(location, count, v);
     }
 
-    public void glUniform1fv(int location, int count, float[] v, int offset) {
+    public void glUniform1fv(int location, int count, @NotNull float[] v, int offset) {
         GLES20.glUniform1fv(location, count, v, offset);
     }
 
@@ -532,11 +539,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform1i(location, x);
     }
 
-    public void glUniform1iv(int location, int count, IntBuffer v) {
+    public void glUniform1iv(int location, int count, @NotNull IntBuffer v) {
         GLES20.glUniform1iv(location, count, v);
     }
 
-    public void glUniform1iv(int location, int count, int[] v, int offset) {
+    public void glUniform1iv(int location, int count, @NotNull int[] v, int offset) {
         GLES20.glUniform1iv(location, count, v, offset);
     }
 
@@ -544,11 +551,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform2f(location, x, y);
     }
 
-    public void glUniform2fv(int location, int count, FloatBuffer v) {
+    public void glUniform2fv(int location, int count, @NotNull FloatBuffer v) {
         GLES20.glUniform2fv(location, count, v);
     }
 
-    public void glUniform2fv(int location, int count, float[] v, int offset) {
+    public void glUniform2fv(int location, int count, @NotNull float[] v, int offset) {
         GLES20.glUniform2fv(location, count, v, offset);
     }
 
@@ -556,11 +563,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform2i(location, x, y);
     }
 
-    public void glUniform2iv(int location, int count, IntBuffer v) {
+    public void glUniform2iv(int location, int count, @NotNull IntBuffer v) {
         GLES20.glUniform2iv(location, count, v);
     }
 
-    public void glUniform2iv(int location, int count, int[] v, int offset) {
+    public void glUniform2iv(int location, int count, @NotNull int[] v, int offset) {
         GLES20.glUniform2iv(location, count, v, offset);
     }
 
@@ -568,11 +575,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform3f(location, x, y, z);
     }
 
-    public void glUniform3fv(int location, int count, FloatBuffer v) {
+    public void glUniform3fv(int location, int count, @NotNull FloatBuffer v) {
         GLES20.glUniform3fv(location, count, v);
     }
 
-    public void glUniform3fv(int location, int count, float[] v, int offset) {
+    public void glUniform3fv(int location, int count, @NotNull float[] v, int offset) {
         GLES20.glUniform3fv(location, count, v, offset);
     }
 
@@ -580,11 +587,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform3i(location, x, y, z);
     }
 
-    public void glUniform3iv(int location, int count, IntBuffer v) {
+    public void glUniform3iv(int location, int count, @NotNull IntBuffer v) {
         GLES20.glUniform3iv(location, count, v);
     }
 
-    public void glUniform3iv(int location, int count, int[] v, int offset) {
+    public void glUniform3iv(int location, int count, @NotNull int[] v, int offset) {
         GLES20.glUniform3iv(location, count, v, offset);
     }
 
@@ -592,11 +599,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform4f(location, x, y, z, w);
     }
 
-    public void glUniform4fv(int location, int count, FloatBuffer v) {
+    public void glUniform4fv(int location, int count, @NotNull FloatBuffer v) {
         GLES20.glUniform4fv(location, count, v);
     }
 
-    public void glUniform4fv(int location, int count, float[] v, int offset) {
+    public void glUniform4fv(int location, int count, @NotNull float[] v, int offset) {
         GLES20.glUniform4fv(location, count, v, offset);
     }
 
@@ -604,35 +611,35 @@ public class AndroidGL20 implements GL20 {
         GLES20.glUniform4i(location, x, y, z, w);
     }
 
-    public void glUniform4iv(int location, int count, IntBuffer v) {
+    public void glUniform4iv(int location, int count, @NotNull IntBuffer v) {
         GLES20.glUniform4iv(location, count, v);
     }
 
-    public void glUniform4iv(int location, int count, int[] v, int offset) {
+    public void glUniform4iv(int location, int count, @NotNull int[] v, int offset) {
         GLES20.glUniform4iv(location, count, v, offset);
     }
 
-    public void glUniformMatrix2fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix2fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GLES20.glUniformMatrix2fv(location, count, transpose, value);
     }
 
-    public void glUniformMatrix2fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix2fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         GLES20.glUniformMatrix2fv(location, count, transpose, value, offset);
     }
 
-    public void glUniformMatrix3fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix3fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GLES20.glUniformMatrix3fv(location, count, transpose, value);
     }
 
-    public void glUniformMatrix3fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix3fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         GLES20.glUniformMatrix3fv(location, count, transpose, value, offset);
     }
 
-    public void glUniformMatrix4fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix4fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GLES20.glUniformMatrix4fv(location, count, transpose, value);
     }
 
-    public void glUniformMatrix4fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix4fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         GLES20.glUniformMatrix4fv(location, count, transpose, value, offset);
     }
 
@@ -648,7 +655,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glVertexAttrib1f(indx, x);
     }
 
-    public void glVertexAttrib1fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib1fv(int indx, @NotNull FloatBuffer values) {
         GLES20.glVertexAttrib1fv(indx, values);
     }
 
@@ -656,7 +663,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glVertexAttrib2f(indx, x, y);
     }
 
-    public void glVertexAttrib2fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib2fv(int indx, @NotNull FloatBuffer values) {
         GLES20.glVertexAttrib2fv(indx, values);
     }
 
@@ -664,7 +671,7 @@ public class AndroidGL20 implements GL20 {
         GLES20.glVertexAttrib3f(indx, x, y, z);
     }
 
-    public void glVertexAttrib3fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib3fv(int indx, @NotNull FloatBuffer values) {
         GLES20.glVertexAttrib3fv(indx, values);
     }
 
@@ -672,11 +679,11 @@ public class AndroidGL20 implements GL20 {
         GLES20.glVertexAttrib4f(indx, x, y, z, w);
     }
 
-    public void glVertexAttrib4fv(int indx, FloatBuffer values) {
+    public void glVertexAttrib4fv(int indx, @NotNull FloatBuffer values) {
         GLES20.glVertexAttrib4fv(indx, values);
     }
 
-    public void glVertexAttribPointer(int indx, int size, int type, boolean normalized, int stride, Buffer ptr) {
+    public void glVertexAttribPointer(int indx, int size, int type, boolean normalized, int stride, @NotNull Buffer ptr) {
         GLES20.glVertexAttribPointer(indx, size, type, normalized, stride, ptr);
     }
 

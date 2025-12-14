@@ -2,6 +2,7 @@ package com.badlogic.gdx.backends.lwjgl;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.EXTFramebufferObject;
 import org.lwjgl.opengl.GL11;
@@ -21,8 +22,7 @@ import java.nio.ShortBuffer;
 /**
  * An implementation of the {@link GL20} interface based on LWJGL. Note that LWJGL shaders and OpenGL ES shaders will not be 100%
  * compatible. Some glGetXXX methods are not implemented.
- *
- *  */
+ */
 class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
     private ByteBuffer buffer = null;
     private FloatBuffer floatBuffer = null;
@@ -58,7 +58,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glAttachShader(program, shader);
     }
 
-    public void glBindAttribLocation(int program, int index, String name) {
+    public void glBindAttribLocation(int program, int index, @NotNull String name) {
         GL20.glBindAttribLocation(program, index, name);
     }
 
@@ -109,14 +109,12 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
             GL15.glBufferData(target, (FloatBuffer) data, usage);
         else if (data instanceof DoubleBuffer)
             GL15.glBufferData(target, (DoubleBuffer) data, usage);
-        else if (data instanceof ShortBuffer) //
+        else if (data instanceof ShortBuffer)
             GL15.glBufferData(target, (ShortBuffer) data, usage);
     }
 
-    public void glBufferSubData(int target, int offset, int size, Buffer data) {
-        if (data == null)
-            throw new GdxRuntimeException("Using null for the data not possible, blame LWJGL");
-        else if (data instanceof ByteBuffer)
+    public void glBufferSubData(int target, int offset, int size, @NotNull Buffer data) {
+        if (data instanceof ByteBuffer)
             GL15.glBufferSubData(target, offset, (ByteBuffer) data);
         else if (data instanceof IntBuffer)
             GL15.glBufferSubData(target, offset, (IntBuffer) data);
@@ -124,7 +122,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
             GL15.glBufferSubData(target, offset, (FloatBuffer) data);
         else if (data instanceof DoubleBuffer)
             GL15.glBufferSubData(target, offset, (DoubleBuffer) data);
-        else if (data instanceof ShortBuffer) //
+        else if (data instanceof ShortBuffer)
             GL15.glBufferSubData(target, offset, (ShortBuffer) data);
     }
 
@@ -157,7 +155,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
     }
 
     public void glCompressedTexImage2D(int target, int level, int internalformat, int width, int height, int border,
-                                       int imageSize, Buffer data) {
+                                       int imageSize, @NotNull Buffer data) {
         if (data instanceof ByteBuffer) {
             GL13.glCompressedTexImage2D(target, level, internalformat, width, height, border, (ByteBuffer) data);
         } else {
@@ -166,7 +164,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
     }
 
     public void glCompressedTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format,
-                                          int imageSize, Buffer data) {
+                                          int imageSize, @NotNull Buffer data) {
         throw new GdxRuntimeException("not implemented");
     }
 
@@ -190,7 +188,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glCullFace(mode);
     }
 
-    public void glDeleteBuffers(int n, IntBuffer buffers) {
+    public void glDeleteBuffers(int n, @NotNull IntBuffer buffers) {
         GL15.glDeleteBuffers(buffers);
     }
 
@@ -199,7 +197,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL15.glDeleteBuffers(buffer);
     }
 
-    public void glDeleteFramebuffers(int n, IntBuffer framebuffers) {
+    public void glDeleteFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         EXTFramebufferObject.glDeleteFramebuffersEXT(framebuffers);
     }
 
@@ -212,7 +210,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glDeleteProgram(program);
     }
 
-    public void glDeleteRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glDeleteRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         EXTFramebufferObject.glDeleteRenderbuffersEXT(renderbuffers);
     }
 
@@ -224,7 +222,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glDeleteShader(shader);
     }
 
-    public void glDeleteTextures(int n, IntBuffer textures) {
+    public void glDeleteTextures(int n, @NotNull IntBuffer textures) {
         GL11.glDeleteTextures(textures);
     }
 
@@ -261,7 +259,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glDrawArrays(mode, first, count);
     }
 
-    public void glDrawElements(int mode, int count, int type, Buffer indices) {
+    public void glDrawElements(int mode, int count, int type, @NotNull Buffer indices) {
         if (indices instanceof ShortBuffer && type == com.badlogic.gdx.graphics.GL20.GL_UNSIGNED_SHORT) {
             ShortBuffer sb = (ShortBuffer) indices;
             int position = sb.position();
@@ -316,7 +314,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glFrontFace(mode);
     }
 
-    public void glGenBuffers(int n, IntBuffer buffers) {
+    public void glGenBuffers(int n, @NotNull IntBuffer buffers) {
         GL15.glGenBuffers(buffers);
     }
 
@@ -324,7 +322,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return GL15.glGenBuffers();
     }
 
-    public void glGenFramebuffers(int n, IntBuffer framebuffers) {
+    public void glGenFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         EXTFramebufferObject.glGenFramebuffersEXT(framebuffers);
     }
 
@@ -332,7 +330,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return EXTFramebufferObject.glGenFramebuffersEXT();
     }
 
-    public void glGenRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glGenRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         EXTFramebufferObject.glGenRenderbuffersEXT(renderbuffers);
     }
 
@@ -340,7 +338,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return EXTFramebufferObject.glGenRenderbuffersEXT();
     }
 
-    public void glGenTextures(int n, IntBuffer textures) {
+    public void glGenTextures(int n, @NotNull IntBuffer textures) {
         GL11.glGenTextures(textures);
     }
 
@@ -352,6 +350,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         EXTFramebufferObject.glGenerateMipmapEXT(target);
     }
 
+    @NotNull
     public String glGetActiveAttrib(int program, int index, IntBuffer size, IntBuffer type) {
         // FIXME this is less than ideal of course...
         IntBuffer typeTmp = BufferUtils.createIntBuffer(2);
@@ -361,6 +360,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return name;
     }
 
+    @NotNull
     public String glGetActiveUniform(int program, int index, IntBuffer size, IntBuffer type) {
         // FIXME this is less than ideal of course...
         IntBuffer typeTmp = BufferUtils.createIntBuffer(2);
@@ -370,19 +370,19 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return name;
     }
 
-    public void glGetAttachedShaders(int program, int maxcount, Buffer count, IntBuffer shaders) {
+    public void glGetAttachedShaders(int program, int maxcount, @NotNull Buffer count, @NotNull IntBuffer shaders) {
         GL20.glGetAttachedShaders(program, (IntBuffer) count, shaders);
     }
 
-    public int glGetAttribLocation(int program, String name) {
+    public int glGetAttribLocation(int program, @NotNull String name) {
         return GL20.glGetAttribLocation(program, name);
     }
 
-    public void glGetBooleanv(int pname, Buffer params) {
+    public void glGetBooleanv(int pname, @NotNull Buffer params) {
         GL11.glGetBoolean(pname, (ByteBuffer) params);
     }
 
-    public void glGetBufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetBufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GL15.glGetBufferParameter(target, pname, params);
     }
 
@@ -390,18 +390,19 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return GL11.glGetError();
     }
 
-    public void glGetFloatv(int pname, FloatBuffer params) {
+    public void glGetFloatv(int pname, @NotNull FloatBuffer params) {
         GL11.glGetFloat(pname, params);
     }
 
-    public void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, IntBuffer params) {
+    public void glGetFramebufferAttachmentParameteriv(int target, int attachment, int pname, @NotNull IntBuffer params) {
         EXTFramebufferObject.glGetFramebufferAttachmentParameterEXT(target, attachment, pname, params);
     }
 
-    public void glGetIntegerv(int pname, IntBuffer params) {
+    public void glGetIntegerv(int pname, @NotNull IntBuffer params) {
         GL11.glGetInteger(pname, params);
     }
 
+    @NotNull
     public String glGetProgramInfoLog(int program) {
         ByteBuffer buffer = ByteBuffer.allocateDirect(1024 * 10);
         buffer.order(ByteOrder.nativeOrder());
@@ -416,14 +417,15 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return new String(bytes);
     }
 
-    public void glGetProgramiv(int program, int pname, IntBuffer params) {
+    public void glGetProgramiv(int program, int pname, @NotNull IntBuffer params) {
         GL20.glGetProgram(program, pname, params);
     }
 
-    public void glGetRenderbufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetRenderbufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         EXTFramebufferObject.glGetRenderbufferParameterEXT(target, pname, params);
     }
 
+    @NotNull
     public String glGetShaderInfoLog(int shader) {
         ByteBuffer buffer = ByteBuffer.allocateDirect(1024 * 10);
         buffer.order(ByteOrder.nativeOrder());
@@ -438,47 +440,48 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         return new String(bytes);
     }
 
-    public void glGetShaderPrecisionFormat(int shadertype, int precisiontype, IntBuffer range, IntBuffer precision) {
+    public void glGetShaderPrecisionFormat(int shadertype, int precisiontype, @NotNull IntBuffer range, @NotNull IntBuffer precision) {
         throw new UnsupportedOperationException("unsupported, won't implement");
     }
 
-    public void glGetShaderiv(int shader, int pname, IntBuffer params) {
+    public void glGetShaderiv(int shader, int pname, @NotNull IntBuffer params) {
         GL20.glGetShader(shader, pname, params);
     }
 
+    @NotNull
     public String glGetString(int name) {
         return GL11.glGetString(name);
     }
 
-    public void glGetTexParameterfv(int target, int pname, FloatBuffer params) {
+    public void glGetTexParameterfv(int target, int pname, @NotNull FloatBuffer params) {
         GL11.glGetTexParameter(target, pname, params);
     }
 
-    public void glGetTexParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetTexParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GL11.glGetTexParameter(target, pname, params);
     }
 
-    public int glGetUniformLocation(int program, String name) {
+    public int glGetUniformLocation(int program, @NotNull String name) {
         return GL20.glGetUniformLocation(program, name);
     }
 
-    public void glGetUniformfv(int program, int location, FloatBuffer params) {
+    public void glGetUniformfv(int program, int location, @NotNull FloatBuffer params) {
         GL20.glGetUniform(program, location, params);
     }
 
-    public void glGetUniformiv(int program, int location, IntBuffer params) {
+    public void glGetUniformiv(int program, int location, @NotNull IntBuffer params) {
         GL20.glGetUniform(program, location, params);
     }
 
-    public void glGetVertexAttribPointerv(int index, int pname, Buffer pointer) {
+    public void glGetVertexAttribPointerv(int index, int pname, @NotNull Buffer pointer) {
         throw new UnsupportedOperationException("unsupported, won't implement");
     }
 
-    public void glGetVertexAttribfv(int index, int pname, FloatBuffer params) {
+    public void glGetVertexAttribfv(int index, int pname, @NotNull FloatBuffer params) {
         GL20.glGetVertexAttrib(index, pname, params);
     }
 
-    public void glGetVertexAttribiv(int index, int pname, IntBuffer params) {
+    public void glGetVertexAttribiv(int index, int pname, @NotNull IntBuffer params) {
         GL20.glGetVertexAttrib(index, pname, params);
     }
 
@@ -530,7 +533,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glPolygonOffset(factor, units);
     }
 
-    public void glReadPixels(int x, int y, int width, int height, int format, int type, Buffer pixels) {
+    public void glReadPixels(int x, int y, int width, int height, int format, int type, @NotNull Buffer pixels) {
         if (pixels instanceof ByteBuffer)
             GL11.glReadPixels(x, y, width, height, format, type, (ByteBuffer) pixels);
         else if (pixels instanceof ShortBuffer)
@@ -560,11 +563,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glScissor(x, y, width, height);
     }
 
-    public void glShaderBinary(int n, IntBuffer shaders, int binaryformat, Buffer binary, int length) {
+    public void glShaderBinary(int n, @NotNull IntBuffer shaders, int binaryformat, @NotNull Buffer binary, int length) {
         throw new UnsupportedOperationException("unsupported, won't implement");
     }
 
-    public void glShaderSource(int shader, String string) {
+    public void glShaderSource(int shader, @NotNull String string) {
         GL20.glShaderSource(shader, string);
     }
 
@@ -615,7 +618,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glTexParameterf(target, pname, param);
     }
 
-    public void glTexParameterfv(int target, int pname, FloatBuffer params) {
+    public void glTexParameterfv(int target, int pname, @NotNull FloatBuffer params) {
         GL11.glTexParameter(target, pname, params);
     }
 
@@ -623,12 +626,12 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL11.glTexParameteri(target, pname, param);
     }
 
-    public void glTexParameteriv(int target, int pname, IntBuffer params) {
+    public void glTexParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GL11.glTexParameter(target, pname, params);
     }
 
     public void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int type,
-                                Buffer pixels) {
+                                @NotNull Buffer pixels) {
         if (pixels instanceof ByteBuffer)
             GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, (ByteBuffer) pixels);
         else if (pixels instanceof ShortBuffer)
@@ -648,11 +651,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform1f(location, x);
     }
 
-    public void glUniform1fv(int location, int count, FloatBuffer v) {
+    public void glUniform1fv(int location, int count, @NotNull FloatBuffer v) {
         GL20.glUniform1(location, v);
     }
 
-    public void glUniform1fv(int location, int count, float[] v, int offset) {
+    public void glUniform1fv(int location, int count, @NotNull float[] v, int offset) {
         GL20.glUniform1(location, toFloatBuffer(v, offset, count));
     }
 
@@ -660,12 +663,12 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform1i(location, x);
     }
 
-    public void glUniform1iv(int location, int count, IntBuffer v) {
+    public void glUniform1iv(int location, int count, @NotNull IntBuffer v) {
         GL20.glUniform1(location, v);
     }
 
     @Override
-    public void glUniform1iv(int location, int count, int[] v, int offset) {
+    public void glUniform1iv(int location, int count, @NotNull int[] v, int offset) {
         GL20.glUniform1(location, toIntBuffer(v, offset, count));
     }
 
@@ -673,11 +676,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform2f(location, x, y);
     }
 
-    public void glUniform2fv(int location, int count, FloatBuffer v) {
+    public void glUniform2fv(int location, int count, @NotNull FloatBuffer v) {
         GL20.glUniform2(location, v);
     }
 
-    public void glUniform2fv(int location, int count, float[] v, int offset) {
+    public void glUniform2fv(int location, int count, @NotNull float[] v, int offset) {
         GL20.glUniform2(location, toFloatBuffer(v, offset, count << 1));
     }
 
@@ -685,11 +688,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform2i(location, x, y);
     }
 
-    public void glUniform2iv(int location, int count, IntBuffer v) {
+    public void glUniform2iv(int location, int count, @NotNull IntBuffer v) {
         GL20.glUniform2(location, v);
     }
 
-    public void glUniform2iv(int location, int count, int[] v, int offset) {
+    public void glUniform2iv(int location, int count, @NotNull int[] v, int offset) {
         GL20.glUniform2(location, toIntBuffer(v, offset, count << 1));
     }
 
@@ -697,11 +700,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform3f(location, x, y, z);
     }
 
-    public void glUniform3fv(int location, int count, FloatBuffer v) {
+    public void glUniform3fv(int location, int count, @NotNull FloatBuffer v) {
         GL20.glUniform3(location, v);
     }
 
-    public void glUniform3fv(int location, int count, float[] v, int offset) {
+    public void glUniform3fv(int location, int count, @NotNull float[] v, int offset) {
         GL20.glUniform3(location, toFloatBuffer(v, offset, count * 3));
     }
 
@@ -709,11 +712,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform3i(location, x, y, z);
     }
 
-    public void glUniform3iv(int location, int count, IntBuffer v) {
+    public void glUniform3iv(int location, int count, @NotNull IntBuffer v) {
         GL20.glUniform3(location, v);
     }
 
-    public void glUniform3iv(int location, int count, int[] v, int offset) {
+    public void glUniform3iv(int location, int count, @NotNull int[] v, int offset) {
         GL20.glUniform3(location, toIntBuffer(v, offset, count * 3));
     }
 
@@ -721,11 +724,11 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform4f(location, x, y, z, w);
     }
 
-    public void glUniform4fv(int location, int count, FloatBuffer v) {
+    public void glUniform4fv(int location, int count, @NotNull FloatBuffer v) {
         GL20.glUniform4(location, v);
     }
 
-    public void glUniform4fv(int location, int count, float[] v, int offset) {
+    public void glUniform4fv(int location, int count, @NotNull float[] v, int offset) {
         GL20.glUniform4(location, toFloatBuffer(v, offset, count << 2));
     }
 
@@ -733,35 +736,35 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glUniform4i(location, x, y, z, w);
     }
 
-    public void glUniform4iv(int location, int count, IntBuffer v) {
+    public void glUniform4iv(int location, int count, @NotNull IntBuffer v) {
         GL20.glUniform4(location, v);
     }
 
-    public void glUniform4iv(int location, int count, int[] v, int offset) {
+    public void glUniform4iv(int location, int count, @NotNull int[] v, int offset) {
         GL20.glUniform4(location, toIntBuffer(v, offset, count << 2));
     }
 
-    public void glUniformMatrix2fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix2fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL20.glUniformMatrix2(location, transpose, value);
     }
 
-    public void glUniformMatrix2fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix2fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         GL20.glUniformMatrix2(location, transpose, toFloatBuffer(value, offset, count << 2));
     }
 
-    public void glUniformMatrix3fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix3fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL20.glUniformMatrix3(location, transpose, value);
     }
 
-    public void glUniformMatrix3fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix3fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         GL20.glUniformMatrix3(location, transpose, toFloatBuffer(value, offset, count * 9));
     }
 
-    public void glUniformMatrix4fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix4fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL20.glUniformMatrix4(location, transpose, value);
     }
 
-    public void glUniformMatrix4fv(int location, int count, boolean transpose, float[] value, int offset) {
+    public void glUniformMatrix4fv(int location, int count, boolean transpose, @NotNull float[] value, int offset) {
         GL20.glUniformMatrix4(location, transpose, toFloatBuffer(value, offset, count << 4));
     }
 
@@ -805,7 +808,7 @@ class LwjglGL20 implements com.badlogic.gdx.graphics.GL20 {
         GL20.glVertexAttrib4f(indx, values.get(), values.get(), values.get(), values.get());
     }
 
-    public void glVertexAttribPointer(int indx, int size, int type, boolean normalized, int stride, Buffer buffer) {
+    public void glVertexAttribPointer(int indx, int size, int type, boolean normalized, int stride, @NotNull Buffer buffer) {
         if (buffer instanceof ByteBuffer) {
             if (type == GL_BYTE)
                 GL20.glVertexAttribPointer(indx, size, false, normalized, stride, (ByteBuffer) buffer);

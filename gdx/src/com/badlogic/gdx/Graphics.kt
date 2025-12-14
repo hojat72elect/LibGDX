@@ -227,18 +227,21 @@ interface Graphics {
 
     /**
      * @return the primary monitor
+     * It can be null, for example in mocked instances.
      */
-    fun getPrimaryMonitor(): Monitor
+    fun getPrimaryMonitor(): Monitor?
 
     /**
      * @return the monitor the application's window is located on
+     * It can be null, for example in mocked instances.
      */
-    fun getMonitor(): Monitor
+    fun getMonitor(): Monitor?
 
     /**
-     * @return the currently connected [Monitor]s
+     * @return the currently connected [Monitor]s.
+     * It can be null, for example in mocked instances.
      */
-    fun getMonitors(): Array<Monitor>
+    fun getMonitors(): Array<Monitor>?
 
     /**
      * @return the supported fullscreen [DisplayMode](s) of the monitor the window is on
@@ -246,19 +249,22 @@ interface Graphics {
     fun getDisplayModes(): Array<DisplayMode>
 
     /**
-     * @return the supported fullscreen [DisplayMode]s of the given [Monitor]
+     * @return the supported fullscreen [DisplayMode]s of the given [Monitor].
+     * It can be null, for example in mocked instances.
      */
-    fun getDisplayModes(monitor: Monitor): Array<DisplayMode>
+    fun getDisplayModes(monitor: Monitor): Array<DisplayMode>?
 
     /**
      * @return the current [DisplayMode] of the monitor the window is on.
+     * Actually, it can be null, for example in Mock instances.
      */
-    fun getDisplayMode(): DisplayMode
+    fun getDisplayMode(): DisplayMode?
 
     /**
      * @return the current [DisplayMode] of the given [Monitor]
+     * It can be null, for example in mocked instances.
      */
-    fun getDisplayMode(monitor: Monitor): DisplayMode
+    fun getDisplayMode(monitor: Monitor): DisplayMode?
 
     /**
      * Sets the window to full-screen mode.
@@ -312,9 +318,10 @@ interface Graphics {
     fun setForegroundFPS(fps: Int)
 
     /**
-     * @return the format of the color, depth and stencil buffer in a [BufferFormat] instance
+     * @return the format of the color, depth and stencil buffer in a [BufferFormat] instance.
+     * It can be null, for example in mock instances.
      */
-    fun getBufferFormat(): BufferFormat
+    fun getBufferFormat(): BufferFormat?
 
     /**
      * @param extension the extension name

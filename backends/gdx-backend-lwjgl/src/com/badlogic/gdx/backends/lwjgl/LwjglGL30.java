@@ -2,6 +2,7 @@ package com.badlogic.gdx.backends.lwjgl;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.opengl.GL15;
@@ -30,7 +31,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glDrawRangeElements(int mode, int start, int end, int count, int type, Buffer indices) {
+    public void glDrawRangeElements(int mode, int start, int end, int count, int type, @NotNull Buffer indices) {
         if (indices instanceof ByteBuffer)
             GL12.glDrawRangeElements(mode, start, end, (ByteBuffer) indices);
         else if (indices instanceof ShortBuffer)
@@ -86,7 +87,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
 
     @Override
     public void glTexSubImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth,
-                                int format, int type, Buffer pixels) {
+                                int format, int type, @NotNull Buffer pixels) {
         if (pixels instanceof ByteBuffer)
             GL12.glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, (ByteBuffer) pixels);
         else if (pixels instanceof ShortBuffer)
@@ -115,28 +116,28 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGenQueries(int n, int[] ids, int offset) {
+    public void glGenQueries(int n, @NotNull int[] ids, int offset) {
         for (int i = offset; i < offset + n; i++) {
             ids[i] = GL15.glGenQueries();
         }
     }
 
     @Override
-    public void glGenQueries(int n, IntBuffer ids) {
+    public void glGenQueries(int n, @NotNull IntBuffer ids) {
         for (int i = 0; i < n; i++) {
             ids.put(GL15.glGenQueries());
         }
     }
 
     @Override
-    public void glDeleteQueries(int n, int[] ids, int offset) {
+    public void glDeleteQueries(int n, @NotNull int[] ids, int offset) {
         for (int i = offset; i < offset + n; i++) {
             GL15.glDeleteQueries(ids[i]);
         }
     }
 
     @Override
-    public void glDeleteQueries(int n, IntBuffer ids) {
+    public void glDeleteQueries(int n, @NotNull IntBuffer ids) {
         for (int i = 0; i < n; i++) {
             GL15.glDeleteQueries(ids.get());
         }
@@ -158,12 +159,12 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGetQueryiv(int target, int pname, IntBuffer params) {
+    public void glGetQueryiv(int target, int pname, @NotNull IntBuffer params) {
         GL15.glGetQuery(target, pname, params);
     }
 
     @Override
-    public void glGetQueryObjectuiv(int id, int pname, IntBuffer params) {
+    public void glGetQueryObjectuiv(int id, int pname, @NotNull IntBuffer params) {
         GL15.glGetQueryObjectu(id, pname, params);
     }
 
@@ -172,6 +173,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
         return GL15.glUnmapBuffer(target);
     }
 
+    @NotNull
     @Override
     public Buffer glGetBufferPointerv(int target, int pname) {
         return GL15.glGetBufferPointer(target, pname);
@@ -186,32 +188,32 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glUniformMatrix2x3fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix2x3fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL21.glUniformMatrix2x3(location, transpose, value);
     }
 
     @Override
-    public void glUniformMatrix3x2fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix3x2fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL21.glUniformMatrix3x2(location, transpose, value);
     }
 
     @Override
-    public void glUniformMatrix2x4fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix2x4fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL21.glUniformMatrix2x4(location, transpose, value);
     }
 
     @Override
-    public void glUniformMatrix4x2fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix4x2fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL21.glUniformMatrix4x2(location, transpose, value);
     }
 
     @Override
-    public void glUniformMatrix3x4fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix3x4fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL21.glUniformMatrix3x4(location, transpose, value);
     }
 
     @Override
-    public void glUniformMatrix4x3fv(int location, int count, boolean transpose, FloatBuffer value) {
+    public void glUniformMatrix4x3fv(int location, int count, boolean transpose, @NotNull FloatBuffer value) {
         GL21.glUniformMatrix4x3(location, transpose, value);
     }
 
@@ -237,7 +239,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glDeleteFramebuffers(int n, IntBuffer framebuffers) {
+    public void glDeleteFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         GL30.glDeleteFramebuffers(framebuffers);
     }
 
@@ -247,7 +249,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glDeleteRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glDeleteRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         GL30.glDeleteRenderbuffers(renderbuffers);
     }
 
@@ -262,7 +264,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGenFramebuffers(int n, IntBuffer framebuffers) {
+    public void glGenFramebuffers(int n, @NotNull IntBuffer framebuffers) {
         GL30.glGenFramebuffers(framebuffers);
     }
 
@@ -272,7 +274,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGenRenderbuffers(int n, IntBuffer renderbuffers) {
+    public void glGenRenderbuffers(int n, @NotNull IntBuffer renderbuffers) {
         GL30.glGenRenderbuffers(renderbuffers);
     }
 
@@ -282,7 +284,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGetRenderbufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetRenderbufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GL30.glGetRenderbufferParameter(target, pname, params);
     }
 
@@ -321,6 +323,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
         GL30.glFramebufferTextureLayer(target, attachment, texture, level, layer);
     }
 
+    @NotNull
     @Override
     public java.nio.Buffer glMapBufferRange(int target, int offset, int length, int access) {
         return GL30.glMapBufferRange(target, offset, length, access, null);
@@ -337,26 +340,26 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glDeleteVertexArrays(int n, int[] arrays, int offset) {
+    public void glDeleteVertexArrays(int n, @NotNull int[] arrays, int offset) {
         for (int i = offset; i < offset + n; i++) {
             GL30.glDeleteVertexArrays(arrays[i]);
         }
     }
 
     @Override
-    public void glDeleteVertexArrays(int n, IntBuffer arrays) {
+    public void glDeleteVertexArrays(int n, @NotNull IntBuffer arrays) {
         GL30.glDeleteVertexArrays(arrays);
     }
 
     @Override
-    public void glGenVertexArrays(int n, int[] arrays, int offset) {
+    public void glGenVertexArrays(int n, @NotNull int[] arrays, int offset) {
         for (int i = offset; i < offset + n; i++) {
             arrays[i] = GL30.glGenVertexArrays();
         }
     }
 
     @Override
-    public void glGenVertexArrays(int n, IntBuffer arrays) {
+    public void glGenVertexArrays(int n, @NotNull IntBuffer arrays) {
         GL30.glGenVertexArrays(arrays);
     }
 
@@ -386,7 +389,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glTransformFeedbackVaryings(int program, String[] varyings, int bufferMode) {
+    public void glTransformFeedbackVaryings(int program, @NotNull String[] varyings, int bufferMode) {
         GL30.glTransformFeedbackVaryings(program, varyings, bufferMode);
     }
 
@@ -396,12 +399,12 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGetVertexAttribIiv(int index, int pname, IntBuffer params) {
+    public void glGetVertexAttribIiv(int index, int pname, @NotNull IntBuffer params) {
         GL30.glGetVertexAttribI(index, pname, params);
     }
 
     @Override
-    public void glGetVertexAttribIuiv(int index, int pname, IntBuffer params) {
+    public void glGetVertexAttribIuiv(int index, int pname, @NotNull IntBuffer params) {
         GL30.glGetVertexAttribIu(index, pname, params);
     }
 
@@ -416,42 +419,42 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGetUniformuiv(int program, int location, IntBuffer params) {
+    public void glGetUniformuiv(int program, int location, @NotNull IntBuffer params) {
         GL30.glGetUniformu(program, location, params);
     }
 
     @Override
-    public int glGetFragDataLocation(int program, String name) {
+    public int glGetFragDataLocation(int program, @NotNull String name) {
         return GL30.glGetFragDataLocation(program, name);
     }
 
     @Override
-    public void glUniform1uiv(int location, int count, IntBuffer value) {
+    public void glUniform1uiv(int location, int count, @NotNull IntBuffer value) {
         GL30.glUniform1u(location, value);
     }
 
     @Override
-    public void glUniform3uiv(int location, int count, IntBuffer value) {
+    public void glUniform3uiv(int location, int count, @NotNull IntBuffer value) {
         GL30.glUniform3u(location, value);
     }
 
     @Override
-    public void glUniform4uiv(int location, int count, IntBuffer value) {
+    public void glUniform4uiv(int location, int count, @NotNull IntBuffer value) {
         GL30.glUniform4u(location, value);
     }
 
     @Override
-    public void glClearBufferiv(int buffer, int drawbuffer, IntBuffer value) {
+    public void glClearBufferiv(int buffer, int drawbuffer, @NotNull IntBuffer value) {
         GL30.glClearBuffer(buffer, drawbuffer, value);
     }
 
     @Override
-    public void glClearBufferuiv(int buffer, int drawbuffer, IntBuffer value) {
+    public void glClearBufferuiv(int buffer, int drawbuffer, @NotNull IntBuffer value) {
         GL30.glClearBufferu(buffer, drawbuffer, value);
     }
 
     @Override
-    public void glClearBufferfv(int buffer, int drawbuffer, FloatBuffer value) {
+    public void glClearBufferfv(int buffer, int drawbuffer, @NotNull FloatBuffer value) {
         GL30.glClearBuffer(buffer, drawbuffer, value);
     }
 
@@ -460,6 +463,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
         GL30.glClearBufferfi(buffer, drawbuffer, depth, stencil);
     }
 
+    @NotNull
     @Override
     public String glGetStringi(int name, int index) {
         return GL30.glGetStringi(name, index);
@@ -471,30 +475,31 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGetUniformIndices(int program, String[] uniformNames, IntBuffer uniformIndices) {
+    public void glGetUniformIndices(int program, @NotNull String[] uniformNames, @NotNull IntBuffer uniformIndices) {
         GL31.glGetUniformIndices(program, uniformNames, uniformIndices);
     }
 
     @Override
-    public void glGetActiveUniformsiv(int program, int uniformCount, IntBuffer uniformIndices, int pname, IntBuffer params) {
+    public void glGetActiveUniformsiv(int program, int uniformCount, @NotNull IntBuffer uniformIndices, int pname, @NotNull IntBuffer params) {
         GL31.glGetActiveUniforms(program, uniformIndices, pname, params);
     }
 
     @Override
-    public int glGetUniformBlockIndex(int program, String uniformBlockName) {
+    public int glGetUniformBlockIndex(int program, @NotNull String uniformBlockName) {
         return GL31.glGetUniformBlockIndex(program, uniformBlockName);
     }
 
     @Override
-    public void glGetActiveUniformBlockiv(int program, int uniformBlockIndex, int pname, IntBuffer params) {
+    public void glGetActiveUniformBlockiv(int program, int uniformBlockIndex, int pname, @NotNull IntBuffer params) {
         GL31.glGetActiveUniformBlock(program, uniformBlockIndex, pname, params);
     }
 
     @Override
-    public void glGetActiveUniformBlockName(int program, int uniformBlockIndex, Buffer length, Buffer uniformBlockName) {
+    public void glGetActiveUniformBlockName(int program, int uniformBlockIndex, @NotNull Buffer length, @NotNull Buffer uniformBlockName) {
         GL31.glGetActiveUniformBlockName(program, uniformBlockIndex, (IntBuffer) length, (ByteBuffer) uniformBlockName);
     }
 
+    @NotNull
     @Override
     public String glGetActiveUniformBlockName(int program, int uniformBlockIndex) {
         return GL31.glGetActiveUniformBlockName(program, uniformBlockIndex, 1024);
@@ -516,7 +521,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGetInteger64v(int pname, LongBuffer params) {
+    public void glGetInteger64v(int pname, @NotNull LongBuffer params) {
         GL32.glGetInteger64(pname, params);
     }
 
@@ -526,26 +531,26 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glGenSamplers(int count, int[] samplers, int offset) {
+    public void glGenSamplers(int count, @NotNull int[] samplers, int offset) {
         for (int i = offset; i < offset + count; i++) {
             samplers[i] = GL33.glGenSamplers();
         }
     }
 
     @Override
-    public void glGenSamplers(int count, IntBuffer samplers) {
+    public void glGenSamplers(int count, @NotNull IntBuffer samplers) {
         GL33.glGenSamplers(samplers);
     }
 
     @Override
-    public void glDeleteSamplers(int count, int[] samplers, int offset) {
+    public void glDeleteSamplers(int count, @NotNull int[] samplers, int offset) {
         for (int i = offset; i < offset + count; i++) {
             GL33.glDeleteSamplers(samplers[i]);
         }
     }
 
     @Override
-    public void glDeleteSamplers(int count, IntBuffer samplers) {
+    public void glDeleteSamplers(int count, @NotNull IntBuffer samplers) {
         GL33.glDeleteSamplers(samplers);
     }
 
@@ -565,7 +570,7 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glSamplerParameteriv(int sampler, int pname, IntBuffer param) {
+    public void glSamplerParameteriv(int sampler, int pname, @NotNull IntBuffer param) {
         GL33.glSamplerParameter(sampler, pname, param);
     }
 
@@ -575,17 +580,17 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glSamplerParameterfv(int sampler, int pname, FloatBuffer param) {
+    public void glSamplerParameterfv(int sampler, int pname, @NotNull FloatBuffer param) {
         GL33.glSamplerParameter(sampler, pname, param);
     }
 
     @Override
-    public void glGetSamplerParameteriv(int sampler, int pname, IntBuffer params) {
+    public void glGetSamplerParameteriv(int sampler, int pname, @NotNull IntBuffer params) {
         GL33.glGetSamplerParameterI(sampler, pname, params);
     }
 
     @Override
-    public void glGetSamplerParameterfv(int sampler, int pname, FloatBuffer params) {
+    public void glGetSamplerParameterfv(int sampler, int pname, @NotNull FloatBuffer params) {
         GL33.glGetSamplerParameter(sampler, pname, params);
     }
 
@@ -600,26 +605,26 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glDeleteTransformFeedbacks(int n, int[] ids, int offset) {
+    public void glDeleteTransformFeedbacks(int n, @NotNull int[] ids, int offset) {
         for (int i = offset; i < offset + n; i++) {
             GL40.glDeleteTransformFeedbacks(ids[i]);
         }
     }
 
     @Override
-    public void glDeleteTransformFeedbacks(int n, IntBuffer ids) {
+    public void glDeleteTransformFeedbacks(int n, @NotNull IntBuffer ids) {
         GL40.glDeleteTransformFeedbacks(ids);
     }
 
     @Override
-    public void glGenTransformFeedbacks(int n, int[] ids, int offset) {
+    public void glGenTransformFeedbacks(int n, @NotNull int[] ids, int offset) {
         for (int i = offset; i < offset + n; i++) {
             ids[i] = GL40.glGenTransformFeedbacks();
         }
     }
 
     @Override
-    public void glGenTransformFeedbacks(int n, IntBuffer ids) {
+    public void glGenTransformFeedbacks(int n, @NotNull IntBuffer ids) {
         GL40.glGenTransformFeedbacks(ids);
     }
 
@@ -644,12 +649,12 @@ class LwjglGL30 extends LwjglGL20 implements com.badlogic.gdx.graphics.GL30 {
     }
 
     @Override
-    public void glInvalidateFramebuffer(int target, int numAttachments, IntBuffer attachments) {
+    public void glInvalidateFramebuffer(int target, int numAttachments, @NotNull IntBuffer attachments) {
         GL43.glInvalidateFramebuffer(target, attachments);
     }
 
     @Override
-    public void glInvalidateSubFramebuffer(int target, int numAttachments, IntBuffer attachments, int x, int y, int width,
+    public void glInvalidateSubFramebuffer(int target, int numAttachments, @NotNull IntBuffer attachments, int x, int y, int width,
                                            int height) {
         GL43.glInvalidateSubFramebuffer(target, attachments, x, y, width, height);
     }

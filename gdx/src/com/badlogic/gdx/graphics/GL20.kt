@@ -48,7 +48,7 @@ interface GL20 {
     fun glStencilFunc(func: Int, ref: Int, mask: Int)
     fun glStencilMask(mask: Int)
     fun glStencilOp(fail: Int, zfail: Int, zpass: Int)
-    fun glTexImage2D(target: Int, level: Int, internalformat: Int, width: Int, height: Int, border: Int, format: Int, type: Int, pixels: Buffer)
+    fun glTexImage2D(target: Int, level: Int, internalformat: Int, width: Int, height: Int, border: Int, format: Int, type: Int, pixels: Buffer?)
     fun glTexParameterf(target: Int, pname: Int, param: Float)
     fun glTexSubImage2D(target: Int, level: Int, xoffset: Int, yoffset: Int, width: Int, height: Int, format: Int, type: Int, pixels: Buffer)
     fun glViewport(x: Int, y: Int, width: Int, height: Int)
