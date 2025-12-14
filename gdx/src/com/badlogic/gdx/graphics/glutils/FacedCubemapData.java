@@ -128,8 +128,7 @@ public class FacedCubemapData implements CubemapData {
      * @return True if all sides of this cubemap are set, false otherwise.
      */
     public boolean isComplete() {
-        for (int i = 0; i < data.length; i++)
-            if (data[i] == null) return false;
+        for (TextureData datum : data) if (datum == null) return false;
         return true;
     }
 
@@ -172,8 +171,7 @@ public class FacedCubemapData implements CubemapData {
     @Override
     public void prepare() {
         if (!isComplete()) throw new GdxRuntimeException("You need to complete your cubemap data before using it");
-        for (int i = 0; i < data.length; i++)
-            if (!data[i].isPrepared()) data[i].prepare();
+        for (TextureData datum : data) if (!datum.isPrepared()) datum.prepare();
     }
 
     @Override

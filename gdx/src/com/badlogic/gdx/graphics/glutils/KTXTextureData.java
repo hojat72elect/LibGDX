@@ -14,6 +14,8 @@ import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.StreamUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.nio.Buffer;
@@ -28,8 +30,7 @@ import java.util.zip.GZIPInputStream;
  * like texture compression, cubemapping, mipmapping, etc.
  * <p>
  * For example, KTXTextureData can be used for {@link Texture} or {@link Cubemap}.
- *
- *  */
+ */
 public class KTXTextureData implements TextureData, CubemapData {
 
     private static final int GL_TEXTURE_1D = 0x1234;
@@ -61,6 +62,7 @@ public class KTXTextureData implements TextureData, CubemapData {
         this.useMipMaps = genMipMaps;
     }
 
+    @NotNull
     @Override
     public TextureDataType getType() {
         return TextureDataType.Custom;
@@ -233,13 +235,7 @@ public class KTXTextureData implements TextureData, CubemapData {
                 if (singleFace != -1 && singleFace != face) continue;
                 ByteBuffer data = compressedData.slice();
                 ((Buffer) data).limit(faceLodSizeRounded);
-                if (textureDimensions == 1) {
-                    // if (compressed)
-                    // Gdx.gl.glCompressedTexImage1D(target + face, level, glInternalFormat, pixelWidth, 0, faceLodSize,
-                    // data);
-                    // else
-                    // Gdx.gl.glTexImage1D(target + face, level, glInternalFormat, pixelWidth, 0, glFormat, glType, data);
-                } else if (textureDimensions == 2) {
+                if (textureDimensions == 2) {
                     if (numberOfArrayElements > 0) pixelHeight = numberOfArrayElements;
                     if (compressed) {
                         if (glInternalFormat == ETC1.ETC1_RGB8_OES) {
@@ -262,12 +258,6 @@ public class KTXTextureData implements TextureData, CubemapData {
                         Gdx.gl.glTexImage2D(target + face, level, glInternalFormat, pixelWidth, pixelHeight, 0, glFormat, glType, data);
                 } else if (textureDimensions == 3) {
                     if (numberOfArrayElements > 0) pixelDepth = numberOfArrayElements;
-                    // if (compressed)
-                    // Gdx.gl.glCompressedTexImage3D(target + face, level, glInternalFormat, pixelWidth, pixelHeight, pixelDepth, 0,
-                    // faceLodSize, data);
-                    // else
-                    // Gdx.gl.glTexImage3D(target + face, level, glInternalFormat, pixelWidth, pixelHeight, pixelDepth, 0, glFormat,
-                    // glType, data);
                 }
             }
         }
