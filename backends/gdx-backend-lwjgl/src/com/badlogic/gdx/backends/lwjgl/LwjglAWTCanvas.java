@@ -15,6 +15,7 @@ import com.badlogic.gdx.backends.lwjgl.audio.OpenALLwjglAudio;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Clipboard;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.AWTGLCanvas;
 import org.lwjgl.opengl.Display;
@@ -123,7 +124,7 @@ public class LwjglAWTCanvas implements Application {
 
         graphics = new LwjglGraphics(canvas, config) {
             @Override
-            public void setTitle(String title) {
+            public void setTitle(@NotNull String title) {
                 super.setTitle(title);
                 LwjglAWTCanvas.this.setTitle(title);
             }
@@ -136,7 +137,7 @@ public class LwjglAWTCanvas implements Application {
             }
 
             @Override
-            public boolean setFullscreenMode(DisplayMode displayMode) {
+            public boolean setFullscreenMode(@NotNull DisplayMode displayMode) {
                 if (!super.setFullscreenMode(displayMode)) return false;
                 LwjglAWTCanvas.this.setDisplayMode(displayMode.width, displayMode.height);
                 return true;

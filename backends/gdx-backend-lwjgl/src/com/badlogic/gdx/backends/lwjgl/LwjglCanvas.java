@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Os;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.AWTGLCanvas;
 import org.lwjgl.opengl.Display;
 
@@ -112,7 +113,7 @@ public class LwjglCanvas implements LwjglApplicationBase {
         canvas.setIgnoreRepaint(true);
 
         graphics = new LwjglGraphics(canvas, config) {
-            public void setTitle(String title) {
+            public void setTitle(@NotNull String title) {
                 super.setTitle(title);
                 LwjglCanvas.this.setTitle(title);
             }
@@ -123,7 +124,7 @@ public class LwjglCanvas implements LwjglApplicationBase {
                 return true;
             }
 
-            public boolean setFullscreenMode(DisplayMode displayMode) {
+            public boolean setFullscreenMode(@NotNull DisplayMode displayMode) {
                 if (!super.setFullscreenMode(displayMode)) return false;
                 LwjglCanvas.this.setDisplayMode(displayMode.width, displayMode.height);
                 return true;

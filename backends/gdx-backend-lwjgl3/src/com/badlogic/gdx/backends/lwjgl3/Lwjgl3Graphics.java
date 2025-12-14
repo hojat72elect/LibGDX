@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.GridPoint2;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFW;
@@ -113,8 +114,6 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     /**
      * Enable or disable cubemap seamless feature. Default is true if supported. Should only be called if this feature is
      * supported. (see {@link #supportsCubeMapSeamless()})
-     *
-     * @param enable
      */
     public void enableCubeMapSeamless(boolean enable) {
         if (enable) {
@@ -180,7 +179,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public void setGL20(GL20 gl20) {
+    public void setGL20(@NotNull GL20 gl20) {
         this.gl20 = gl20;
     }
 
@@ -200,7 +199,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public void setGL31(GL31 gl31) {
+    public void setGL31(@NotNull GL31 gl31) {
         this.gl31 = gl31;
     }
 
@@ -210,7 +209,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public void setGL32(GL32 gl32) {
+    public void setGL32(@NotNull GL32 gl32) {
         this.gl32 = gl32;
     }
 
@@ -269,11 +268,13 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
         return fps;
     }
 
+    @NotNull
     @Override
     public GraphicsType getType() {
         return GraphicsType.LWJGL3;
     }
 
+    @NotNull
     @Override
     public GLVersion getGLVersion() {
         return glVersion;
@@ -356,13 +357,14 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
         return monitors;
     }
 
+    @NotNull
     @Override
     public DisplayMode[] getDisplayModes() {
         return Lwjgl3ApplicationConfiguration.getDisplayModes(getMonitor());
     }
 
     @Override
-    public DisplayMode[] getDisplayModes(Monitor monitor) {
+    public DisplayMode[] getDisplayModes(@NotNull Monitor monitor) {
         return Lwjgl3ApplicationConfiguration.getDisplayModes(monitor);
     }
 
@@ -372,7 +374,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public DisplayMode getDisplayMode(Monitor monitor) {
+    public DisplayMode getDisplayMode(@NotNull Monitor monitor) {
         return Lwjgl3ApplicationConfiguration.getDisplayMode(monitor);
     }
 
@@ -397,7 +399,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public boolean setFullscreenMode(DisplayMode displayMode) {
+    public boolean setFullscreenMode(@NotNull DisplayMode displayMode) {
         window.getInput().resetPollingStates();
         Lwjgl3DisplayMode newMode = (Lwjgl3DisplayMode) displayMode;
         if (isFullscreen()) {
@@ -509,7 +511,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public boolean supportsExtension(String extension) {
+    public boolean supportsExtension(@NotNull String extension) {
         return GLFW.glfwExtensionSupported(extension);
     }
 
@@ -534,7 +536,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public Cursor newCursor(Pixmap pixmap, int xHotspot, int yHotspot) {
+    public Cursor newCursor(@NotNull Pixmap pixmap, int xHotspot, int yHotspot) {
         return new Lwjgl3Cursor(getWindow(), pixmap, xHotspot, yHotspot);
     }
 
@@ -544,7 +546,7 @@ public class Lwjgl3Graphics extends AbstractGraphics implements Disposable {
     }
 
     @Override
-    public void setSystemCursor(SystemCursor systemCursor) {
+    public void setSystemCursor(@NotNull SystemCursor systemCursor) {
         Lwjgl3Cursor.setSystemCursor(getWindow().getWindowHandle(), systemCursor);
     }
 

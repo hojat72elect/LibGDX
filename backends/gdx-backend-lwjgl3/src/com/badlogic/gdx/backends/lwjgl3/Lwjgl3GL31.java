@@ -3,6 +3,7 @@ package com.badlogic.gdx.backends.lwjgl3;
 import com.badlogic.gdx.graphics.GL31;
 import com.badlogic.gdx.utils.BufferUtils;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL32;
 import org.lwjgl.opengl.GL40;
@@ -45,33 +46,34 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
     }
 
     @Override
-    public void glGetFramebufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetFramebufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         GL43.glGetFramebufferParameteriv(target, pname, params);
     }
 
     @Override
-    public void glGetProgramInterfaceiv(int program, int programInterface, int pname, IntBuffer params) {
+    public void glGetProgramInterfaceiv(int program, int programInterface, int pname, @NotNull IntBuffer params) {
         GL43.glGetProgramInterfaceiv(program, programInterface, pname, params);
     }
 
     @Override
-    public int glGetProgramResourceIndex(int program, int programInterface, String name) {
+    public int glGetProgramResourceIndex(int program, int programInterface, @NotNull String name) {
         return GL43.glGetProgramResourceIndex(program, programInterface, name);
     }
 
+    @NotNull
     @Override
     public String glGetProgramResourceName(int program, int programInterface, int index) {
         return GL43.glGetProgramResourceName(program, programInterface, index);
     }
 
     @Override
-    public void glGetProgramResourceiv(int program, int programInterface, int index, IntBuffer props, IntBuffer length,
-                                       IntBuffer params) {
+    public void glGetProgramResourceiv(int program, int programInterface, int index, @NotNull IntBuffer props, @NotNull IntBuffer length,
+                                       @NotNull IntBuffer params) {
         GL43.glGetProgramResourceiv(program, programInterface, index, props, length, params);
     }
 
     @Override
-    public int glGetProgramResourceLocation(int program, int programInterface, String name) {
+    public int glGetProgramResourceLocation(int program, int programInterface, @NotNull String name) {
         return GL43.glGetProgramResourceLocation(program, programInterface, name);
     }
 
@@ -86,7 +88,7 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
     }
 
     @Override
-    public int glCreateShaderProgramv(int type, String[] strings) {
+    public int glCreateShaderProgramv(int type, @NotNull String[] strings) {
         return GL41.glCreateShaderProgramv(type, strings);
     }
 
@@ -117,7 +119,7 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
     }
 
     @Override
-    public void glGetProgramPipelineiv(int pipeline, int pname, IntBuffer params) {
+    public void glGetProgramPipelineiv(int pipeline, int pname, @NotNull IntBuffer params) {
         GL41.glGetProgramPipelineiv(pipeline, pname, params);
     }
 
@@ -182,107 +184,107 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
     }
 
     @Override
-    public void glProgramUniform1iv(int program, int location, IntBuffer value) {
+    public void glProgramUniform1iv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform1iv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform2iv(int program, int location, IntBuffer value) {
+    public void glProgramUniform2iv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform2iv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform3iv(int program, int location, IntBuffer value) {
+    public void glProgramUniform3iv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform3iv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform4iv(int program, int location, IntBuffer value) {
+    public void glProgramUniform4iv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform4iv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform1uiv(int program, int location, IntBuffer value) {
+    public void glProgramUniform1uiv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform1uiv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform2uiv(int program, int location, IntBuffer value) {
+    public void glProgramUniform2uiv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform2uiv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform3uiv(int program, int location, IntBuffer value) {
+    public void glProgramUniform3uiv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform3uiv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform4uiv(int program, int location, IntBuffer value) {
+    public void glProgramUniform4uiv(int program, int location, @NotNull IntBuffer value) {
         GL41.glProgramUniform4uiv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform1fv(int program, int location, FloatBuffer value) {
+    public void glProgramUniform1fv(int program, int location, @NotNull FloatBuffer value) {
         GL41.glProgramUniform1fv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform2fv(int program, int location, FloatBuffer value) {
+    public void glProgramUniform2fv(int program, int location, @NotNull FloatBuffer value) {
         GL41.glProgramUniform2fv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform3fv(int program, int location, FloatBuffer value) {
+    public void glProgramUniform3fv(int program, int location, @NotNull FloatBuffer value) {
         GL41.glProgramUniform3fv(program, location, value);
     }
 
     @Override
-    public void glProgramUniform4fv(int program, int location, FloatBuffer value) {
+    public void glProgramUniform4fv(int program, int location, @NotNull FloatBuffer value) {
         GL41.glProgramUniform4fv(program, location, value);
     }
 
     @Override
-    public void glProgramUniformMatrix2fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix2fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix2fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix3fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix3fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix3fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix4fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix4fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix4fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix2x3fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix2x3fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix2x3fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix3x2fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix3x2fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix3x2fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix2x4fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix2x4fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix2x4fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix4x2fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix4x2fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix4x2fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix3x4fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix3x4fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix3x4fv(program, location, transpose, value);
     }
 
     @Override
-    public void glProgramUniformMatrix4x3fv(int program, int location, boolean transpose, FloatBuffer value) {
+    public void glProgramUniformMatrix4x3fv(int program, int location, boolean transpose, @NotNull FloatBuffer value) {
         GL41.glProgramUniformMatrix4x3fv(program, location, transpose, value);
     }
 
@@ -291,6 +293,7 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
         GL41.glValidateProgramPipeline(pipeline);
     }
 
+    @NotNull
     @Override
     public String glGetProgramPipelineInfoLog(int program) {
         return GL41.glGetProgramPipelineInfoLog(program);
@@ -324,7 +327,7 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
     }
 
     @Override
-    public void glGetMultisamplefv(int pname, int index, FloatBuffer val) {
+    public void glGetMultisamplefv(int pname, int index, @NotNull FloatBuffer val) {
         GL32.glGetMultisamplefv(pname, index, val);
     }
 
@@ -334,12 +337,12 @@ public class Lwjgl3GL31 extends Lwjgl3GL30 implements GL31 {
     }
 
     @Override
-    public void glGetTexLevelParameteriv(int target, int level, int pname, IntBuffer params) {
+    public void glGetTexLevelParameteriv(int target, int level, int pname, @NotNull IntBuffer params) {
         GL11.glGetTexLevelParameteriv(target, level, pname, params);
     }
 
     @Override
-    public void glGetTexLevelParameterfv(int target, int level, int pname, FloatBuffer params) {
+    public void glGetTexLevelParameterfv(int target, int level, int pname, @NotNull FloatBuffer params) {
         GL11.glGetTexLevelParameterfv(target, level, pname, params);
     }
 

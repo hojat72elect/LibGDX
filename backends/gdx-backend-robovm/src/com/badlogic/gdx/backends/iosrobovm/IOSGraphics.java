@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.glutils.HdpiMode;
 import com.badlogic.gdx.utils.Array;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.foundation.NSObject;
 import org.robovm.apple.glkit.GLKView;
@@ -303,7 +304,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setGL30(@NotNull GL30 gl30) {
+	public void setGL30(@Nullable GL30 gl30) {
 		this.gl30 = gl30;
 		if (gl30 != null) {
 			this.gl20 = gl30;
@@ -522,7 +523,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setTitle(@NotNull String title) {
+	public void setTitle(String title) {
 	}
 
 	@Override
@@ -596,7 +597,7 @@ public class IOSGraphics extends AbstractGraphics {
 	}
 
 	@Override
-	public void setCursor(@NotNull Cursor cursor) {
+	public void setCursor(Cursor cursor) {
 	}
 
 	@Override

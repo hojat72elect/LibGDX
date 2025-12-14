@@ -3,6 +3,8 @@ package com.badlogic.gdx.graphics.profiling;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL31;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -55,25 +57,26 @@ public class GL31Interceptor extends GL30Interceptor implements GL31 {
         check();
     }
 
-    public void glGetFramebufferParameteriv(int target, int pname, IntBuffer params) {
+    public void glGetFramebufferParameteriv(int target, int pname, @NotNull IntBuffer params) {
         calls++;
         gl31.glGetFramebufferParameteriv(target, pname, params);
         check();
     }
 
-    public void glGetProgramInterfaceiv(int program, int programInterface, int pname, IntBuffer params) {
+    public void glGetProgramInterfaceiv(int program, int programInterface, int pname, @NotNull IntBuffer params) {
         calls++;
         gl31.glGetProgramInterfaceiv(program, programInterface, pname, params);
         check();
     }
 
-    public int glGetProgramResourceIndex(int program, int programInterface, String name) {
+    public int glGetProgramResourceIndex(int program, int programInterface, @NotNull String name) {
         calls++;
         int v = gl31.glGetProgramResourceIndex(program, programInterface, name);
         check();
         return v;
     }
 
+    @NotNull
     public String glGetProgramResourceName(int program, int programInterface, int index) {
         calls++;
         String s = gl31.glGetProgramResourceName(program, programInterface, index);
@@ -81,8 +84,8 @@ public class GL31Interceptor extends GL30Interceptor implements GL31 {
         return s;
     }
 
-    public void glGetProgramResourceiv(int program, int programInterface, int index, IntBuffer props, IntBuffer length,
-                                       IntBuffer params) {
+    public void glGetProgramResourceiv(int program, int programInterface, int index, @NotNull IntBuffer props, @NotNull IntBuffer length,
+                                       @NotNull IntBuffer params) {
         calls++;
         gl31.glGetProgramResourceiv(program, programInterface, index, props, length, params);
         check();

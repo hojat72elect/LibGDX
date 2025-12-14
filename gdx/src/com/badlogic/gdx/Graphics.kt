@@ -72,8 +72,9 @@ interface Graphics {
 
     /**
      * Set the GL30 instance
+     * it can be set to null. There's no limit on that (at least for now).
      */
-    fun setGL30(gl30: GL30)
+    fun setGL30(gl30: GL30?)
 
     /**
      * @return the [GL30] instance or null if not supported
@@ -283,9 +284,9 @@ interface Graphics {
 
     /**
      * Sets the title of the window. Ignored on Android.
-     * @param title the title.
+     * @param title the title. The provided `title` can be null, there's no limit on that (at least for now).
      */
-    fun setTitle(title: String)
+    fun setTitle(title: String?)
 
     /**
      * Sets the window decoration as enabled or disabled. On Android, this will enable/disable the menu bar.
@@ -378,9 +379,9 @@ interface Graphics {
      * the image represented by the [Cursor]. It is recommended to call this function in the main
      * render thread, and maximum one time per frame.
      *
-     * @param cursor the mouse cursor as a [Cursor]
+     * @param cursor the mouse cursor as a [Cursor]. The provided value can be null, there's no limit on that (at least for now).
      */
-    fun setCursor(cursor: Cursor)
+    fun setCursor(cursor: Cursor?)
 
     /**
      * Sets one of the predefined [SystemCursor]s.

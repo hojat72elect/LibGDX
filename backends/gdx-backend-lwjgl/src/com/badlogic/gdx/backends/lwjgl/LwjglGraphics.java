@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Os;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.ContextAttribs;
@@ -85,7 +86,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     private static void extractExtensions() {
-        extensions = new Array<String>();
+        extensions = new Array<>();
         if (glVersion.isVersionEqualToOrHigher(3, 2)) {
             int numExtensions = GL11.glGetInteger(GL30.GL_NUM_EXTENSIONS);
             for (int i = 0; i < numExtensions; ++i)
@@ -165,10 +166,12 @@ public class LwjglGraphics extends AbstractGraphics {
         resetDeltaTime = true;
     }
 
+    @NotNull
     public GraphicsType getType() {
         return GraphicsType.LWJGL;
     }
 
+    @NotNull
     public GLVersion getGLVersion() {
         return glVersion;
     }
@@ -182,7 +185,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public void setGL20(GL20 gl20) {
+    public void setGL20(@NotNull GL20 gl20) {
         this.gl20 = gl20;
         if (gl30 == null) {
             Gdx.gl = gl20;
@@ -228,7 +231,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public void setGL31(GL31 gl31) {
+    public void setGL31(@NotNull GL31 gl31) {
     }
 
     @Override
@@ -237,7 +240,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public void setGL32(GL32 gl32) {
+    public void setGL32(@NotNull GL32 gl32) {
     }
 
     public int getFramesPerSecond() {
@@ -499,12 +502,12 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public DisplayMode[] getDisplayModes(Monitor monitor) {
+    public DisplayMode[] getDisplayModes(@NotNull Monitor monitor) {
         return getDisplayModes();
     }
 
     @Override
-    public DisplayMode getDisplayMode(Monitor monitor) {
+    public DisplayMode getDisplayMode(@NotNull Monitor monitor) {
         return getDisplayMode();
     }
 
@@ -529,7 +532,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public boolean setFullscreenMode(DisplayMode displayMode) {
+    public boolean setFullscreenMode(@NotNull DisplayMode displayMode) {
         org.lwjgl.opengl.DisplayMode mode = ((LwjglDisplayMode) displayMode).mode;
         try {
             if (!mode.isFullscreenCapable()) {
@@ -618,6 +621,7 @@ public class LwjglGraphics extends AbstractGraphics {
         }
     }
 
+    @NotNull
     @Override
     public DisplayMode[] getDisplayModes() {
         try {
@@ -645,7 +649,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public void setTitle(String title) {
+    public void setTitle(@NotNull String title) {
         Display.setTitle(title);
     }
 
@@ -691,7 +695,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public boolean supportsExtension(String extension) {
+    public boolean supportsExtension(@NotNull String extension) {
         return extensions.contains(extension, false);
     }
 
@@ -730,7 +734,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public com.badlogic.gdx.graphics.Cursor newCursor(Pixmap pixmap, int xHotspot, int yHotspot) {
+    public com.badlogic.gdx.graphics.Cursor newCursor(@NotNull Pixmap pixmap, int xHotspot, int yHotspot) {
         return new LwjglCursor(pixmap, xHotspot, yHotspot);
     }
 
@@ -747,7 +751,7 @@ public class LwjglGraphics extends AbstractGraphics {
     }
 
     @Override
-    public void setSystemCursor(SystemCursor systemCursor) {
+    public void setSystemCursor(@NotNull SystemCursor systemCursor) {
         if (canvas != null && SharedLibraryLoader.os == Os.MacOsX) {
             return;
         }
