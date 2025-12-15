@@ -222,8 +222,8 @@ public class TiledMapTemplateObjectLoadingTest extends GdxTest {
                     font.draw(batch, readDefaultProps(mapObject), (float) mapObject.getProperties().get("x"),
                             (float) mapObject.getProperties().get("y") - (float) mapObject.getProperties().get("height") / 3);
                 } else {
-                    /** Note, object named Texture that is overridden will be flipped on the Y axis since we overrode the Flipping
-                     * Vertical property to true, that's why it appears upside down * */
+                    /* Note, object named Texture that is overridden will be flipped on the Y axis since we overrode the Flipping
+                     * Vertical property to true, that's why it appears upside down **/
                     properties = "Overridden:\n" + "BoolProp: " + mapObject.getProperties().get("BoolProp") + "\n" + "ColorProp: "
                             + mapObject.getProperties().get("ColorProp") + "\n" + "IntProp: " + mapObject.getProperties().get("IntProp")
                             + "\n" + "StringProp: " + mapObject.getProperties().get("StringProp") + "\n" + "Overridden: "
