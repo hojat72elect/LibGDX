@@ -8,7 +8,7 @@ import kotlin.math.max
  * @param initialCapacity The initial size of the array supporting the pool. No objects are created/pre-allocated. Use [.fill] after instantiation if needed.
  * @param max The maximum number of free objects that can be stored in this pool.
  */
-abstract class Pool<T> @JvmOverloads constructor(initialCapacity: Int = 16, val max: Int = Int.MAX_VALUE) {
+abstract class Pool<T> @JvmOverloads constructor(initialCapacity: Int = 16, @JvmField val max: Int = Int.MAX_VALUE) {
 
     private val freeObjects = Array<T>(false, initialCapacity)
 

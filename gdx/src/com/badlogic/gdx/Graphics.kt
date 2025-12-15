@@ -421,7 +421,7 @@ interface Graphics {
      * @param samples  number of samples for multi-sample anti-aliasing (MSAA).
      * @param coverageSampling whether coverage sampling anti-aliasing is used. in that case you have to clear the coverage buffer as well!
      */
-    class BufferFormat(@JvmField val r: Int, @JvmField val g: Int, @JvmField val b: Int, @JvmField val a: Int, val depth: Int, val stencil: Int, val samples: Int, val coverageSampling: Boolean) {
+    class BufferFormat(@JvmField val r: Int, @JvmField val g: Int, @JvmField val b: Int, @JvmField val a: Int, val depth: Int, val stencil: Int, val samples: Int,@JvmField val coverageSampling: Boolean) {
         override fun toString(): String {
             return ("r: " + r + ", g: " + g + ", b: " + b + ", a: " + a + ", depth: " + depth + ", stencil: " + stencil
                     + ", num samples: " + samples + ", coverage sampling: " + coverageSampling)
