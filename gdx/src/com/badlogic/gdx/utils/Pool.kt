@@ -65,7 +65,7 @@ abstract class Pool<T> @JvmOverloads constructor(initialCapacity: Int = 16, @Jvm
      * Called when an object is discarded. This is the case when an object is freed, but the maximum capacity of the pool is
      * reached, and when the pool is [cleared][.clear]
      */
-    protected fun discard(pooledObject: T) {
+    protected open fun discard(pooledObject: T) {
         reset(pooledObject)
     }
 
