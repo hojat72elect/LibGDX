@@ -744,7 +744,7 @@ public class CharArrayTest {
 		CharArray array = new CharArray();
 
 		// AppendAll with Iterable
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list = new ArrayList<>();
 		list.add("One");
 		list.add("Two");
 		list.add("Three");

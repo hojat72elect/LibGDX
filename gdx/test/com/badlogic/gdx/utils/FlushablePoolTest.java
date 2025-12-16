@@ -95,7 +95,7 @@ public class FlushablePoolTest {
 	}
 
 	/** Test implementation class of FlushablePool. */
-	private class FlushablePoolClass extends FlushablePool<String> {
+	private static class FlushablePoolClass extends FlushablePool<String> {
 
 		FlushablePoolClass () {
 			super();
