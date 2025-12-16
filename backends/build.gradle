@@ -1,7 +1,6 @@
 
 configure(subprojects - project(":backends:gdx-backend-android")) {
 	apply plugin: "java"
-    apply plugin: "kotlin"
 
 	if (JavaVersion.current().isJava9Compatible()) {
 		compileJava {
@@ -12,12 +11,38 @@ configure(subprojects - project(":backends:gdx-backend-android")) {
 	targetCompatibility = versions.java
 
 	sourceSets.main.java.srcDirs = ["src"]
-    sourceSets.main.kotlin.srcDirs = ["src"]
 	sourceSets.main.resources.srcDirs = ["res"]
 
 
 	dependencies {
 		api project(":gdx")
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+	}
+}
+
+// Apply Kotlin plugin and set minimum Java 11 for backends that use Kotlin
+configure([project(":backends:gdx-backend-lwjgl"), project(":backends:gdx-backend-lwjgl3")]) {
+	apply plugin: "kotlin"
+	
+	// Kotlin 2.0+ requires minimum JVM target of 11
+	def effectiveJavaVersion = Math.max(versions.java, 11)
+	
+	if (JavaVersion.current().isJava9Compatible()) {
+		compileJava {
+			options.release = effectiveJavaVersion
+		}
+	}
+	sourceCompatibility = effectiveJavaVersion
+	targetCompatibility = effectiveJavaVersion
+
+	tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+		kotlinOptions {
+			jvmTarget = effectiveJavaVersion.toString()
+		}
+	}
+
+	sourceSets.main.kotlin.srcDirs = ["src"]
+	
+	dependencies {
+		implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 	}
 }

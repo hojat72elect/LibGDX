@@ -8,6 +8,7 @@ sourceSets {
 
 dependencies {
 	api libraries.robovm
+	implementation "org.jetbrains:annotations:13.0"
 }
 
 processResources.duplicatesStrategy = DuplicatesStrategy.EXCLUDE

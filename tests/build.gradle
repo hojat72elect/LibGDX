@@ -3,13 +3,22 @@ configure(subprojects - project(":tests:gdx-tests-android")) {
 	apply plugin: "java"
 	apply plugin: "kotlin"
 
+	// Kotlin 2.0+ requires minimum JVM target of 11
+	def effectiveJavaVersion = Math.max(versions.java, 11)
+
 	if (JavaVersion.current().isJava9Compatible()) {
 		compileJava {
-			options.release = versions.java
+			options.release = effectiveJavaVersion
 		}
 	}
-	sourceCompatibility = versions.java
-	targetCompatibility = versions.java
+	sourceCompatibility = effectiveJavaVersion
+	targetCompatibility = effectiveJavaVersion
+
+	tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+		kotlinOptions {
+			jvmTarget = effectiveJavaVersion.toString()
+		}
+	}
 
 	sourceSets.main.java.srcDirs = ["src"]
 	sourceSets.main.kotlin.srcDirs = ["src"]
