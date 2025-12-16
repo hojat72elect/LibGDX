@@ -23,4 +23,6 @@ include ":tests:gdx-tests-iosrobovm"
 include ":tests:gdx-tests-lwjgl"
 include ":tests:gdx-tests-lwjgl3"
 
+include ':Ashley'
+
 rootProject.name = "libgdx"
