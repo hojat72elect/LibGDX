@@ -1,14 +1,14 @@
 package com.badlogic.gdx.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
- * A sorted double linked list which uses ints for indexing
- *
- * @param <E>
+ * A sorted double linked list which uses ints for indexing.
  */
 public class SortedIntList<E> implements Iterable<SortedIntList.Node<E>> {
     int size = 0;
     Node<E> first;
-    private final NodePool<E> nodePool = new NodePool<E>(); // avoid allocating nodes
+    private final NodePool<E> nodePool = new NodePool<>(); // avoid allocating nodes
     private transient Iterator iterator;
 
     /**
@@ -114,6 +114,7 @@ public class SortedIntList<E> implements Iterable<SortedIntList.Node<E>> {
      * If {@link Collections#allocateIterators} is false, the same iterator instance is returned each time this method is called.
      * Use the {@link Iterator} constructor for nested or multithreaded iteration.
      */
+    @NotNull
     public java.util.Iterator<Node<E>> iterator() {
         if (Collections.allocateIterators) return new Iterator();
         if (iterator == null) return iterator = new Iterator();
@@ -142,7 +143,7 @@ public class SortedIntList<E> implements Iterable<SortedIntList.Node<E>> {
     static class NodePool<E> extends Pool<Node<E>> {
         @Override
         protected Node<E> newObject() {
-            return new Node<E>();
+            return new Node<>();
         }
 
         public Node<E> obtain(Node<E> p, Node<E> n, E value, int index) {
