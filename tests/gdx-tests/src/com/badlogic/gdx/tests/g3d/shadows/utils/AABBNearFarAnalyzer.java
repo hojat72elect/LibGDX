@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Compute near and far plane based on renderable providers passed in constructor. Renderable providers array should contains
@@ -19,11 +20,39 @@ public class AABBNearFarAnalyzer implements NearFarAnalyzer {
      */
     public static float CAMERA_NEAR = 1;
     public static float CAMERA_FAR = 100;
+
+    // @TODO Merge renderable pools (ModelBatch)
+    protected static class RenderablePool extends Pool<Renderable> {
+        protected Array<Renderable> obtained = new Array<>();
+
+        @Override
+        protected Renderable newObject() {
+            return new Renderable();
+        }
+
+        @Override
+        public Renderable obtain() {
+            Renderable renderable = super.obtain();
+            renderable.environment = null;
+            renderable.material = null;
+            renderable.meshPart.set("", null, 0, 0, 0);
+            renderable.shader = null;
+            obtained.add(renderable);
+            return renderable;
+        }
+
+        public void flush() {
+            super.freeAll(obtained);
+            obtained.clear();
+        }
+    }
+
     protected final RenderablePool renderablesPool = new RenderablePool();
     /**
      * list of Renderables to be rendered in the current batch
      **/
-    protected final Array<Renderable> renderables = new Array<Renderable>();
+    protected final Array<Renderable> renderables = new Array<>();
+
     /**
      * Objects used for computation
      */
@@ -31,7 +60,8 @@ public class AABBNearFarAnalyzer implements NearFarAnalyzer {
     protected Vector3 tmpV = new Vector3();
 
     @Override
-    public <T extends RenderableProvider> void analyze(BaseLight light, Camera camera, Iterable<T> renderableProviders) {
+    public <T extends RenderableProvider> void analyze(@NotNull BaseLight<?> light, @NotNull Camera camera, @NotNull Iterable<? extends T> renderableProviders) {
+
         getRenderables(renderableProviders);
         prepareCamera(camera);
 
@@ -91,31 +121,5 @@ public class AABBNearFarAnalyzer implements NearFarAnalyzer {
         camera.near = near;
         camera.far = far;
         camera.update();
-    }
-
-    // @TODO Merge renderable pools (ModelBatch)
-    protected static class RenderablePool extends Pool<Renderable> {
-        protected Array<Renderable> obtained = new Array<Renderable>();
-
-        @Override
-        protected Renderable newObject() {
-            return new Renderable();
-        }
-
-        @Override
-        public Renderable obtain() {
-            Renderable renderable = super.obtain();
-            renderable.environment = null;
-            renderable.material = null;
-            renderable.meshPart.set("", null, 0, 0, 0);
-            renderable.shader = null;
-            obtained.add(renderable);
-            return renderable;
-        }
-
-        public void flush() {
-            super.freeAll(obtained);
-            obtained.clear();
-        }
     }
 }
