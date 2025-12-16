@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * This is a mathematical utility class used to represent an Axis-Aligned Bounding Box (AABB) in 3D space.
+ * <p>
  * Encapsulates an axis aligned bounding box represented by a minimum and a maximum Vector. Additionally you can query for the
  * bounding box's center, dimensions and corner points.
  */
@@ -56,11 +58,11 @@ public class BoundingBox implements Serializable {
     }
 
     static final float min(final float a, final float b) {
-        return a > b ? b : a;
+        return Math.min(a, b);
     }
 
     static final float max(final float a, final float b) {
-        return a > b ? a : b;
+        return Math.max(a, b);
     }
 
     /**
@@ -169,10 +171,10 @@ public class BoundingBox implements Serializable {
      * @return This bounding box for chaining.
      */
     public BoundingBox set(Vector3 minimum, Vector3 maximum) {
-        min.set(minimum.x < maximum.x ? minimum.x : maximum.x, minimum.y < maximum.y ? minimum.y : maximum.y,
-                minimum.z < maximum.z ? minimum.z : maximum.z);
-        max.set(minimum.x > maximum.x ? minimum.x : maximum.x, minimum.y > maximum.y ? minimum.y : maximum.y,
-                minimum.z > maximum.z ? minimum.z : maximum.z);
+        min.set(Math.min(minimum.x, maximum.x), Math.min(minimum.y, maximum.y),
+                Math.min(minimum.z, maximum.z));
+        max.set(Math.max(minimum.x, maximum.x), Math.max(minimum.y, maximum.y),
+                Math.max(minimum.z, maximum.z));
         update();
         return this;
     }
