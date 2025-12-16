@@ -25,7 +25,7 @@ public class BezierTest {
 
 	@Parameters(name = "imported type {0} use setter {1}")
 	public static Collection<Object[]> parameters () {
-		Collection<Object[]> parameters = new ArrayList<Object[]>();
+		Collection<Object[]> parameters = new ArrayList<>();
 		for (ImportType type : ImportType.values()) {
 			parameters.add(new Object[] {type, true});
 			parameters.add(new Object[] {type, false});
@@ -33,7 +33,7 @@ public class BezierTest {
 		return parameters;
 	}
 
-	@Parameter(0) public ImportType type;
+	@Parameter() public ImportType type;
 
 	/** use constructor or setter */
 	@Parameter(1) public boolean useSetter;
@@ -47,9 +47,9 @@ public class BezierTest {
 
 	protected Vector2[] create (Vector2[] points) {
 		if (useSetter) {
-			bezier = new Bezier<Vector2>();
+			bezier = new Bezier<>();
 			if (type == ImportType.LibGDXArrays) {
-				bezier.set(new Array<Vector2>(points), 0, points.length);
+				bezier.set(new Array<>(points), 0, points.length);
 			} else if (type == ImportType.JavaArrays) {
 				bezier.set(points, 0, points.length);
 			} else {
@@ -57,11 +57,11 @@ public class BezierTest {
 			}
 		} else {
 			if (type == ImportType.LibGDXArrays) {
-				bezier = new Bezier<Vector2>(new Array<Vector2>(points), 0, points.length);
+				bezier = new Bezier<>(new Array<>(points), 0, points.length);
 			} else if (type == ImportType.JavaArrays) {
-				bezier = new Bezier<Vector2>(points, 0, points.length);
+				bezier = new Bezier<>(points, 0, points.length);
 			} else {
-				bezier = new Bezier<Vector2>(points);
+				bezier = new Bezier<>(points);
 			}
 
 		}
