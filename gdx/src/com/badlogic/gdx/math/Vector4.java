@@ -7,6 +7,13 @@ import java.io.Serializable;
 
 /**
  * Encapsulates a 4D vector. Allows chaining operations by returning a reference to itself in all modification methods.
+ * <p>
+ * While most 2D games rely on Vector2 and 3D games rely on Vector3, the Vector4 class exists primarily to handle the
+ * mathematics required for 3D rendering pipelines and linear algebra.
+ * <p> 
+ * In 3D graphics, transformations (translation, rotation, scaling) are performed using 4x4 Matrices (Matrix4). To multiply
+ * a 3D vector (x, y, z) by a 4x4 matrix, the vector must be treated as having four components (This scenario is one of
+ * the use-cases of Vector4).
  */
 public class Vector4 implements Serializable, Vector<Vector4> {
 
