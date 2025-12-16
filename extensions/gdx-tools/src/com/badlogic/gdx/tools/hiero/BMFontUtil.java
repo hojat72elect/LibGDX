@@ -6,6 +6,7 @@ import com.badlogic.gdx.tools.hiero.unicodefont.GlyphPage;
 import com.badlogic.gdx.tools.hiero.unicodefont.UnicodeFont;
 import com.badlogic.gdx.utils.IntIntMap;
 
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -22,15 +23,12 @@ import java.io.PrintStream;
 import java.nio.Buffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
-/**
- *  */
 public class BMFontUtil {
     private final UnicodeFont unicodeFont;
 
@@ -77,14 +75,11 @@ public class BMFontUtil {
 
         pageIndex = 0;
         List allGlyphs = new ArrayList(512);
-        for (Iterator pageIter = unicodeFont.getGlyphPages().iterator(); pageIter.hasNext(); ) {
-            GlyphPage page = (GlyphPage) pageIter.next();
+        for (Object o : unicodeFont.getGlyphPages()) {
+            GlyphPage page = (GlyphPage) o;
             List<Glyph> glyphs = page.getGlyphs();
-            Collections.sort(glyphs, new             class KerningPair {
-                public int firstCodePoint, secondCodePoint, offset;
-            })
-            for (Iterator glyphIter = page.getGlyphs().iterator(); glyphIter.hasNext(); ) {
-                Glyph glyph = (Glyph) glyphIter.next();
+            glyphs.sort(Comparator.comparingInt(Glyph::getCodePoint));
+            for (Glyph glyph : page.getGlyphs()) {
                 writeGlyph(out, pageWidth, pageHeight, pageIndex, glyph);
             }
             allGlyphs.addAll(page.getGlyphs());
@@ -104,16 +99,14 @@ public class BMFontUtil {
             }
 
             IntIntMap glyphCodeToCodePoint = new IntIntMap();
-            for (Iterator iter = allGlyphs.iterator(); iter.hasNext(); ) {
-                Glyph glyph = (Glyph) iter.next();
+            for (Object allGlyph : allGlyphs) {
+                Glyph glyph = (Glyph) allGlyph;
                 glyphCodeToCodePoint.put(getGlyphCode(font, glyph.getCodePoint()), glyph.getCodePoint());
             }
 
             List kernings = new ArrayList(256);
-Comparator<Glyph>() {
-                public int compare(Glyph o1, Glyph o2) {
-                    return o1.getCodePoint() - o2.getCodePoint();
-                }
+            class KerningPair {
+                public int firstCodePoint, secondCodePoint, offset;
             }
             for (IntIntMap.Entry entry : kerning.getKernings()) {
                 int firstGlyphCode = entry.key >> 16;
@@ -134,8 +127,8 @@ Comparator<Glyph>() {
                 kernings.add(pair);
             }
             out.println("kernings count=" + kernings.size());
-            for (Iterator iter = kernings.iterator(); iter.hasNext(); ) {
-                KerningPair pair = (KerningPair) iter.next();
+            for (Object o : kernings) {
+                KerningPair pair = (KerningPair) o;
                 out.println("kerning first=" + pair.firstCodePoint + " second=" + pair.secondCodePoint + " amount=" + pair.offset);
             }
         }
@@ -171,9 +164,7 @@ Comparator<Glyph>() {
         }
     }
 
-    /**
-     * @return May be null.
-     */
+    @Nullable
     private Glyph getGlyph(char c) {
         char[] chars = {c};
         GlyphVector vector = unicodeFont.getFont().layoutGlyphVector(GlyphPage.renderContext, chars, 0, chars.length,
