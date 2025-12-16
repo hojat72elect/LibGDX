@@ -6,8 +6,8 @@ import com.badlogic.gdx.utils.ShortArray;
 
 /**
  * Computes the convex hull of a set of points using the monotone chain convex hull algorithm (aka Andrew's algorithm).
- *
- *  */
+ * For more info about the unerlying algorithm, refer to <a href="https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain">this link</a>.
+ */
 public class ConvexHull {
     private final IntArray quicksortStack = new IntArray();
     private final FloatArray hull = new FloatArray();
@@ -29,8 +29,6 @@ public class ConvexHull {
         return computePolygon(polygon, 0, polygon.length, sorted);
     }
 
-    /** Returns a list of points on the convex hull in counter-clockwise order. Note: the last point in the returned list is the
-     * same as the first one. */
     /**
      * Returns the convex hull polygon for the given point cloud.
      *
