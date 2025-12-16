@@ -6,8 +6,7 @@ import java.util.Random;
  * Utility and fast math functions.
  * <p>
  * Thanks to Riven on JavaGaming.org for the basis of sin/cos/floor/ceil.
- *
- *  */
+ */
 public final class MathUtils {
 
     static public final float nanoToSec = 1 / 1000000000f;
