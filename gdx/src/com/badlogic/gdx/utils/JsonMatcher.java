@@ -283,7 +283,7 @@ public class JsonMatcher extends JsonSkimmer {
             for (Pattern pattern : patterns) {
                 if (pattern.captureAll) {
                     if (debug) debug(pattern, "current: " + pattern.current + " CAPTURE ALL");
-                    JsonValue value = new JsonValue(object ? ValueType.object : ValueType.array);
+                    JsonValue value = new JsonValue(object ? ValueType.objectValue : ValueType.array);
                     captureAllValue(pattern, name, value);
                     pattern.stack.add(value);
                 } else {
@@ -453,7 +453,7 @@ public class JsonMatcher extends JsonSkimmer {
     }
 
     private void captureAllStart(Pattern pattern, int flags, @Null JsonToken name, boolean object) {
-        ValueType type = object ? ValueType.object : ValueType.array;
+        ValueType type = object ? ValueType.objectValue : ValueType.array;
         JsonValue capture;
         if ((flags & (single | array)) == single) { // single but not array.
             capture = pattern.capture;
@@ -501,7 +501,7 @@ public class JsonMatcher extends JsonSkimmer {
             if (clear)
                 pattern.clearCapture();
             else
-                pattern.capture = new JsonValue(ValueType.object); // Processors called at the end of parsing own the value.
+                pattern.capture = new JsonValue(ValueType.objectValue); // Processors called at the end of parsing own the value.
             processPattern = null;
         }
     }
@@ -807,7 +807,7 @@ public class JsonMatcher extends JsonSkimmer {
         final Node root;
         final Processor processor;
         final Array<JsonValue> stack = new Array();
-        JsonValue capture = new JsonValue(ValueType.object);
+        JsonValue capture = new JsonValue(ValueType.objectValue);
         int captured, total;
         boolean captureAll, captureRoot, at;
         Node current;
@@ -825,7 +825,7 @@ public class JsonMatcher extends JsonSkimmer {
             capture.name = null;
             capture.child = null;
             capture.last = null;
-            capture.setType(ValueType.object);
+            capture.setType(ValueType.objectValue);
             capture.size = 0;
         }
 

@@ -128,7 +128,7 @@ public class UBJsonReader implements BaseJsonReader {
     }
 
     protected JsonValue parseObject(final DataInputStream din) throws IOException {
-        JsonValue result = new JsonValue(JsonValue.ValueType.object);
+        JsonValue result = new JsonValue(JsonValue.ValueType.objectValue);
         byte type = din.readByte();
         byte valueType = 0;
         if (type == '$') {

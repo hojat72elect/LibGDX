@@ -976,7 +976,7 @@ public class TiledMapPacker {
         }
         if (property == null) {
             // Create new property
-            property = new JsonValue(JsonValue.ValueType.object);
+            property = new JsonValue(JsonValue.ValueType.objectValue);
             property.addChild("name", new JsonValue(name));
             property.addChild("type", new JsonValue("string"));
             properties.addChild(property);

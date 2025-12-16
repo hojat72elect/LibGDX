@@ -1051,7 +1051,7 @@ public class JsonValue implements Iterable<JsonValue> {
     }
 
     public boolean isObject() {
-        return type == ValueType.object;
+        return type == ValueType.objectValue;
     }
 
     public boolean isString() {
@@ -1199,7 +1199,7 @@ public class JsonValue implements Iterable<JsonValue> {
      * @throws IllegalStateException if this is an object and the specified child's name is null.
      */
     public void addChild(JsonValue value) {
-        if (type == ValueType.object && value.name == null)
+        if (type == ValueType.objectValue && value.name == null)
             throw new IllegalStateException("An object child requires a name: " + value);
         value.parent = this;
         value.next = null;
@@ -1220,7 +1220,7 @@ public class JsonValue implements Iterable<JsonValue> {
      * @throws IllegalStateException if this is an object and the specified child's name is null.
      */
     public void addChildFirst(JsonValue value) {
-        if (type == ValueType.object && value.name == null)
+        if (type == ValueType.objectValue && value.name == null)
             throw new IllegalStateException("An object child requires a name: " + value);
         value.parent = this;
         value.next = child;
@@ -1389,7 +1389,7 @@ public class JsonValue implements Iterable<JsonValue> {
     public String trace() {
         if (parent == null) {
             if (type == ValueType.array) return "[]";
-            if (type == ValueType.object) return "{}";
+            if (type == ValueType.objectValue) return "{}";
             return "";
         }
         String trace;
@@ -1556,7 +1556,7 @@ public class JsonValue implements Iterable<JsonValue> {
     }
 
     public enum ValueType {
-        object, array, stringValue, doubleValue, longValue, booleanValue, nullValue
+        objectValue, array, stringValue, doubleValue, longValue, booleanValue, nullValue
     }
 
     static public class PrettyPrintSettings {

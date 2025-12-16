@@ -1279,7 +1279,7 @@ public class JsonMatcherTests {
         value.getString("admin_state_str");
         value.getBoolean("sleep_enabled");
         value.get("device_status").asStringArray();
-        assertTrue(value.get("object").type() == ValueType.object);
+        assertTrue(value.get("object").type() == ValueType.objectValue);
     }
 
     @Test

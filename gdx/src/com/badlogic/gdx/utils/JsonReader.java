@@ -667,7 +667,7 @@ public class JsonReader implements BaseJsonReader {
      * Called when an object is encountered in the JSON.
      */
     protected void startObject(@Null String name) {
-        JsonValue value = new JsonValue(ValueType.object);
+        JsonValue value = new JsonValue(ValueType.objectValue);
         if (current != null) addChild(name, value);
         elements.add(value);
         current = value;

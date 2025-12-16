@@ -548,7 +548,7 @@ public abstract class BaseTmjMapLoader<P extends BaseTiledMapLoader.Parameters> 
         if (templateObject == null) return parentObject;
         if (parentObject == null) return templateObject;
         // Create a new merged element which will contain a combination of parent and template objects
-        JsonValue merged = new JsonValue(JsonValue.ValueType.object);
+        JsonValue merged = new JsonValue(JsonValue.ValueType.objectValue);
         // Add children from template
         for (JsonValue child : templateObject) {
             merged.addChild(child.name(), cloneElementShallow(child));
@@ -632,7 +632,7 @@ public abstract class BaseTmjMapLoader<P extends BaseTiledMapLoader.Parameters> 
         if (template == null) return parent;
         if (parent == null) return template;
         // Create a new merged element which will contain a combination of parent and template attributes, properties etc...
-        JsonValue merged = new JsonValue(JsonValue.ValueType.object);
+        JsonValue merged = new JsonValue(JsonValue.ValueType.objectValue);
         // Set attributes from template
         for (JsonValue child : template) {
             merged.addChild(cloneElementShallow(child));
