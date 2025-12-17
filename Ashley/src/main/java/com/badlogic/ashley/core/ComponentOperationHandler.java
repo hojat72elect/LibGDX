@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Pool;
 class ComponentOperationHandler {
     private final BooleanInformer delayed;
     private final ComponentOperationPool operationPool = new ComponentOperationPool();
-    private final Array<ComponentOperation> operations = new Array<ComponentOperation>();
+    private final Array<ComponentOperation> operations = new Array<>();
 
     public ComponentOperationHandler(BooleanInformer delayed) {
         this.delayed = delayed;
