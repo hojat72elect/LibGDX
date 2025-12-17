@@ -38,15 +38,15 @@ public class Entity {
      * Creates an empty Entity.
      */
     public Entity() {
-        components = new Bag<Component>();
-        componentsArray = new Array<Component>(false, 16);
-        immutableComponentsArray = new ImmutableArray<Component>(componentsArray);
+        components = new Bag<>();
+        componentsArray = new Array<>(false, 16);
+        immutableComponentsArray = new ImmutableArray<>(componentsArray);
         componentBits = new Bits();
         familyBits = new Bits();
         flags = 0;
 
-        componentAdded = new Signal<Entity>();
-        componentRemoved = new Signal<Entity>();
+        componentAdded = new Signal<>();
+        componentRemoved = new Signal<>();
     }
 
     /**
@@ -170,7 +170,6 @@ public class Entity {
     }
 
     /**
-     * @param component
      * @return whether or not the component was added.
      */
     boolean addInternal(Component component) {
@@ -194,7 +193,6 @@ public class Entity {
     }
 
     /**
-     * @param componentClass
      * @return the component if the specified class was found and removed. Otherwise, null
      */
     Component removeInternal(Class<? extends Component> componentClass) {
