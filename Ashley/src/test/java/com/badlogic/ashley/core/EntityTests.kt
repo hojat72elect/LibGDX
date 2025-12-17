@@ -85,7 +85,7 @@ class EntityTests {
         for (i in 0..64) {
             val type = cl.createComponentType("Component$i")
             entity.remove(type)
-            entity.add(type.newInstance())
+            entity.add(type?.newInstance())
         }
     }
 
