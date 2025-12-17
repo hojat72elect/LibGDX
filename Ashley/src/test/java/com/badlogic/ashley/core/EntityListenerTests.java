@@ -17,7 +17,6 @@ public class EntityListenerTests {
         e.add(new PositionComponent());
         engine.addEntity(e);
 
-        @SuppressWarnings("unchecked")
         Family family = Family.all(PositionComponent.class).get();
         engine.addEntityListener(family, new EntityListener() {
 
@@ -40,7 +39,6 @@ public class EntityListenerTests {
         Entity e = new Entity();
         e.add(new PositionComponent());
 
-        @SuppressWarnings("unchecked")
         Family family = Family.all(PositionComponent.class).get();
         engine.addEntityListener(family, new EntityListener() {
 
@@ -64,7 +62,7 @@ public class EntityListenerTests {
         e.add(new PositionComponent());
         engine.addEntity(e);
 
-        @SuppressWarnings("unchecked") final Family family = Family.all(PositionComponent.class).get();
+         final Family family = Family.all(PositionComponent.class).get();
         engine.addEntityListener(new EntityListener() {
 
             public void entityRemoved(Entity entity) {
@@ -86,7 +84,7 @@ public class EntityListenerTests {
         Entity e = new Entity();
         e.add(new PositionComponent());
 
-        @SuppressWarnings("unchecked") final Family family = Family.all(PositionComponent.class).get();
+         final Family family = Family.all(PositionComponent.class).get();
         engine.addEntityListener(new EntityListener() {
 
             public void entityRemoved(Entity entity) {
@@ -245,6 +243,6 @@ public class EntityListenerTests {
     private static class ComponentB implements Component {
     }
 
-    public class PositionComponent implements Component {
+    public static class PositionComponent implements Component {
     }
 }

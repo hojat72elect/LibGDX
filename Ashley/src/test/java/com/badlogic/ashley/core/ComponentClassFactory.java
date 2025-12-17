@@ -9,7 +9,7 @@ import org.mockito.asm.Opcodes;
  * <p>
  * Useful for tests that need several different component types.
  * <p>
- * Adapted from https://dzone.com/articles/fully-dynamic-classes-with-asm
+ * Adapted from <a href="https://dzone.com/articles/fully-dynamic-classes-with-asm">this document</a>.
  */
 public class ComponentClassFactory extends ClassLoader {
     /**

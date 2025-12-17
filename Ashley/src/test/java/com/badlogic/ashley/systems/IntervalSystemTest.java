@@ -25,7 +25,7 @@ public class IntervalSystemTest {
     @Test
     public void testGetInterval() {
         IntervalSystemSpy intervalSystemSpy = new IntervalSystemSpy();
-        assertEquals(intervalSystemSpy.getInterval(), deltaTime * 2.0f, 0);
+        assertEquals(deltaTime * 2.0f, intervalSystemSpy.getInterval(), 0);
     }
 
     private static class IntervalSystemSpy extends IntervalSystem {

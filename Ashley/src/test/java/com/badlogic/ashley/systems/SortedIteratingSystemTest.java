@@ -29,7 +29,6 @@ public class SortedIteratingSystemTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void shouldIterateEntitiesWithCorrectFamily() {
         final Engine engine = new Engine();
 
@@ -192,7 +191,7 @@ public class SortedIteratingSystemTest {
     }
 
     private static class SortedIteratingSystemMock extends SortedIteratingSystem {
-        public LinkedList<String> expectedNames = new LinkedList<String>();
+        public LinkedList<String> expectedNames = new LinkedList<>();
         public int numStartProcessing;
         public int numEndProcessing;
 
@@ -303,7 +302,7 @@ public class SortedIteratingSystemTest {
         public int compare(Entity a, Entity b) {
             OrderComponent ac = orderMapper.get(a);
             OrderComponent bc = orderMapper.get(b);
-            return ac.zLayer > bc.zLayer ? 1 : (ac.zLayer == bc.zLayer) ? 0 : -1;
+            return Integer.compare(ac.zLayer, bc.zLayer);
         }
     }
 }

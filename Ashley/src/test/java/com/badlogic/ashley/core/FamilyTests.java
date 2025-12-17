@@ -10,7 +10,6 @@ import com.badlogic.ashley.systems.IteratingSystem;
 
 import org.junit.Test;
 
-@SuppressWarnings("unchecked")
 public class FamilyTests {
 
     @Test

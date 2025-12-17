@@ -12,7 +12,7 @@ public class SignalTests {
     @Test
     public void addListenerAndDispatch() {
         Dummy dummy = new Dummy();
-        Signal<Dummy> signal = new Signal<Dummy>();
+        Signal<Dummy> signal = new Signal<>();
         ListenerMock listener = new ListenerMock();
         signal.add(listener);
 
@@ -26,8 +26,8 @@ public class SignalTests {
     @Test
     public void addListenersAndDispatch() {
         Dummy dummy = new Dummy();
-        Signal<Dummy> signal = new Signal<Dummy>();
-        Array<ListenerMock> listeners = new Array<ListenerMock>();
+        Signal<Dummy> signal = new Signal<>();
+        Array<ListenerMock> listeners = new Array<>();
 
         int numListeners = 10;
 
@@ -55,7 +55,7 @@ public class SignalTests {
     @Test
     public void addListenerDispatchAndRemove() {
         Dummy dummy = new Dummy();
-        Signal<Dummy> signal = new Signal<Dummy>();
+        Signal<Dummy> signal = new Signal<>();
         ListenerMock listenerA = new ListenerMock();
         ListenerMock listenerB = new ListenerMock();
 
@@ -90,7 +90,7 @@ public class SignalTests {
     @Test
     public void removeWhileDispatch() {
         Dummy dummy = new Dummy();
-        Signal<Dummy> signal = new Signal<Dummy>();
+        Signal<Dummy> signal = new Signal<>();
         RemoveWhileDispatchListenerMock listenerA = new RemoveWhileDispatchListenerMock();
         ListenerMock listenerB = new ListenerMock();
 
@@ -106,7 +106,7 @@ public class SignalTests {
     @Test
     public void removeAll() {
         Dummy dummy = new Dummy();
-        Signal<Dummy> signal = new Signal<Dummy>();
+        Signal<Dummy> signal = new Signal<>();
 
         ListenerMock listenerA = new ListenerMock();
         ListenerMock listenerB = new ListenerMock();

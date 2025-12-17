@@ -97,7 +97,7 @@ public class SystemManagerTests {
 
     @Test
     public void systemUpdateOrder() {
-        Array<Integer> updates = new Array<Integer>();
+        Array<Integer> updates = new Array<>();
 
         SystemListenerSpy systemSpy = new SystemListenerSpy();
         SystemManager manager = new SystemManager(systemSpy);

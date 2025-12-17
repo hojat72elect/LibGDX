@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import org.junit.Test;
 
-@SuppressWarnings("unchecked")
 public class EngineTests {
 
     private final float deltaTime = 0.16f;
@@ -174,7 +173,7 @@ public class EngineTests {
 
     @Test
     public void systemUpdateOrder() {
-        Array<Integer> updates = new Array<Integer>();
+        Array<Integer> updates = new Array<>();
 
         Engine engine = new Engine();
         EntitySystemMock system1 = new EntitySystemMockA(updates);
@@ -477,7 +476,7 @@ public class EngineTests {
         ComponentAddedListener addedListener = new ComponentAddedListener(numEntities);
         ComponentRemovedListener removedListener = new ComponentRemovedListener(numEntities);
 
-        final Array<Entity> entities = new Array<Entity>();
+        final Array<Entity> entities = new Array<>();
 
         engine.addEntityListener(Family.all(ComponentA.class).get(), new EntityListener() {
             @Override
@@ -645,7 +644,7 @@ public class EngineTests {
 
         Engine engine = new Engine();
 
-        Array<Entity> entities = new Array<Entity>();
+        Array<Entity> entities = new Array<>();
 
         for (int i = 0; i < numEntities; ++i) {
             Entity entity = new Entity();
@@ -727,7 +726,7 @@ public class EngineTests {
         Engine engine = new Engine();
         Entity entity = engine.createEntity();
 
-        assertNotEquals(entity, null);
+        assertNotEquals(null, entity);
     }
 
     @Test
@@ -937,7 +936,7 @@ public class EngineTests {
         }
     }
 
-    public class ComponentAddSystem extends IteratingSystem {
+    public static class ComponentAddSystem extends IteratingSystem {
         private final ComponentAddedListener listener;
 
         public ComponentAddSystem(ComponentAddedListener listener) {
@@ -954,7 +953,7 @@ public class EngineTests {
         }
     }
 
-    public class ComponentRemoveSystem extends IteratingSystem {
+    public static class ComponentRemoveSystem extends IteratingSystem {
         private final ComponentRemovedListener listener;
 
         public ComponentRemoveSystem(ComponentRemovedListener listener) {
@@ -971,7 +970,7 @@ public class EngineTests {
         }
     }
 
-    public class RemoveAddAndRemoveEntitySystem extends EntitySystem {
+    public static class RemoveAddAndRemoveEntitySystem extends EntitySystem {
 
         @Override
         public void update(float deltaTime) {

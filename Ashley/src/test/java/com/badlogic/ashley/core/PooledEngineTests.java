@@ -17,7 +17,6 @@ import org.junit.Test;
 
 public class PooledEngineTests {
     private final ComponentMapper<PoolableComponent> poolableMapper = ComponentMapper.getFor(PoolableComponent.class);
-    private final float deltaTime = 0.16f;
 
     @Test
     public void entityRemovalListenerOrder() {
@@ -37,6 +36,7 @@ public class PooledEngineTests {
         assertEquals(10, combinedSystem.allEntities.size());
 
         for (int i = 0; i < 10; i++) {
+            float deltaTime = 0.16f;
             engine.update(deltaTime);
         }
 
@@ -101,7 +101,7 @@ public class PooledEngineTests {
     public void recycleEntity() {
         int numEntities = 5;
         PooledEngine engine = new PooledEngine(numEntities, 100, 0, 100);
-        Array<Entity> entities = new Array<Entity>();
+        Array<Entity> entities = new Array<>();
 
         for (int i = 0; i < numEntities; ++i) {
             Entity entity = engine.createEntity();
@@ -131,7 +131,7 @@ public class PooledEngineTests {
         PooledEngine engine = new PooledEngine();
 
         for (int i = 0; i < 100; ++i) {
-            Array<Entity> entities = new Array<Entity>();
+            Array<Entity> entities = new Array<>();
 
             for (int j = 0; j < 100; ++j) {
                 Entity entity = engine.createEntity();

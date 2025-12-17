@@ -37,7 +37,7 @@ public class EntityManagerTests {
         EntityListenerMock listener = new EntityListenerMock();
         EntityManager manager = new EntityManager(listener);
 
-        Array<Entity> entities = new Array<Entity>();
+        Array<Entity> entities = new Array<>();
 
         for (int i = 0; i < numEntities; ++i) {
             Entity entity = new Entity();

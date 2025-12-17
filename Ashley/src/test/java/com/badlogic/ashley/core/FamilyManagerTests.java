@@ -15,8 +15,8 @@ public class FamilyManagerTests {
 
     @Test
     public void entitiesForFamily() {
-        Array<Entity> entities = new Array<Entity>();
-        ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
+        Array<Entity> entities = new Array<>();
+        ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
         FamilyManager manager = new FamilyManager(immutableEntities);
 
         Family family = Family.all(ComponentA.class, ComponentB.class).get();
@@ -62,8 +62,8 @@ public class FamilyManagerTests {
 
     @Test
     public void entityForFamilyWithRemoval() {
-        Array<Entity> entities = new Array<Entity>();
-        ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
+        Array<Entity> entities = new Array<>();
+        ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
         FamilyManager manager = new FamilyManager(immutableEntities);
 
         Entity entity = new Entity();
@@ -90,8 +90,8 @@ public class FamilyManagerTests {
 
     @Test
     public void entitiesForFamilyAfter() {
-        Array<Entity> entities = new Array<Entity>();
-        ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
+        Array<Entity> entities = new Array<>();
+        ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
         FamilyManager manager = new FamilyManager(immutableEntities);
 
         Family family = Family.all(ComponentA.class, ComponentB.class).get();
@@ -137,8 +137,8 @@ public class FamilyManagerTests {
 
     @Test
     public void entitiesForFamilyWithRemoval() {
-        Array<Entity> entities = new Array<Entity>();
-        ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
+        Array<Entity> entities = new Array<>();
+        ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
         FamilyManager manager = new FamilyManager(immutableEntities);
 
         Family family = Family.all(ComponentA.class, ComponentB.class).get();
@@ -197,8 +197,8 @@ public class FamilyManagerTests {
 
     @Test
     public void entitiesForFamilyWithRemovalAndFiltering() {
-        Array<Entity> entities = new Array<Entity>();
-        ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
+        Array<Entity> entities = new Array<>();
+        ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
         FamilyManager manager = new FamilyManager(immutableEntities);
 
         ImmutableArray<Entity> entitiesWithComponentAOnly = manager.getEntitiesFor(Family.all(ComponentA.class)
@@ -233,8 +233,8 @@ public class FamilyManagerTests {
 
     @Test
     public void entityListenerThrows() {
-        Array<Entity> entities = new Array<Entity>();
-        ImmutableArray<Entity> immutableEntities = new ImmutableArray<Entity>(entities);
+        Array<Entity> entities = new Array<>();
+        ImmutableArray<Entity> immutableEntities = new ImmutableArray<>(entities);
         FamilyManager manager = new FamilyManager(immutableEntities);
 
         EntityListener listener = new EntityListener() {

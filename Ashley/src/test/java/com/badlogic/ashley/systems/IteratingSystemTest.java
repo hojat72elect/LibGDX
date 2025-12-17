@@ -15,7 +15,6 @@ public class IteratingSystemTest {
     private static final float deltaTime = 0.16f;
 
     @Test
-    @SuppressWarnings("unchecked")
     public void shouldIterateEntitiesWithCorrectFamily() {
         final Engine engine = new Engine();
 
