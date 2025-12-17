@@ -9,8 +9,6 @@ import com.badlogic.ashley.utils.ImmutableArray;
 /**
  * A simple EntitySystem that iterates over each entity and calls processEntity() for each entity every time the EntitySystem is
  * updated. This is really just a convenience class as most systems iterate over a list of entities.
- *
- * @author Stefan Bachmann
  */
 public abstract class IteratingSystem extends EntitySystem {
     private final Family family;
