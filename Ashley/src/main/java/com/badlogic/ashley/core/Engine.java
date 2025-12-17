@@ -142,7 +142,6 @@ public class Engine {
     /**
      * Quick {@link EntitySystem} retrieval.
      */
-    @SuppressWarnings("unchecked")
     public <T extends EntitySystem> T getSystem(Class<T> systemType) {
         return systemManager.getSystem(systemType);
     }

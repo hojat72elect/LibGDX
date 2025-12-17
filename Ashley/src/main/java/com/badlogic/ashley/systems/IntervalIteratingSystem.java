@@ -25,7 +25,6 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
     /**
      * @param family   represents the collection of family the system should process
      * @param interval time in seconds between calls to {@link IntervalIteratingSystem#updateInterval()}.
-     * @param priority
      */
     public IntervalIteratingSystem(Family family, float interval, int priority) {
         super(interval, priority);
@@ -62,8 +61,6 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
 
     /**
      * The user should place the entity processing logic here.
-     *
-     * @param entity
      */
     protected abstract void processEntity(Entity entity);
 
@@ -71,13 +68,11 @@ public abstract class IntervalIteratingSystem extends IntervalSystem {
      * This method is called once on every update call of the EntitySystem, before entity processing begins. Override this method to
      * implement your specific startup conditions.
      */
-    public void startProcessing() {
-    }
+    public void startProcessing() {}
 
     /**
      * This method is called once on every update call of the EntitySystem after entity processing is complete. Override this method to
      * implement your specific end conditions.
      */
-    public void endProcessing() {
-    }
+    public void endProcessing() {}
 }
