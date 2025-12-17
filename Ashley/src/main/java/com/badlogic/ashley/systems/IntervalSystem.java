@@ -19,7 +19,6 @@ public abstract class IntervalSystem extends EntitySystem {
 
     /**
      * @param interval time in seconds between calls to {@link IntervalSystem#updateInterval()}.
-     * @param priority
      */
     public IntervalSystem(float interval, int priority) {
         super(priority);
