@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.ObjectMap;
  * return the same instance of ComponentType.
  */
 public final class ComponentType {
-    private static final ObjectMap<Class<? extends Component>, ComponentType> assignedComponentTypes = new ObjectMap<Class<? extends Component>, ComponentType>();
+    private static final ObjectMap<Class<? extends Component>, ComponentType> assignedComponentTypes = new ObjectMap<>();
     private static int typeIndex = 0;
 
     private final int index;
@@ -35,7 +35,7 @@ public final class ComponentType {
     }
 
     /**
-     * Quick helper method. The same could be done via {@link ComponentType.getFor(Class<? extends Component>)}.
+     * Quick helper method. The same could be done via {ComponentType.getFor(Class<? extends Component>)}.
      *
      * @param componentType The {@link Component} class
      * @return The index for the specified {@link Component} Class
@@ -47,14 +47,14 @@ public final class ComponentType {
     /**
      * @param componentTypes list of {@link Component} classes
      * @return Bits representing the collection of components for quick comparison and matching. See
-     * {@link Family#getFor(Bits, Bits, Bits)}.
+     * {Family.getFor(Bits, Bits, Bits)}.
      */
+    @SafeVarargs
     public static Bits getBitsFor(Class<? extends Component>... componentTypes) {
         Bits bits = new Bits();
 
-        int typesLength = componentTypes.length;
-        for (int i = 0; i < typesLength; i++) {
-            bits.set(ComponentType.getIndexFor(componentTypes[i]));
+        for (Class<? extends Component> componentType : componentTypes) {
+            bits.set(ComponentType.getIndexFor(componentType));
         }
 
         return bits;
