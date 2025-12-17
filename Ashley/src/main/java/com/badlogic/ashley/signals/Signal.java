@@ -10,7 +10,7 @@ public class Signal<T> {
     private final SnapshotArray<Listener<T>> listeners;
 
     public Signal() {
-        listeners = new SnapshotArray<Listener<T>>();
+        listeners = new SnapshotArray<>();
     }
 
     /**
