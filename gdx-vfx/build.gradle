@@ -13,6 +13,7 @@ kotlin {
 }
 dependencies{
     api project(":gdx")
+    api project(":backends:gdx-backend-lwjgl3")
 
     implementation("com.crashinvaders.lml:gdx-lml:1.10.1.12.1")
 }
