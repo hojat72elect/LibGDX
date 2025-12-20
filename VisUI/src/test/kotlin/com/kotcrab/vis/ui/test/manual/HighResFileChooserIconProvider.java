@@ -1,0 +1,96 @@
+package com.kotcrab.vis.ui.test.manual;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Disposable;
+import com.kotcrab.vis.ui.widget.file.FileChooser;
+import com.kotcrab.vis.ui.widget.file.FileChooser.FileIconProvider;
+
+/**
+ * {@link FileIconProvider} implementation supporting extended file chooser view modes (big icons, medium icons and
+ * small icons). To use this you must include high resolution texture atlas for files icons. (see `vis-ui-contrib/file-chooser-high-res.atlas`)
+ */
+public class HighResFileChooserIconProvider extends FileChooser.DefaultFileIconProvider implements Disposable {
+    private final TextureAtlas highResTextures;
+
+    private final Drawable[] iconFolderBig = new Drawable[3];
+    private final Drawable[] iconFileText = new Drawable[3];
+    private final Drawable[] iconFileImage = new Drawable[3];
+    private final Drawable[] iconFilePdf = new Drawable[3];
+    private final Drawable[] iconFileAudio = new Drawable[3];
+
+    public HighResFileChooserIconProvider(FileChooser chooser) {
+        super(chooser);
+        highResTextures = new TextureAtlas(Gdx.files.classpath("file-chooser-high-res.atlas"));
+        loadIcons(iconFolderBig, "icon-folder");
+        loadIcons(iconFileText, "icon-file-text");
+        loadIcons(iconFileImage, "icon-file-image");
+        loadIcons(iconFilePdf, "icon-file-pdf");
+        loadIcons(iconFileAudio, "icon-file-audio");
+    }
+
+    private void loadIcons(Drawable[] target, String prefix) {
+        target[0] = new TextureRegionDrawable(highResTextures.findRegion(prefix + "-small"));
+        target[1] = new TextureRegionDrawable(highResTextures.findRegion(prefix + "-medium"));
+        target[2] = new TextureRegionDrawable(highResTextures.findRegion(prefix + "-big"));
+    }
+
+    private Drawable getIcon(Drawable[] source, FileChooser.ViewMode viewMode) {
+        if (viewMode == FileChooser.ViewMode.SMALL_ICONS) return source[0];
+        if (viewMode == FileChooser.ViewMode.MEDIUM_ICONS) return source[1];
+        if (viewMode == FileChooser.ViewMode.BIG_ICONS) return source[2];
+        return null;
+    }
+
+    @Override
+    public boolean isThumbnailModesSupported() {
+        return true;
+    }
+
+    @Override
+    protected Drawable getDirIcon(FileChooser.FileItem item) {
+        Drawable icon = getIcon(iconFolderBig, chooser.getViewMode());
+        if (icon == null)
+            return super.getDirIcon(item);
+        return icon;
+    }
+
+    @Override
+    protected Drawable getImageIcon(FileChooser.FileItem item) {
+        Drawable icon = getIcon(iconFileImage, chooser.getViewMode());
+        if (icon == null)
+            return super.getImageIcon(item);
+        return icon;
+    }
+
+    @Override
+    protected Drawable getAudioIcon(FileChooser.FileItem item) {
+        Drawable icon = getIcon(iconFileAudio, chooser.getViewMode());
+        if (icon == null)
+            return super.getAudioIcon(item);
+        return icon;
+    }
+
+    @Override
+    protected Drawable getPdfIcon(FileChooser.FileItem item) {
+        Drawable icon = getIcon(iconFilePdf, chooser.getViewMode());
+        if (icon == null)
+            return super.getPdfIcon(item);
+        return icon;
+    }
+
+    @Override
+    protected Drawable getTextIcon(FileChooser.FileItem item) {
+        Drawable icon = getIcon(iconFileText, chooser.getViewMode());
+        if (icon == null)
+            return super.getTextIcon(item);
+        return icon;
+    }
+
+    @Override
+    public void dispose() {
+        highResTextures.dispose();
+    }
+}
