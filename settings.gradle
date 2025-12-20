@@ -20,7 +20,10 @@ include ":tests:gdx-tests-android"
 include ":tests:gdx-tests-lwjgl"
 include ":tests:gdx-tests-lwjgl3"
 
+// The modules I have added overtime.
 include ':Ashley'
+include ':VisUI'
+include ':gdx-vfx'
 
 rootProject.name = "libgdx"
-include ':VisUI'
+
