@@ -19,3 +19,11 @@ dependencies {
 
     testImplementation "junit:junit:4.13.2"
 }
+
+sourceSets {
+    test {
+        java {
+            srcDirs += 'src/test/kotlin'
+        }
+    }
+}
