@@ -1,0 +1,285 @@
+package games.rednblack.editor.renderer;
+
+import com.artemis.BaseSystem;
+import com.artemis.Component;
+import com.artemis.SystemInvocationStrategy;
+import com.artemis.WorldConfigurationBuilder;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Null;
+import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.ObjectSet;
+
+import games.rednblack.editor.renderer.commons.IExternalItemType;
+import games.rednblack.editor.renderer.lights.RayHandler;
+import games.rednblack.editor.renderer.lights.RayHandlerOptions;
+import games.rednblack.editor.renderer.resources.IResourceRetriever;
+import games.rednblack.editor.renderer.resources.ResourceManager;
+import games.rednblack.editor.renderer.systems.BoundingBoxSystem;
+import games.rednblack.editor.renderer.systems.ButtonSystem;
+import games.rednblack.editor.renderer.systems.CompositeSystem;
+import games.rednblack.editor.renderer.systems.CullingSystem;
+import games.rednblack.editor.renderer.systems.LabelSystem;
+import games.rednblack.editor.renderer.systems.LayerSystem;
+import games.rednblack.editor.renderer.systems.LightSystem;
+import games.rednblack.editor.renderer.systems.ParticleSystem;
+import games.rednblack.editor.renderer.systems.PhysicsSystem;
+import games.rednblack.editor.renderer.systems.ScriptSystem;
+import games.rednblack.editor.renderer.systems.SpriteAnimationSystem;
+import games.rednblack.editor.renderer.systems.action.ActionSystem;
+import games.rednblack.editor.renderer.systems.render.HyperLap2dRenderer;
+import games.rednblack.editor.renderer.systems.strategy.HyperLap2dInvocationStrategy;
+import games.rednblack.editor.renderer.utils.TextureArrayCpuPolygonSpriteBatch;
+
+public class SceneConfiguration {
+
+    private final int msaaSamples;
+    // Artemis World, our Engine - config
+    private final Array<SystemData<?>> systems = new Array<>();
+    private final ObjectMap<String, ObjectSet<Class<? extends Component>>> tagTransmuters = new ObjectMap<>();
+    // SceneLoader - config
+    private IResourceRetriever iResourceRetriever;
+    private World world;
+    private RayHandler rayHandler;
+    private SystemInvocationStrategy invocationStrategy;
+    private boolean cullingEnabled = true;
+    private ExternalTypesConfiguration externalItemTypes;
+    private HyperLap2dRenderer rendererSystem;
+    private Class<? extends HyperLap2dRenderer> rendererClass;
+    private int expectedEntityCount = 128;
+
+    public SceneConfiguration() {
+        this(2000);
+    }
+
+    public SceneConfiguration(int batchSize) {
+        this(new TextureArrayCpuPolygonSpriteBatch(batchSize));
+    }
+
+    public SceneConfiguration(Batch batch) {
+        this(batch, false, 0);
+    }
+
+    public SceneConfiguration(Batch batch, boolean hasStencil, int samples) {
+        msaaSamples = samples;
+        addSystem(new LayerSystem());
+        addSystem(new ParticleSystem());
+        addSystem(new SpriteAnimationSystem());
+        addSystem(new PhysicsSystem());
+        addSystem(new LightSystem());
+        addSystem(new CompositeSystem());
+        addSystem(new LabelSystem());
+        addSystem(new ScriptSystem());
+        addSystem(new ActionSystem());
+        addSystem(new BoundingBoxSystem());
+        addSystem(new CullingSystem());
+        rendererSystem = new HyperLap2dRenderer(batch, hasStencil, msaaSamples);
+        rendererClass = HyperLap2dRenderer.class;
+        addSystem(new ButtonSystem());
+    }
+
+    // For User's Use
+
+    public void setRendererSystem(HyperLap2dRenderer renderer) {
+        rendererSystem = renderer;
+        rendererClass = renderer.getClass();
+    }
+
+    protected void addRenderer() {
+        addSystem(rendererSystem);
+    }
+
+    public void addSystem(BaseSystem system) {
+        if (system == null) return;
+        addSystem(WorldConfigurationBuilder.Priority.NORMAL, system);
+    }
+
+    /**
+     * Replaces the system if there already exists one of the same type.
+     */
+    public void addSystem(int priority, BaseSystem system) {
+        if (containsSystem(system.getClass())) {
+            removeSystem(system.getClass());
+        }
+
+        this.systems.add(new SystemData<>(priority, system));
+    }
+
+    public boolean containsSystem(Class<? extends BaseSystem> clazz) {
+        for (SystemData<?> data : systems) {
+            if (data.clazz == clazz) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeSystem(Class<? extends BaseSystem> clazz) {
+        // TODO: is there a better way?
+        int ind = -1;
+        for (int i = 0; i < systems.size; i++) {
+            if (systems.get(i).clazz == clazz) {
+                ind = i;
+                break;
+            }
+        }
+        if (ind != -1)
+            systems.removeIndex(ind);
+    }
+
+    public <T extends BaseSystem> T getSystem(Class<T> clazz) {
+        for (SystemData<?> system : systems) {
+            if (system.clazz == clazz)
+                return (T) system.system;
+        }
+        return null;
+    }
+
+    // For SceneLoader's Use
+    IResourceRetriever getResourceRetriever() {
+        if (iResourceRetriever == null) {
+            ResourceManager resourceManager = new ResourceManager(externalItemTypes);
+            resourceManager.initAllResources();
+            setResourceRetriever(resourceManager);
+        }
+
+        return iResourceRetriever;
+    }
+
+    public void setResourceRetriever(IResourceRetriever iResourceRetriever) {
+        this.iResourceRetriever = iResourceRetriever;
+    }
+
+    World getWorld() {
+        if (world == null)
+            setWorld(new World(new Vector2(0, -10), true));
+
+        return world;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+
+        if (containsSystem(PhysicsSystem.class)) {
+            PhysicsSystem system = getSystem(PhysicsSystem.class);
+            system.setBox2DWorld(this.world);
+        }
+    }
+
+    RayHandler getRayHandler() {
+        if (rayHandler == null) {
+            RayHandlerOptions rayHandlerOptions = new RayHandlerOptions();
+            rayHandlerOptions.setGammaCorrection(false);
+            rayHandlerOptions.setDiffuse(true);
+            rayHandlerOptions.setSamples(msaaSamples);
+
+            RayHandler rayHandler = new RayHandler(world, rayHandlerOptions);
+            rayHandler.setAmbientLight(1f, 1f, 1f, 1f);
+            rayHandler.setCulling(true);
+            rayHandler.setBlur(true);
+            rayHandler.setBlurNum(1);
+            rayHandler.setShadows(true);
+
+            setRayHandler(rayHandler);
+        }
+
+        return rayHandler;
+    }
+
+    public void setRayHandler(RayHandler rayHandler) {
+        this.rayHandler = rayHandler;
+
+        if (containsSystem(LightSystem.class)) {
+            LightSystem system = getSystem(LightSystem.class);
+            system.setRayHandler(this.rayHandler);
+            HyperLap2dRenderer renderer = getSystem(rendererClass);
+            renderer.setRayHandler(this.rayHandler);
+        }
+    }
+
+    SystemInvocationStrategy getInvocationStrategy() {
+        if (invocationStrategy == null)
+            invocationStrategy = new HyperLap2dInvocationStrategy();
+
+        return invocationStrategy;
+    }
+
+    public void setInvocationStrategy(SystemInvocationStrategy invocationStrategy) {
+        this.invocationStrategy = invocationStrategy;
+    }
+
+    public boolean isCullingEnabled() {
+        return cullingEnabled;
+    }
+
+    public void setCullingEnabled(boolean cullingEnabled) {
+        this.cullingEnabled = cullingEnabled;
+    }
+
+    @Null
+    public ExternalTypesConfiguration getExternalItemTypes() {
+        return externalItemTypes;
+    }
+
+    public void setExternalItemTypes(ExternalTypesConfiguration externalTypesConfiguration) {
+        if (externalTypesConfiguration == null) return;
+
+        externalItemTypes = externalTypesConfiguration;
+        for (IExternalItemType externalItemType : externalItemTypes)
+            addSystem(externalItemType.getSystem());
+    }
+
+    Array<SystemData<?>> getSystems() {
+        if (!cullingEnabled) {
+            removeSystem(BoundingBoxSystem.class);
+            removeSystem(CullingSystem.class);
+        }
+        return systems;
+    }
+
+    public int getExpectedEntityCount() {
+        return expectedEntityCount;
+    }
+
+    public void setExpectedEntityCount(int expectedEntityCount) {
+        this.expectedEntityCount = expectedEntityCount;
+    }
+
+    public void addTagTransmuter(String tag, Class<? extends Component> component) {
+        ObjectSet<Class<? extends Component>> components = tagTransmuters.get(tag);
+        if (components == null) {
+            components = new ObjectSet<>();
+            tagTransmuters.put(tag, components);
+        }
+
+        components.add(component);
+    }
+
+    public Class<? extends HyperLap2dRenderer> getRendererClass() {
+        return rendererClass;
+    }
+
+    public ObjectMap<String, ObjectSet<Class<? extends Component>>> getTagTransmuters() {
+        return tagTransmuters;
+    }
+
+    public int getMsaaSamples() {
+        return msaaSamples;
+    }
+
+    // For SceneConfiguration's Use
+
+    static class SystemData<T extends BaseSystem> {
+        int priority;
+        T system;
+        Class<?> clazz;
+
+        public SystemData(int priority, T system) {
+            this.priority = priority;
+            this.system = system;
+            this.clazz = system.getClass();
+        }
+    }
+}

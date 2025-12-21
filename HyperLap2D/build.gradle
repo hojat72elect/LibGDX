@@ -11,3 +11,10 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+dependencies {
+    api project(":gdx")
+    api project(":extensions:gdx-box2d-parent:gdx-box2d")
+    api project(":extensions:gdx-freetype")
+
+    implementation "net.onedaybeard.artemis:artemis-odb:2.3.0"
+}
