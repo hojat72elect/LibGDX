@@ -49,10 +49,10 @@ public class Actor {
     static public PoolManager POOLS = new PoolManager();
 
     static {
-        POOLS.addPool(Rectangle.class, Rectangle::new);
-        POOLS.addPool(Array.class, Array::new);
-        POOLS.addPool(GlyphLayout.class, GlyphLayout::new);
-        POOLS.addPool(ChangeEvent.class, ChangeEvent::new);
+        POOLS.addPool(Rectangle::new);
+        POOLS.addPool(Array::new);
+        POOLS.addPool(GlyphLayout::new);
+        POOLS.addPool(ChangeEvent::new);
     }
 
     final Color color = new Color(1, 1, 1, 1);

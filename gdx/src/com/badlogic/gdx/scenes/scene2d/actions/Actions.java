@@ -50,7 +50,7 @@ public class Actions {
     }
 
     static public <T extends Action> void registerAction(Class<T> poolClass, PoolSupplier<T> supplier) {
-        ACTION_POOLS.addPool(poolClass, supplier);
+        ACTION_POOLS.addPool(supplier);
     }
 
     /**
