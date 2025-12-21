@@ -27,3 +27,4 @@ include ':gdx-vfx'
 
 rootProject.name = "libgdx"
 
+include ':HyperLap2D'

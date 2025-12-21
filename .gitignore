@@ -50,6 +50,7 @@ libgdx-*.zip.MD5
 *.iml
 /.idea/
 .vscode
+.kotlin
 
 #core & extension libs/ folders that have no 3rd party dependencies in them
 /gdx/libs
