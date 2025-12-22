@@ -24,7 +24,7 @@ include ":tests:gdx-tests-lwjgl3"
 include ':Ashley'
 include ':VisUI'
 include ':gdx-vfx'
+include ':HyperLap2D'
+include ':gdx-TinyVG'
 
 rootProject.name = "libgdx"
-
-include ':HyperLap2D'
