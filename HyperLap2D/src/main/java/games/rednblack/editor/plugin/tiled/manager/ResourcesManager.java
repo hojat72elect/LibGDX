@@ -12,9 +12,12 @@ import com.esotericsoftware.spine.SkeletonRenderer;
 import com.google.common.io.ByteStreams;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import games.rednblack.editor.plugin.tiled.TiledPlugin;
 import games.rednblack.editor.plugin.tiled.view.SpineDrawable;
@@ -59,10 +62,64 @@ public class ResourcesManager {
         File tempFile = new File(tiledPlugin.getAPI().getCacheDir() + File.separator + fileName);
 
         try {
-            InputStream in = getClass().getResourceAsStream("/" + fileName);
+            InputStream in = getClass().getResourceAsStream("/pack/" + fileName);
+            if (in == null) {
+                in = getClass().getResourceAsStream("/" + fileName);
+            }
+            if (in == null) {
+                File devFile = new File("assets/pack/" + fileName);
+                if (devFile.exists()) {
+                    in = new FileInputStream(devFile);
+                } else {
+                    // Try with absolute path if we are deeper
+                    File absoluteFile = new File("d:/Dev/Repositories/LibGDX/HyperLap2D/assets/pack/" + fileName);
+                    if (absoluteFile.exists()) {
+                        in = new FileInputStream(absoluteFile);
+                    }
+                }
+            }
+            // Fallback: Check inside JAR plugins
+            if (in == null) {
+                File pluginsDir = new File("assets/plugins");
+                if (!pluginsDir.exists()) {
+                    pluginsDir = new File("d:/Dev/Repositories/LibGDX/HyperLap2D/assets/plugins");
+                }
+
+                if (pluginsDir.exists() && pluginsDir.isDirectory()) {
+                    File[] jars = pluginsDir
+                            .listFiles((dir, name) -> name.startsWith("plugin-tiled") && name.endsWith(".jar"));
+                    if (jars != null) {
+                        for (File jarFile : jars) {
+                            try {
+                                JarFile jar = new JarFile(jarFile);
+                                // Based on jar scan, they are at root
+                                JarEntry entry = jar.getJarEntry(fileName);
+                                if (entry == null)
+                                    entry = jar.getJarEntry("pack/" + fileName);
+
+                                if (entry != null) {
+                                    in = jar.getInputStream(entry);
+                                    break;
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (in == null) {
+                System.err.println("CRITICAL: Could not find resource: " + fileName);
+                System.err.println("CWD: " + new File(".").getAbsolutePath());
+                // Avoid NPE
+                return null;
+            }
+
             FileOutputStream out = new FileOutputStream(tempFile);
             ByteStreams.copy(in, out);
-            in.close();
+            if (in != null)
+                in.close();
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,7 +148,8 @@ public class ResourcesManager {
 
     public SpineDrawable getSpineDrawable(String name) {
         if (spineDrawableCache.get(name) == null) {
-            SpineDataObject spineDataObject = (SpineDataObject) tiledPlugin.getAPI().getSceneLoader().getRm().getExternalItemType(SpineItemType.SPINE_TYPE, name);
+            SpineDataObject spineDataObject = (SpineDataObject) tiledPlugin.getAPI().getSceneLoader().getRm()
+                    .getExternalItemType(SpineItemType.SPINE_TYPE, name);
             SkeletonData skeletonData = spineDataObject.skeletonData;
             Skeleton skeleton = new Skeleton(skeletonData);
 
@@ -103,7 +161,8 @@ public class ResourcesManager {
 
     public NinePatch getPluginNinePatch(String name) {
         TextureAtlas.AtlasRegion region = textureAtlas.findRegion(name);
-        if (region == null) return null;
+        if (region == null)
+            return null;
         int[] splits = region.findValue("split");
         return new NinePatch(region, splits[0], splits[1], splits[2], splits[3]);
     }
