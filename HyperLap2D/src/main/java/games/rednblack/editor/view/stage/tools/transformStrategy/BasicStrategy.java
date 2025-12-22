@@ -1,0 +1,189 @@
+package games.rednblack.editor.view.stage.tools.transformStrategy;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+import games.rednblack.editor.renderer.components.DimensionsComponent;
+import games.rednblack.editor.renderer.components.TransformComponent;
+import games.rednblack.editor.utils.RoundUtils;
+import games.rednblack.editor.utils.runtime.EntityUtils;
+import games.rednblack.editor.utils.runtime.SandboxComponentRetriever;
+import games.rednblack.editor.view.ui.followers.NormalSelectionFollower;
+import games.rednblack.editor.view.ui.properties.panels.UIBasicItemPropertiesMediator;
+import games.rednblack.h2d.common.command.TransformCommandBuilder;
+import games.rednblack.puremvc.Facade;
+
+public class BasicStrategy extends AbstractTransformStrategy {
+
+    private static final float[] tmp1 = new float[3];
+    private static final float[] tmp2 = new float[3];
+
+    private final Facade facade = Facade.getInstance();
+
+    @Override
+    public void calculate(float mouseDx, float mouseDy, int anchor, int entity, TransformCommandBuilder transformCommandBuilder, Vector2 mousePointStage, float lastTransformAngle, float lastEntityAngle) {
+        TransformComponent transformComponent = SandboxComponentRetriever.get(entity, TransformComponent.class);
+        DimensionsComponent dimensionsComponent = SandboxComponentRetriever.get(entity, DimensionsComponent.class);
+
+        float scaleX = transformComponent.scaleX * (transformComponent.flipX ? -1 : 1);
+        float scaleY = transformComponent.scaleY * (transformComponent.flipY ? -1 : 1);
+
+        float dWidth = dimensionsComponent.width;
+        float dHeight = dimensionsComponent.height;
+        if (dimensionsComponent.polygon != null) {
+            Rectangle b = dimensionsComponent.polygon.getBoundingRectangle();
+            dWidth = b.width;
+            dHeight = b.height;
+        }
+
+        float newWidth = dWidth * scaleX;
+        float newHeight = dHeight * scaleY;
+
+        float[] horizontal = calculateSizeAndXyAmount(mouseDx, mouseDy, transformComponent.rotation, tmp1);
+        float[] vertical = calculateSizeAndXyAmount(mouseDx, mouseDy, transformComponent.rotation + 90, tmp2);
+
+        float deltaW = horizontal[0];
+        float deltaH = vertical[0];
+
+        if (isShiftPressed()) {
+            deltaW *= 2;
+            deltaH *= 2;
+
+            horizontal[1] *= 2;
+            horizontal[2] *= 2;
+            vertical[1] *= 2;
+            vertical[2] *= 2;
+        }
+
+        switch (anchor) {
+            case NormalSelectionFollower.L:
+                positionHorizontally(transformComponent, dimensionsComponent, horizontal, true);
+                newWidth = dWidth * scaleX - deltaW;
+                break;
+            case NormalSelectionFollower.R:
+                positionHorizontally(transformComponent, dimensionsComponent, horizontal, false);
+                newWidth = dWidth * scaleX + deltaW;
+                break;
+            case NormalSelectionFollower.B:
+                positionVertically(transformComponent, dimensionsComponent, vertical, true);
+                newHeight = dHeight * scaleY - deltaH;
+                break;
+            case NormalSelectionFollower.T:
+                positionVertically(transformComponent, dimensionsComponent, vertical, false);
+                newHeight = dHeight * scaleY + deltaH;
+                break;
+            case NormalSelectionFollower.LT:
+                positionHorizontally(transformComponent, dimensionsComponent, horizontal, true);
+                positionVertically(transformComponent, dimensionsComponent, vertical, false);
+                newWidth = dWidth * scaleX - deltaW;
+                newHeight = dHeight * scaleY + deltaH;
+                break;
+            case NormalSelectionFollower.RT:
+                positionHorizontally(transformComponent, dimensionsComponent, horizontal, false);
+                positionVertically(transformComponent, dimensionsComponent, vertical, false);
+                newWidth = dWidth * scaleX + deltaW;
+                newHeight = dHeight * scaleY + deltaH;
+                break;
+            case NormalSelectionFollower.RB:
+                positionHorizontally(transformComponent, dimensionsComponent, horizontal, false);
+                positionVertically(transformComponent, dimensionsComponent, vertical, true);
+                newWidth = dWidth * scaleX + deltaW;
+                newHeight = dHeight * scaleY - deltaH;
+                break;
+            case NormalSelectionFollower.LB:
+                positionHorizontally(transformComponent, dimensionsComponent, horizontal, true);
+                positionVertically(transformComponent, dimensionsComponent, vertical, true);
+                newWidth = dWidth * scaleX - deltaW;
+                newHeight = dHeight * scaleY - deltaH;
+                break;
+        }
+
+        // Origin
+        origin(deltaW, deltaH, anchor, transformComponent, transformCommandBuilder);
+
+        // Rotating
+        rotating(anchor, transformCommandBuilder, mousePointStage, lastTransformAngle, lastEntityAngle, transformComponent);
+
+        float newScaleX = newWidth / dWidth;
+        float newScaleY = isShiftPressed() ? newScaleX : newHeight / dHeight;
+        newScaleX *= (transformComponent.flipX ? -1 : 1);
+        newScaleY *= (transformComponent.flipY ? -1 : 1);
+
+        transformComponent.scaleX = newScaleX;
+        transformComponent.scaleY = newScaleY;
+        transformCommandBuilder.setScale(RoundUtils.round(newScaleX, 3), RoundUtils.round(newScaleY, 3));
+
+        EntityUtils.refreshComponents(entity);
+    }
+
+    private void positionHorizontally(TransformComponent t, DimensionsComponent d, float[] vectorData, boolean inverse) {
+        float dWidth = d.width;
+        if (d.polygon != null) {
+            Rectangle b = d.polygon.getBoundingRectangle();
+            dWidth = b.width;
+        }
+
+        float localAnchorX;
+
+        if (isShiftPressed()) {
+            localAnchorX = dWidth / 2f;
+        } else {
+            localAnchorX = inverse ? dWidth : 0;
+        }
+
+        float distFromOrigin = localAnchorX - t.originX;
+
+        float ratio = distFromOrigin / dWidth;
+
+        float vecX = vectorData[1];
+        float vecY = vectorData[2];
+
+        if (inverse) {
+            vecX = -vecX;
+            vecY = -vecY;
+        }
+
+        t.x -= vecX * ratio;
+        t.y -= vecY * ratio;
+    }
+
+    private void positionVertically(TransformComponent t, DimensionsComponent d, float[] vectorData, boolean inverse) {
+        float dHeight = d.height;
+        if (d.polygon != null) {
+            Rectangle b = d.polygon.getBoundingRectangle();
+            dHeight = b.height;
+        }
+
+        float localAnchorY;
+
+        if (isShiftPressed()) {
+            localAnchorY = dHeight / 2f;
+        } else {
+            localAnchorY = inverse ? dHeight : 0;
+        }
+
+        float distFromOrigin = localAnchorY - t.originY;
+        float ratio = distFromOrigin / dHeight;
+
+        float vecX = vectorData[1];
+        float vecY = vectorData[2];
+
+        if (inverse) {
+            vecX = -vecX;
+            vecY = -vecY;
+        }
+
+        t.x -= vecX * ratio;
+        t.y -= vecY * ratio;
+    }
+
+    private boolean isShiftPressed() {
+        UIBasicItemPropertiesMediator mediator = facade.retrieveMediator(UIBasicItemPropertiesMediator.NAME);
+        return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)
+                || Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)
+                || (mediator != null && mediator.isXYScaleLinked());
+    }
+}
+
