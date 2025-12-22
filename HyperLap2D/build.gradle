@@ -21,6 +21,7 @@ dependencies {
     api project(":extensions:gdx-lwjgl3-angle")
     api project(":extensions:gdx-tools")
     api project(":VisUI")
+    api project(":gdx-TinyVG")
 
     // Artemis
     implementation "net.onedaybeard.artemis:artemis-odb:2.3.0"
@@ -32,7 +33,6 @@ dependencies {
     implementation "org.lwjgl:lwjgl-tinyfd:3.3.3"
     implementation "games.rednblack.talos:bvb-libgdx:1.5.2"
     implementation "games.rednblack.talos:runtime-libgdx:1.5.2"
-    implementation "com.github.lyze237:gdx-TinyVG:7a8927633e"
     implementation "space.earlygrey:shapedrawer:2.6.0"
     implementation "com.github.tommyettinger:textratypist:6be1236"
     implementation "commons-io:commons-io:2.16.1"
