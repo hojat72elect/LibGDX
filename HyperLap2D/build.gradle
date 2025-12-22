@@ -11,6 +11,9 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_16
     }
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 dependencies {
     api project(":gdx")
     api project(":extensions:gdx-box2d-parent:gdx-box2d")
@@ -24,4 +27,6 @@ dependencies {
     implementation "org.lwjgl:lwjgl-tinyfd:3.3.3"
     implementation "games.rednblack.talos:bvb-libgdx:1.5.2"
     implementation "games.rednblack.talos:runtime-libgdx:1.5.2"
+    implementation "com.github.lyze237:gdx-TinyVG:7a8927633e"
+    implementation "space.earlygrey:shapedrawer:2.6.0"
 }
