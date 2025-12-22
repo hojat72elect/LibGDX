@@ -1,0 +1,26 @@
+package dev.lyze.gdxtinyvg.headless.tests;
+
+import com.badlogic.gdx.assets.AssetManager;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import dev.lyze.gdxtinyvg.TinyVG;
+import dev.lyze.gdxtinyvg.TinyVGAssetLoader;
+import dev.lyze.gdxtinyvg.headless.LibgdxHeadlessUnitTest;
+
+public class AssetManagerTest extends LibgdxHeadlessUnitTest {
+    @Test
+    public void SquareAssetManagerTest() {
+        var assetManager = new AssetManager();
+        assetManager.setLoader(TinyVG.class, new TinyVGAssetLoader());
+
+        assetManager.load("twoSquares.tvg", TinyVG.class);
+
+        assetManager.finishLoading();
+
+        var tvg = assetManager.get("twoSquares.tvg", TinyVG.class);
+
+        Assertions.assertNotNull(tvg);
+    }
+}

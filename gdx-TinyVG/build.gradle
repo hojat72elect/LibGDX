@@ -11,3 +11,20 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    api project(":gdx")
+    api project(":backends:gdx-backend-headless")
+
+    // Lombok
+    implementation "org.projectlombok:lombok:1.18.22"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
+
+    implementation "space.earlygrey:shapedrawer:2.6.0"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
+    testImplementation "org.mockito:mockito-core:4.2.0"
+}
