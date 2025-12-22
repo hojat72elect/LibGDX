@@ -1,0 +1,27 @@
+package dev.lyze.gdxtinyvg.styles;
+
+import com.badlogic.gdx.utils.LittleEndianInputStream;
+
+import java.io.IOException;
+
+import dev.lyze.gdxtinyvg.TinyVG;
+import dev.lyze.gdxtinyvg.drawers.GradientShapeDrawer;
+import dev.lyze.gdxtinyvg.enums.Range;
+import lombok.Getter;
+
+public abstract class Style {
+    @Getter
+    private final TinyVG tinyVG;
+
+    public Style(TinyVG tinyVG) {
+        this.tinyVG = tinyVG;
+    }
+
+    public abstract void read(LittleEndianInputStream stream, Range range, int fractionBits) throws IOException;
+
+    public abstract void start(GradientShapeDrawer drawer);
+
+    public void end(GradientShapeDrawer drawer) {
+        drawer.getBatch().flush();
+    }
+}

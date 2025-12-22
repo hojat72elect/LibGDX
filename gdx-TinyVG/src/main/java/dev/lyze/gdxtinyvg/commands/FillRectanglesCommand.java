@@ -1,0 +1,35 @@
+package dev.lyze.gdxtinyvg.commands;
+
+import com.badlogic.gdx.utils.LittleEndianInputStream;
+
+import java.io.IOException;
+
+import dev.lyze.gdxtinyvg.TinyVG;
+import dev.lyze.gdxtinyvg.commands.headers.FillHeader;
+import dev.lyze.gdxtinyvg.drawers.TinyVGShapeDrawer;
+import dev.lyze.gdxtinyvg.enums.CommandType;
+import dev.lyze.gdxtinyvg.enums.StyleType;
+import dev.lyze.gdxtinyvg.types.UnitRectangle;
+
+/**
+ * Fills a list of rectangles.
+ */
+public class FillRectanglesCommand extends Command {
+    private FillHeader<UnitRectangle> header;
+
+    public FillRectanglesCommand(TinyVG tinyVG) {
+        super(CommandType.OUTLINE_FILL_RECTANGLES, tinyVG);
+    }
+
+    @Override
+    public void read(LittleEndianInputStream stream, StyleType primaryStyleType) throws IOException {
+        header = new FillHeader<>(UnitRectangle.class).read(stream, primaryStyleType, getTinyVG());
+    }
+
+    @Override
+    public void draw(TinyVGShapeDrawer drawer) {
+        drawer.setStyle(header.getPrimaryStyle());
+        for (var rectangle : header.getData())
+            drawer.filledRectangle(rectangle, getTinyVG());
+    }
+}

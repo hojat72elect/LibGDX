@@ -1,0 +1,117 @@
+package dev.lyze.gdxtinyvg.enums;
+
+import com.badlogic.gdx.utils.LittleEndianInputStream;
+
+import java.io.IOException;
+
+import dev.lyze.gdxtinyvg.TinyVG;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathArcCircleCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathArcEllipseCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathCloseCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathCubicBezierCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathHorizontalLineCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathLineCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathQuadraticBezierCommand;
+import dev.lyze.gdxtinyvg.commands.paths.UnitPathVerticalLineCommand;
+import dev.lyze.gdxtinyvg.types.Unit;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+public enum UnitPathCommandType {
+    /**
+     * A straight line is drawn from the current point to a new point.
+     */
+    LINE(0),
+    /**
+     * A straight horizontal line is drawn from the current point to a new x coor-
+     * dinate.
+     */
+    HORIZONTAL_LINE(1),
+    /**
+     * A straight vertical line is drawn from the current point to a new y coor-
+     * diante
+     */
+    VERTICAL_LINE(2),
+    /**
+     * A cubic Bézier curve is drawn from the current point to a new point.
+     */
+    CUBIC_BEZIER(3),
+    /**
+     * A circle segment is drawn from current point to a new point.
+     */
+    ARC_CIRCLE(4),
+    /**
+     * An ellipse segment is drawn from current point to a new point.
+     */
+    ARC_ELLIPSE(5),
+    /**
+     * The path is closed, and a straight line is drawn to the starting point.
+     */
+    CLOSE_PATH(6),
+    /**
+     * A quadratic Bézier curve is drawn from the current point to a new point.
+     */
+    QUADRATIC_BEZIER(7);
+
+    @Getter
+    private final int value;
+
+    /**
+     * Converts the stored int index to the enum.
+     *
+     * @param value The index.
+     * @return The enum according to the index.
+     */
+    public static UnitPathCommandType valueOf(int value) {
+        for (UnitPathCommandType range : values())
+            if (range.value == value)
+                return range;
+
+        throw new IllegalArgumentException(String.valueOf(value));
+    }
+
+    /**
+     * Reads a range object from a tvg file stream.
+     *
+     * @param stream The appropriately positioned input stream.
+     * @return The appropriately setup command.
+     */
+    public UnitPathCommand read(LittleEndianInputStream stream, Unit lineWidth, TinyVG tinyVG) throws IOException {
+        UnitPathCommand command;
+
+        switch (this) {
+            case LINE:
+                command = new UnitPathLineCommand(lineWidth, tinyVG);
+                break;
+            case HORIZONTAL_LINE:
+                command = new UnitPathHorizontalLineCommand(lineWidth, tinyVG);
+                break;
+            case VERTICAL_LINE:
+                command = new UnitPathVerticalLineCommand(lineWidth, tinyVG);
+                break;
+            case CUBIC_BEZIER:
+                command = new UnitPathCubicBezierCommand(lineWidth, tinyVG);
+                break;
+            case ARC_CIRCLE:
+                command = new UnitPathArcCircleCommand(lineWidth, tinyVG);
+                break;
+            case ARC_ELLIPSE:
+                command = new UnitPathArcEllipseCommand(lineWidth, tinyVG);
+                break;
+            case CLOSE_PATH:
+                command = new UnitPathCloseCommand(lineWidth, tinyVG);
+                break;
+            case QUADRATIC_BEZIER:
+                command = new UnitPathQuadraticBezierCommand(lineWidth, tinyVG);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown enum");
+        }
+
+        command.read(stream);
+
+        return command;
+    }
+}
