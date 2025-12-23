@@ -27,5 +27,6 @@ include ':gdx-vfx'
 include ':HyperLap2D'
 include ':gdx-TinyVG'
 include ':gdx-ai'
+include ':TalosVFX'
 
 rootProject.name = "libgdx"
