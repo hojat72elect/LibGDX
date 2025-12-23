@@ -22,8 +22,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
  * A class to test and experiment with the {@link Wander} behavior.
- *
- * @autor davebaol
  */
 public class Box2dWanderTest extends Box2dSteeringTest {
     boolean drawDebug;

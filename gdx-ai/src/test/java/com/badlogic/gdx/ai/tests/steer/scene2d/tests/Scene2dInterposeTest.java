@@ -21,8 +21,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * A class to test and experiment with the {@link Interpose} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dInterposeTest extends Scene2dSteeringTest {
     boolean drawDebug;

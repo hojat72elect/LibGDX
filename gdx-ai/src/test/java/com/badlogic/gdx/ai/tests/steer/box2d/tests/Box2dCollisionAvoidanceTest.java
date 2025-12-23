@@ -28,8 +28,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A class to test and experiment with the {@link CollisionAvoidance} behavior.
- *
- * @autor davebaol
  */
 public class Box2dCollisionAvoidanceTest extends Box2dSteeringTest {
     Array<Box2dSteeringEntity> characters;

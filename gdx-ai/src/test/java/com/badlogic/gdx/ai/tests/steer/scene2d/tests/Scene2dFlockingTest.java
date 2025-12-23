@@ -29,8 +29,6 @@ import com.badlogic.gdx.utils.Array;
 /**
  * A class to test and experiment with flocking behavior which consists of {@link Separation}, {@link Cohesion} and
  * {@link Alignment}.
- *
- * @autor davebaol
  */
 public class Scene2dFlockingTest extends Scene2dSteeringTest {
     Array<SteeringActor> characters;

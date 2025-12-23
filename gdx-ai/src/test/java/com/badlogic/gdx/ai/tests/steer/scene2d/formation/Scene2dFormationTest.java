@@ -30,8 +30,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * A class to test and experiment with formations.
- *
- * @autor davebaol
  */
 public class Scene2dFormationTest extends Scene2dSteeringTest {
 

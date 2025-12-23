@@ -13,8 +13,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 /**
  * A steering entity for box2d physics engine.
- *
- *  */
+ */
 public class Box2dSteeringEntity implements Steerable<Vector2> {
     private static final SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
     protected SteeringBehavior<Vector2> steeringBehavior;

@@ -24,8 +24,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A class to test and experiment with the {@link FollowPath} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dFollowPathTest extends Scene2dSteeringTest {
     private static final Matrix3 tmpMatrix3 = new Matrix3();

@@ -22,8 +22,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A class to test and experiment with the {@link FollowFlowField} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dFollowFlowFieldTest extends Scene2dSteeringTest {
     boolean drawDebug;

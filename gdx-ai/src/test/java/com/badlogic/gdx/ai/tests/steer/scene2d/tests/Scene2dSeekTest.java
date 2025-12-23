@@ -13,8 +13,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * A class to test and experiment with the {@link Seek} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dSeekTest extends Scene2dSteeringTest {
 

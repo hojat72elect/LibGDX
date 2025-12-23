@@ -8,8 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * An {@link InputProcessor} that allows you to manually move a {@link SteeringActor}.
- *
- * @autor davebaol
  */
 public class Box2dTargetInputProcessor extends InputAdapter {
     protected Box2dSteeringEntity target;

@@ -361,8 +361,6 @@ public class InterruptibleHierarchicalTiledAStarTest extends PathFinderTestBase 
 
     /**
      * An {@link InputProcessor} that allows you to define a path to find.
-     *
-     * @autor davebaol
      */
     static class TiledHierarchicalAStarInputProcessor extends InputAdapter {
         InterruptibleHierarchicalTiledAStarTest test;

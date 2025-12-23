@@ -16,8 +16,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * A class to test and experiment with the {@link Arrive} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dArriveTest extends Scene2dSteeringTest {
     SteeringActor character;

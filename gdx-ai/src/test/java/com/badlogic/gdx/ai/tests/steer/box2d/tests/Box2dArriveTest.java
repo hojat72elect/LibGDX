@@ -17,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * A class to test and experiment with the {@link Arrive} behavior.
- *
- * @autor davebaol
  */
 public class Box2dArriveTest extends Box2dSteeringTest {
     Box2dSteeringEntity character;

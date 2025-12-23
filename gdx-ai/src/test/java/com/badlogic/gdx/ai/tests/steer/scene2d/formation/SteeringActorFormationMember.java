@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * A {@code SteeringActorFormationMember} is a scene2d {@link SteeringActor} implementing the {@link FormationMember} interface.
- *
- * @autor davebaol
  */
 public class SteeringActorFormationMember extends SteeringActor implements FormationMember<Vector2> {
 

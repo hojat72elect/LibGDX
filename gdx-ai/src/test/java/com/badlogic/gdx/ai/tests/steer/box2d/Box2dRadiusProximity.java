@@ -9,8 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * A {@code Box2dRadiusProximity} is a {@link Proximity} that queries the world for all fixtures that potentially overlap the
  * circle having the specified detection radius and whose center is the owner position.
- *
- *  */
+ */
 public class Box2dRadiusProximity extends Box2dSquareAABBProximity {
 
     public Box2dRadiusProximity(Steerable<Vector2> owner, World world, float detectionRadius) {

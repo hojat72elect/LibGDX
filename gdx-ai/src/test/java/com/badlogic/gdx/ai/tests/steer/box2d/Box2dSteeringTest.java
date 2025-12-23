@@ -24,8 +24,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
  * Base class for box2d steering behavior tests.
- *
- *  */
+ */
 public abstract class Box2dSteeringTest extends SteeringTestBase {
 
     protected World world;

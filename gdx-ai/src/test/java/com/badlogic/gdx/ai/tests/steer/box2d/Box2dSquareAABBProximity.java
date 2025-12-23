@@ -10,8 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * A {@code Box2dSquareAABBProximity} is a {@link Proximity} that queries the world for all fixtures that potentially overlap the
  * square AABB built around the circle having the specified detection radius and whose center is the owner position.
- *
- *  */
+ */
 public class Box2dSquareAABBProximity implements Proximity<Vector2>, QueryCallback {
 
     private static final AABB aabb = new AABB();

@@ -19,8 +19,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * A class to test and experiment with the {@link LookWhereYouAreGoing} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dLookWhereYouAreGoingTest extends Scene2dSteeringTest {
 

@@ -14,8 +14,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * A SteeringActor is a scene2d {@link Actor} implementing the {@link Steerable} interface.
- *
- * @autor davebaol
  */
 public class SteeringActor extends Actor implements Steerable<Vector2> {
 

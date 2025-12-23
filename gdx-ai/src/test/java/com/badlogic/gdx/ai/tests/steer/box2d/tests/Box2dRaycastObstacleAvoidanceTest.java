@@ -38,8 +38,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 /**
  * A class to test and experiment with the {@link RaycastObstacleAvoidance} behavior.
- *
- * @autor davebaol
  */
 public class Box2dRaycastObstacleAvoidanceTest extends Box2dSteeringTest {
     Box2dSteeringEntity character;

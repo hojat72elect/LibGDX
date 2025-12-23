@@ -36,8 +36,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * A class to test and experiment with the {@link Jump} behavior.
- *
- *  */
+ */
 public class Box2dJumpTest extends Box2dSteeringTest {
 
     static final int PLATFORM_HALF_HEIGHT = 15;

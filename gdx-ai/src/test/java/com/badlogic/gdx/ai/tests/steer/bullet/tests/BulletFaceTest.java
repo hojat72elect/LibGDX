@@ -18,8 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * A class to test and experiment with the {@link Face} behavior.
- *
- * @autor davebaol
  */
 public class BulletFaceTest extends BulletSteeringTest {
 

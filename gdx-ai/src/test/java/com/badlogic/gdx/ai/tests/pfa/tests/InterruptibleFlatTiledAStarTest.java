@@ -322,8 +322,6 @@ public class InterruptibleFlatTiledAStarTest extends PathFinderTestBase implemen
 
     /**
      * An {@link InputProcessor} that allows you to define a path to find.
-     *
-     * @autor davebaol
      */
     static class TiledAStarInputProcessor extends InputAdapter {
         InterruptibleFlatTiledAStarTest test;

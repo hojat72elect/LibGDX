@@ -11,3 +11,11 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+dependencies {
+    api project(":gdx")
+    api project(":backends:gdx-backend-lwjgl")
+    api project(":extensions:gdx-box2d-parent:gdx-box2d")
+
+    implementation "com.esotericsoftware:kryo:3.0.3"
+    testImplementation "junit:junit:4.13.2"
+}

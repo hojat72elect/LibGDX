@@ -21,8 +21,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * A class to test and experiment with the {@link LookWhereYouAreGoing} behavior.
- *
- * @autor davebaol
  */
 public class BulletLookWhereYouAreGoingTest extends BulletSteeringTest {
 

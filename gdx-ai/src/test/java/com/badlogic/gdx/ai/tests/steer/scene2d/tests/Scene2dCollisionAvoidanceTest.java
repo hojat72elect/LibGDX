@@ -25,8 +25,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A class to test and experiment with the {@link CollisionAvoidance} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dCollisionAvoidanceTest extends Scene2dSteeringTest {
     Array<SteeringActor> characters;

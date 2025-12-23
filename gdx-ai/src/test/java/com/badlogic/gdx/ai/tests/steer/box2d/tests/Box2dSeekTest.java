@@ -13,8 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 /**
  * A class to test and experiment with the {@link Seek} behavior.
- *
- * @autor davebaol
  */
 public class Box2dSeekTest extends Box2dSteeringTest {
 

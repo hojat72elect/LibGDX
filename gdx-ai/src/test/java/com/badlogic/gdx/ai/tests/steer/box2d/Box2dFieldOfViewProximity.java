@@ -9,8 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 /**
  * A {@code Box2dFieldOfViewProximity} is a {@link Proximity} that queries the world for all fixtures that potentially overlap the
  * arc area of the circle having the specified detection radius and whose center is the owner position.
- *
- *  */
+ */
 public class Box2dFieldOfViewProximity extends Box2dSquareAABBProximity {
 
     private static final Vector2 toSteerable = new Vector2();

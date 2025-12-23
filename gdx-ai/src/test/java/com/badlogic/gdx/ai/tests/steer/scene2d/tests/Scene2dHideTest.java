@@ -25,8 +25,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A class to test and experiment with the {@link Hide} behavior.
- *
- * @autor davebaol
  */
 public class Scene2dHideTest extends Scene2dSteeringTest {
 

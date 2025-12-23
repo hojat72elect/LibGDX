@@ -7,8 +7,6 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * An {@link InputProcessor} that allows you to manually move a {@link SteeringActor}.
- *
- * @autor davebaol
  */
 public class Scene2dTargetInputProcessor extends InputAdapter {
     protected SteeringActor target;
