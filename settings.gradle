@@ -26,5 +26,6 @@ include ':VisUI'
 include ':gdx-vfx'
 include ':HyperLap2D'
 include ':gdx-TinyVG'
+include ':gdx-ai'
 
 rootProject.name = "libgdx"
