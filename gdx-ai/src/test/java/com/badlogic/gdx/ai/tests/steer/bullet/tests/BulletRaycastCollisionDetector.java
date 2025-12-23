@@ -12,8 +12,7 @@ import com.badlogic.gdx.physics.bullet.collision.btCollisionWorld;
 /**
  * A 3D {@link RaycastCollisionDetector} to be used with bullet physics. It reports the closest collision which is not the
  * supplied "me" collision object.
- *
- *  *  */
+ */
 public class BulletRaycastCollisionDetector implements RaycastCollisionDetector<Vector3> {
 
     btCollisionWorld world;

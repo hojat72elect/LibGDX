@@ -5,8 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * A {@code TabSelectionChangeListener} for a {@link TabbedPane} widget.
- *
- *  */
+ */
 public abstract class TabSelectionChangeListener extends ChangeListener {
 
     @Override

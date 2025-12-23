@@ -13,8 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * An {@link InputProcessor} that allows you to manually move a {@link SteeringBulletEntity}.
- *
- *  *  */
+ */
 public class BulletTargetInputProcessor extends InputAdapter {
 
     private static final Collision<Vector3> output = new Collision<Vector3>(new Vector3(), new Vector3());

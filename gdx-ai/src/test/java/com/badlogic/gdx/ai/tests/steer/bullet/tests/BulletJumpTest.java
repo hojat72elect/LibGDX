@@ -35,8 +35,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A class to test and experiment with the {@link Jump} behavior.
- *
- *  */
+ */
 public class BulletJumpTest extends BulletSteeringTest {
 
     static final GravityComponentHandler<Vector3> GRAVITY_COMPONENT_HANDLER = new GravityComponentHandler<Vector3>() {

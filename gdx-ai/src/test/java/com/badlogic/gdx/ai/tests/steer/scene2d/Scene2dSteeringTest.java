@@ -17,8 +17,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
  * Base class for scene2d steering behavior tests.
- *
- *  */
+ */
 public abstract class Scene2dSteeringTest extends SteeringTestBase {
 
     protected Table testTable;

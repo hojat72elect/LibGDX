@@ -10,8 +10,6 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 
-/**
- *  */
 public class SteeringBulletEntity extends BulletEntity implements Steerable<Vector3> {
 
     private static final SteeringAcceleration<Vector3> steeringOutput = new SteeringAcceleration<Vector3>(new Vector3());

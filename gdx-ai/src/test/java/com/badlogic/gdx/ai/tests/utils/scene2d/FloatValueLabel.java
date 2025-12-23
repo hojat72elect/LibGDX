@@ -3,12 +3,10 @@ package com.badlogic.gdx.ai.tests.utils.scene2d;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.StringBuilder;
 
 /**
  * A label continuously showing the most up-to-date float value prefixed by a constant string.
- *
- *  */
+ */
 public abstract class FloatValueLabel extends Label {
 
     float oldValue;
@@ -43,7 +41,7 @@ public abstract class FloatValueLabel extends Label {
         float newValue = getValue();
         if (oldValue != newValue) {
             oldValue = newValue;
-            StringBuilder sb = getText();
+            StringBuilder sb = new StringBuilder(getText());
             sb.setLength(appendIndex);
             sb.append(oldValue);
             invalidateHierarchy();

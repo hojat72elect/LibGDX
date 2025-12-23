@@ -13,8 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 /**
  * A class to test and experiment with the {@link Seek} behavior.
- *
- *  */
+ */
 public class BulletSeekTest extends BulletSteeringTest {
 
     SteeringBulletEntity character;

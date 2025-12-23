@@ -7,8 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
  * A text button to pause/resume tests. The cover actor (if any) is made visible when the button is checked, invisible otherwise.
- *
- *  */
+ */
 public class PauseButton extends TextButton {
 
     private static final String PAUSE_AI = "Pause AI";

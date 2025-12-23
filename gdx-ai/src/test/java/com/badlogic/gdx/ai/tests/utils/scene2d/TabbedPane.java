@@ -19,8 +19,7 @@ import com.badlogic.gdx.utils.Pools;
 
 /**
  * A {@code TabbedPane} widget not full featured but somewhat reusable.
- *
- *  */
+ */
 public class TabbedPane extends Table {
     Table tabTitleTable;
     Stack tabBodyStack;
