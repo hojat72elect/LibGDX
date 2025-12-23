@@ -11,3 +11,23 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
+repositories {
+
+}
+dependencies {
+    api project(":gdx")
+    api project(":extensions:gdx-freetype")
+
+    // Lombok
+    implementation "org.projectlombok:lombok:1.18.22"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
+
+    // Artemis
+    implementation "net.onedaybeard.artemis:artemis-odb:2.3.0"
+    implementation "net.mostlyoriginal.artemis-odb:contrib-plugin-singleton:2.5.0"
+    implementation "net.mostlyoriginal.artemis-odb:contrib-eventbus:2.5.0"
+
+    implementation 'org.slf4j:slf4j-api:1.7.32'
+
+}
+
