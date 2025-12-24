@@ -844,6 +844,7 @@ interface Input {
          * @param keyname the keyname returned by the [Keys.toString] method
          * @return the int keycode
          */
+        @JvmStatic
         fun valueOf(keyname: String): Int {
             if (keyNames == null) initializeKeyNames()
             return keyNames!!.get(keyname, -1)
