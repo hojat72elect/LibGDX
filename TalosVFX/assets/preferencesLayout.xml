@@ -1,0 +1,51 @@
+<preferences>
+    <group>
+<!--        TODO: bring back when functionality is decided -->
+<!--        <tab name="interface" title="Interface">-->
+<!--            <block name = "display" title="Display">-->
+<!--                <boolean name = "showSplash" default = "true">Splash Screen</boolean>-->
+<!--                <boolean name = "showTooltips" label="Tooltips">User Tooltips</boolean>-->
+<!--            </block>-->
+<!--        </tab>-->
+<!--        <tab name="addons" title="Addons">-->
+<!--            <injectable name = "addons"></injectable>-->
+<!--        </tab>-->
+        <tab name="project" title="Project">
+            <block name="general" title="General">
+                <path name = "exportPath" default=""  project="true">Export Path</path>
+                <string name="exportScript" project="true" default="">Export Script</string>
+                <string name="scriptBinary" project="true" default="">Script Binary path</string>
+            </block>
+            <block name="assets" title="Assets">
+                <number name="defaultPixelPerMeter" default="100" shared-project="true">Default Pixel Per Unit</number>
+                <number name="exportPackingScale" default="1" shared-project="true">Export Packing Scale</number>
+                <boolean name = "exportPMA" default="false"  project="true">Export Premultiplied alpha</boolean>
+            </block>
+        </tab>
+        <tab name="guides" title="Guides, Grid &amp; Slices">
+            <block name="grid" title="Grid">
+                <color name="gridColor" default="ffffffff" shared-project="true">Color</color>
+                <number name="thicknessFactor" default="1" shared-project="true">Thickness factor</number>
+            </block>
+        </tab>
+        <tab name="keymap" title="Keymap">
+            <injectable name = "keymap">KeymapBlock</injectable>
+        </tab>
+        <tab name="debug" title="Debug">
+            <block name="settings" title="Settings">
+                <boolean name = "gpuDebug" default="false"  project="true">GPU Debug</boolean>
+            </block>
+        </tab>
+
+    </group>
+<!--    TODO: bring back when re-doing scripts -->
+<!--    <group>-->
+<!--        <tab name="system" title="System">-->
+<!--            <block name = "realtimeSync" title="Realtime Sync">-->
+<!--                <boolean name = "enable" default = "false">Enable</boolean>-->
+<!--                <string name = "host" default="127.0.0.1">Host</string>-->
+<!--                <number name = "port" default="42069" step="1" min = "0" max="99999" progress="false">Port</number>-->
+<!--            </block>-->
+<!--        </tab>-->
+<!--    </group>-->
+</preferences>

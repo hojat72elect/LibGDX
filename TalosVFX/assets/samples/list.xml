@@ -1,0 +1,7 @@
+<samples>
+    <sample name="Fire" file="new.tls" />
+    <sample name="Trail" file="trail.tls" />
+    <sample name="Beam" file="beam.tls" />
+    <sample name="Beam UV" file="beamuv.tls" />
+    <sample name="Beam UV Trails Example" file="beamuvtrail.tls" />
+</samples>
