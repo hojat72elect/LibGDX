@@ -1,0 +1,145 @@
+
+package com.talosvfx.talos.editor.widgets;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.CharArray;
+import com.talosvfx.talos.editor.widgets.ui.common.zoomWidgets.LabelWithZoom;
+
+public class RotatorWidget extends Actor {
+
+    private final String ROTATOR = "rotator";
+    private final String ROTATORBG = "rotator-bg";
+    private final String ROTATORACTIVE = "rotator-active";
+    CharArray stringBuilder;
+    private final Skin skin;
+    private final Image image;
+    private float value;
+    private ChangeListener listener;
+    private boolean normalize = false;
+    private final LabelWithZoom label;
+    private boolean isActive = false;
+
+    public RotatorWidget(Skin skin) {
+        this.skin = skin;
+        image = new Image(skin.getDrawable(ROTATOR));
+
+        label = new LabelWithZoom("", skin, "small");
+
+        stringBuilder = new CharArray();
+
+        addListener(new ClickListener() {
+
+            final Vector2 tmp = new Vector2();
+            float prevAngle;
+
+            public void applyAngle(float x, float y) {
+                float newAngle = tmp.set(x - image.getOriginX(), y - image.getOriginY()).angle();
+                if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+                    float step = 15f;
+                    float offset = newAngle % step;
+                    if (offset < step / 2f) {
+                        newAngle -= offset;
+                    } else {
+                        newAngle += (step - offset);
+                    }
+
+                    if (prevAngle == 360 && newAngle == 0) newAngle = 360;
+                    if (prevAngle == 0 && newAngle == 360) newAngle = 0;
+                }
+
+                if (prevAngle >= 0 && prevAngle <= 90 && newAngle > 270 && newAngle <= 360) {
+                    newAngle = 0;
+                }
+                if (prevAngle <= 360 && prevAngle >= 270 && newAngle > 0 && newAngle <= 90) {
+                    newAngle = 360;
+                }
+
+                value = (int) newAngle;
+
+                if (listener != null) {
+                    listener.changed(new ChangeListener.ChangeEvent(), RotatorWidget.this);
+                }
+            }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                prevAngle = value;
+                applyAngle(x, y);
+                isActive = true;
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchDragged(InputEvent event, float x, float y, int pointer) {
+                prevAngle = value;
+                applyAngle(x, y);
+                super.touchDragged(event, x, y, pointer);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                isActive = false;
+            }
+        });
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+
+        getSkin().getDrawable(ROTATORBG).draw(batch, getX(), getY(), getWidth(), getHeight());
+
+        int intVal = (int) value;
+        stringBuilder.clear();
+        stringBuilder.append(intVal);
+
+        label.setText(stringBuilder.toString());
+        label.setPosition(getX() + getWidth() / 2f - label.getPrefWidth() / 2f, getY() + getHeight() / 2f + 20 - label.getPrefHeight() / 2f);
+        label.draw(batch, parentAlpha);
+
+
+        image.setDrawable(skin.getDrawable(ROTATOR));
+        if (isActive) {
+            image.setDrawable(skin.getDrawable(ROTATORACTIVE));
+        }
+        image.setPosition(getX(), getY());
+        image.setSize(getWidth(), getHeight());
+        image.setOrigin(getWidth() / 2f, getHeight() / 2f);
+        image.setRotation(value - 90f);
+
+        image.draw(batch, parentAlpha);
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public float getValue() {
+        if (normalize) {
+            return value / 360f;
+        } else {
+            return value;
+        }
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
+
+    public void setNormalize(boolean normalize) {
+        this.normalize = normalize;
+    }
+
+    public void setListener(ChangeListener listener) {
+        this.listener = listener;
+    }
+}
