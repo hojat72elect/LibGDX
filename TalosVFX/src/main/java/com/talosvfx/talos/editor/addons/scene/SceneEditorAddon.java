@@ -1,0 +1,1 @@
+package com.talosvfx.talos.editor.addons.scene;
