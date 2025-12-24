@@ -35,8 +35,6 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
-/**
- *  */
 public class TexturePacker {
     private final Settings settings;
     private final ImageProcessor imageProcessor;
