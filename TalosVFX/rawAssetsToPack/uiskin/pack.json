@@ -1,0 +1,12 @@
+{
+  minWidth: 16,
+  minHeight: 16,
+  maxWidth: 2048,
+  maxHeight: 2048,
+  pot: true,
+  square: true,
+  combineSubdirectories: true,
+  flattenPaths:true,
+  filterMin: MipMapLinearLinear,
+  filterMag: Linear
+}
