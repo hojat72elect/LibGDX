@@ -36,6 +36,7 @@ dependencies {
     implementation "info.debatty:java-string-similarity:1.2.1"
     implementation "org.yaml:snakeyaml:1.21"
     implementation 'com.sparkjava:spark-core:2.9.4'
+    implementation 'org.apache.commons:commons-vfs2:2.8.0'
 
     // Jetty
     implementation 'org.eclipse.jetty.websocket:websocket-jetty-api:10.0.18'
