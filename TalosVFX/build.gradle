@@ -3,12 +3,12 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
 }
 java {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
+    sourceCompatibility JavaVersion.VERSION_16
+    targetCompatibility JavaVersion.VERSION_16
 }
 kotlin {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_16
     }
 }
 
@@ -20,8 +20,8 @@ dependencies {
     api project(":backends:gdx-backend-lwjgl3")
 
     // Lombok
-    implementation "org.projectlombok:lombok:1.18.22"
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
+    implementation "org.projectlombok:lombok:1.18.30"
+    annotationProcessor "org.projectlombok:lombok:1.18.30"
 
     // Artemis
     implementation "net.onedaybeard.artemis:artemis-odb:2.3.0"
