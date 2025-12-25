@@ -11,8 +11,16 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_16
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
+
+    // jars
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     api project(":gdx")
     api project(":extensions:gdx-tools")
     api project(":VisUI")
