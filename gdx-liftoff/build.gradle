@@ -1,13 +1,38 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
 }
 java {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
+    sourceCompatibility JavaVersion.VERSION_16
+    targetCompatibility JavaVersion.VERSION_16
 }
 kotlin {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+        jvmTarget = JvmTarget.JVM_16
     }
+}
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    api project(":gdx")
+    api project(":backends:gdx-backend-lwjgl3")
+    api project(":VisUI")
+
+    implementation "com.github.kittinunf.fuel:fuel:2.3.1"
+    implementation "com.github.raeleus.stripe:stripe:2.0.0"
+    implementation "org.lwjgl:lwjgl-tinyfd:3.3.3"
+    implementation "com.github.tommyettinger:textratypist:2.2.8"
+
+    // Natives
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-windows"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-windows-x86"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-linux"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-linux-arm32"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-linux-arm64"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-macos"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
+    implementation("org.lwjgl:lwjgl-nfd:3.3.1:natives-macos-arm64"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
 }

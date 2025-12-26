@@ -142,7 +142,7 @@ class ReplacedContentFile(
     fileType,
 ) {
     override fun save(destination: FileHandle) {
-        var input = Gdx.files.getFileHandle(original, fileType).readString("UTF-8")
+        var input = Gdx.files.getFileHandle(original, fileType)!!.readString("UTF-8")
         replaceMap.forEach { (t, u) -> input = input.replace(t, u) }
         destination.child(path).writeString(input, false, "UTF-8")
     }
