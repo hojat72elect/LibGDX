@@ -1,0 +1,12 @@
+package com.mbrlabs.mundus.commons.env;
+
+/**
+ * Class for holding default values for camera settings.
+ */
+public class CameraSettings {
+    public static float DEFAULT_NEAR_PLANE = 0.2f;
+    public static float DEFAULT_FAR_PLANE = 10000f;
+    public static float DEFAULT_FOV = 67f;
+    private CameraSettings() {
+    }
+}
