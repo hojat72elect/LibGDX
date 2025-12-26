@@ -13,3 +13,12 @@ kotlin {
         jvmTarget = JvmTarget.JVM_16
     }
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    api project(":gdx")
+
+
+    implementation "com.github.mgsx-dev.gdx-gltf:gltf:2.2.1"
+}

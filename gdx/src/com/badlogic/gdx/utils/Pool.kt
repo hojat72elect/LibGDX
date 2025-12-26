@@ -57,7 +57,7 @@ abstract class Pool<T> @JvmOverloads constructor(initialCapacity: Int = 16, @Jvm
      * Called when an object is freed to clear the state of the object for possible later reuse. The default implementation calls
      * [Poolable.reset] if the object is [Poolable].
      */
-    protected fun reset(pooledObject: T) {
+    protected open fun reset(pooledObject: T) {
         if (pooledObject is Poolable) pooledObject.reset()
     }
 
