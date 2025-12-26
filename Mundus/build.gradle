@@ -21,4 +21,8 @@ dependencies {
 
 
     implementation "com.github.mgsx-dev.gdx-gltf:gltf:2.2.1"
+
+    // test libs
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.mockito:mockito-inline:5.2.0"
 }
