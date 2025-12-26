@@ -19,12 +19,14 @@ repositories {
 dependencies {
     api project(":gdx")
     api project(":backends:gdx-backend-lwjgl3")
+    api project(":extensions:gdx-lwjgl3-angle")
     api project(":VisUI")
 
     implementation "com.github.kittinunf.fuel:fuel:2.3.1"
     implementation "com.github.raeleus.stripe:stripe:2.0.0"
     implementation "org.lwjgl:lwjgl-tinyfd:3.3.3"
     implementation "com.github.tommyettinger:textratypist:2.2.8"
+    implementation "com.github.raeleus.TenPatch:tenpatch:5.2.3"
 
     // Natives
     implementation("org.lwjgl:lwjgl-nfd:3.3.1"){ exclude group: 'org.lwjgl', module: 'lwjgl' }
