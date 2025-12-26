@@ -28,6 +28,8 @@ include ':HyperLap2D'
 include ':gdx-TinyVG'
 include ':gdx-ai'
 include ':TalosVFX'
+include ':gdx-liftoff'
+include ':Mundus'
 
 rootProject.name = "libgdx"
-include ':gdx-liftoff'
+
