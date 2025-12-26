@@ -30,3 +30,4 @@ include ':gdx-ai'
 include ':TalosVFX'
 
 rootProject.name = "libgdx"
+include ':gdx-liftoff'
