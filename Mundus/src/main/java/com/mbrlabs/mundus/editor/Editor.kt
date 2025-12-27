@@ -228,9 +228,9 @@ class Editor : Lwjgl3WindowAdapter(), ApplicationListener,
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled)
         shapeRenderer.projectionMatrix = guiCamera.combined
         shapeRenderer.color = Colors.GRAY_888
-        shapeRenderer.rect(0f, guiCamera.viewportHeight * .1f, Gdx.graphics.width.toFloat(), guiCamera.viewportHeight * .02f)
+        shapeRenderer.rect(0f, guiCamera.viewportHeight * .1f, Gdx.graphics.getWidth().toFloat(), guiCamera.viewportHeight * .02f)
         shapeRenderer.color = Colors.TEAL
-        shapeRenderer.rect(0f, guiCamera.viewportHeight * .1f, progress * Gdx.graphics.width, guiCamera.viewportHeight * .02f)
+        shapeRenderer.rect(0f, guiCamera.viewportHeight * .1f, progress * Gdx.graphics.getWidth(), guiCamera.viewportHeight * .02f)
         shapeRenderer.end()
 
         if (projectManager.isLoaded) {
@@ -281,7 +281,7 @@ class Editor : Lwjgl3WindowAdapter(), ApplicationListener,
             if (file.exists()) {
                 return try {
                     projectManager.importProject(defaultProjectPath)
-                } catch (exception: ProjectAlreadyImportedException) {
+                } catch (_: ProjectAlreadyImportedException) {
                     val projectReference = ProjectRef()
                     projectReference.path = defaultProjectPath
                     projectReference.name = name
@@ -347,7 +347,7 @@ class Editor : Lwjgl3WindowAdapter(), ApplicationListener,
     override fun pause() {}
     override fun resume() {}
 
-    override fun filesDropped(files: Array<out String>?) {
+    override fun filesDropped(files: Array<out String>) {
         Mundus.postEvent(FilesDroppedEvent(files))
     }
 
