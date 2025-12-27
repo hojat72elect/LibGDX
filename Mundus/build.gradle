@@ -18,9 +18,27 @@ repositories {
 }
 dependencies {
     api project(":gdx")
+    api project(":VisUI")
+    api project(":extensions:gdx-freetype")
 
 
     implementation "com.github.mgsx-dev.gdx-gltf:gltf:2.2.1"
+    implementation "org.apache.commons:commons-lang3:3.12.0"
+    implementation "commons-io:commons-io:2.5"
+    implementation "com.esotericsoftware:kryo:5.2.0"
+    implementation "org.pf4j:pf4j:3.13.0"
+    implementation "args4j:args4j:2.33"
+    implementation "io.github.libktx:ktx-inject:1.13.1-rc1"
+
+    // lwjgl
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-linux"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-linux-arm32"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-linux-arm64"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-macos"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-macos-arm64"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-windows"
+    implementation "org.lwjgl:lwjgl-meshoptimizer:3.3.3:natives-windows-x86"
 
     // test libs
     testImplementation "junit:junit:4.13.2"

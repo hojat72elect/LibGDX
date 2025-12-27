@@ -1,0 +1,11 @@
+package com.mbrlabs.mundus.pluginapi;
+
+import org.pf4j.ExtensionPoint;
+
+public interface DisposeExtension extends ExtensionPoint {
+
+    /**
+     * Calls this method when editor disposes its resources.
+     */
+    void dispose();
+}
