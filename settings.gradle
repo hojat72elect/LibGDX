@@ -31,5 +31,8 @@ include ':TalosVFX'
 include ':gdx-liftoff'
 include ':Mundus'
 
+// Example games made with this engine.
+include ':examples'
+
 rootProject.name = "libgdx"
 
