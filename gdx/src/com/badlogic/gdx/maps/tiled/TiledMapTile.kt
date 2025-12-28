@@ -55,9 +55,9 @@ interface TiledMapTile {
     fun setOffsetY(offsetY: Float)
 
     /**
-     * @return tile's properties set
+     * @return tile's properties set. It might be null (in case no properties are set).
      */
-    fun getProperties(): MapProperties
+    fun getProperties(): MapProperties?
 
     /**
      * @return collection of objects contained in the tile
