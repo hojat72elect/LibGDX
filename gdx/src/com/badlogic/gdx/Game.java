@@ -8,6 +8,7 @@ package com.badlogic.gdx;
  * Screens are not disposed automatically. You must handle whether you want to keep screens around or dispose of them when another
  * screen is set.
  * </p>
+ * Info : This abstract class was moved to Kerman game engine.
  */
 public abstract class Game implements ApplicationListener {
     protected Screen screen;
