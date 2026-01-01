@@ -1,5 +1,8 @@
 package com.badlogic.gdx.utils;
 
+/**
+ * Info : Moved this class to Kerman Game Engine.
+ */
 public final class NumberUtils {
     public static int floatToIntBits(float value) {
         return Float.floatToIntBits(value);
