@@ -7,6 +7,8 @@ package com.badlogic.gdx
  *
  * The `ApplicationListener` interface follows the standard Android activity life-cycle and is emulated on the desktop
  * accordingly.
+ *
+ * Info : This interface was moved to Kerman game engine.
  */
 interface ApplicationListener {
 
