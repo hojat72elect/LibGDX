@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Disposable
  * Represents one of many application screens, such as a main menu, a settings menu, the game screen and so on.
  * Note that [.dispose] is not called automatically.
  * @see Game
+ *
+ * Info : This interface was moved to Kerman Game Engine.
  */
 interface Screen : Disposable {
     /**
