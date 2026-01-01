@@ -9,8 +9,9 @@ import java.util.Random;
  * <a href="http://xorshift.di.unimi.it/">here</a>.
  * <p>
  * Instances of RandomXS128 are not thread-safe.
- *
- *  *  */
+ * <p>
+ * Info : This class was moved to Kerman Game Engine.
+ */
 public class RandomXS128 extends Random {
 
     /**
