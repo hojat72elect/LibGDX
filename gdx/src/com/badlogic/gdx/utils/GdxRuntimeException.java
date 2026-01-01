@@ -2,8 +2,9 @@ package com.badlogic.gdx.utils;
 
 /**
  * Typed runtime exception used throughout libGDX
- *
- *  */
+ * <p>
+ * Info : This class was moved to Kerman Game engine.
+ */
 public class GdxRuntimeException extends RuntimeException {
     private static final long serialVersionUID = 6735854402467673117L;
 
