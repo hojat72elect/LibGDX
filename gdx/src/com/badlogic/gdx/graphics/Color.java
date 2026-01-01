@@ -6,8 +6,9 @@ import com.badlogic.gdx.utils.NumberUtils;
 /**
  * A color class, holding the r, g, b and alpha component as floats in the range [0,1]. All methods perform clamping on the
  * internal values after execution.
- *
- *  */
+ * <p>
+ * Info : This class was moved to Kerman game engine.
+ */
 public class Color {
     public static final Color WHITE = new Color(1, 1, 1, 1);
     public static final Color LIGHT_GRAY = new Color(0xbfbfbfff);
