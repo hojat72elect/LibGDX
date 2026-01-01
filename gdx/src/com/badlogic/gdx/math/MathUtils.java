@@ -6,6 +6,8 @@ import java.util.Random;
  * Utility and fast math functions.
  * <p>
  * Thanks to Riven on JavaGaming.org for the basis of sin/cos/floor/ceil.
+ * <p>
+ * This class was moved  to Kerman Game Engine.
  */
 public final class MathUtils {
 
