@@ -8,6 +8,8 @@ import java.io.Serializable;
  * A simple quaternion class.
  *
  * @see <a href="http://en.wikipedia.org/wiki/Quaternion">http://en.wikipedia.org/wiki/Quaternion</a>
+ *
+ * Info : This class was moved to Kerman Game Engine.
  */
 public class Quaternion implements Serializable {
     private static final long serialVersionUID = -7661875440774897168L;
