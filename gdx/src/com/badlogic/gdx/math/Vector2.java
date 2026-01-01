@@ -8,7 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 
 /**
- * Encapsulates a 2D vector. Allows chaining methods by returning a reference to itself
+ * Info : This class was moved to Kerman Game Engine.
+ * <p>
+ *  Encapsulates a 2D vector. Allows chaining methods by returning a reference to itself.
  */
 public class Vector2 implements Serializable, Vector<Vector2> {
     public final static Vector2 X = new Vector2(1, 0);
