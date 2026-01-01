@@ -3,6 +3,8 @@ package com.badlogic.gdx.math
 /**
  * Encapsulates a general vector. Allows chaining operations by returning a reference to itself in all modification methods. See
  * [Vector2] and [Vector3] for specific implementations.
+ *
+ * Info : This interface was moved to Kerman Game Engine.
  */
 interface Vector<T : Vector<T>> {
 
