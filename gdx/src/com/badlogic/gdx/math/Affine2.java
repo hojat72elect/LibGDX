@@ -9,6 +9,8 @@ import java.io.Serializable;
  * <a href="http://en.wikipedia.org/wiki/Affine_transformation">Affine transformations</a> preserve straight lines, and parallel
  * lines remain parallel after the transformation. Operations on affine matrices are faster because the last row can always be
  * assumed (0, 0, 1).
+ * <p>
+ * Info : Moved this class to Kerman Game Engine.
  */
 public final class Affine2 implements Serializable {
     private static final long serialVersionUID = 1524569123485049187L;
