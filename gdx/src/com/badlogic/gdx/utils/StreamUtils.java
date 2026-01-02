@@ -12,6 +12,8 @@ import java.nio.ByteBuffer;
 
 /**
  * Provides utility methods to copy streams.
+ * <p>
+ * Info : This class was moved to Kerman Game Engine.
  */
 public final class StreamUtils {
     public static final int DEFAULT_BUFFER_SIZE = 4096;
