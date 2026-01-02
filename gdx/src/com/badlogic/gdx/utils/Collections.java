@@ -1,5 +1,8 @@
 package com.badlogic.gdx.utils;
 
+/**
+ * Info : This class was moved to kerman game engine.
+ */
 public class Collections {
 
     /**
