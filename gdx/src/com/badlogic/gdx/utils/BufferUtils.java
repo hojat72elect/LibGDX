@@ -14,7 +14,9 @@ import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
 
 /**
- * Class with static helper methods to increase the speed of array/direct buffer and direct buffer/direct buffer transfers
+ * Class with static helper methods to increase the speed of array/direct buffer and direct buffer/direct buffer transfers.
+ * <p>
+ * Info : A changed version of this class was moved to kerman game engine (because we don't want any C++ code in our new engine).
  */
 public final class BufferUtils {
 
