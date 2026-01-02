@@ -15,7 +15,8 @@ import java.util.Comparator;
  * single-pass for k=min and k=max, and Hoare's quickselect for values in between.
  * </p>
  *
- *  */
+ * Info : This class was moved to the Kerman Game Engine.
+ */
 public class Select {
     private static Select instance;
     private QuickSelect quickSelect;
