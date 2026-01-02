@@ -7,8 +7,9 @@ import java.util.Arrays;
 /**
  * A resizable, ordered or unordered int array. Avoids the boxing that occurs with ArrayList<Integer>. If unordered, this class
  * avoids a memory copy when removing elements (the last element is moved to the removed element's position).
- *
- *  */
+ * <p>
+ * Info : This class was moved to Kerman game engine.
+ */
 public class IntArray {
     public int[] items;
     public int size;
