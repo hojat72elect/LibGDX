@@ -25,6 +25,8 @@ import java.util.Comparator;
  * While the API to this class consists solely of static methods, it is (privately) instantiable; a TimSort instance holds the
  * state of an ongoing sort, assuming the input array is large enough to warrant the full-blown TimSort. Small arrays are sorted
  * in place, using a binary insertion sort.
+ * <p> 
+ * Info : This class was moved to Kerman game engine.
  */
 class TimSort<T> {
     /**
