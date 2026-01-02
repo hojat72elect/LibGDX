@@ -4,6 +4,8 @@ package com.badlogic.gdx.utils
  * An interface that is used to create arrays. Even though not annotated with "FunctionalInterface", it can act as one.
  * You can use a constructor reference or lambda as an [ArraySupplier], such as with `MyClass[]::new` or
  * `(size) -> new MyClass[size]`.
+ *
+ * Info : This interface was moved to kerman game engine.
  */
 fun interface ArraySupplier<T> {
 
