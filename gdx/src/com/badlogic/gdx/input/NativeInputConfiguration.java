@@ -2,6 +2,9 @@ package com.badlogic.gdx.input;
 
 import com.badlogic.gdx.Input;
 
+/**
+ * Info : This class was moved to Kerman Game Engine.
+ */
 public class NativeInputConfiguration {
 
     private Input.OnscreenKeyboardType type = Input.OnscreenKeyboardType.Default;
