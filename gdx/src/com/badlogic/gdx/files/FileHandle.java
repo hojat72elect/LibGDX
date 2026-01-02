@@ -35,8 +35,9 @@ import java.nio.channels.FileChannel.MapMode;
  * Because some of the file types are backed by composite files and may be compressed (for example, if they are in an Android .apk
  * or are found via the classpath), the methods for extracting a {@link #path()} or {@link #file()} may not be appropriate for all
  * types. Use the Reader or Stream methods here to hide these dependencies from your platform independent code.
- *
- *  *  */
+ * <p>
+ * Info : This class was moved to the Kerman Game Engine.
+ */
 public class FileHandle {
     protected File file;
     protected FileType type;
