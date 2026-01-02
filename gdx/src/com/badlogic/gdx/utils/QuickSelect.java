@@ -3,11 +3,12 @@ package com.badlogic.gdx.utils;
 import java.util.Comparator;
 
 /**
+ * Info : This class was moved to kerman game engine.
+ * <p>
  * Implementation of Tony Hoare's quickselect algorithm. Running time is generally O(n), but worst case is O(n^2) Pivot choice is
  * median of three method, providing better performance than a random pivot for partially sorted data.
  * http://en.wikipedia.org/wiki/Quickselect
- *
- *  */
+ */
 public class QuickSelect<T> {
     private T[] array;
     private Comparator<? super T> comp;
