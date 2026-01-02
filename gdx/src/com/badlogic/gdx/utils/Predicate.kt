@@ -2,6 +2,8 @@ package com.badlogic.gdx.utils
 
 /**
  * Interface used to select items within an iterator against a predicate.
+ *
+ * Info : This interface was moved to kerman game engine.
  */
 interface Predicate<T> {
 
