@@ -4,6 +4,8 @@ import com.badlogic.gdx.input.NativeInputConfiguration
 import com.badlogic.gdx.utils.ObjectIntMap
 
 /**
+ * This interface was moved to the Kerman game engine.
+ *
  * Interface to the input facilities. This allows polling the state of the keyboard, the touch screen and the accelerometer. On
  * some backends (desktop, etc) the touch screen is replaced by mouse input. The accelerometer is of course not available on
  * all backends.
