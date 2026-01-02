@@ -5,6 +5,8 @@ import com.badlogic.gdx.files.FileHandle
 /**
  * Provides standard access to the filesystem, classpath, Android app storage (internal and external), and Android assets
  * directory.
+ *
+ * Info : This interface was moved to the kerman game engine.
  */
 interface Files {
 
