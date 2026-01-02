@@ -2,8 +2,9 @@ package com.badlogic.gdx.utils.reflect;
 
 /**
  * Utilities for Array reflection.
- *
- *  */
+ * <p>
+ * Info : This class was moved to Kerman game engine.
+ */
 public final class ArrayReflection {
 
     /**
