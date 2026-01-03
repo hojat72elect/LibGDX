@@ -6,6 +6,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : Moved this abstract class to the Kerman game engine.
+ * <p>
  * Abstract base class for asset loaders.
  *
  * @param <T> the class of the asset the loader supports
