@@ -14,6 +14,8 @@ import java.io.InputStream
 import java.io.OutputStream
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Provides methods to perform networking operations, such as simple HTTP get and post requests, and TCP server/client socket
  * communication.
  *
