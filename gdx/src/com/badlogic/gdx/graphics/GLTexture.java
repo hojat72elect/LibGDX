@@ -14,6 +14,8 @@ import java.nio.Buffer;
 import java.nio.FloatBuffer;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Class representing an OpenGL texture by its target and handle. Keeps track of its state like the TextureFilter and
  * TextureWrap. Also provides some (protected) static methods to create TextureData and upload image data.
  */
