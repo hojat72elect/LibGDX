@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.GdxRuntimeException
 
 /**
+ * Info : The interface was moves to Kerman game engine.
+ *
  * This interface encapsulates the creation and management of audio resources. It allows you to get direct access to the audio
  * hardware via the [AudioDevice] and [AudioRecorder] interfaces, create sound effects via the [Sound] interface
  * and play music streams via the [Music] interface.
