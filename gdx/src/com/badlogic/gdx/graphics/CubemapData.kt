@@ -3,6 +3,8 @@ package com.badlogic.gdx.graphics
 import com.badlogic.gdx.graphics.glutils.KTXTextureData
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Used by a [Cubemap] to load the pixel data. The Cubemap will request the CubemapData to prepare itself through
  * [.prepare] and upload its data using [.consumeCubemapData]. These are the first methods to be called by
  * Cubemap. After that the Cubemap will invoke the other methods to find out about the size of the image data, the format, whether
