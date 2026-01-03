@@ -3,6 +3,8 @@ package com.badlogic.gdx
 import com.badlogic.gdx.utils.Clipboard
 
 /**
+ * Info : This interface was moved to kerman game engine.
+ *
  * An `Application` is the main entry point of your project. It sets up a window and rendering surface and manages the
  * different aspects of your application, namely [Graphics], [Audio], [Input] and [Files]. Think of an
  * Application being equivalent to Swing's `JFrame` or Android's `Activity`.
