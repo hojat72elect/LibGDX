@@ -6,6 +6,8 @@ import com.badlogic.gdx.Audio
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * Info : This interface was added to Kerman game engine.
+ *
  * A Music instance represents a streamed audio file. The interface supports pausing, resuming and so on. When you are done with
  * using the Music instance you have to dispose it via the [.dispose] method.
  *
