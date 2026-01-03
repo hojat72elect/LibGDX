@@ -5,6 +5,8 @@ import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.GdxRuntimeException
 
 /**
+ * Info : Moved this interface to Kerman game engine.
+ *
  * A server socket that accepts new incoming connections, returning [Socket] instances. The [.accept]
  * method should preferably be called in a separate thread as it is blocking.
  */
