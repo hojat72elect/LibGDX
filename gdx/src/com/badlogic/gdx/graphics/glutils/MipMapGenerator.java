@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.Pixmap.Blending;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : this class was moved to Kerman game engine.
+ */
 public class MipMapGenerator {
 
     private static boolean useHWMipMap = true;
