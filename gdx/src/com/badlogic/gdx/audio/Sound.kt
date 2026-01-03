@@ -4,6 +4,8 @@ import com.badlogic.gdx.Audio
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * This interface was moved to Kerman game engine.
+ *
  * A Sound is a short audio clip that can be played numerous times in parallel. It's completely loaded into memory so only load
  * small audio files. Call the [.dispose] method when you're done using the Sound.
  * Sound instances are created via a call to [Audio.newSound].
