@@ -1,6 +1,8 @@
 package com.badlogic.gdx.net;
 
 /**
+ * Info : This class was moved to kerman game engine.
+ * <p>
  * Options for {@link Socket} instances.
  */
 public class SocketHints {
