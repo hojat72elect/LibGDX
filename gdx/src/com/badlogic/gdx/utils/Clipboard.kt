@@ -1,6 +1,8 @@
 package com.badlogic.gdx.utils
 
 /**
+ * Info : This interface was moved to the kerman game engine.
+ *
  * A very simple clipboard interface for text content.
  */
 interface Clipboard {
