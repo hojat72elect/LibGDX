@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils
 import kotlin.math.max
 
 /**
+ * Input : This abstract class was moved to kerman game engine.
+ *
  * A pool of objects that can be reused to avoid allocation.
  * @see PoolManager
  * @param initialCapacity The initial size of the array supporting the pool. No objects are created/pre-allocated. Use [.fill] after instantiation if needed.
