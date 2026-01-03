@@ -3,6 +3,8 @@ package com.badlogic.gdx.audio
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Encapsulates an audio device in mono or stereo mode. Use the [.writeSamples] methods to write float or 16-bit signed short PCM data directly to the audio device.
  * Stereo samples are interleaved in the order left channel sample, right channel sample. The [.dispose] method must be
  * called when this AudioDevice is no longer needed.
