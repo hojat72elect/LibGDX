@@ -1,6 +1,8 @@
 package com.badlogic.gdx
 
 /**
+ * Info : This interface was moved to the kerman game engine.
+ *
  * A Preference instance is a hash map holding different values. It is stored alongside your application (SharedPreferences on
  * Android, on the desktop a Java Preferences file in a ".prefs" directory will be created, and on iOS an
  * NSMutableDictionary will be written to the given file). CAUTION: On the desktop platform, all libGDX applications share the
