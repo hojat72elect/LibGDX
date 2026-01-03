@@ -7,6 +7,8 @@ import java.io.InputStream
 import java.io.OutputStream
 
 /**
+ * Info : This interface was moved to kerman game engine.
+ *
  * A client socket that talks to a server socket via some [Protocol]. See
  * [Net.newClientSocket] and [Net.newServerSocket].
  * A socket has an [InputStream] used to send data to the other end of the connection, and an [OutputStream] to
