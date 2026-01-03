@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * A Pixmap represents an image in memory. It has a width and height expressed in pixels as well as a {@link Format} specifying
  * the number and order of color components per pixel. Coordinates of pixels are specified with respect to the top left corner of
