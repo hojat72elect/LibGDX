@@ -1,6 +1,8 @@
 package com.badlogic.gdx
 
 /**
+ * Info : This interface was moved to kerman game engine.
+ *
  * The ApplicationLogger provides an interface for a libGDX Application to log messages and exceptions. A default implementations
  * is provided for each backend, custom implementations can be provided and set using
  * [Application.setApplicationLogger]
