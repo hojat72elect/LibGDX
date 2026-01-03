@@ -1,6 +1,8 @@
 package com.badlogic.gdx
 
 /**
+ * Info : This interface was moved to kerman game engine.
+ *
  * A LifecycleListener can be added to an [Application] via [Application.addLifecycleListener]. It
  * will receive notification of pause, resume and dispose events. This is mainly meant to be used by extensions that need to
  * manage resources based on the life-cycle. Normal, application level development should rely on the [ApplicationListener]
