@@ -1,9 +1,10 @@
 package com.badlogic.gdx.utils;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Wrapper around System.nanoTime() and System.currentTimeMillis(). Use this if you want to be compatible across all platforms!
- *
- *  */
+ */
 public final class TimeUtils {
     private static final long nanosPerMilli = 1000000;
 
