@@ -2,6 +2,9 @@ package com.badlogic.gdx.graphics.g3d;
 
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class Material extends Attributes {
     private static int counter = 0;
 
