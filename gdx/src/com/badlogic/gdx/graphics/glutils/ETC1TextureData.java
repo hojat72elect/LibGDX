@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.glutils.ETC1.ETC1Data;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * This class was moved to Kerman game engine.
+ */
 public class ETC1TextureData implements TextureData {
     FileHandle file;
     ETC1Data data;
