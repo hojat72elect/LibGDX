@@ -4,6 +4,9 @@ import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
 
+/**
+ * This abstract class was moved to Kerman game engine.
+ */
 public abstract class SynchronousAssetLoader<T, P extends AssetLoaderParameters<T>> extends AssetLoader<T, P> {
     public SynchronousAssetLoader(FileHandleResolver resolver) {
         super(resolver);
