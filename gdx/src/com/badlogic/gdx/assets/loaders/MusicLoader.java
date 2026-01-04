@@ -9,6 +9,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * This class was moved to the Kerman game engine.
+ * <p>
  * {@link AssetLoader} for {@link Music} instances. The Music instance is loaded synchronously.
  */
 public class MusicLoader extends AsynchronousAssetLoader<Music, MusicLoader.MusicParameter> {
