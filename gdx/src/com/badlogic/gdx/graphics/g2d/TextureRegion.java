@@ -3,10 +3,11 @@ package com.badlogic.gdx.graphics.g2d;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Defines a rectangular area of a texture. The coordinate system used has its origin in the upper left corner with the x-axis
  * pointing to the right and the y axis pointing downwards.
- *
- *  *  */
+ */
 public class TextureRegion {
     Texture texture;
     float u, v;
