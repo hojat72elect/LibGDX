@@ -3,10 +3,11 @@ package com.badlogic.gdx.assets;
 import com.badlogic.gdx.files.FileHandle;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Describes an asset to be loaded by its filename, type and {@link AssetLoaderParameters}. Instances of this are used in
  * {@link AssetLoadingTask} to load the actual asset.
- *
- *  */
+ */
 public class AssetDescriptor<T> {
     public final String fileName;
     public final Class<T> type;
