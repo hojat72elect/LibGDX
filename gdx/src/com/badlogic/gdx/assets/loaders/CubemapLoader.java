@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.glutils.KTXTextureData;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@link AssetLoader} for {@link Cubemap} instances. The pixel data is loaded asynchronously. The texture is then created on the
  * rendering thread, synchronously. Passing a {@link CubemapParameter} to
  * {@link AssetManager#load(String, Class, AssetLoaderParameters)} allows one to specify parameters as can be passed to the
