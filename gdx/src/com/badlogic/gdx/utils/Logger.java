@@ -4,6 +4,8 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
 /**
+ * Info : This class was moved to kerman game engine.
+ * <p>
  * Simple logger that uses the {@link Application} logging facilities to output messages. The log level set with
  * {@link Application#setLogLevel(int)} overrides the log level set here.
  */
