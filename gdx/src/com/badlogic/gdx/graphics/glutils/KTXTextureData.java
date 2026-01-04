@@ -25,6 +25,8 @@ import java.nio.IntBuffer;
 import java.util.zip.GZIPInputStream;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A KTXTextureData holds the data from a KTX (or zipped KTX file, aka ZKTX). That is to say an OpenGL ready texture data. The
  * KTX file format is just a thin wrapper around OpenGL textures and therefore is compatible with most OpenGL texture capabilities
  * like texture compression, cubemapping, mipmapping, etc.
