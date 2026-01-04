@@ -5,6 +5,9 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Comparator;
 import java.util.Iterator;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class Attributes implements Iterable<Attribute>, Comparator<Attribute>, Comparable<Attributes> {
     protected final Array<Attribute> attributes = new Array<Attribute>();
     protected long mask;
