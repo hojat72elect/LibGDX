@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : This class was moved to the Kerman game engine.
+ * <p>
  * {@link AssetLoader} for {@link ShaderProgram} instances loaded from text files. If the file suffix is ".vert", it is assumed
  * to be a vertex shader, and a fragment shader is found using the same file name with a ".frag" suffix. And vice versa if the
  * file suffix is ".frag". These default suffixes can be changed in the ShaderProgramLoader constructor.
