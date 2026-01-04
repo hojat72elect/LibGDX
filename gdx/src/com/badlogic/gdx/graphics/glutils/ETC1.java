@@ -18,9 +18,10 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Class for encoding and decoding ETC1 compressed images. Also provides methods to add a PKM header.
- *
- *  */
+ */
 public class ETC1 {
     /**
      * The PKM header size in bytes
