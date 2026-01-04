@@ -9,6 +9,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@link AssetLoader} to load {@link Sound} instances.
  */
 public class SoundLoader extends AsynchronousAssetLoader<Sound, SoundLoader.SoundParameter> {
