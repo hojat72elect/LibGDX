@@ -1,6 +1,8 @@
 package com.badlogic.gdx.graphics.g2d;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Defines a polygon shape on top of a texture region to avoid drawing transparent pixels.
  *  * @see PolygonRegionLoader
  */
