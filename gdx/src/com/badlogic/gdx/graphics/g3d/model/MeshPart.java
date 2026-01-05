@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A MeshPart is composed of a subset of vertices of a {@link Mesh}, along with the primitive type. The vertices subset is
  * described by an offset and size. When the mesh is indexed (which is when {@link Mesh#getNumIndices()} > 0), then the
  * {@link #offset} represents the offset in the indices array and {@link #size} represents the number of indices. When the mesh
@@ -27,8 +29,7 @@ import com.badlogic.gdx.math.collision.BoundingBox;
  * <p>
  * The {@link Mesh} referenced by the {@link #mesh} member must outlive the MeshPart. When the mesh is disposed, the MeshPart is
  * unusable.
- *
- *  */
+ */
 public class MeshPart {
     /**
      * Temporary static {@link BoundingBox} instance, used in the {@link #update()} method.
