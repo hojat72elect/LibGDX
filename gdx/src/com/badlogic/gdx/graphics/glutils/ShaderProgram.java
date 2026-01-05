@@ -24,6 +24,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * A shader program encapsulates a vertex and fragment shader pair linked to form a shader program.
  * </p>
