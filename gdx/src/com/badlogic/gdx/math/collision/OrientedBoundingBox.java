@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.io.Serializable;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class OrientedBoundingBox implements Serializable {
     private static final long serialVersionUID = 3864065514676250557L;
 
