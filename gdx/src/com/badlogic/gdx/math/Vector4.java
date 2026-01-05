@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.NumberUtils;
 import java.io.Serializable;
 
 /**
+ * Info : This class was moved to Kerman Game Engine.
+ * <p>
  * Encapsulates a 4D vector. Allows chaining operations by returning a reference to itself in all modification methods.
  * <p>
  * While most 2D games rely on Vector2 and 3D games rely on Vector3, the Vector4 class exists primarily to handle the
