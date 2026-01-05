@@ -5,9 +5,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Returned by a {@link ModelLoader}, contains meshes, materials, nodes and animations. OpenGL resources like textures or vertex
  * buffer objects are not stored. Instead, a ModelData instance needs to be converted to a Model first.
- *
  */
 public class ModelData {
     public final short[] version = new short[2];
