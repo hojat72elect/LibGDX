@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * This class was moved to Kerman game engine.
+ */
 public class PixmapTextureData implements TextureData {
     final Pixmap pixmap;
     final Format format;
