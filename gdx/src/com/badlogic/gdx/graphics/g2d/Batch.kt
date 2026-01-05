@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * A Batch is used to draw 2D rectangles that reference a texture (region). The class will batch the drawing commands and
  * optimize them for processing by the GPU.
  * To draw something with a Batch one has to first call the [Batch.begin] method which will setup appropriate render
