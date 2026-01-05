@@ -2,6 +2,9 @@ package com.badlogic.gdx.graphics.g3d.model.data;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ModelTexture {
     public final static int USAGE_UNKNOWN = 0;
     public final static int USAGE_NONE = 1;
