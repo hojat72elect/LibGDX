@@ -22,9 +22,10 @@ import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
 /**
- * Writes Pixmaps to various formats.
- *
- *  *  */
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Writes {@link  Pixmap}s to various formats.
+ */
 public class PixmapIO {
     /**
      * Writes the {@link Pixmap} to the given file using a custom compression scheme. First three integers define the width,
