@@ -4,6 +4,9 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ModelNodeAnimation {
     /**
      * the id of the node animated by this animation FIXME should be nodeId
