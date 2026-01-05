@@ -3,6 +3,9 @@ package com.badlogic.gdx.graphics.g3d.model.data;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.ArrayMap;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ModelNodePart {
     public String materialId;
     public String meshPartId;
