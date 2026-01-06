@@ -14,6 +14,8 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Modification of the {@link VertexBufferObject} class. Sets the glVertexAttribDivisor for every {@link VertexAttribute}
  * automatically.
  */

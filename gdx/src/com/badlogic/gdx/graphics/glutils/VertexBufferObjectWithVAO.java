@@ -16,6 +16,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * A {@link VertexData} implementation that uses vertex buffer objects and vertex array objects. (This is required for OpenGL 3.0+
  * core profiles. In particular, the default VAO has been deprecated, as has the use of client memory for passing vertex

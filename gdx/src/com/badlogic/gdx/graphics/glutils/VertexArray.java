@@ -12,6 +12,7 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * Convenience class for working with OpenGL vertex arrays. It interleaves all data in the order you specified in the constructor
  * via {@link VertexAttribute}.
