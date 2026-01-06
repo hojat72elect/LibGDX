@@ -8,6 +8,9 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class IndexArray implements IndexData {
     final ShortBuffer buffer;
     final ByteBuffer byteBuffer;
