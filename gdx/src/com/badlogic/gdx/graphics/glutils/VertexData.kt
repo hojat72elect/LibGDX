@@ -5,6 +5,8 @@ import com.badlogic.gdx.utils.Disposable
 import java.nio.FloatBuffer
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * A VertexData instance holds vertices for rendering with OpenGL. It is implemented as either a [VertexArray] or a
  * [VertexBufferObject]. Only the later supports OpenGL ES 2.0.
  */
