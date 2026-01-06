@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * This is a mathematical utility class used to represent an Axis-Aligned Bounding Box (AABB) in 3D space.
  * <p>
  * Encapsulates an axis aligned bounding box represented by a minimum and a maximum Vector. Additionally you can query for the
