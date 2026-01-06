@@ -12,6 +12,7 @@ import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * In IndexBufferObject wraps OpenGL's index buffer functionality to be used in conjunction with VBOs. This class can be
  * seamlessly used with OpenGL ES 1.x and 2.0.
