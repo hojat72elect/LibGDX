@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class FileTextureData implements TextureData {
 
     final FileHandle file;
