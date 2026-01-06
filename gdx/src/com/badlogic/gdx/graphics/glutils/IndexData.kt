@@ -4,7 +4,8 @@ import com.badlogic.gdx.utils.Disposable
 import java.nio.ShortBuffer
 
 /**
- * An IndexData instance holds index data. Can be either a plain short buffer or an OpenGL buffer object.
+ * Info : This interface was moved to Kerman game engine.
+ * An [IndexData] instance holds index data. Can be either a plain short buffer or an OpenGL buffer object.
  */
 interface IndexData : Disposable {
 
