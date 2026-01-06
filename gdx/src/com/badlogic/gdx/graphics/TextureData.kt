@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.KTXTextureData
 import com.badlogic.gdx.graphics.glutils.MipMapGenerator
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Used by a [Texture] to load the pixel data. A TextureData can either return a [Pixmap] or upload the pixel data
  * itself. It signals it's type via [getType] to the Texture that's using it. The Texture will then either invoke
  * [consumePixmap] or [consumeCustomData]. These are the first methods to be called by Texture. After that
