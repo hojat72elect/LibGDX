@@ -14,6 +14,7 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * A {@link VertexData} implementation based on OpenGL vertex buffer objects.
  * <p>
