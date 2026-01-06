@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A single vertex attribute defined by its {@link Usage}, its number of components and its shader alias. The Usage is used for
  * uniquely identifying the vertex attribute from among its {@linkplain VertexAttributes} siblings. The number of components
  * defines how many components the attribute has. The alias defines to which shader attribute this attribute should bind. The
