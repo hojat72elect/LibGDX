@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.model.data.ModelData
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Used by [Model] to load textures from [ModelData].
  */
 interface TextureProvider {
