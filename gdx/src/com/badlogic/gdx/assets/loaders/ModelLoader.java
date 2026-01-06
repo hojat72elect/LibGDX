@@ -16,6 +16,9 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 import java.util.Iterator;
 
+/**
+ * Info : This abstract class was moved to Kerman game engine.
+ */
 public abstract class ModelLoader<P extends ModelLoader.ModelParameters> extends AsynchronousAssetLoader<Model, P> {
     protected Array<ObjectMap.Entry<String, ModelData>> items = new Array<>();
     protected ModelParameters defaultParameters = new ModelParameters();
