@@ -27,6 +27,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Holds the geometry, color, and texture information for drawing 2D sprites using {@link Batch}. A Sprite has a position and a
  * size given as width and height. The position is relative to the origin of the coordinate system specified via
  * {@link Batch#begin()} and the respective matrices. A Sprite is always rectangular and its position (x, y) are located in the
