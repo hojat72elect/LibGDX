@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.NumberUtils
 import java.io.Serializable
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ *
  * A convenient 2D circle class.
  */
 class Circle(
