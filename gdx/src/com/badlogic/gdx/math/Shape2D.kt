@@ -1,5 +1,8 @@
 package com.badlogic.gdx.math
 
+/**
+ * Info : This interface was moved to Kerman game engine.
+ */
 interface Shape2D {
 
     /**
