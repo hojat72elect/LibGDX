@@ -19,6 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.nio.Buffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Draws batched quads using indices.
  * @see Batch
  */
