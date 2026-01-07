@@ -3,9 +3,10 @@ package com.badlogic.gdx.utils;
 import com.badlogic.gdx.math.Vector2;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Various scaling types for fitting one rectangle into another.
- *
- *  */
+ */
 public abstract class Scaling {
     protected static final Vector2 temp = new Vector2();
     /**
