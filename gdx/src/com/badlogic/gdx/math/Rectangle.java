@@ -1,16 +1,3 @@
-/*******************************************************************************
- * Copyright 2011 See AUTHORS file.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- ******************************************************************************/
-
 package com.badlogic.gdx.math;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;
@@ -20,9 +7,10 @@ import com.badlogic.gdx.utils.Scaling;
 import java.io.Serializable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Encapsulates a 2D rectangle defined by its corner point in the bottom left and its extents in x (width) and y (height).
- *
- *  */
+ */
 public class Rectangle implements Serializable, Shape2D {
     /**
      * Static temporary rectangle. Use with care! Use only when sure other code will not also use this.
