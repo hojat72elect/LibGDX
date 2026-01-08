@@ -6,9 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A camera with orthographic projection.
- *
- *  */
+ */
 public class OrthographicCamera extends Camera {
     private final Vector3 tmp = new Vector3();
     /**
