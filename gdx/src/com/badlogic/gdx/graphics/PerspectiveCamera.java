@@ -4,9 +4,10 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A Camera with perspective projection.
- *
- *  */
+ */
 public class PerspectiveCamera extends Camera {
     final Vector3 tmp = new Vector3();
     /**
