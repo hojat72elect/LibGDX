@@ -1,9 +1,10 @@
 package com.badlogic.gdx;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An adapter class for {@link InputProcessor}. You can derive from this and only override what you are interested in.
- *
- *  */
+ */
 public class InputAdapter implements InputProcessor {
     public boolean keyDown(int keycode) {
         return false;
