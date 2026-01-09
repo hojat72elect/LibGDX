@@ -3,6 +3,9 @@ package com.badlogic.gdx.graphics.glutils
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.math.Matrix4
 
+/**
+ * Info : This interface was moved to Kerman game engine.
+ */
 interface ImmediateModeRenderer {
     fun begin(projModelView: Matrix4?, primitiveType: Int)
 
