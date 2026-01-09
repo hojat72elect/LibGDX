@@ -3,6 +3,8 @@ package com.badlogic.gdx.scenes.scene2d.utils
 import com.badlogic.gdx.scenes.scene2d.Actor
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Provides methods for an actor to participate in layout and to provide a minimum, preferred, and maximum size.
  */
 interface Layout {
