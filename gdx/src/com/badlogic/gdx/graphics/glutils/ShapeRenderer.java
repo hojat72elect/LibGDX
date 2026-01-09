@@ -11,6 +11,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Renders points, lines, shape outlines and filled shapes.
  * <p>
  * By default a 2D orthographic projection with the origin in the lower left corner is used and units are specified in screen
