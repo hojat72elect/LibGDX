@@ -1,6 +1,8 @@
 package com.badlogic.gdx.scenes.scene2d
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Low level interface for receiving events. Typically there is a listener class for each specific event class.
  * @see InputListener
  * @see InputEvent
