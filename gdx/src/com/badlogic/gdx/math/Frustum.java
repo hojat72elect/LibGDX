@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.OrientedBoundingBox;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A truncated rectangular pyramid. Used to define the viewable region and its projection onto the screen.
  *
  * @see Camera#frustum
