@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Value placeholder, allowing the value to be computed on request. Values can be provided an actor for context to reduce the
  * number of value instances that need to be created and reduce verbosity in code that specifies values.
  */
