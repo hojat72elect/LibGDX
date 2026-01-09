@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Immediate mode rendering class for GLES 2.0. The renderer will allow you to specify vertices on the fly and provides a default
  * shader for (unlit) rendering.
  */
