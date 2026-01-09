@@ -1,9 +1,10 @@
 package com.badlogic.gdx.utils;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Provides bit flag constants for alignment.
- *
- *  */
+ */
 public class Align {
     static public final int center = 1 << 0;
     static public final int top = 1 << 1;
