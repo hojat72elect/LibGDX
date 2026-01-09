@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Event for actor input: touch, mouse, touch/mouse actor enter/exit, mouse scroll, and keyboard events.
  *
  * @see InputListener
