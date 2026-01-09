@@ -4,6 +4,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * The base class for all events.
  * <p>
  * By default an event will "bubble" up through an actor's parent's handlers (see {@link #setBubbles(boolean)}).
