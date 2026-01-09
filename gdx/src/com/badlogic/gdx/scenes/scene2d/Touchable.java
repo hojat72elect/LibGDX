@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d;
 
 /**
+ * Info : This enum was moved to Kerman game engine.
+ * <p>
  * Determines how touch input events are distributed to an actor and any children.
- *
- *  */
+ */
 public enum Touchable {
     /**
      * All touch input events will be received by the actor and any children.
