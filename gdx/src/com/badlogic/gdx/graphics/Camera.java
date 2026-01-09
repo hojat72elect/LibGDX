@@ -11,6 +11,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Base class for {@link OrthographicCamera} and {@link PerspectiveCamera}.
  */
 public abstract class Camera {
