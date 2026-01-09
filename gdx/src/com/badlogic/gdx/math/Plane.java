@@ -3,9 +3,10 @@ package com.badlogic.gdx.math;
 import java.io.Serializable;
 
 /**
+ * Info : this class was moved to Kerman game engine.
+ * <p>
  * A plane defined via a unit length normal and the distance from the origin, as you learned in your math class.
- *
- *  */
+ */
 public class Plane implements Serializable {
     private static final long serialVersionUID = -1240652082930747866L;
     public final Vector3 normal = new Vector3();
