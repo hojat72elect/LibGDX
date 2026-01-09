@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A {@link Group} that participates in layout and provides a minimum, preferred, and maximum size.
  * <p>
  * The default preferred size of a widget group is 0 and this is almost always overridden by a subclass. The default minimum size
