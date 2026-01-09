@@ -1,6 +1,8 @@
 package com.badlogic.gdx.utils;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Default Pool implementation that creates a new instances of a type based on a supplier.
  */
 public class DefaultPool<T> extends Pool<T> {
