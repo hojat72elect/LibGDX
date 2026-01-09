@@ -6,9 +6,10 @@ import com.badlogic.gdx.math.Vector3;
 import java.io.Serializable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Encapsulates a ray having a starting position and a unit length direction.
- *
- *  */
+ */
 public class Ray implements Serializable {
     private static final long serialVersionUID = -620692054835390878L;
     static Vector3 tmp = new Vector3();
