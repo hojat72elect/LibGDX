@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * EventListener for low-level input events. Unpacks {@link InputEvent}s and calls the appropriate method. By default the methods
  * here do nothing with the event. Users are expected to override the methods they are interested in, like this:
  *
