@@ -3,13 +3,14 @@ package com.badlogic.gdx.graphics;
 import com.badlogic.gdx.utils.ObjectMap;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A general purpose class containing named colors that can be changed at will. For example, the markup language defined by the
  * {@code BitmapFontCache} class uses this class to retrieve colors and the user can define his own colors.
- *
- *  */
+ */
 public final class Colors {
 
-    private static final ObjectMap<String, Color> map = new ObjectMap<String, Color>();
+    private static final ObjectMap<String, Color> map = new ObjectMap<>();
 
     static {
         reset();
