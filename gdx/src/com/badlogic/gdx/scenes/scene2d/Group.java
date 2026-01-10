@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * 2D scene graph node that may contain other actors.
  * <p>
  * Actors have a z-order equal to the order they were inserted into the group. Actors inserted later will be drawn on top of
