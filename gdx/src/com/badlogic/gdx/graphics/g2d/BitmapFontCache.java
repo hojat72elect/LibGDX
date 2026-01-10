@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.NumberUtils;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Caches glyph geometry for a BitmapFont, providing a fast way to render static text. This saves needing to compute the glyph
  * geometry each frame.
  */
