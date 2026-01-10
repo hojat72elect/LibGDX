@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Base class for actions that transition over time using the percent complete.
  */
 abstract public class TemporalAction extends Action implements FinishableAction {
