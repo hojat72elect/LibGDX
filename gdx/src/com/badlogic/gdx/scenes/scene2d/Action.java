@@ -7,6 +7,8 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Actions attach to an {@link Actor} and perform some task, often over time.
  */
 abstract public class Action implements Poolable {
