@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * A {@link Pool} which keeps track of the obtained items (see {@link #obtain()}), which can be free'd all at once using the
  * {@link #flush()} method.
  */
