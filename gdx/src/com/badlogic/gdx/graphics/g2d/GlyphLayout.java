@@ -14,6 +14,8 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Stores {@link GlyphRun runs} of glyphs for a piece of text. The text may contain newlines and color markup tags.
  * <p>
  * Where wrapping occurs is determined by {@link BitmapFontData#getWrapIndex(Array, int)}. Additionally, when
