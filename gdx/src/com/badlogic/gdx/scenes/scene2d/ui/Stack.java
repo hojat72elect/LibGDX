@@ -7,6 +7,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A stack is a container that sizes its children to its size and positions them at 0,0 on top of each other.
  * <p>
  * The preferred and min size of the stack is the largest preferred and min size of any children. The max size of the stack is the
