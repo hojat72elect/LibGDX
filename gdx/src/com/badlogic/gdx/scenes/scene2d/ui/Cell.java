@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 /**
+ * Info : This class was moved to kerman game engine.
+ * <p>
  * A cell for a {@link Table}.
  */
 public class Cell<T extends Actor> implements Poolable {
