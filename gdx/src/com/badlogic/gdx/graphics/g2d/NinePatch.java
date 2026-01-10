@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A 3x3 grid of texture regions. Any of the regions may be omitted. Padding may be set as a hint on how to inset content on top
  * of the ninepatch (by default the eight "edge" textures of the ninepatch define the padding). When drawn, the four corner
  * patches will not be scaled, the interior patch will be scaled in both directions, and the middle patch for each edge will be
