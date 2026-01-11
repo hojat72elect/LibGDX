@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.Objects;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A resizable, ordered or unordered char array. Avoids the boxing that occurs with ArrayList<Character>. If unordered, this
  * class avoids a memory copy when removing single chars (the last element is moved to the removed element's position).
  * <p>
