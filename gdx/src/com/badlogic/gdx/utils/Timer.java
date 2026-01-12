@@ -6,6 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.LifecycleListener;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Executes tasks in the future on the main loop thread.
  */
 public class Timer {
