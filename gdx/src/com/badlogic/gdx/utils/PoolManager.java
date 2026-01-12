@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils;
 import com.badlogic.gdx.utils.DefaultPool.PoolSupplier;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A class that can be used to handle multiple pools together. Explicit pool registration is needed via the constructor or
  * {@link PoolManager#addPool(PoolSupplier)}/{@link PoolManager#addPool(Pool)}.
  */
