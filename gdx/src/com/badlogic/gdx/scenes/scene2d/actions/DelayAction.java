@@ -1,6 +1,8 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Delays execution of an action or inserts a pause in a {@link SequenceAction}.
  */
 public class DelayAction extends DelegateAction implements FinishableAction {
