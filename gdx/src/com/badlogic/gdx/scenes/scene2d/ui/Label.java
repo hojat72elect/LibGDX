@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.CharArray;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A text label, with optional word wrapping.
  * <p>
  * The preferred size of the label is determined by the actual text bounds, unless {@link #setWrap(boolean) word wrap} is enabled.
