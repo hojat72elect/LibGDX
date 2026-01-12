@@ -9,10 +9,11 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@link InputProcessor} implementation that detects gestures (tap, long press, fling, pan, zoom, pinch) and hands them to a
  * {@link GestureListener}.
- *
- *  */
+ */
 public class GestureDetector extends InputAdapter {
     final GestureListener listener;
     private final VelocityTracker tracker = new VelocityTracker();
