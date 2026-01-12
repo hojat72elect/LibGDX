@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Executes a number of actions at the same time.
  */
 public class ParallelAction extends Action {
