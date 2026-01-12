@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Scaling;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A viewport that scales the world using {@link Scaling}.
  * <p>
  * {@link Scaling#fit} keeps the aspect ratio by scaling the world up to fit the screen, adding black bars (letterboxing) for the
@@ -18,8 +20,7 @@ import com.badlogic.gdx.utils.Scaling;
  * <p>
  * {@link Scaling#none} keeps the aspect ratio by using a fixed size world (the world may not fill the screen or some of the world
  * may be off screen).
- *
- *  *  */
+ */
 public class ScalingViewport extends Viewport {
     private Scaling scaling;
 
