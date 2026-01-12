@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * To deal with HDPI monitors properly, use the glViewport and glScissor functions of this class instead of directly calling
  * OpenGL yourself. The logical coordinate system provided by the operating system may not have the same resolution as the actual
  * drawing surface to which OpenGL draws, also known as the backbuffer. This class will ensure, that you pass the correct values
