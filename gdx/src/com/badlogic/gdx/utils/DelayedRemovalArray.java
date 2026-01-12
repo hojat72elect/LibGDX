@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils;
 import java.util.Comparator;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An array that queues removal during iteration until the iteration has completed. Queues any removals done after
  * {@link #begin()} is called to occur once {@link #end()} is called. This can allow code out of your control to remove items
  * without affecting iteration. Between begin and end, most mutator methods will throw IllegalStateException. Only
