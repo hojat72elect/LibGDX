@@ -21,11 +21,12 @@ import java.io.BufferedReader;
 import java.util.Comparator;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Loads images from texture atlases created by TexturePacker.<br>
  * <br>
  * A TextureAtlas must be disposed to free up the resources consumed by the backing textures.
- *
- *  */
+ */
 public class TextureAtlas implements Disposable {
     private final ObjectSet<Texture> textures = new ObjectSet(4);
     private final Array<AtlasRegion> regions = new Array();
