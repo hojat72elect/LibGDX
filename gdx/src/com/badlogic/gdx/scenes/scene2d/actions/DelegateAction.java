@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Base class for an action that wraps another action.
  */
 abstract public class DelegateAction extends Action {
