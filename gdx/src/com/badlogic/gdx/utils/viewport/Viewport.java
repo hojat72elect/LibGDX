@@ -13,6 +13,8 @@ import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Manages a {@link Camera} and determines how world coordinates are mapped to and from the screen.
  */
 public abstract class Viewport {
