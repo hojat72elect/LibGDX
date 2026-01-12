@@ -4,6 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Executes a number of actions one at a time.
  */
 public class SequenceAction extends ParallelAction {
