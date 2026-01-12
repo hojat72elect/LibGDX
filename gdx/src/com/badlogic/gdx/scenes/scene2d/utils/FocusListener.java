@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.Null;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Listener for {@link FocusEvent}.
  */
 abstract public class FocusListener implements EventListener {
