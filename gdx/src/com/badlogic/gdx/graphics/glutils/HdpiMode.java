@@ -3,6 +3,9 @@ package com.badlogic.gdx.graphics.glutils;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.GL20;
 
+/**
+ * This enum was moved to Kerman game engine.
+ */
 public enum HdpiMode {
     /**
      * mouse coordinates, {@link Graphics#getWidth()} and {@link Graphics#getHeight()} will return logical coordinates according
