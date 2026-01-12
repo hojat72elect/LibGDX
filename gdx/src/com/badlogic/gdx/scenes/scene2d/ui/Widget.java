@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Layout;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An {@link Actor} that participates in layout and provides a minimum, preferred, and maximum size.
  * <p>
  * The default preferred size of a widget is 0 and this is almost always overridden by a subclass. The default minimum size
