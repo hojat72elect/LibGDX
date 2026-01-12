@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Align;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Draws a {@link TextureRegion} repeatedly to fill the area, instead of stretching it.
  */
 public class TiledDrawable extends TextureRegionDrawable {
