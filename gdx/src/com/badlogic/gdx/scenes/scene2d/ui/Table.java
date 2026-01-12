@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.Pool;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A group that sizes and positions children using table constraints.
  * <p>
  * Children added with {@link #add(Actor...)} (and similar methods returning a {@link Cell}) are laid out in rows and columns.
