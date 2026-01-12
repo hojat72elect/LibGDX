@@ -8,10 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Null;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Detects tap, long press, fling, pan, zoom, and pinch gestures on an actor. If there is only a need to detect tap, use
  * {@link ClickListener}.
  *  @see GestureDetector
