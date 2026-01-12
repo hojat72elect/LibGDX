@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Listener for {@link ChangeEvent}.
  */
 abstract public class ChangeListener implements EventListener {
