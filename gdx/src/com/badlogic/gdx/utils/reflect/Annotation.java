@@ -1,6 +1,8 @@
 package com.badlogic.gdx.utils.reflect;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Provides information about, and access to, an annotation of a field, class or interface.
  */
 public final class Annotation {
