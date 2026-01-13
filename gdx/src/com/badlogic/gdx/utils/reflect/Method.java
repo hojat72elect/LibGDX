@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 
 /**
+ * This class was moved to Kerman game engine.
+ * <p>
  * Provides information about, and access to, a single method on a class or interface.
  */
 public final class Method {
