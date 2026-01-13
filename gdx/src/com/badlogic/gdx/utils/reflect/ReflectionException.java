@@ -1,9 +1,10 @@
 package com.badlogic.gdx.utils.reflect;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Thrown when an exception occurs during reflection.
- *
- *  */
+ */
 public class ReflectionException extends Exception {
 
     public ReflectionException() {
