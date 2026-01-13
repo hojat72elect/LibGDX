@@ -4,7 +4,6 @@ import static com.badlogic.gdx.utils.Align.bottom;
 import static com.badlogic.gdx.utils.Align.left;
 import static com.badlogic.gdx.utils.Align.right;
 import static com.badlogic.gdx.utils.Align.top;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -26,6 +25,8 @@ import com.badlogic.gdx.utils.PoolManager;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
+ * Info : this class was moved to Kerman game engine.
+ * <p>
  * 2D scene graph node. An actor has a position, rectangular size, origin, scale, rotation, Z index, and color. The position
  * corresponds to the unrotated, unscaled bottom left corner of the actor. The position is relative to the actor's parent. The
  * origin is relative to the position and is used for scale and rotation.
@@ -42,8 +43,7 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
  * An {@link InputListener} can receive all the basic input events. More complex listeners (like {@link ClickListener} and
  * {@link ActorGestureListener}) can listen for and combine primitive events and recognize complex interactions like multi-touch
  * or pinch.
- *
- *  *  */
+ */
 public class Actor {
 
     static public PoolManager POOLS = new PoolManager();
