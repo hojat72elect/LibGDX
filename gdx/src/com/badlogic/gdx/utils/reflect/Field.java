@@ -6,9 +6,10 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Provides information about, and access to, a single field of a class or interface.
- *
- *  */
+ */
 public final class Field {
 
     private final java.lang.reflect.Field field;

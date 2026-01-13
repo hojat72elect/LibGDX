@@ -3,9 +3,10 @@ package com.badlogic.gdx.utils.reflect;
 import java.lang.reflect.Modifier;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Utilities for Class reflection.
- *
- *  */
+ */
 public final class ClassReflection {
 
     /**

@@ -3,9 +3,10 @@ package com.badlogic.gdx.utils.reflect;
 import java.lang.reflect.InvocationTargetException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Provides information about, and access to, a single constructor for a Class.
- *
- *  */
+ */
 public final class Constructor {
 
     private final java.lang.reflect.Constructor constructor;
