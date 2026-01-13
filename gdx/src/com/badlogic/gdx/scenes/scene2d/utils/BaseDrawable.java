@@ -7,6 +7,8 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Drawable that stores the size information but doesn't draw anything.
  */
 public class BaseDrawable implements Drawable {
