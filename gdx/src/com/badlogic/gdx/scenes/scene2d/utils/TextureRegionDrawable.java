@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Drawable for a {@link TextureRegion}.
  */
 public class TextureRegionDrawable extends BaseDrawable implements TransformDrawable {

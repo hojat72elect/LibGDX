@@ -4,10 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasSprite;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Drawable for a {@link Sprite}.
  */
 public class SpriteDrawable extends BaseDrawable implements TransformDrawable {

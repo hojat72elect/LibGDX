@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * Builder API for emitting JSON to a {@link Writer}.
- *
- *  */
+ */
 public class JsonWriter extends Writer {
     static private final int none = 0, needsComma = 1, object = '}' << 1, array = ']' << 1, isObject = 0b1000000;
     private final IntArray stack = new IntArray();

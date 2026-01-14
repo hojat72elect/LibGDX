@@ -10,6 +10,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Container for a JSON object, array, string, double, long, boolean, or null.
  * <p>
  * JsonValue children are a linked list. Iteration of arrays or objects is easily done using an iterator or the {@link #next()}
@@ -24,8 +26,7 @@ import java.util.Objects;
  * for (JsonValue entry = map.child; entry != null; entry = entry.next)
  * 	System.out.println(entry.name + " = " + entry.asString());
  * </pre>
- *
- *  */
+ */
 public class JsonValue implements Iterable<JsonValue> {
     public String name;
     /**

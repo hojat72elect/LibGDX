@@ -1,9 +1,10 @@
 package com.badlogic.gdx.utils;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Indicates an error during serialization due to misconfiguration or during deserialization due to invalid input data.
- *
- *  */
+ */
 public class SerializationException extends RuntimeException {
     private StringBuilder trace;
 
