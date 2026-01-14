@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A table that can be dragged and act as a modal window. The top padding is used as the window's title height.
  * <p>
  * The preferred size of a window is the preferred size of the title text and the children as laid out by the table. After adding

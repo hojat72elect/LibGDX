@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.util.regex.Pattern;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Builder API for emitting JSON to a {@link Writer}.
  */
 public class JsonWriter extends Writer {
