@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Scaling;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A button with a child {@link Image} and {@link Label}.
  *  * @see ImageButton
  * @see TextButton

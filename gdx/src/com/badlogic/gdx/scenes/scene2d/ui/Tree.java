@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A tree widget where each node has an icon, actor, and child nodes.
  * <p>
  * The preferred size of the tree is determined by the preferred size of the actors for the expanded nodes.
