@@ -4,12 +4,13 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Manages a group of buttons to enforce a minimum and maximum number of checked buttons. This enables "radio button"
  * functionality and more. A button may only be in one group at a time.
  * <p>
  * The {@link #canCheck(Button, boolean)} method can be overridden to control if a button check or uncheck is allowed.
- *
- *  */
+ */
 public class ButtonGroup<T extends Button> {
     private final Array<T> buttons = new Array();
     private final Array<T> checkedButtons = new Array(1);

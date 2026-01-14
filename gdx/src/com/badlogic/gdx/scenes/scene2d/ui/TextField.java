@@ -30,6 +30,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A single-line text input field.
  * <p>
  * The preferred height of a text field is the height of the {@link TextFieldStyle#font} and {@link TextFieldStyle#background}.

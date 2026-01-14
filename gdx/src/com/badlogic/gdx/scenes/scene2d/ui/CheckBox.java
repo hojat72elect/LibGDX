@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Scaling;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A checkbox is a button that contains an image indicating the checked or unchecked state and a label.
  */
 public class CheckBox extends TextButton {

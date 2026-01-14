@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.Scaling;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Displays a {@link Drawable}, scaled various way within the widgets bounds. The preferred size is the min size of the drawable.
  * Only when using a {@link TextureRegionDrawable} will the actor's scale, rotation, and origin be used when drawing.
  */
