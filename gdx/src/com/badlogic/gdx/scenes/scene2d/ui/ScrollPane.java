@@ -23,6 +23,8 @@ import com.badlogic.gdx.utils.Null;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A group that scrolls a child actor using scrollbars and/or mouse or touch dragging.
  * <p>
  * The actor is sized to its preferred size. If the actor's preferred width or height is less than the size of this scroll pane,
