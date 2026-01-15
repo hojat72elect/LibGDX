@@ -31,6 +31,8 @@ import com.badlogic.gdx.utils.ObjectSet;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A select box (aka a drop-down list) allows a user to choose one of a number of values from a list. When inactive, the selected
  * value is displayed. When activated, it shows the list of values that may be selected.
  * <p>

@@ -4,9 +4,10 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An action that has a float, whose value is transitioned over time.
- *
- *  */
+ */
 public class FloatAction extends TemporalAction {
     private float start, end;
     private float value;
