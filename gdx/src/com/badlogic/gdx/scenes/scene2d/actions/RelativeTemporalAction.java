@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * Base class for actions that transition over time using the percent complete since the last frame.
- *
- *  */
+ */
 abstract public class RelativeTemporalAction extends TemporalAction {
     private float lastPercent;
 

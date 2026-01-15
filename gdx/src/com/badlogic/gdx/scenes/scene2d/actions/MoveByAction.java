@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Moves an actor to a relative position.
- *
- *  */
+ */
 public class MoveByAction extends RelativeTemporalAction {
     private float amountX, amountY;
 
