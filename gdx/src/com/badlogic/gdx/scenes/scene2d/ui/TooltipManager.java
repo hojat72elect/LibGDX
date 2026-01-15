@@ -1,13 +1,5 @@
 package com.badlogic.gdx.scenes.scene2d.ui;
 
-import static com.badlogic.gdx.math.Interpolation.fade;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.alpha;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.parallel;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.removeActor;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
-
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
@@ -16,10 +8,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
+import static com.badlogic.gdx.math.Interpolation.fade;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Keeps track of an application's tooltips.
- *
- *  */
+ */
 public class TooltipManager {
     static private TooltipManager instance;
     static private Files files;

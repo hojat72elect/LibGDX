@@ -1,15 +1,15 @@
 package com.badlogic.gdx.utils;
 
 import com.badlogic.gdx.utils.reflect.ArrayReflection;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A resizable, ordered array of objects with efficient add and remove at the beginning and end. Values in the backing array may
  * wrap back to the beginning, making add and remove at the beginning and end O(1) (unless the backing array needs to resize when
  * adding). Deque functionality is provided via {@link #removeLast()} and {@link #addFirst(Object)}.

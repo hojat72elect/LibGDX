@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An unordered map where the keys are unboxed longs and values are objects. No allocation is done except when growing the table
  * size.
  * <p>

@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Reads/writes Java objects to/from JSON, automatically. See the wiki for usage:
  * https://libgdx.com/wiki/utils/reading-and-writing-json
  */

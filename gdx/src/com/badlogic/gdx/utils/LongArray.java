@@ -5,10 +5,11 @@ import com.badlogic.gdx.math.MathUtils;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A resizable, ordered or unordered long array. Avoids the boxing that occurs with ArrayList<Long>. If unordered, this class
  * avoids a memory copy when removing elements (the last element is moved to the removed element's position).
- *
- *  */
+ */
 public class LongArray {
     public long[] items;
     public int size;
@@ -103,7 +104,8 @@ public class LongArray {
 
     public void add(long value1, long value2, long value3, long value4) {
         long[] items = this.items;
-        if (size + 3 >= items.length) items = resize(Math.max(8, (int) (size * 1.8f))); // 1.75 isn't enough when size=5.
+        if (size + 3 >= items.length)
+            items = resize(Math.max(8, (int) (size * 1.8f))); // 1.75 isn't enough when size=5.
         items[size] = value1;
         items[size + 1] = value2;
         items[size + 2] = value3;
@@ -382,7 +384,8 @@ public class LongArray {
      * @return {@link #items}
      */
     public long[] ensureCapacity(int additionalCapacity) {
-        if (additionalCapacity < 0) throw new IllegalArgumentException("additionalCapacity must be >= 0: " + additionalCapacity);
+        if (additionalCapacity < 0)
+            throw new IllegalArgumentException("additionalCapacity must be >= 0: " + additionalCapacity);
         int sizeNeeded = size + additionalCapacity;
         if (sizeNeeded > items.length) resize(Math.max(Math.max(8, sizeNeeded), (int) (size * 1.75f)));
         return items;
