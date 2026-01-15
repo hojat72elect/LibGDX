@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Moves an actor from its current size to a relative size.
- *
- *  */
+ */
 public class SizeByAction extends RelativeTemporalAction {
     private float amountWidth, amountHeight;
 

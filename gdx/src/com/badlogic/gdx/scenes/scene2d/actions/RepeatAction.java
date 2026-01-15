@@ -1,6 +1,8 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Repeats an action a number of times or forever.
  */
 public class RepeatAction extends DelegateAction implements FinishableAction {

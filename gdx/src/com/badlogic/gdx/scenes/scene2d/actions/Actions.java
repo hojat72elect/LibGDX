@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.PoolManager;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Static convenience methods for using pooled actions, intended for static import.
  */
 public class Actions {
