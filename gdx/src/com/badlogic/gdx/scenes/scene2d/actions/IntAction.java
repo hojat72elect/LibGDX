@@ -4,9 +4,10 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An action that has an int, whose value is transitioned over time.
- *
- *  */
+ */
 public class IntAction extends TemporalAction {
     private int start, end;
     private int value;

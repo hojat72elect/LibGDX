@@ -4,9 +4,10 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Removes a listener from an actor.
- *
- *  */
+ */
 public class RemoveListenerAction extends Action {
     private EventListener listener;
     private boolean capture;
