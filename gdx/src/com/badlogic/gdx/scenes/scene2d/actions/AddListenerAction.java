@@ -4,6 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Adds a listener to an actor.
  */
 public class AddListenerAction extends Action {

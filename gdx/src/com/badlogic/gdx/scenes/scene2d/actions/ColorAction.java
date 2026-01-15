@@ -5,10 +5,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Sets the actor's color (or a specified color), from the current to the new color. Note this action transitions from the color
  * at the time the action starts to the specified color.
- *
- *  */
+ */
 public class ColorAction extends TemporalAction {
     private final Color end = new Color();
     private float startR, startG, startB, startA;
