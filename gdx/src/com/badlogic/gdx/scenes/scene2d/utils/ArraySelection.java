@@ -5,9 +5,10 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Iterator;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A selection that supports range selection by knowing about the array of items being selected.
- *
- *  */
+ */
 public class ArraySelection<T> extends Selection<T> {
     private final Array<T> array;
     private boolean rangeSelect = true;

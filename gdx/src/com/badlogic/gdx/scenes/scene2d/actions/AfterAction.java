@@ -5,9 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Executes an action only after all other actions on the actor at the time this action's target was set have finished.
- *
- *  */
+ */
 public class AfterAction extends DelegateAction {
     private final Array<Action> waitForActions = new Array(false, 4);
 

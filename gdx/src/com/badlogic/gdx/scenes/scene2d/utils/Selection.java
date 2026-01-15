@@ -11,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Manages selected objects. Optionally fires a {@link ChangeEvent} on an actor. Selection changes can be vetoed via
  * {@link ChangeEvent#cancel()}.
  */

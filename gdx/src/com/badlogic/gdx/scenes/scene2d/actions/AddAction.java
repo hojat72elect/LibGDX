@@ -3,9 +3,10 @@ package com.badlogic.gdx.scenes.scene2d.actions;
 import com.badlogic.gdx.scenes.scene2d.Action;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Adds an action to an actor.
- *
- *  */
+ */
 public class AddAction extends Action {
     private Action action;
 

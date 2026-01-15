@@ -21,6 +21,8 @@ import com.badlogic.gdx.utils.ObjectSet;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A list (aka list box) displays textual items and highlights the currently selected item.
  * <p>
  * {@link ChangeEvent} is fired when the list selection changes.

@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils;
 import java.util.NoSuchElementException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A {@link ObjectSet} that also stores keys in an {@link Array} using the insertion order. Null keys are not allowed. No
  * allocation is done except when growing the table size.
  * <p>
