@@ -3,6 +3,8 @@ package com.badlogic.gdx.scenes.scene2d.actions;
 import com.badlogic.gdx.math.MathUtils;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Sets the actor's rotation from its current value to a specific value.
  * <p>
  * By default, the rotation will take you from the starting value to the specified value via simple subtraction. For example,
@@ -10,7 +12,7 @@ import com.badlogic.gdx.math.MathUtils;
  * <p>
  * If the action is instead set to useShortestDirection instead, it will rotate straight to the target angle, regardless of where
  * the angle starts and stops. For example, starting at 350 and rotating to 10 will cause 20 degrees of rotation.
- *
+ * <p>
  *  * @see com.badlogic.gdx.math.MathUtils#lerpAngleDeg(float, float, float)
  */
 public class RotateToAction extends TemporalAction {

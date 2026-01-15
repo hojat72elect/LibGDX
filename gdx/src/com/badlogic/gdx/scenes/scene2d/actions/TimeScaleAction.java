@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Multiplies the delta of an action.
- *
- *  */
+ */
 public class TimeScaleAction extends DelegateAction {
     private float scale;
 
