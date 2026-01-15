@@ -6,6 +6,9 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.utils.Os;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public final class UIUtils {
     static public boolean isAndroid = SharedLibraryLoader.os == Os.Android;
     static public boolean isMac = SharedLibraryLoader.os == Os.MacOsX;

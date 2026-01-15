@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A tooltip that shows a label.
  */
 public class TextTooltip extends Tooltip<Label> implements Styleable<TextTooltip.TextTooltipStyle> {

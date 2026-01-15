@@ -4,9 +4,10 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Sets the actor's {@link Actor#setVisible(boolean) visibility}.
- *
- *  */
+ */
 public class VisibleAction extends Action {
     private boolean visible;
 

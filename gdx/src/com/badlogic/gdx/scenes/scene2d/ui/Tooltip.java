@@ -2,17 +2,14 @@ package com.badlogic.gdx.scenes.scene2d.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.utils.Null;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A listener that shows a tooltip actor when the mouse is over another actor.
- *
- *  */
+ */
 public class Tooltip<T extends Actor> extends InputListener {
     static Vector2 tmp = new Vector2();
     final Container<T> container;
@@ -108,8 +105,10 @@ public class Tooltip<T extends Actor> extends InputListener {
         Vector2 point = actor.localToStageCoordinates(tmp.set(x + offsetX, y - offsetY - container.getHeight()));
         if (point.y < dist) point = actor.localToStageCoordinates(tmp.set(x + offsetX, y + offsetY));
         if (point.x < dist) point.x = dist;
-        if (point.x + container.getWidth() > stage.getWidth() - dist) point.x = stage.getWidth() - dist - container.getWidth();
-        if (point.y + container.getHeight() > stage.getHeight() - dist) point.y = stage.getHeight() - dist - container.getHeight();
+        if (point.x + container.getWidth() > stage.getWidth() - dist)
+            point.x = stage.getWidth() - dist - container.getWidth();
+        if (point.y + container.getHeight() > stage.getHeight() - dist)
+            point.y = stage.getHeight() - dist - container.getHeight();
         container.setPosition(point.x, point.y);
 
         point = actor.localToStageCoordinates(tmp.set(actor.getWidth() / 2, actor.getHeight() / 2));
