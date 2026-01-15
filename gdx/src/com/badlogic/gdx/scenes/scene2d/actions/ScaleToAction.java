@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Sets the actor's scale from its current value to a specific value.
- *
- *  */
+ */
 public class ScaleToAction extends TemporalAction {
     private float startX, startY;
     private float endX, endY;

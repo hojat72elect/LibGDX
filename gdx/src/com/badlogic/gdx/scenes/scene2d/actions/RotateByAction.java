@@ -1,9 +1,10 @@
 package com.badlogic.gdx.scenes.scene2d.actions;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Sets the actor's rotation from its current value to a relative value.
- *
- *  */
+ */
 public class RotateByAction extends RelativeTemporalAction {
     private float amount;
 
