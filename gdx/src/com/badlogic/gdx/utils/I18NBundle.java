@@ -4,14 +4,11 @@ import com.badlogic.gdx.files.FileHandle;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Set;
+import java.util.*;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A {@code I18NBundle} provides {@code Locale}-specific resources loaded from property files. A bundle contains a number of
  * named resources, whose names and values are {@code Strings}. A bundle may have a parent bundle, and when a resource is not
  * found in a bundle, the parent bundle is searched for the resource. If the fallback mechanism reaches the base bundle and still
@@ -44,7 +41,7 @@ import java.util.Set;
  * It's also possible to create variants for languages or countries. This can be done by just skipping the country or language
  * abbreviation: BaseName_us__POSIX or BaseName__DE_PREEURO. But it's not allowed to circumvent both language and country:
  * BaseName___VARIANT is illegal.
- *
+ * <p>
  *  * @see PropertiesUtils
  */
 public class I18NBundle {

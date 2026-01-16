@@ -4,13 +4,14 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@code TextFormatter} is used by {@link I18NBundle} to perform argument replacement.
- *
- *  */
+ */
 class TextFormatter {
 
-    private MessageFormat messageFormat;
     private final StringBuilder buffer;
+    private MessageFormat messageFormat;
 
     public TextFormatter(Locale locale, boolean useMessageFormat) {
         buffer = new StringBuilder();
@@ -122,7 +123,8 @@ class TextFormatter {
                 }
             } else { // processing placeholder part
                 if (ch == '}') {
-                    if (placeholder >= args.length) throw new IllegalArgumentException("Argument index out of bounds: " + placeholder);
+                    if (placeholder >= args.length)
+                        throw new IllegalArgumentException("Argument index out of bounds: " + placeholder);
                     if (pattern.charAt(i - 1) == '{')
                         throw new IllegalArgumentException("Missing argument index after a left curly brace");
                     if (args[placeholder] == null)
