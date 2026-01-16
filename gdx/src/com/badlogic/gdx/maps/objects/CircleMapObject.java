@@ -4,7 +4,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Circle;
 
 /**
- * @brief Represents {@link Circle} shaped map objects
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents {@link Circle} shaped map objects
  */
 public class CircleMapObject extends MapObject {
 

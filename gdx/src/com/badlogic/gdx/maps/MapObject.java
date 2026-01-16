@@ -3,6 +3,8 @@ package com.badlogic.gdx.maps;
 import com.badlogic.gdx.graphics.Color;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Generic Map entity with basic attributes like name, opacity, color
  */
 public class MapObject {

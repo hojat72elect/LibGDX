@@ -4,7 +4,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * @brief Represents 2D points on the map
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents 2D points on the map.
  */
 public class PointMapObject extends MapObject {
 

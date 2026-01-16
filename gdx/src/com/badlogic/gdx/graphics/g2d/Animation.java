@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * An Animation stores a list of objects representing an animated sequence, e.g. for running or jumping. Each object in the
  * Animation is called a key frame, and multiple key frames make up the animation.
@@ -14,8 +15,7 @@ import java.util.Arrays;
  * {@link com.badlogic.gdx.graphics.g2d.TextureRegion TextureRegions} and would be specified as:
  * <p>
  * <code>Animation&lt;TextureRegion&gt; myAnimation = new Animation&lt;TextureRegion&gt;(...);</code>
- *
- *  */
+ */
 public class Animation<T> {
 
     /**

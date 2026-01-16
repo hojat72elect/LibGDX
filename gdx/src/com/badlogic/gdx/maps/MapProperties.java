@@ -6,7 +6,9 @@ import java.util.Iterator;
 import java.util.Objects;
 
 /**
- * @brief Set of string indexed values representing map elements' properties, allowing to retrieve, modify and add properties to
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Set of string indexed values representing map elements' properties, allowing to retrieve, modify and add properties to
  * the set.
  */
 public class MapProperties {
