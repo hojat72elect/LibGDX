@@ -4,7 +4,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * @brief Represents a text map object
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents a text map object.
  */
 public class TextMapObject extends MapObject {
 

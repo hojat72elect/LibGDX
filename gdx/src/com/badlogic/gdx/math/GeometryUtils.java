@@ -1,7 +1,8 @@
 package com.badlogic.gdx.math;
 
 /**
- *  */
+ * Info : This class was moved to Kerman game engine.
+ */
 public final class GeometryUtils {
 
     static private final Vector2 tmp1 = new Vector2(), tmp2 = new Vector2(), tmp3 = new Vector2();

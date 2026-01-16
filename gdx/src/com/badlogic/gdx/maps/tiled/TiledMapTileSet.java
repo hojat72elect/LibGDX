@@ -6,7 +6,9 @@ import com.badlogic.gdx.utils.IntMap;
 import java.util.Iterator;
 
 /**
- * @brief Set of {@link TiledMapTile} instances used to compose a TiledMapLayer
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Set of {@link TiledMapTile} instances used to compose a TiledMapLayer
  */
 public class TiledMapTileSet implements Iterable<TiledMapTile> {
 

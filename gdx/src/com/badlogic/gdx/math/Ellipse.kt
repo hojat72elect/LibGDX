@@ -5,6 +5,8 @@ import java.io.Serializable
 import kotlin.math.sqrt
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ *
  * A convenient 2D ellipse class, based on the circle class.
  * بیضی
  */

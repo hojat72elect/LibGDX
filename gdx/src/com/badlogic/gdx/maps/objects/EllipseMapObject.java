@@ -4,7 +4,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Ellipse;
 
 /**
- * @brief Represents {@link Ellipse} map objects.
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents {@link Ellipse} map objects.
  */
 public class EllipseMapObject extends MapObject {
 

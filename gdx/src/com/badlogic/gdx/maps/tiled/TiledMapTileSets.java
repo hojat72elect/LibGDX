@@ -5,7 +5,9 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Iterator;
 
 /**
- * @brief Collection of {@link TiledMapTileSet}
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Collection of {@link TiledMapTileSet}
  */
 public class TiledMapTileSets implements Iterable<TiledMapTileSet> {
 

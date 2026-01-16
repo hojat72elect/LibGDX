@@ -6,7 +6,9 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import java.util.Iterator;
 
 /**
- * @brief Collection of MapObject instances
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Collection of MapObject instances.
  */
 public class MapObjects implements Iterable<MapObject> {
 

@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Represents a tiled map, adds the concept of tiles and tilesets.
  * @see Map
  */

@@ -4,7 +4,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * @brief Represents a rectangle shaped map object
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents a rectangle shaped map object.
  */
 public class RectangleMapObject extends MapObject {
 

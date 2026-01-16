@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 
 /**
- * @brief Represents a map object containing a texture (region)
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents a map object containing a texture (region).
  */
 public class TextureMapObject extends MapObject {
 

@@ -5,7 +5,9 @@ import com.badlogic.gdx.maps.MapObjects
 import com.badlogic.gdx.maps.MapProperties
 
 /**
- *  Generalises the concept of tile in a TiledMap.
+ * Info : This interface was moved to Kerman game engine.
+ *
+ *  Generalizes the concept of tile in a TiledMap.
  */
 interface TiledMapTile {
 
