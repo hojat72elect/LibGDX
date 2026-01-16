@@ -2,6 +2,9 @@ package com.badlogic.gdx.math;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class Polyline implements Shape2D {
     private float[] localVertices;
     private float[] worldVertices;
