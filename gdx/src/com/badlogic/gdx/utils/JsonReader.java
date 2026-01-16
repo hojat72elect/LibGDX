@@ -15,12 +15,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Lightweight JSON parser.<br>
  * <br>
  * The default behavior is to parse the JSON into a DOM containing {@link JsonValue} objects. Extend this class and override
  * methods to perform event driven parsing. When this is done, the parse methods will return null.
- *
- *  */
+ */
 public class JsonReader implements BaseJsonReader {
     static final int json_start = 1;
     static final int json_first_final = 35;
@@ -277,11 +278,13 @@ public class JsonReader implements BaseJsonReader {
                                                 name = null;
                                                 if (stringIsUnquoted) {
                                                     if (value.equals("true")) {
-                                                        if (debug) System.out.println("boolean: " + valueName + "=true");
+                                                        if (debug)
+                                                            System.out.println("boolean: " + valueName + "=true");
                                                         bool(valueName, true);
                                                         break outer;
                                                     } else if (value.equals("false")) {
-                                                        if (debug) System.out.println("boolean: " + valueName + "=false");
+                                                        if (debug)
+                                                            System.out.println("boolean: " + valueName + "=false");
                                                         bool(valueName, false);
                                                         break outer;
                                                     } else if (value.equals("null")) {
@@ -319,13 +322,15 @@ public class JsonReader implements BaseJsonReader {
                                                     }
                                                     if (couldBeDouble) {
                                                         try {
-                                                            if (debug) System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
+                                                            if (debug)
+                                                                System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
                                                             number(valueName, Double.parseDouble(value), value);
                                                             break outer;
                                                         } catch (NumberFormatException ignored) {
                                                         }
                                                     } else if (couldBeLong) {
-                                                        if (debug) System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
+                                                        if (debug)
+                                                            System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
                                                         try {
                                                             number(valueName, Long.parseLong(value), value);
                                                             break outer;
@@ -416,7 +421,8 @@ public class JsonReader implements BaseJsonReader {
                                                     p++;
                                                 p++;
                                             }
-                                            if (debug) System.out.println("comment " + new String(data, start, p - start));
+                                            if (debug)
+                                                System.out.println("comment " + new String(data, start, p - start));
                                         }
                                         break;
                                         case 7:
@@ -443,7 +449,8 @@ public class JsonReader implements BaseJsonReader {
                                                         case '\n':
                                                             break outer;
                                                     }
-                                                    if (debug) System.out.println("unquotedChar (name): '" + data[p] + "'");
+                                                    if (debug)
+                                                        System.out.println("unquotedChar (name): '" + data[p] + "'");
                                                     p++;
                                                     if (p == eof) break;
                                                 }
@@ -466,7 +473,8 @@ public class JsonReader implements BaseJsonReader {
                                                         case '\n':
                                                             break outer;
                                                     }
-                                                    if (debug) System.out.println("unquotedChar (value): '" + data[p] + "'");
+                                                    if (debug)
+                                                        System.out.println("unquotedChar (value): '" + data[p] + "'");
                                                     p++;
                                                     if (p == eof) break;
                                                 }
@@ -534,11 +542,13 @@ public class JsonReader implements BaseJsonReader {
                                                 name = null;
                                                 if (stringIsUnquoted) {
                                                     if (value.equals("true")) {
-                                                        if (debug) System.out.println("boolean: " + valueName + "=true");
+                                                        if (debug)
+                                                            System.out.println("boolean: " + valueName + "=true");
                                                         bool(valueName, true);
                                                         break outer;
                                                     } else if (value.equals("false")) {
-                                                        if (debug) System.out.println("boolean: " + valueName + "=false");
+                                                        if (debug)
+                                                            System.out.println("boolean: " + valueName + "=false");
                                                         bool(valueName, false);
                                                         break outer;
                                                     } else if (value.equals("null")) {
@@ -576,13 +586,15 @@ public class JsonReader implements BaseJsonReader {
                                                     }
                                                     if (couldBeDouble) {
                                                         try {
-                                                            if (debug) System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
+                                                            if (debug)
+                                                                System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
                                                             number(valueName, Double.parseDouble(value), value);
                                                             break outer;
                                                         } catch (NumberFormatException ignored) {
                                                         }
                                                     } else if (couldBeLong) {
-                                                        if (debug) System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
+                                                        if (debug)
+                                                            System.out.println("double: " + valueName + "=" + Double.parseDouble(value));
                                                         try {
                                                             number(valueName, Long.parseLong(value), value);
                                                             break outer;
@@ -636,7 +648,8 @@ public class JsonReader implements BaseJsonReader {
                 else
                     throw new SerializationException("Error parsing JSON, unmatched bracket.");
             }
-            if (parseRuntimeEx != null) throw new SerializationException("Error parsing JSON: " + new String(data), parseRuntimeEx);
+            if (parseRuntimeEx != null)
+                throw new SerializationException("Error parsing JSON: " + new String(data), parseRuntimeEx);
         }
         return root;
     }
