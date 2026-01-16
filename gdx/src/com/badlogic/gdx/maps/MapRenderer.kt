@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.math.Matrix4
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * This interface describes a common way of rendering [Map] objects.
  */
 interface MapRenderer {

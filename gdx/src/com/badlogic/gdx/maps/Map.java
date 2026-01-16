@@ -7,6 +7,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A generic level map implementation.
  * </p>
  * <p>

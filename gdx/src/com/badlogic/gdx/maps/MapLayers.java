@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import java.util.Iterator;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Ordered list of {@link MapLayer} instances owned by a {@link Map}
  */
 public class MapLayers implements Iterable<MapLayer> {
