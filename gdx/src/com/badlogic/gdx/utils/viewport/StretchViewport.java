@@ -5,10 +5,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.Scaling;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A ScalingViewport that uses {@link Scaling#stretch} so it does not keep the aspect ratio, the world is scaled to take the
  * whole screen.
- *
- *  *  */
+ */
 public class StretchViewport extends ScalingViewport {
     /**
      * Creates a new viewport using a new {@link OrthographicCamera}.
