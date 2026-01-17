@@ -10,7 +10,9 @@ import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.TimeUtils;
 
 /**
- * @brief Represents a changing {@link TiledMapTile}.
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents a changing {@link TiledMapTile}.
  */
 public class AnimatedTiledMapTile implements TiledMapTile {
 

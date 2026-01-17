@@ -8,11 +8,12 @@ import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A {@link MapObject} with a {@link TiledMapTile}. Can be both {@link StaticTiledMapTile} or {@link AnimatedTiledMapTile}. For
  * compatibility reasons, this extends {@link TextureMapObject}. Use {@link TiledMapTile#getTextureRegion()} instead of
  * {@link #getTextureRegion()}.
- *
- *  */
+ */
 public class TiledMapTileMapObject extends TextureMapObject {
 
     private boolean flipHorizontally;

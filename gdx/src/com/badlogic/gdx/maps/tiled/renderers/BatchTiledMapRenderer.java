@@ -41,6 +41,9 @@ import com.badlogic.gdx.utils.Disposable;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This interface was moved to Kerman game engine.
+ */
 public abstract class BatchTiledMapRenderer implements TiledMapRenderer, Disposable {
     static protected final int NUM_VERTICES = 20;
 

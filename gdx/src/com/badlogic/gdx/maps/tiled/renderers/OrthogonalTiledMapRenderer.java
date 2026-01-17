@@ -31,6 +31,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class OrthogonalTiledMapRenderer extends BatchTiledMapRenderer {
 
     public OrthogonalTiledMapRenderer(TiledMap map) {

@@ -6,7 +6,9 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 
 /**
- * @brief Represents a non changing {@link TiledMapTile} (can be cached)
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Represents a non changing {@link TiledMapTile} (can be cached).
  */
 public class StaticTiledMapTile implements TiledMapTile {
 

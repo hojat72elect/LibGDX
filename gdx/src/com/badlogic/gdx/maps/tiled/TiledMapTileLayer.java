@@ -3,7 +3,9 @@ package com.badlogic.gdx.maps.tiled;
 import com.badlogic.gdx.maps.MapLayer;
 
 /**
- * @brief Layer for a TiledMap
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * Layer for a TiledMap.
  */
 public class TiledMapTileLayer extends MapLayer {
 

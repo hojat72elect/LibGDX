@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.ObjectMap
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Resolves an image by a string, wrapper around a Map or [AssetManager] to load maps either directly or via [AssetManager].
  */
 interface ImageResolver {
