@@ -1,8 +1,5 @@
 package com.badlogic.gdx.graphics.g2d;
 
-import static com.badlogic.gdx.graphics.g2d.Sprite.SPRITE_SIZE;
-import static com.badlogic.gdx.graphics.g2d.Sprite.VERTEX_SIZE;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -22,7 +19,12 @@ import com.badlogic.gdx.utils.IntArray;
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 
+import static com.badlogic.gdx.graphics.g2d.Sprite.SPRITE_SIZE;
+import static com.badlogic.gdx.graphics.g2d.Sprite.VERTEX_SIZE;
+
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Draws 2D images, optimized for geometry that does not change. Sprites and/or textures are cached and given an ID, which can
  * later be used for drawing. The size, color, and texture region for each cached image cannot be modified. This information is
  * stored in video memory and does not have to be sent to the GPU each time it is drawn.<br>
@@ -50,8 +52,7 @@ import java.nio.FloatBuffer;
  * SpriteCache works with OpenGL ES 1.x and 2.0. For 2.0, it uses its own custom shader to draw.<br>
  * <br>
  * SpriteCache must be disposed once it is no longer needed.
- *
- *  */
+ */
 public class SpriteCache implements Disposable {
     static private final float[] tempVertices = new float[VERTEX_SIZE * 6];
 
@@ -63,6 +64,7 @@ public class SpriteCache implements Disposable {
     private final Array<Texture> textures = new Array(8);
     private final IntArray counts = new IntArray(8);
     private final Color color = new Color(1, 1, 1, 1);
+    private final Array<Cache> caches = new Array();
     /**
      * Number of render calls since the last {@link #begin()}.
      **/
@@ -72,7 +74,6 @@ public class SpriteCache implements Disposable {
      **/
     public int totalRenderCalls = 0;
     private boolean drawing;
-    private final Array<Cache> caches = new Array();
     private Cache currentCache;
     private float colorPacked = Color.WHITE_FLOAT_BITS;
     private ShaderProgram customShader = null;
@@ -105,7 +106,8 @@ public class SpriteCache implements Disposable {
     public SpriteCache(int size, ShaderProgram shader, boolean useIndices) {
         this.shader = shader;
 
-        if (useIndices && size > 8191) throw new IllegalArgumentException("Can't have more than 8191 sprites per batch: " + size);
+        if (useIndices && size > 8191)
+            throw new IllegalArgumentException("Can't have more than 8191 sprites per batch: " + size);
 
         mesh = new Mesh(true, size * (useIndices ? 4 : 6), useIndices ? size * 6 : 0,
                 new VertexAttribute(Usage.Position, 2, ShaderProgram.POSITION_ATTRIBUTE),

@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class TiledMapImageLayer extends MapLayer {
 
     private TextureRegion region;

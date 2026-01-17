@@ -1,6 +1,8 @@
 package com.badlogic.gdx.maps;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Map layer containing a set of MapLayers, objects and properties
  */
 public class MapGroupLayer extends MapLayer {

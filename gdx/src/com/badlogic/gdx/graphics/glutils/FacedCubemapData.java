@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A FacedCubemapData holds a cubemap data definition based on a {@link TextureData} per face.
  */
 public class FacedCubemapData implements CubemapData {

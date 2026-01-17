@@ -35,6 +35,9 @@ import com.badlogic.gdx.math.Vector3;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class IsometricTiledMapRenderer extends BatchTiledMapRenderer {
 
     private Matrix4 isoTransform;

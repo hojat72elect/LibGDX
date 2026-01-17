@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Wraps a standard OpenGL ES Cubemap. Must be disposed when it is no longer used.
  */
 public class Cubemap extends GLTexture {

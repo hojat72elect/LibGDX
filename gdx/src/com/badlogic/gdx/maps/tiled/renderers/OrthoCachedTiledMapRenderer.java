@@ -44,6 +44,8 @@ import com.badlogic.gdx.utils.Disposable;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Renders ortho tiles by caching geometry on the GPU. How much is cached is controlled by {@link #setOverCache(float)}. When the
  * view reaches the edge of the cached tiles, the cache is rebuilt at the new view position.
  * <p>
