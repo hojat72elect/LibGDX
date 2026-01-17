@@ -5,10 +5,11 @@ import com.badlogic.gdx.math.MathUtils;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A resizable, ordered or unordered short array. Avoids the boxing that occurs with ArrayList<Short>. If unordered, this class
  * avoids a memory copy when removing elements (the last element is moved to the removed element's position).
- *
- *  */
+ */
 public class ShortArray {
     public short[] items;
     public int size;
@@ -112,7 +113,8 @@ public class ShortArray {
 
     public void add(short value1, short value2, short value3, short value4) {
         short[] items = this.items;
-        if (size + 3 >= items.length) items = resize(Math.max(8, (int) (size * 1.8f))); // 1.75 isn't enough when size=5.
+        if (size + 3 >= items.length)
+            items = resize(Math.max(8, (int) (size * 1.8f))); // 1.75 isn't enough when size=5.
         items[size] = value1;
         items[size + 1] = value2;
         items[size + 2] = value3;
@@ -389,7 +391,8 @@ public class ShortArray {
      * @return {@link #items}
      */
     public short[] ensureCapacity(int additionalCapacity) {
-        if (additionalCapacity < 0) throw new IllegalArgumentException("additionalCapacity must be >= 0: " + additionalCapacity);
+        if (additionalCapacity < 0)
+            throw new IllegalArgumentException("additionalCapacity must be >= 0: " + additionalCapacity);
         int sizeNeeded = size + additionalCapacity;
         if (sizeNeeded > items.length) resize(Math.max(Math.max(8, sizeNeeded), (int) (size * 1.75f)));
         return items;

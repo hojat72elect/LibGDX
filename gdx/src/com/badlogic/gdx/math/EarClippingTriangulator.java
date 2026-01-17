@@ -5,6 +5,8 @@ import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.ShortArray;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A simple implementation of the ear cutting algorithm to triangulate simple polygons without holes. For more information:
  * <ul>
  * <li><a href="http://cgm.cs.mcgill.ca/~godfried/teaching/cg-projects/97/Ian/algorithm2.html">http://cgm.cs.mcgill.ca/~godfried/

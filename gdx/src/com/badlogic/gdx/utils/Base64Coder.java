@@ -3,6 +3,8 @@ package com.badlogic.gdx.utils;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A Base64 encoder/decoder.
  * This class is used to encode and decode data in Base64 format as described in RFC 1521.
  * Project home page: <a href="http://www.source-code.biz/base64coder/java/">www.source-code.biz/base64coder/java</a><br>

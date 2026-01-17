@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ParticleEmitter {
     static private final int UPDATE_SCALE = 1 << 0;
     static private final int UPDATE_ANGLE = 1 << 1;

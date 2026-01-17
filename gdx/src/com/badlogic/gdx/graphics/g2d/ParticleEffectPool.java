@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ParticleEffectPool extends Pool<PooledEffect> {
     private final ParticleEffect effect;
 

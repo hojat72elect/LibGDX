@@ -44,6 +44,9 @@ import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public abstract class BaseTmxMapLoader<P extends BaseTiledMapLoader.Parameters> extends BaseTiledMapLoader<P> {
 
     protected XmlReader xml = new XmlReader();
