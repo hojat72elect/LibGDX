@@ -19,6 +19,8 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A TiledMap Loader which loads tiles from a TextureAtlas instead of separate images.
  * <p>
  * It requires a map-level property called 'atlas' with its value being the relative path to the TextureAtlas. The atlas must have

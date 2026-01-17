@@ -14,14 +14,15 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Lightweight XML parser. Supports a subset of XML features: elements, attributes, text, predefined entities, CDATA, mixed
  * content. Namespaces are parsed as part of the element or attribute name. Prologs and doctypes are ignored. Only 8-bit character
  * encodings are supported. Input is assumed to be well formed.<br>
  * <br>
  * The default behavior is to parse the XML into a DOM. Extends this class and override methods to perform event driven parsing.
  * When this is done, the parse methods will return null.
- *
- *  */
+ */
 public class XmlReader {
     static final int xml_start = 1;
     static final int xml_first_final = 34;
@@ -434,10 +435,10 @@ public class XmlReader {
 
     static public class Element {
         private final String name;
+        private final Element parent;
         private ObjectMap<String, String> attributes;
         private Array<Element> children;
         private String text;
-        private final Element parent;
 
         public Element(String name, Element parent) {
             this.name = name;
@@ -456,9 +457,11 @@ public class XmlReader {
          * @throws GdxRuntimeException if the attribute was not found.
          */
         public String getAttribute(String name) {
-            if (attributes == null) throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute: " + name);
+            if (attributes == null)
+                throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute: " + name);
             String value = attributes.get(name);
-            if (value == null) throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute: " + name);
+            if (value == null)
+                throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute: " + name);
             return value;
         }
 
@@ -691,7 +694,8 @@ public class XmlReader {
          */
         public String get(String name) {
             String value = get(name, null);
-            if (value == null) throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
+            if (value == null)
+                throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
             return value;
         }
 
@@ -719,7 +723,8 @@ public class XmlReader {
          */
         public int getInt(String name) {
             String value = get(name, null);
-            if (value == null) throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
+            if (value == null)
+                throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
             return Integer.parseInt(value);
         }
 
@@ -741,7 +746,8 @@ public class XmlReader {
          */
         public float getFloat(String name) {
             String value = get(name, null);
-            if (value == null) throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
+            if (value == null)
+                throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
             return Float.parseFloat(value);
         }
 
@@ -763,7 +769,8 @@ public class XmlReader {
          */
         public boolean getBoolean(String name) {
             String value = get(name, null);
-            if (value == null) throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
+            if (value == null)
+                throw new GdxRuntimeException("Element " + this.name + " doesn't have attribute or child: " + name);
             return Boolean.parseBoolean(value);
         }
 

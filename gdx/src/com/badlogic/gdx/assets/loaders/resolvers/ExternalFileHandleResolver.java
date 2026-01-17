@@ -6,6 +6,9 @@ import com.badlogic.gdx.files.FileHandle;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ExternalFileHandleResolver implements FileHandleResolver {
     @Override
     @NotNull

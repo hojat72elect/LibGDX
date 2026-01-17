@@ -10,6 +10,8 @@ import com.badlogic.gdx.utils.I18NBundle;
 import java.util.Locale;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@link AssetLoader} for {@link I18NBundle} instances. The I18NBundle is loaded asynchronously.
  * <p>
  * Notice that you can't load two bundles with the same base name and different locale or encoding using the same

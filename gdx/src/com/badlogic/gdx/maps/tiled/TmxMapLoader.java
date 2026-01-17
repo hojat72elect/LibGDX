@@ -17,7 +17,9 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.XmlReader.Element;
 
 /**
- * @brief synchronous loader for TMX maps created with the Tiled tool
+ * Info : This class was moved to Kerman game engine.
+ * <p>
+ * synchronous loader for TMX maps created with the Tiled tool
  */
 public class TmxMapLoader extends BaseTmxMapLoader<BaseTiledMapLoader.Parameters> {
 

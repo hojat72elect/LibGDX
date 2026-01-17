@@ -16,11 +16,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@link AssetLoader} for {@link BitmapFont} instances. Loads the font description file (.fnt) asynchronously, loads the
  * {@link Texture} containing the glyphs as a dependency. The {@link BitmapFontParameter} allows you to set things like texture
  * filters or whether to flip the glyphs vertically.
- *
- *  */
+ */
 public class BitmapFontLoader extends AsynchronousAssetLoader<BitmapFont, BitmapFontLoader.BitmapFontParameter> {
     BitmapFontData data;
 
@@ -88,7 +89,8 @@ public class BitmapFontLoader extends AsynchronousAssetLoader<BitmapFont, Bitmap
      * Parameter to be passed to {@link AssetManager#load(String, Class, AssetLoaderParameters)} if additional configuration is
      * necessary for the {@link BitmapFont}.
      *
-     *      */
+     *
+     */
     static public class BitmapFontParameter extends AssetLoaderParameters<BitmapFont> {
         /**
          * Flips the font vertically if {@code true}. Defaults to {@code false}.

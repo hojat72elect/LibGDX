@@ -5,6 +5,8 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * This {@link FileHandleResolver} uses a given list of {@link Resolution}s to determine the best match based on the current back
  * buffer size. An example of how this resolver works:
  *
