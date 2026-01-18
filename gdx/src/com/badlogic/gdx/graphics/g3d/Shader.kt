@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Interface which is used to render one or more [Renderable]s.
  * A Shader is responsible for the actual rendering of an [Renderable]. Typically, when using OpenGL ES 2.0 or higher, it
  * encapsulates a [ShaderProgram] and takes care of all OpenGL calls necessary to render the [Renderable]. When using

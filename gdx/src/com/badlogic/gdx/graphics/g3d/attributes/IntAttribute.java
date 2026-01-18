@@ -2,6 +2,9 @@ package com.badlogic.gdx.graphics.g3d.attributes;
 
 import com.badlogic.gdx.graphics.g3d.Attribute;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class IntAttribute extends Attribute {
     public static final String CullFaceAlias = "cullface";
     public static final long CullFace = register(CullFaceAlias);

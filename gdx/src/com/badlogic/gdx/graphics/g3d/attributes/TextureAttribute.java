@@ -8,6 +8,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.NumberUtils;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class TextureAttribute extends Attribute {
     public final static String DiffuseAlias = "diffuseTexture";
     public final static long Diffuse = register(DiffuseAlias);

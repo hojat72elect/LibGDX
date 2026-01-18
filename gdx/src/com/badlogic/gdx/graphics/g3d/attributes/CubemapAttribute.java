@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.graphics.g3d.utils.TextureDescriptor;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class CubemapAttribute extends Attribute {
     public final static String EnvironmentMapAlias = "environmentCubemap";
     public final static long EnvironmentMap = register(EnvironmentMapAlias);

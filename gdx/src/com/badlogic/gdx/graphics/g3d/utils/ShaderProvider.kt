@@ -5,9 +5,10 @@ import com.badlogic.gdx.graphics.g3d.Shader
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Returns [Shader] instances for a [Renderable] on request. Also responsible for disposing of any created
  * [Shader] instances on a call to [Disposable.dispose].
- *
  */
 interface ShaderProvider : Disposable {
     /**
