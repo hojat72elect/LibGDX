@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This abstract class was moved to Kerman game engine.
+ */
 public abstract class BaseShaderProvider implements ShaderProvider {
     protected Array<Shader> shaders = new Array<>();
 

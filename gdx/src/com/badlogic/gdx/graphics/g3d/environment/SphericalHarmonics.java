@@ -3,6 +3,9 @@ package com.badlogic.gdx.graphics.g3d.environment;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class SphericalHarmonics {
     // <kalle_h> last term is no x*x * y*y but x*x - y*y
     private final static float[] coeff = {0.282095f, 0.488603f, 0.488603f, 0.488603f, 1.092548f, 1.092548f, 1.092548f, 0.315392f,

@@ -3,6 +3,9 @@ package com.badlogic.gdx.graphics.g3d.environment;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class DirectionalLight extends BaseLight<DirectionalLight> {
     public final Vector3 direction = new Vector3();
 

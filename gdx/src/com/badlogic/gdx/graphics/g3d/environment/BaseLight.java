@@ -2,6 +2,9 @@ package com.badlogic.gdx.graphics.g3d.environment;
 
 import com.badlogic.gdx.graphics.Color;
 
+/**
+ * Info : This abstract class was moved to Kerman game engine.
+ */
 public abstract class BaseLight<T extends BaseLight<T>> {
     public final Color color = new Color(0, 0, 0, 1);
 

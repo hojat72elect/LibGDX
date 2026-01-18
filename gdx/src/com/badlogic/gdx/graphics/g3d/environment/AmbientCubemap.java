@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class AmbientCubemap {
     private static final int NUM_VALUES = 6 * 3;
     public final float[] data;

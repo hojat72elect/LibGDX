@@ -6,11 +6,12 @@ import com.badlogic.gdx.graphics.g3d.environment.SpotLight;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An {@link Attribute} which can be used to send an {@link Array} of {@link SpotLight} instances to the {@link Shader}. The
  * lights are stored by reference, the {@link #copy()} or {@link #SpotLightsAttribute(SpotLightsAttribute)} method will not create
  * new lights.
- *
- *  */
+ */
 public class SpotLightsAttribute extends Attribute {
     public final static String Alias = "spotLights";
     public final static long Type = register(Alias);

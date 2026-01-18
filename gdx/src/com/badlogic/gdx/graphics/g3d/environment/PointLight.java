@@ -3,6 +3,9 @@ package com.badlogic.gdx.graphics.g3d.environment;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class PointLight extends BaseLight<PointLight> {
     public final Vector3 position = new Vector3();
     public float intensity;
