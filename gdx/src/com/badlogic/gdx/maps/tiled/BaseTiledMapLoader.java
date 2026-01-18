@@ -24,6 +24,9 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 import java.util.StringTokenizer;
 
+/**
+ * Info : This abstract class was moved to Kerman game engine.
+ */
 public abstract class BaseTiledMapLoader<P extends BaseTiledMapLoader.Parameters> extends AsynchronousAssetLoader<TiledMap, P> {
 
     protected static final int FLAG_FLIP_HORIZONTALLY = 0x80000000;

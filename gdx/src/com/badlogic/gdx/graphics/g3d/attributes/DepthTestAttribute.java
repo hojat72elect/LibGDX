@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.NumberUtils;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class DepthTestAttribute extends Attribute {
     public final static String Alias = "depthStencil";
     public final static long Type = register(Alias);

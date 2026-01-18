@@ -43,6 +43,9 @@ import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
+/**
+ * Info : This abstract class was moved to Kerman game engine.
+ */
 public abstract class BaseTmjMapLoader<P extends BaseTiledMapLoader.Parameters> extends BaseTiledMapLoader<P> {
 
     protected JsonReader json = new JsonReader();

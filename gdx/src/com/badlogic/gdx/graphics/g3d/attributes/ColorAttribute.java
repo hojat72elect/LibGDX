@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class ColorAttribute extends Attribute {
     public final static String DiffuseAlias = "diffuseColor";
     public final static long Diffuse = register(DiffuseAlias);

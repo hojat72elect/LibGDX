@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.NumberUtils;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class FloatAttribute extends Attribute {
     public static final String ShininessAlias = "shininess";
     public static final long Shininess = register(ShininessAlias);

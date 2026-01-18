@@ -18,6 +18,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * loads {@link PolygonRegion PolygonRegions} using a {@link com.badlogic.gdx.graphics.g2d.PolygonRegionLoader}
  */
 public class PolygonRegionLoader extends SynchronousAssetLoader<PolygonRegion, PolygonRegionParameters> {

@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.NumberUtils;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class BlendingAttribute extends Attribute {
     public final static String Alias = "blended";
     public final static long Type = register(Alias);
