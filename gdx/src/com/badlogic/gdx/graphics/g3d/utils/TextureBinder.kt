@@ -3,6 +3,8 @@ package com.badlogic.gdx.graphics.g3d.utils
 import com.badlogic.gdx.graphics.GLTexture
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Responsible for binding textures, may implement a strategy to avoid binding a texture unnecessarily. A TextureBinder may
  * decide to which texture unit it binds a texture.
  */

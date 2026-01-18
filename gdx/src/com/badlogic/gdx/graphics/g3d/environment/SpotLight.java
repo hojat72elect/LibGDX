@@ -5,9 +5,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Note that the default shader doesn't support spot lights, you'll have to supply your own shader to use this class.
- *
- *  */
+ */
 public class SpotLight extends BaseLight<SpotLight> {
     public final Vector3 position = new Vector3();
     public final Vector3 direction = new Vector3();
