@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * {@link ModelLoader} to load Wavefront OBJ files. Only intended for testing basic models/meshes and educational usage. The
  * Wavefront specification is NOT fully implemented, only a subset of the specification is supported. Especially the
  * {@link Material} ({@link Attributes}), e.g. the color or texture applied, might not or not correctly be loaded.

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g3d.environment.PointLight;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An {@link Attribute} which can be used to send an {@link Array} of {@link PointLight} instances to the {@link Shader}. The
  * lights are stored by reference, the {@link #copy()} or {@link #PointLightsAttribute(PointLightsAttribute)} method will not
  * create new lights.

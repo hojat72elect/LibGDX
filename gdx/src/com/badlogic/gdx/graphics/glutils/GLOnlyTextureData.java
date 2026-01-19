@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A {@link TextureData} implementation which should be used to create gl only textures. This TextureData fits perfectly for
  * FrameBuffer. The data is not managed.
  */

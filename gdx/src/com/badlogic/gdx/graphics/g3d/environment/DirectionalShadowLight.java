@@ -14,6 +14,9 @@ import com.badlogic.gdx.utils.Disposable;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class DirectionalShadowLight extends DirectionalLight implements ShadowMap, Disposable {
     protected final Vector3 tmpV = new Vector3();
     protected final TextureDescriptor textureDesc;

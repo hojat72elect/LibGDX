@@ -10,12 +10,13 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Lightweight UBJSON parser.<br>
  * <br>
  * The default behavior is to parse the JSON into a DOM containing {@link JsonValue} objects. Extend this class and override
  * methods to perform event driven parsing. When this is done, the parse methods will return null. <br>
- *
- *  */
+ */
 public class UBJsonReader implements BaseJsonReader {
     public boolean oldFormat = true;
 

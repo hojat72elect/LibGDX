@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
  * <p>
  * Encapsulates OpenGL ES 2.0 frame buffer objects. This is a simple helper class which should cover most FBO uses. It will
  * automatically create a cubemap for the color attachment and a renderbuffer for the depth buffer. You can get a hold of the
@@ -42,8 +43,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  * frameBuffer.end(); <br />
  * Cubemap cubemap = frameBuffer.getColorBufferCubemap();
  * </p>
- *
- *  */
+ */
 public class FrameBufferCubemap extends GLFrameBuffer<Cubemap> {
 
     /**
