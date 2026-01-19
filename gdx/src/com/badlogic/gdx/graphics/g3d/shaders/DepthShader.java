@@ -14,6 +14,9 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class DepthShader extends DefaultShader {
     private final static Attributes tmpAttributes = new Attributes();
     private static String defaultVertexShader = null;

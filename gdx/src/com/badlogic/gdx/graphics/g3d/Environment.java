@@ -11,6 +11,9 @@ import com.badlogic.gdx.graphics.g3d.environment.SpotLight;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class Environment extends Attributes {
 
     /**
