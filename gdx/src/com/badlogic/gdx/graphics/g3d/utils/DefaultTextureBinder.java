@@ -11,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.IntBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Class that you assign a range of texture units and binds textures for you within that range. It does some basic usage tracking
  * to avoid unnecessary bind calls.
  */

@@ -6,6 +6,9 @@ import com.badlogic.gdx.Gdx;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class GLVersion {
 
     private final String versionString;

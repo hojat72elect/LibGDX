@@ -11,6 +11,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class DefaultRenderableSorter implements RenderableSorter, Comparator<Renderable> {
     private final Vector3 tmpV1 = new Vector3();
     private final Vector3 tmpV2 = new Vector3();

@@ -24,6 +24,8 @@ import com.badlogic.gdx.utils.IntIntMap;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * A BaseShader is a wrapper around a ShaderProgram that keeps track of the uniform and attribute locations. It
  * does not manage the ShaderPogram, you are still responsible for disposing the ShaderProgram.
  */

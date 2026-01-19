@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * This is a {@link FrameBuffer} variant backed by a float texture.
  */
 public class FloatFrameBuffer extends FrameBuffer {

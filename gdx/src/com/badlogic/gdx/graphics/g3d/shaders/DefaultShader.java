@@ -34,6 +34,9 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Info : This class was moved to Kerman game engine.
+ */
 public class DefaultShader extends BaseShader {
     /**
      * Attributes which are not required but always supported.
