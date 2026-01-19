@@ -18,6 +18,8 @@ import com.badlogic.gdx.graphics.glutils.VertexArray
 import com.badlogic.gdx.graphics.glutils.VertexBufferObject
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ *
  * This interface encapsulates communication with the graphics processor. Depending on the available hardware and the current
  * [Application] configuration, access to [GL20] and [GL30] are provided here.
  *

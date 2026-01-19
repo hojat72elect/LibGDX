@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import java.nio.FloatBuffer;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A {@link TextureData} implementation which should be used to create float textures.
  */
 public class FloatTextureData implements TextureData {

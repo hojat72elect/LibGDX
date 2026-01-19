@@ -4,6 +4,8 @@ import com.badlogic.gdx.Graphics
 import com.badlogic.gdx.utils.Disposable
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Represents a mouse cursor. Create a cursor via [Graphics.newCursor]. To set the cursor use
  * [Graphics.setCursor]. To use one of the system cursors, call [Graphics.setSystemCursor]
  */

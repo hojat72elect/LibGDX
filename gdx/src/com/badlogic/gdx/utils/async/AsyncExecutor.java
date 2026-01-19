@@ -8,6 +8,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Allows asynchronous execution of {@link AsyncTask} instances on a separate thread. Needs to be disposed via a call to
  * {@link #dispose()} when no longer used, in which case the executor waits for running tasks to finish. Scheduled but not yet
  * running tasks will not be executed.

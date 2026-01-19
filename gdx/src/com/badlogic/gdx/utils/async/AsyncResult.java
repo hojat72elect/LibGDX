@@ -6,8 +6,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Returned by {@link AsyncExecutor#submit(AsyncTask)}, allows to poll for the result of the asynch workload.
- *
  */
 public class AsyncResult<T> {
     private final Future<T> future;
