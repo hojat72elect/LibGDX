@@ -16,10 +16,11 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Base class of all the particle controllers. Encapsulate the generic structure of a controller and methods to update the
  * particles simulation.
- *
- *  */
+ */
 public class ParticleController implements Json.Serializable, ResourceData.Configurable {
 
     /**

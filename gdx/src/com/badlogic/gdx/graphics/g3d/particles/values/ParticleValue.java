@@ -4,10 +4,11 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * It's a class which represents a value bound to the particles. Generally used by a particle controller component to find the
  * current value of a particle property during the simulation.
- *
- *  */
+ */
 public class ParticleValue implements Json.Serializable {
     public boolean active;
 

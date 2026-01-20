@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g3d.particles.ParticleControllerComponent;
 import com.badlogic.gdx.graphics.g3d.particles.batches.ParticleBatch;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * It's a {@link ParticleControllerComponent} which determines how the particles are rendered. It's the base class of every
  * particle renderer.
  */

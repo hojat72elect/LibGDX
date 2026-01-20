@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.ObjectMap;
 import java.io.IOException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * This class can save and load a {@link ParticleEffect}. It should be added as {@link AsynchronousAssetLoader} to the
  * {@link AssetManager} so it will be able to load the effects. It's important to note that the two classes
  * {@link ParticleEffectLoadParameter} and {@link ParticleEffectSaveParameter} should be passed in whenever possible, because when

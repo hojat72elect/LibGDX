@@ -8,10 +8,11 @@ import com.badlogic.gdx.graphics.g3d.particles.ParallelArray.FloatChannel;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * This contains all the definitions of particle related channels and channel initializers. It is also used by the
  * {@link ParticleController} to handle temporary channels allocated by influencers.
- *
- *  */
+ */
 public class ParticleChannels {
     public static final ChannelDescriptor Interpolation = new ChannelDescriptor(-1, float[]::new, 2);
     public static final ChannelDescriptor Interpolation4 = new ChannelDescriptor(-1, float[]::new, 4);
@@ -49,6 +50,7 @@ public class ParticleChannels {
     // Offsets
     public static final ChannelDescriptor AngularVelocity3D = new ChannelDescriptor(newGlobalId(), float[]::new, 3);
     private int currentId;
+
     public ParticleChannels() {
         resetIds();
     }
