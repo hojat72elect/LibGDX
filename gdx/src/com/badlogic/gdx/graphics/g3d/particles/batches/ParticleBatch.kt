@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g3d.particles.ResourceData.Configurable
 import com.badlogic.gdx.graphics.g3d.particles.renderers.ParticleControllerRenderData
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Common interface to all the batches that render particles.
  */
 interface ParticleBatch<T : ParticleControllerRenderData> : RenderableProvider, Configurable<Any> {

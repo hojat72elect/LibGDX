@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.async.AsyncResult;
 import com.badlogic.gdx.utils.async.AsyncTask;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Responsible for loading an asset through an {@link AssetLoader} based on an {@link AssetDescriptor}.
  */
 class AssetLoadingTask implements AsyncTask<Void> {

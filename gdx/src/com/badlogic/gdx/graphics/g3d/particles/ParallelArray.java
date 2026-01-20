@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.reflect.ArrayReflection;
 import java.util.Arrays;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * This class represents an group of elements like an array, but the properties of the elements are stored as separate arrays.
  * These arrays are called {@link Channel} and are represented by {@link ChannelDescriptor}. It's not necessary to store primitive
  * types in the channels but doing so will "exploit" data locality in the JVM, which is ensured for primitive types. Use

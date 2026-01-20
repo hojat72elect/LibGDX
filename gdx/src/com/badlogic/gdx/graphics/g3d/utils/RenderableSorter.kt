@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g3d.Renderable
 import com.badlogic.gdx.utils.Array
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Responsible for sorting [Renderable] lists by whatever criteria (material, distance to camera, etc.)
  */
 interface RenderableSorter {

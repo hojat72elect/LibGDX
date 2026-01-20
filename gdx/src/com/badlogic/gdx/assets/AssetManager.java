@@ -49,6 +49,8 @@ import com.badlogic.gdx.utils.async.ThreadUtils;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Loads and stores assets like textures, bitmapfonts, tile maps, sounds, music and so on.
  */
 public class AssetManager implements Disposable {

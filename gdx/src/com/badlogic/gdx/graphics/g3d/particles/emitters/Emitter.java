@@ -5,12 +5,13 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
+ * Info : This abstract class was moved to Kerman game engine.
+ * <p>
  * An {@link Emitter} is a {@link ParticleControllerComponent} which will handle the particles emission. It must update the
  * {@link Emitter#percent} to reflect the current percentage of the current emission cycle. It should consider
  * {@link Emitter#minParticleCount} and {@link Emitter#maxParticleCount} to rule particle emission. It should notify the particle
  * controller when particles are activated, killed, or when an emission cycle begins.
- *
- *  */
+ */
 public abstract class Emitter extends ParticleControllerComponent implements Json.Serializable {
     /**
      * The min/max quantity of particles
