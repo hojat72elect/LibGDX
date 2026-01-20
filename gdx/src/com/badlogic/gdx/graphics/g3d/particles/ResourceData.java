@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
 
 /**
+ *  Info : This class was moved to Kerman game engine.
+ * <p>
  * This class handles the assets and configurations required by a given resource when de/serialized. It's handy when a given
  * object or one of its members requires some assets to be loaded to work properly after being deserialized. To save the assets,
  * the object should implement the {@link Configurable} interface and obtain a {@link SaveData} object to store every required
