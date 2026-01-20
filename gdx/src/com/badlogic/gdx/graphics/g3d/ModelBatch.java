@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * Batches {@link Renderable} instances, fetches {@link Shader}s for them, sorts them and then renders them. Fetching the shaders
  * is done using a {@link ShaderProvider}, which defaults to {@link DefaultShaderProvider}. Sorting the renderables is done using
  * a {@link RenderableSorter}, which default to {@link DefaultRenderableSorter}.

@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A Renderable contains all information about a single render instruction (typically a draw call).
  * It defines what (the shape), how (the material) and where (the transform) should be rendered by which shader.
  * The shape is defined using the mesh, meshPartOffset, meshPartSize and primitiveType members. This matches the members of the

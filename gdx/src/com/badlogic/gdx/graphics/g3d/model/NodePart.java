@@ -8,10 +8,11 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.ArrayMap;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A combination of {@link MeshPart} and {@link Material}, used to represent a {@link Node}'s graphical properties. A NodePart is
  * the smallest visible part of a {@link Model}, each NodePart implies a render call.
- *
- *  */
+ */
 public class NodePart {
     /**
      * The MeshPart (shape) to render. Must not be null.
@@ -89,7 +90,8 @@ public class NodePart {
                 invBoneBindTransforms.clear();
             invBoneBindTransforms.putAll(other.invBoneBindTransforms);
 
-            if (bones == null || bones.length != invBoneBindTransforms.size) bones = new Matrix4[invBoneBindTransforms.size];
+            if (bones == null || bones.length != invBoneBindTransforms.size)
+                bones = new Matrix4[invBoneBindTransforms.size];
 
             for (int i = 0; i < bones.length; i++) {
                 if (bones[i] == null) bones[i] = new Matrix4();

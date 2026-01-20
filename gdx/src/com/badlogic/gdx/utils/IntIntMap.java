@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * An unordered map where the keys and values are unboxed ints. No allocation is done except when growing the table size.
  * <p>
  * This class performs fast contains and remove (typically O(1), worst case O(n) but that is rare in practice). Add may be

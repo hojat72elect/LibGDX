@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Array
 import com.badlogic.gdx.utils.Pool
 
 /**
+ * Info : This interface was moved to Kerman game engine.
+ *
  * Returns a list of [Renderable] instances to be rendered by a [ModelBatch].
  */
 interface RenderableProvider {

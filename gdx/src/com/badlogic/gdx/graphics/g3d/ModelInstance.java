@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.Pool;
 import org.jetbrains.annotations.NotNull;
 
 /**
+ *  Info : This class was moved to Kerman game engine.
+ * <p>
  * An instance of a {@link Model}, allows to specify global transform and modify the materials, as it has a copy of the model's
  * materials. Multiple instances can be created from the same Model, all sharing the meshes and textures of the Model. The Model
  * owns the meshes and textures, to dispose of these, the Model has to be disposed. Therefor, the Model must outlive all its

@@ -43,6 +43,8 @@ import java.nio.Buffer;
 import java.nio.ShortBuffer;
 
 /**
+ *  Info : This class was moved to Kerman game engine.
+ * <p>
  * A model represents a 3D assets. It stores a hierarchy of nodes. A node has a transform and optionally a graphical part in form
  * of a {@link MeshPart} and {@link Material}. Mesh parts reference subsets of vertices in one of the meshes of the model.
  * Animations can be applied to nodes, to modify their transform (translation, rotation, scale) over time.
