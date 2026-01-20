@@ -9,9 +9,10 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
+ *  Info : This class was moved to Kerman game engine.
+ * <p>
  * It's a generic use {@link Emitter} which fits most of the particles simulation scenarios.
- *
- *  */
+ */
 public class RegularEmitter extends Emitter implements Json.Serializable {
 
     public RangedNumericValue delayValue, durationValue;
@@ -125,7 +126,8 @@ public class RegularEmitter extends Emitter implements Json.Serializable {
                         addParticles(emitCount);
                     }
                 }
-                if (controller.particles.size < minParticleCount) addParticles(minParticleCount - controller.particles.size);
+                if (controller.particles.size < minParticleCount)
+                    addParticles(minParticleCount - controller.particles.size);
             }
         }
 

@@ -5,9 +5,10 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * A value which has a defined minimum and maximum upper and lower bounds. Defines the variations of the value on a time line.
- *
- *  */
+ */
 public class ScaledNumericValue extends RangedNumericValue {
     public float[] timeline = {0};
     private float[] scaling = {1};
