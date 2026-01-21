@@ -38,3 +38,11 @@ Use the **[Issue Tracker](https://github.com/libgdx/libgdx/issues)** here on Git
 libGDX benefits greatly from contributions made by our dedicated developer community. We appreciate any assistance in making libGDX even better. Check out the [CONTRIBUTING.md](https://github.com/libgdx/libgdx/blob/master/.github/CONTRIBUTING.md) file for details on how to contribute. Note that contributing involves working directly with libGDX's source code, a process that regular users do not typically undertake. Refer to the [Working with the Source](https://libgdx.com/dev/from-source/) article for guidance.
 
 You can also support our infrastructure (build server, web server, test devices) by contributing financially through our [Patreon](https://patreon.com/libgdx)!
+
+------
+
+I failed to make a game engine of my own out of LibGDX. And the main reason for that was that LibGDX has too many native calls to C and C++ libraries. and it's hard to move and re-purpose parts of such a complicated project.
+
+
+
+
