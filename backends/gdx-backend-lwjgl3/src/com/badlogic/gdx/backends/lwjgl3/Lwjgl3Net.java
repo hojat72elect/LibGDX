@@ -11,13 +11,12 @@ import com.badlogic.gdx.net.SocketHints;
 import com.badlogic.gdx.utils.Os;
 import com.badlogic.gdx.utils.SharedLibraryLoader;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.net.URI;
 
 /**
  * LWJGL implementation of the {@link Net} API, it could be reused in other Desktop backends since it doesn't depend on LWJGL.
- *
- *  */
+ */
 public class Lwjgl3Net implements Net {
 
     NetJavaImpl netJavaImpl;

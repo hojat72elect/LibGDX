@@ -3,9 +3,10 @@ package com.badlogic.gdx;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 /**
+ * Info : This class was moved to Kerman game engine.
+ * <p>
  * The version of libGDX
- *
- *  */
+ */
 public class Version {
     /**
      * The current version of libGDX as a String in the major.minor.revision format

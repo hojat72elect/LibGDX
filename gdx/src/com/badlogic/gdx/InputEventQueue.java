@@ -6,8 +6,7 @@ import com.badlogic.gdx.utils.NumberUtils;
 
 /**
  * Queues events that are later passed to an {@link InputProcessor}.
- *
- *  */
+ */
 public class InputEventQueue {
     static private final int SKIP = -1;
     static private final int KEY_DOWN = 0;
