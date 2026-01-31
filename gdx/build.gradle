@@ -38,7 +38,6 @@ dependencies {
 }
 
 test {
-	dependsOn("validateIOSHeader")
 	testLogging {
 		events "passed", "skipped", "failed", "standardOut", "standardError"
 	}
