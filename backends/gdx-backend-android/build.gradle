@@ -26,12 +26,6 @@ android {
 		sourceCompatibility = versions.java
 		targetCompatibility = versions.java
 	}
-	publishing {
-		singleVariant("release") {
-			withSourcesJar()
-			withJavadocJar()
-		}
-	}
 }
 
 dependencies {

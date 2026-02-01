@@ -67,24 +67,8 @@ allprojects {
 	tasks.withType(JavaCompile) {
 		options.encoding = 'UTF-8'
 	}
-	tasks.withType(Javadoc) {
-		options.encoding = 'UTF-8'
-		options.addBooleanOption('use', true)
-	}
 	tasks.withType(Test) {
 		systemProperty 'file.encoding', 'UTF-8'
-	}
-
-	if (JavaVersion.current().isJava8Compatible()) {
-		tasks.withType(Javadoc) {
-			options.addStringOption('Xdoclint:none,-missing', '-quiet')
-		}
-	}
-
-	if (JavaVersion.current().isJava9Compatible()) {
-		tasks.withType(Javadoc) {
-			options.addStringOption("-release", "8")
-		}
 	}
 
 	apply plugin: "com.diffplug.spotless"
@@ -114,11 +98,6 @@ configure(subprojects - project(":tests:gdx-tests-android") - project(":backends
 	compileJava {
 		options.fork = true
 		options.incremental = true
-	}
-
-	java {
-		withJavadocJar()
-		withSourcesJar()
 	}
 }
 
