@@ -20,6 +20,11 @@ public class Entity {
      * Will dispatch an event when a component is removed.
      */
     public final Signal<Entity> componentRemoved;
+    private final Bag<Component> components;
+    private final Array<Component> componentsArray;
+    private final ImmutableArray<Component> immutableComponentsArray;
+    private final Bits componentBits;
+    private final Bits familyBits;
     /**
      * A flag that can be used to bit mask this entity. Up to the user to manage.
      */
@@ -27,12 +32,6 @@ public class Entity {
     boolean scheduledForRemoval;
     boolean removing;
     ComponentOperationHandler componentOperationHandler;
-
-    private final Bag<Component> components;
-    private final Array<Component> componentsArray;
-    private final ImmutableArray<Component> immutableComponentsArray;
-    private final Bits componentBits;
-    private final Bits familyBits;
 
     /**
      * Creates an empty Entity.
