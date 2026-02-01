@@ -24,7 +24,6 @@ include ":tests:gdx-tests-lwjgl3"
 include ':Ashley'
 include ':VisUI'
 include ':gdx-vfx'
-include ':gdx-TinyVG'
 include ':gdx-ai'
 
 // Example games made with this engine.
