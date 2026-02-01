@@ -28,7 +28,6 @@ include ':HyperLap2D'
 include ':gdx-TinyVG'
 include ':gdx-ai'
 include ':gdx-liftoff'
-include ':Mundus'
 
 // Example games made with this engine.
 include ':examples'
