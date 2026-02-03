@@ -17,8 +17,7 @@ public class TransformScalableWrapperLmlTag extends AbstractGroupLmlTag {
 
     @Override
     protected Group getNewInstanceOfGroup(LmlActorBuilder builder) {
-        TransformScalableWrapper<Actor> wrapper = new TransformScalableWrapper<>();
-        return wrapper;
+        return new TransformScalableWrapper<>();
     }
 
     /**

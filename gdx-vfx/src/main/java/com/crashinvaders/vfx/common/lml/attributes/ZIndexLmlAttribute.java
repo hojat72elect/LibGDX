@@ -15,11 +15,6 @@ public class ZIndexLmlAttribute implements LmlAttribute<Actor> {
     @Override
     public void process(final LmlParser parser, final LmlTag tag, final Actor actor, final String rawAttributeData) {
         final int zIndex = parser.parseInt(rawAttributeData, actor);
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                actor.setZIndex(zIndex);
-            }
-        });
+        Gdx.app.postRunnable(() -> actor.setZIndex(zIndex));
     }
 }

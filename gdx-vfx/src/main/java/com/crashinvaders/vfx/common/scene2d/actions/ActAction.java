@@ -22,12 +22,7 @@ public class ActAction extends Action {
     public boolean act(float delta) {
         final Actor target = getTarget();
         final float timeDelta = this.delta;
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                target.act(timeDelta);
-            }
-        });
+        Gdx.app.postRunnable(() -> target.act(timeDelta));
         return true;
     }
 }
