@@ -21,4 +21,7 @@ dependencies{
     api project(":backends:gdx-backend-lwjgl3")
 
     implementation("com.crashinvaders.lml:gdx-lml:1.10.1.12.1")
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.11.0'
 }
