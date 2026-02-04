@@ -11,9 +11,12 @@ import com.crashinvaders.vfx.gl.VfxGLUtils;
  * Simply mixes two frames with a factor of {@link #mixFactor}.
  * <p>
  * Depends on {@link Method} the result will be combined with either:
- * <br><code>max(src0, src1 * mixFactor)</code>
- * <br> or
- * <br><code>mix(src0, src1, mixFactor)</code>
+ * <br>
+ * <code>max(src0, src1 * mixFactor)</code>
+ * <br>
+ * or
+ * <br>
+ * <code>mix(src0, src1, mixFactor)</code>
  */
 public class MixEffect extends ShaderVfxEffect {
 
@@ -52,8 +55,8 @@ public class MixEffect extends ShaderVfxEffect {
     }
 
     public void setMixFactor(float mixFactor) {
-        this.mixFactor = MathUtils.clamp(0f, 1f, mixFactor);
-        setUniform(U_MIX, mixFactor);
+        this.mixFactor = MathUtils.clamp(mixFactor, 0f, 1f);
+        setUniform(U_MIX, this.mixFactor);
     }
 
     /**
