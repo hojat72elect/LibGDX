@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Disposable;
  */
 public class VfxFrameBufferQueue implements Disposable {
     private final Array<VfxFrameBuffer> buffers;
+    private final boolean ownsBuffers;
     private int currentIdx = 0;
 
     private Texture.TextureWrap wrapU = Texture.TextureWrap.ClampToEdge;
@@ -25,12 +26,24 @@ public class VfxFrameBufferQueue implements Disposable {
         for (int i = 0; i < fboAmount; i++) {
             buffers.add(new VfxFrameBuffer(pixelFormat));
         }
+        this.ownsBuffers = true;
+    }
+
+    /** For testing purposes. */
+    VfxFrameBufferQueue(VfxFrameBuffer... buffers) {
+        if (buffers == null || buffers.length == 0) {
+            throw new IllegalArgumentException("FBO amount should be a positive number.");
+        }
+        this.buffers = new Array<>(buffers);
+        this.ownsBuffers = false;
     }
 
     @Override
     public void dispose() {
-        for (int i = 0; i < buffers.size; i++) {
-            buffers.get(i).dispose();
+        if (ownsBuffers) {
+            for (int i = 0; i < buffers.size; i++) {
+                buffers.get(i).dispose();
+            }
         }
         buffers.clear();
     }

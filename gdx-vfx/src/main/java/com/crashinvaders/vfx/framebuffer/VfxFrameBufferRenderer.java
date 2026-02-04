@@ -16,11 +16,27 @@ public class VfxFrameBufferRenderer implements Disposable {
 
     private final ViewportQuadMesh mesh;
     private final ShaderProgram shader;
+    private final boolean ownsShader;
 
     public VfxFrameBufferRenderer() {
-        mesh = new ViewportQuadMesh();
+        this(new ViewportQuadMesh(), createDefaultShader(), true);
+    }
 
-        shader = new ShaderProgram(
+    /** For testing purposes. */
+    VfxFrameBufferRenderer(ViewportQuadMesh mesh, ShaderProgram shader) {
+        this(mesh, shader, false);
+    }
+
+    private VfxFrameBufferRenderer(ViewportQuadMesh mesh, ShaderProgram shader, boolean ownsShader) {
+        this.mesh = mesh;
+        this.shader = shader;
+        this.ownsShader = ownsShader;
+
+        rebind();
+    }
+
+    private static ShaderProgram createDefaultShader() {
+        return new ShaderProgram(
                 "#ifdef GL_ES\n" +
                         "    #define PRECISION mediump\n" +
                         "    precision PRECISION float;\n" +
@@ -46,13 +62,13 @@ public class VfxFrameBufferRenderer implements Disposable {
                         "    gl_FragColor = texture2D(u_texture0, v_texCoords);\n" +
                         "}"
         );
-
-        rebind();
     }
 
     @Override
     public void dispose() {
-        shader.dispose();
+        if (ownsShader) {
+            shader.dispose();
+        }
         mesh.dispose();
     }
 
