@@ -16,7 +16,8 @@ import java.nio.IntBuffer;
 
 public class VfxGLUtils {
     private static final String TAG = VfxGLUtils.class.getSimpleName();
-    private static final IntBuffer tmpIntBuf = ByteBuffer.allocateDirect(16 * Integer.SIZE / 8).order(ByteOrder.nativeOrder()).asIntBuffer();
+    private static final IntBuffer tmpIntBuf = ByteBuffer.allocateDirect(16 * Integer.SIZE / 8)
+            .order(ByteOrder.nativeOrder()).asIntBuffer();
     private static final ByteBuffer tmpByteBuffer = BufferUtils.newByteBuffer(32);
     private static final VfxGlViewport tmpViewport = new VfxGlViewport();
 
@@ -32,7 +33,8 @@ public class VfxGLUtils {
      */
     public static String prependFragmentCode = "";
 
-    //TODO Remove this after https://github.com/libgdx/libgdx/issues/4688 gets resolved
+    // TODO Remove this after https://github.com/libgdx/libgdx/issues/4688 gets
+    // resolved
     /**
      * This field is used to provide custom GL calls implementation.
      */
@@ -74,14 +76,14 @@ public class VfxGLUtils {
         return compileShader(vertexFile, fragmentFile, "");
     }
 
-    //region GL state queries
+    // region GL state queries
 
     public static ShaderProgram compileShader(FileHandle vertexFile, FileHandle fragmentFile, String defines) {
         if (fragmentFile == null) {
-            throw new IllegalArgumentException("Vertex shader file cannot be null.");
+            throw new IllegalArgumentException("Fragment shader file cannot be null.");
         }
         if (vertexFile == null) {
-            throw new IllegalArgumentException("Fragment shader file cannot be null.");
+            throw new IllegalArgumentException("Vertex shader file cannot be null.");
         }
         if (defines == null) {
             throw new IllegalArgumentException("Defines cannot be null.");
@@ -103,19 +105,23 @@ public class VfxGLUtils {
         ShaderProgram shader = new ShaderProgram(prependVert + "\n" + srcVert, prependFrag + "\n" + srcFrag);
 
         if (!shader.isCompiled()) {
-            throw new GdxRuntimeException("Shader compile error: " + vertexFile.name() + "/" + fragmentFile.name() + "\n" + shader.getLog());
+            throw new GdxRuntimeException(
+                    "Shader compile error: " + vertexFile.name() + "/" + fragmentFile.name() + "\n" + shader.getLog());
         }
         return shader;
     }
 
     /**
      * Provides a simple mechanism to query OpenGL pipeline states.
-     * Note: state queries are costly and stall the pipeline, especially on mobile devices!
+     * Note: state queries are costly and stall the pipeline, especially on mobile
+     * devices!
      * <br/>
-     * Queries switched off by default. Update {@link #enableGLQueryStates} flag to enable them.
+     * Queries switched off by default. Update {@link #enableGLQueryStates} flag to
+     * enable them.
      */
     public static boolean isGLEnabled(int pName) {
-        if (!enableGLQueryStates) return false;
+        if (!enableGLQueryStates)
+            return false;
 
         boolean result;
 
@@ -131,5 +137,5 @@ public class VfxGLUtils {
 
         return result;
     }
-    //endregion
+    // endregion
 }
