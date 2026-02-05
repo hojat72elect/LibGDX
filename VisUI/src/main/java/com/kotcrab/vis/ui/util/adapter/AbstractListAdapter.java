@@ -196,8 +196,7 @@ public abstract class AbstractListAdapter<ItemT, ViewT extends Actor> extends Ca
 
     /**
      * Manages selection of {@link AbstractListAdapter} items.
-     *
-     *      */
+     */
     public static class ListSelection<ItemT, ViewT extends Actor> {
         public static final int DEFAULT_KEY = -1;
         private final AbstractListAdapter<ItemT, ViewT> adapter;

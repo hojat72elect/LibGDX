@@ -43,14 +43,11 @@ public abstract class AsyncTask {
             failed(e);
         }
 
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                for (AsyncTaskListener listener : listeners) {
-                    listener.finished();
-                }
-                status = Status.FINISHED;
+        Gdx.app.postRunnable(() -> {
+            for (AsyncTaskListener listener : listeners) {
+                listener.finished();
             }
+            status = Status.FINISHED;
         });
     }
 
@@ -70,34 +67,25 @@ public abstract class AsyncTask {
     }
 
     protected void failed(final String message, final Exception exception) {
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                for (AsyncTaskListener listener : listeners) {
-                    listener.failed(message, exception);
-                }
+        Gdx.app.postRunnable(() -> {
+            for (AsyncTaskListener listener : listeners) {
+                listener.failed(message, exception);
             }
         });
     }
 
     protected void setProgressPercent(final int progressPercent) {
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                for (AsyncTaskListener listener : listeners) {
-                    listener.progressChanged(progressPercent);
-                }
+        Gdx.app.postRunnable(() -> {
+            for (AsyncTaskListener listener : listeners) {
+                listener.progressChanged(progressPercent);
             }
         });
     }
 
     protected void setMessage(final String message) {
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                for (AsyncTaskListener listener : listeners) {
-                    listener.messageChanged(message);
-                }
+        Gdx.app.postRunnable(() -> {
+            for (AsyncTaskListener listener : listeners) {
+                listener.messageChanged(message);
             }
         });
     }
@@ -109,18 +97,15 @@ public abstract class AsyncTask {
     protected void executeOnGdx(final Runnable runnable) {
         final CountDownLatch latch = new CountDownLatch(1);
 
-        final AtomicReference<Exception> exceptionAt = new AtomicReference<Exception>();
+        final AtomicReference<Exception> exceptionAt = new AtomicReference<>();
 
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    runnable.run();
-                } catch (Exception e) {
-                    exceptionAt.set(e);
-                } finally {
-                    latch.countDown();
-                }
+        Gdx.app.postRunnable(() -> {
+            try {
+                runnable.run();
+            } catch (Exception e) {
+                exceptionAt.set(e);
+            } finally {
+                latch.countDown();
             }
         });
 
