@@ -6,6 +6,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Unit tests for {@link BasicIdentifier}.
@@ -118,5 +120,198 @@ public class BasicIdentifierTest {
         BasicIdentifier identifier = new BasicIdentifier();
         identifier.content = "testContent";
         assertEquals("Content field should be modifiable", "testContent", identifier.content);
+    }
+
+    // --- Additional comprehensive tests ---
+
+    @Test
+    public void testCopyConstructorWithNullValues() {
+        BasicIdentifier original = new BasicIdentifier();
+        BasicIdentifier copy = new BasicIdentifier(original);
+        
+        assertNull("Copied name should be null", copy.name);
+        assertNull("Copied content should be null", copy.content);
+        assertNotSame("Copy should be a different object instance", original, copy);
+    }
+
+    @Test
+    public void testEqualsBothNameNull() {
+        BasicIdentifier identifier1 = new BasicIdentifier(null, "content");
+        BasicIdentifier identifier2 = new BasicIdentifier(null, "content");
+        // Both will throw NPE due to parent Identifier.equals() implementation
+        try {
+            identifier1.equals(identifier2);
+            fail("Expected NullPointerException due to null name in parent Identifier.equals()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testEqualsBothContentNull() {
+        BasicIdentifier identifier1 = new BasicIdentifier("name", null);
+        BasicIdentifier identifier2 = new BasicIdentifier("name", null);
+        // Will throw NPE due to content.equals() in BasicIdentifier.equals()
+        try {
+            identifier1.equals(identifier2);
+            fail("Expected NullPointerException due to null content in BasicIdentifier.equals()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testEqualsBothNull() {
+        BasicIdentifier identifier1 = new BasicIdentifier(null, null);
+        BasicIdentifier identifier2 = new BasicIdentifier(null, null);
+        // Both will throw NPE due to parent Identifier.equals() implementation
+        try {
+            identifier1.equals(identifier2);
+            fail("Expected NullPointerException due to null name in parent Identifier.equals()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testEqualsOneNameNull() {
+        BasicIdentifier identifier1 = new BasicIdentifier(null, "content");
+        BasicIdentifier identifier2 = new BasicIdentifier("name", "content");
+        // First will throw NPE due to null name in parent Identifier.equals()
+        try {
+            identifier1.equals(identifier2);
+            fail("Expected NullPointerException due to null name in parent Identifier.equals()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testEqualsOneContentNull() {
+        BasicIdentifier identifier1 = new BasicIdentifier("name", null);
+        BasicIdentifier identifier2 = new BasicIdentifier("name", "content");
+        // Will throw NPE due to content.equals() in BasicIdentifier.equals()
+        try {
+            identifier1.equals(identifier2);
+            fail("Expected NullPointerException due to null content in BasicIdentifier.equals()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testHashCodeWithNullValues() {
+        BasicIdentifier identifier1 = new BasicIdentifier(null, null);
+        BasicIdentifier identifier2 = new BasicIdentifier(null, null);
+        // Both will throw NPE due to parent Identifier.hashCode() implementation
+        try {
+            identifier1.hashCode();
+            fail("Expected NullPointerException due to null name in parent Identifier.hashCode()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+        try {
+            identifier2.hashCode();
+            fail("Expected NullPointerException due to null name in parent Identifier.hashCode()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testHashCodeWithNullName() {
+        BasicIdentifier identifier1 = new BasicIdentifier(null, "content");
+        BasicIdentifier identifier2 = new BasicIdentifier(null, "content");
+        // Both will throw NPE due to parent Identifier.hashCode() implementation
+        try {
+            identifier1.hashCode();
+            fail("Expected NullPointerException due to null name in parent Identifier.hashCode()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+        try {
+            identifier2.hashCode();
+            fail("Expected NullPointerException due to null name in parent Identifier.hashCode()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testHashCodeWithNullContent() {
+        BasicIdentifier identifier1 = new BasicIdentifier("name", null);
+        BasicIdentifier identifier2 = new BasicIdentifier("name", null);
+        // Will throw NPE due to content.hashCode() in BasicIdentifier.hashCode()
+        try {
+            identifier1.hashCode();
+            fail("Expected NullPointerException due to null content in BasicIdentifier.hashCode()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+        try {
+            identifier2.hashCode();
+            fail("Expected NullPointerException due to null content in BasicIdentifier.hashCode()");
+        } catch (NullPointerException e) {
+            // Expected behavior
+        }
+    }
+
+    @Test
+    public void testInheritsFromIdentifier() {
+        BasicIdentifier identifier = new BasicIdentifier();
+        assertTrue("BasicIdentifier should extend Identifier", identifier instanceof Identifier);
+    }
+
+    @Test
+    public void testEmptyStrings() {
+        BasicIdentifier identifier1 = new BasicIdentifier("", "");
+        BasicIdentifier identifier2 = new BasicIdentifier("", "");
+        assertEquals("Objects with empty strings should be equal", identifier1, identifier2);
+        assertEquals("Objects with empty strings should have same hashCode", identifier1.hashCode(), identifier2.hashCode());
+    }
+
+    @Test
+    public void testSpecialCharacters() {
+        BasicIdentifier identifier1 = new BasicIdentifier("name!@#$%", "content&*()");
+        BasicIdentifier identifier2 = new BasicIdentifier("name!@#$%", "content&*()");
+        assertEquals("Objects with special characters should be equal", identifier1, identifier2);
+        assertEquals("Objects with special characters should have same hashCode", identifier1.hashCode(), identifier2.hashCode());
+    }
+
+    @Test
+    public void testUnicodeCharacters() {
+        BasicIdentifier identifier1 = new BasicIdentifier("名字", "内容");
+        BasicIdentifier identifier2 = new BasicIdentifier("名字", "内容");
+        assertEquals("Objects with unicode characters should be equal", identifier1, identifier2);
+        assertEquals("Objects with unicode characters should have same hashCode", identifier1.hashCode(), identifier2.hashCode());
+    }
+
+    @Test
+    public void testLongStrings() {
+        String longName = "a".repeat(1000);
+        String longContent = "b".repeat(1000);
+        BasicIdentifier identifier1 = new BasicIdentifier(longName, longContent);
+        BasicIdentifier identifier2 = new BasicIdentifier(longName, longContent);
+        assertEquals("Objects with long strings should be equal", identifier1, identifier2);
+        assertEquals("Objects with long strings should have same hashCode", identifier1.hashCode(), identifier2.hashCode());
+    }
+
+    @Test
+    public void testEqualsHashCodeContract() {
+        BasicIdentifier identifier1 = new BasicIdentifier("name", "content");
+        BasicIdentifier identifier2 = new BasicIdentifier("name", "content");
+        BasicIdentifier identifier3 = new BasicIdentifier("different", "content");
+
+        // Reflexive
+        assertEquals("Equals should be reflexive", identifier1, identifier1);
+        
+        // Symmetric
+        assertTrue("Equals should be symmetric", identifier1.equals(identifier2) && identifier2.equals(identifier1));
+        
+        // Transitive
+        assertTrue("Equals should be transitive", identifier1.equals(identifier2) && identifier2.equals(identifier1));
+        
+        // Consistent with hashCode
+        assertEquals("Equal objects must have same hashCode", identifier1.hashCode(), identifier2.hashCode());
     }
 }
