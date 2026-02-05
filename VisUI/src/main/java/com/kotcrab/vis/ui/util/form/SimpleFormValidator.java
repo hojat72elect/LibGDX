@@ -27,15 +27,15 @@ public class SimpleFormValidator {
     private final FormValidatorStyle style;
 
     private final ChangeSharedListener changeListener = new ChangeSharedListener();
-    private final Array<VisValidatableTextField> fields = new Array<VisValidatableTextField>();
-    private final Array<CheckedButtonWrapper> buttons = new Array<CheckedButtonWrapper>();
+    private final Array<VisValidatableTextField> fields = new Array<>();
+    private final Array<CheckedButtonWrapper> buttons = new Array<>();
 
     private String successMsg;
 
     private boolean formInvalid = false;
     private String errorMsgText = "";
 
-    private final Array<Disableable> disableTargets = new Array<Disableable>();
+    private final Array<Disableable> disableTargets = new Array<>();
     private Label messageLabel;
 
     private boolean treatDisabledFieldsAsValid = true;

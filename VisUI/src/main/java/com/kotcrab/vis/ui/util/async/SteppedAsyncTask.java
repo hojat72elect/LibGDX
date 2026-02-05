@@ -26,6 +26,6 @@ public abstract class SteppedAsyncTask extends AsyncTask {
      * Advances task to next step and updates its percent progress.
      */
     protected void nextStep() {
-        setProgressPercent(++step * 100 / totalSteps);
+        setProgressPercent((int) Math.round((double) ++step * 100.0 / totalSteps));
     }
 }

@@ -68,15 +68,21 @@ public class AsyncTaskTest {
         };
         task.addListener(new AsyncTaskListener() {
             @Override
-            public void messageChanged(String message) {}
+            public void messageChanged(String message) {
+            }
+
             @Override
-            public void progressChanged(int newProgressPercent) {}
+            public void progressChanged(int newProgressPercent) {
+            }
+
             @Override
             public void finished() {
                 done.countDown();
             }
+
             @Override
-            public void failed(String message, Exception exception) {}
+            public void failed(String message, Exception exception) {
+            }
         });
         task.execute();
         Assert.assertTrue("Task should complete", done.await(2, TimeUnit.SECONDS));
@@ -124,15 +130,21 @@ public class AsyncTaskTest {
         AsyncTask task = new TestAsyncTask("t");
         task.addListener(new AsyncTaskListener() {
             @Override
-            public void messageChanged(String message) {}
+            public void messageChanged(String message) {
+            }
+
             @Override
-            public void progressChanged(int newProgressPercent) {}
+            public void progressChanged(int newProgressPercent) {
+            }
+
             @Override
             public void finished() {
                 finished.countDown();
             }
+
             @Override
-            public void failed(String message, Exception exception) {}
+            public void failed(String message, Exception exception) {
+            }
         });
         task.execute();
         Assert.assertTrue(finished.await(2, TimeUnit.SECONDS));
@@ -153,17 +165,22 @@ public class AsyncTaskTest {
         };
         task.addListener(new AsyncTaskListener() {
             @Override
-            public void messageChanged(String message) {}
+            public void messageChanged(String message) {
+            }
+
             @Override
             public void progressChanged(int newProgressPercent) {
                 lastProgress.set(newProgressPercent);
             }
+
             @Override
             public void finished() {
                 done.countDown();
             }
+
             @Override
-            public void failed(String message, Exception exception) {}
+            public void failed(String message, Exception exception) {
+            }
         });
         task.execute();
         Assert.assertTrue(done.await(2, TimeUnit.SECONDS));
@@ -186,14 +203,19 @@ public class AsyncTaskTest {
             public void messageChanged(String message) {
                 lastMessage.set(message);
             }
+
             @Override
-            public void progressChanged(int newProgressPercent) {}
+            public void progressChanged(int newProgressPercent) {
+            }
+
             @Override
             public void finished() {
                 done.countDown();
             }
+
             @Override
-            public void failed(String message, Exception exception) {}
+            public void failed(String message, Exception exception) {
+            }
         });
         task.execute();
         Assert.assertTrue(done.await(2, TimeUnit.SECONDS));
@@ -213,13 +235,18 @@ public class AsyncTaskTest {
         };
         task.addListener(new AsyncTaskListener() {
             @Override
-            public void messageChanged(String message) {}
+            public void messageChanged(String message) {
+            }
+
             @Override
-            public void progressChanged(int newProgressPercent) {}
+            public void progressChanged(int newProgressPercent) {
+            }
+
             @Override
             public void finished() {
                 failed.countDown();
             }
+
             @Override
             public void failed(String message, Exception exception) {
                 msgRef.set(message);
@@ -245,11 +272,17 @@ public class AsyncTaskTest {
         };
         task.addListener(new AsyncTaskListener() {
             @Override
-            public void messageChanged(String message) {}
+            public void messageChanged(String message) {
+            }
+
             @Override
-            public void progressChanged(int newProgressPercent) {}
+            public void progressChanged(int newProgressPercent) {
+            }
+
             @Override
-            public void finished() {}
+            public void finished() {
+            }
+
             @Override
             public void failed(String message, Exception exception) {
                 msgRef.set(message);
@@ -267,13 +300,20 @@ public class AsyncTaskTest {
         AsyncTask task = new TestAsyncTask("t");
         AsyncTaskListener listener = new AsyncTaskListener() {
             @Override
-            public void messageChanged(String message) {}
+            public void messageChanged(String message) {
+            }
+
             @Override
-            public void progressChanged(int newProgressPercent) {}
+            public void progressChanged(int newProgressPercent) {
+            }
+
             @Override
-            public void finished() {}
+            public void finished() {
+            }
+
             @Override
-            public void failed(String message, Exception exception) {}
+            public void failed(String message, Exception exception) {
+            }
         };
         task.addListener(listener);
         Assert.assertTrue(task.removeListener(listener));
@@ -284,6 +324,7 @@ public class AsyncTaskTest {
         TestAsyncTask(String threadName) {
             super(threadName);
         }
+
         @Override
         protected void doInBackground() {
         }
