@@ -18,6 +18,8 @@ dependencies {
     api project(":backends:gdx-backend-lwjgl3")
 
     testImplementation "junit:junit:4.13.2"
+    testImplementation "org.mockito:mockito-core:5.8.0"
+    testImplementation "org.mockito:mockito-inline:5.2.0"
 }
 
 sourceSets {
