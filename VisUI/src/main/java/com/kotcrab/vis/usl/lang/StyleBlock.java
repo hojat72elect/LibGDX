@@ -9,5 +9,5 @@ public class StyleBlock {
     public String fullName;
     public StyleBlock extendsStyle;
     public boolean extendsInheritOnlyDefinedStyles;
-    public ArrayList<StyleIdentifier> styles = new ArrayList<StyleIdentifier>();
+    public ArrayList<StyleIdentifier> styles = new ArrayList<>();
 }
