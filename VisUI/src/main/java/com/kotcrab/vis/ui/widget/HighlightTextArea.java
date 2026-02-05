@@ -81,15 +81,15 @@ public class HighlightTextArea extends ScrollableTextArea {
 
             while (highlightIdx < highlights.size) {
                 Highlight highlight = highlights.get(highlightIdx);
-                if (highlight.getStart() > lineEnd) {
+                if (highlight.start() > lineEnd) {
                     break;
                 }
 
-                if (highlight.getStart() == lineProgress || carryHighlight) {
-                    renderChunks.add(new Chunk(text.substring(lineProgress, Math.min(highlight.getEnd(), lineEnd)), highlight.getColor(), chunkOffset, lineIdx));
-                    lineProgress = Math.min(highlight.getEnd(), lineEnd);
+                if (highlight.start() == lineProgress || carryHighlight) {
+                    renderChunks.add(new Chunk(text.substring(lineProgress, Math.min(highlight.end(), lineEnd)), highlight.color(), chunkOffset, lineIdx));
+                    lineProgress = Math.min(highlight.end(), lineEnd);
 
-                    if (highlight.getEnd() > lineEnd) {
+                    if (highlight.end() > lineEnd) {
                         carryHighlight = true;
                     } else {
                         carryHighlight = false;
@@ -98,21 +98,21 @@ public class HighlightTextArea extends ScrollableTextArea {
                 } else {
                     //protect against overlapping highlights
                     boolean noMatch = false;
-                    while (highlight.getStart() <= lineProgress) {
+                    while (highlight.start() <= lineProgress) {
                         highlightIdx++;
                         if (highlightIdx >= highlights.size) {
                             noMatch = true;
                             break;
                         }
                         highlight = highlights.get(highlightIdx);
-                        if (highlight.getStart() > lineEnd) {
+                        if (highlight.start() > lineEnd) {
                             noMatch = true;
                             break;
                         }
                     }
                     if (noMatch) break;
-                    renderChunks.add(new Chunk(text.substring(lineProgress, highlight.getStart()), defaultColor, chunkOffset, lineIdx));
-                    lineProgress = highlight.getStart();
+                    renderChunks.add(new Chunk(text.substring(lineProgress, highlight.start()), defaultColor, chunkOffset, lineIdx));
+                    lineProgress = highlight.start();
                 }
 
                 Chunk chunk = renderChunks.peek();

@@ -12,7 +12,7 @@ import com.kotcrab.vis.ui.widget.HighlightTextArea;
  * @since 1.1.2
  */
 public class BaseHighlighter {
-    private final Array<HighlightRule> rules = new Array<HighlightRule>();
+    private final Array<HighlightRule> rules = new Array<>();
 
     /**
      * Adds highlighter rule. What is highlighted depends on rule implementation.
