@@ -44,7 +44,7 @@ public class CellWidget<Widget extends Actor> {
      * @return a new CellWidgetBuilder, allowing to specify the cell's settings.
      */
     public static <Widget extends Actor> CellWidgetBuilder<Widget> of(final Widget widget) {
-        return new CellWidgetBuilder<Widget>(widget);
+        return new CellWidgetBuilder<>(widget);
     }
 
     /**
@@ -52,7 +52,7 @@ public class CellWidget<Widget extends Actor> {
      * @return a new CellWidgetBuilder, allowing to respecify the cell's settings.
      */
     public static <Widget extends Actor> CellWidgetBuilder<Widget> using(final CellWidget<Widget> widget) {
-        return new CellWidgetBuilder<Widget>(widget);
+        return new CellWidgetBuilder<>(widget);
     }
 
     /**
@@ -188,7 +188,7 @@ public class CellWidget<Widget extends Actor> {
          * @return widget passed to factory method wrapped with CellWidget with the applied data.
          */
         public CellWidget<Widget> wrap() {
-            return new CellWidget<Widget>(this);
+            return new CellWidget<>(this);
         }
 
         /**
