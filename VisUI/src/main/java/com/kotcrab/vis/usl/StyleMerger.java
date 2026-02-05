@@ -1,4 +1,3 @@
-
 package com.kotcrab.vis.usl;
 
 import com.kotcrab.vis.usl.lang.GroupIdentifier;

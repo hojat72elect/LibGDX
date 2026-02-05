@@ -25,11 +25,11 @@ public class Parser {
     private int currentPackageEnd;
     private int currentStyleBlockEnd;
 
-    private final ArrayList<StyleBlock> styleBlocks = new ArrayList<StyleBlock>();
-    private final ArrayList<StyleBlock> styleBlocksOverride = new ArrayList<StyleBlock>();
-    private final ArrayList<StyleIdentifier> globalStyles = new ArrayList<StyleIdentifier>();
+    private final ArrayList<StyleBlock> styleBlocks = new ArrayList<>();
+    private final ArrayList<StyleBlock> styleBlocksOverride = new ArrayList<>();
+    private final ArrayList<StyleIdentifier> globalStyles = new ArrayList<>();
 
-    private final Stack<GroupIdentifier> identifiers = new Stack<GroupIdentifier>();
+    private final Stack<GroupIdentifier> identifiers = new Stack<>();
 
     public String getJson(List<Token> tokens) {
         out = new StringBuilder();
@@ -37,7 +37,6 @@ public class Parser {
 
         while (i < tokens.size()) {
             Token t = tokens.get(i);
-            //System.out.println(t.type + " " + (t.content == null ? "" : t.content));
 
             if (t.type == Type.PACKAGE) {
                 if (currentPackage != null) Utils.throwException("Packages cannot be nested", t);
@@ -99,7 +98,7 @@ public class Parser {
             }
 
             if (t.type == Type.IDENTIFIER) {
-                if (identifiers.size() == 0) {
+                if (identifiers.isEmpty()) {
                     StyleIdentifier id = new StyleIdentifier();
                     if (peekPrev().type == Type.META_STYLE) id.metaStyle = true;
                     id.name = t.content;
