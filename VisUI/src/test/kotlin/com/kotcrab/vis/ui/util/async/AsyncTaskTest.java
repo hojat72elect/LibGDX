@@ -28,15 +28,13 @@ public class AsyncTaskTest {
         Gdx.app = (Application) Proxy.newProxyInstance(
                 Application.class.getClassLoader(),
                 new Class[]{Application.class},
-                new InvocationHandler() {
-                    @Override
-                    public Object invoke(Object proxy, Method method, Object[] args) {
-                        if ("postRunnable".equals(method.getName()) && args != null && args.length == 1 && args[0] instanceof Runnable) {
-                            new Thread((Runnable) args[0]).start();
-                            return null;
-                        }
+                (proxy, method, args) -> {
+                    if ("postRunnable".equals(method.getName()) && args != null && args.length == 1 && args[0] instanceof Runnable) {
+                        // Execute runnable directly to ensure sequential execution and avoid race conditions
+                        ((Runnable) args[0]).run();
                         return null;
                     }
+                    return null;
                 });
     }
 
