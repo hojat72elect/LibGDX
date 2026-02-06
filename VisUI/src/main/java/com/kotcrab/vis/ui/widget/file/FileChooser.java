@@ -1,42 +1,5 @@
 package com.kotcrab.vis.ui.widget.file;
 
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.ALL_FILES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CANCEL;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CHANGE_VIEW_MODE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.COMPUTER;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_ADD_TO_FAVORITES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_DELETE_WARNING;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_MOVE_TO_TRASH_WARNING;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_REMOVE_FROM_FAVORITES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.DESKTOP;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.FILE_NAME;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.FILE_TYPE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_ALREADY_EXISTS;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_ILLEGAL_CHARACTERS;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_TEXT;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_TITLE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.OPEN;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.PARENT_DIRECTORY;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_CHOOSE_FILE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_DELETE_FILE_FAILED;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_DIRECTORY_DOES_NOT_EXIST;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_FILENAME_INVALID;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_FILE_EXIST_OVERWRITE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_MULTIPLE_FILE_EXIST_OVERWRITE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_ONLY_DIRECTORIES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_SELECTED_FILE_DOES_NOT_EXIST;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_TITLE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.SAVE;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.TITLE_CHOOSE_DIRECTORIES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.TITLE_CHOOSE_FILES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.TITLE_CHOOSE_FILES_AND_DIRECTORIES;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_BIG_ICONS;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_DETAILS;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_LIST;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_MEDIUM_ICONS;
-import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_SMALL_ICONS;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
@@ -128,13 +91,48 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.ALL_FILES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CANCEL;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CHANGE_VIEW_MODE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.COMPUTER;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_ADD_TO_FAVORITES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_DELETE_WARNING;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_MOVE_TO_TRASH_WARNING;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.CONTEXT_MENU_REMOVE_FROM_FAVORITES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.DESKTOP;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.FILE_NAME;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.FILE_TYPE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_ALREADY_EXISTS;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_ILLEGAL_CHARACTERS;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_TEXT;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.NEW_DIRECTORY_DIALOG_TITLE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.OPEN;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.PARENT_DIRECTORY;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_CHOOSE_FILE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_DELETE_FILE_FAILED;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_DIRECTORY_DOES_NOT_EXIST;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_FILENAME_INVALID;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_FILE_EXIST_OVERWRITE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_MULTIPLE_FILE_EXIST_OVERWRITE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_ONLY_DIRECTORIES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_SELECTED_FILE_DOES_NOT_EXIST;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.POPUP_TITLE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.SAVE;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.TITLE_CHOOSE_DIRECTORIES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.TITLE_CHOOSE_FILES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.TITLE_CHOOSE_FILES_AND_DIRECTORIES;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_BIG_ICONS;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_DETAILS;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_LIST;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_MEDIUM_ICONS;
+import static com.kotcrab.vis.ui.widget.file.internal.FileChooserText.VIEW_MODE_SMALL_ICONS;
+
 /**
  * Widget allowing user to choose files. FileChooser is heavy widget and should be reused whenever possible, typically
  * one instance is enough for application. Chooser is platform dependent and can be only used on desktop.
  * <p>
  * FileChooser will be centered on screen after adding to Stage use {@link #setCenterOnAdd(boolean)} to change this.
- *
- *  @since 0.1.0
  */
 public class FileChooser extends VisWindow implements FileHistoryCallback {
     public static final int DEFAULT_KEY = -1;
@@ -144,53 +142,46 @@ public class FileChooser extends VisWindow implements FileHistoryCallback {
     public static boolean focusFileScrollPaneOnShow = true;
     public static boolean focusSelectedFileTextFieldOnShow = true;
     private static boolean saveLastDirectory = false;
+    private final AtomicReference<FileSorting> sorting = new AtomicReference<>(FileSorting.NAME);
+    private final AtomicBoolean sortingOrderAscending = new AtomicBoolean(true);
+    private final DriveCheckerService driveCheckerService = DriveCheckerService.getInstance();
+    private final Array<DriveCheckerListener> driveCheckerListeners = new Array<>();
+    private final FileChooserWinService chooserWinService = FileChooserWinService.getInstance();
+    private final ExecutorService listDirExecutor = Executors.newSingleThreadExecutor(new ServiceThreadFactory("FileChooserListDirThread"));
+    private final ShowBusyBarTask showBusyBarTask = new ShowBusyBarTask();
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private final Array<FileHandle> currentFiles = new Array<>();
+    private final Array<FileItem> selectedItems = new Array<>();
+    // UI
+    private final FileChooserStyle style;
+    private final Sizes sizes;
     private Mode mode;
     private ViewMode viewMode = ViewMode.DETAILS;
     private SelectionMode selectionMode = SelectionMode.FILES;
-    private final AtomicReference<FileSorting> sorting = new AtomicReference<FileSorting>(FileSorting.NAME);
-    private final AtomicBoolean sortingOrderAscending = new AtomicBoolean(true);
     private FileChooserListener listener = new FileChooserAdapter();
     private FileFilter fileFilter = new DefaultFileFilter(this);
     private FileDeleter fileDeleter = new DefaultFileDeleter();
     private FileTypeFilter fileTypeFilter = null;
     private FileTypeFilter.Rule activeFileTypeRule = null;
     private FileIconProvider iconProvider;
-    private final DriveCheckerService driveCheckerService = DriveCheckerService.getInstance();
-    private final Array<DriveCheckerListener> driveCheckerListeners = new Array<DriveCheckerListener>();
-    private final FileChooserWinService chooserWinService = FileChooserWinService.getInstance();
-    private final ExecutorService listDirExecutor = Executors.newSingleThreadExecutor(new ServiceThreadFactory("FileChooserListDirThread"));
     private Future<?> listDirFuture;
-    private final ShowBusyBarTask showBusyBarTask = new ShowBusyBarTask();
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private boolean showSelectionCheckboxes = false;
     private boolean multiSelectionEnabled = false;
     private int groupMultiSelectKey = DEFAULT_KEY; //shift by default
     private int multiSelectKey = DEFAULT_KEY; //ctrl (or command on mac) by default
-
     private PreferencesIO preferencesIO;
     private Array<FileHandle> favorites;
     private Array<FileHandle> recentDirectories;
-
     private FileHandle currentDirectory;
-    private final Array<FileHandle> currentFiles = new Array<FileHandle>();
-    private IdentityMap<FileHandle, FileHandleMetadata> currentFilesMetadata = new IdentityMap<FileHandle, FileHandleMetadata>();
+    private IdentityMap<FileHandle, FileHandleMetadata> currentFilesMetadata = new IdentityMap<>();
     private FileListAdapter fileListAdapter;
-    private final Array<FileItem> selectedItems = new Array<FileItem>();
     private ShortcutItem selectedShortcut;
     private String defaultFileName;
-
     private boolean watchingFilesEnabled = true;
     private Thread fileWatcherThread;
     private boolean shortcutsListRebuildScheduled;
     private boolean filesListRebuildScheduled;
-
     private FileHistoryManager historyManager;
-
-    // UI
-    private final FileChooserStyle style;
-
-    private final Sizes sizes;
-
     private VisSplitPane mainSplitPane;
 
     private VisTable shortcutsTable;
@@ -1888,10 +1879,9 @@ public class FileChooser extends VisWindow implements FileHistoryCallback {
      */
     public class FileItem extends Table implements Focusable {
         private final FileHandle file;
-        private FileHandleMetadata metadata;
-
         private final VisCheckBox selectCheckBox;
         private final VisImage iconImage;
+        private FileHandleMetadata metadata;
 
         public FileItem(final FileHandle file, ViewMode viewMode) {
             this.file = file;
@@ -2125,8 +2115,8 @@ public class FileChooser extends VisWindow implements FileHistoryCallback {
     }
 
     private class ShortcutItem extends Table implements RootNameListener, Focusable {
-        public File file;
         private final VisLabel name;
+        public File file;
 
         /**
          * Used only by shortcuts panel

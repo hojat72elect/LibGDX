@@ -21,11 +21,11 @@ import java.io.FileFilter;
  */
 public class FileTypeFilter {
     private boolean allTypesAllowed;
-    private Array<Rule> rules = new Array<Rule>();
+    private Array<Rule> rules = new Array<>();
 
     public FileTypeFilter(FileTypeFilter other) {
         this.allTypesAllowed = other.allTypesAllowed;
-        this.rules = new Array<Rule>(other.rules);
+        this.rules = new Array<>(other.rules);
     }
 
     /**

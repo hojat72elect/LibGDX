@@ -20,33 +20,22 @@ public class FileUtils {
     /**
      * Sorts file by names ignoring upper case
      */
-    public static final Comparator<FileHandle> FILE_NAME_COMPARATOR = new Comparator<FileHandle>() {
-        @Override
-        public int compare(FileHandle f1, FileHandle f2) {
-            return f1.name().toLowerCase().compareTo(f2.name().toLowerCase());
-        }
-    };
+    public static final Comparator<FileHandle> FILE_NAME_COMPARATOR = Comparator.comparing(f -> f.name().toLowerCase());
     /**
      * Sorts file by modified date then by name.
      */
-    public static final Comparator<FileHandle> FILE_MODIFIED_DATE_COMPARATOR = new Comparator<FileHandle>() {
-        @Override
-        public int compare(FileHandle f1, FileHandle f2) {
-            long l1 = f1.lastModified();
-            long l2 = f2.lastModified();
-            return l1 > l2 ? 1 : (l1 == l2 ? FILE_NAME_COMPARATOR.compare(f1, f2) : -1);
-        }
+    public static final Comparator<FileHandle> FILE_MODIFIED_DATE_COMPARATOR = (f1, f2) -> {
+        long l1 = f1.lastModified();
+        long l2 = f2.lastModified();
+        return l1 > l2 ? 1 : (l1 == l2 ? FILE_NAME_COMPARATOR.compare(f1, f2) : -1);
     };
     /**
      * Sorts file by their size then by name.
      */
-    public static final Comparator<FileHandle> FILE_SIZE_COMPARATOR = new Comparator<FileHandle>() {
-        @Override
-        public int compare(FileHandle f1, FileHandle f2) {
-            long l1 = f1.length();
-            long l2 = f2.length();
-            return l1 > l2 ? -1 : (l1 == l2 ? FILE_NAME_COMPARATOR.compare(f1, f2) : 1);
-        }
+    public static final Comparator<FileHandle> FILE_SIZE_COMPARATOR = (f1, f2) -> {
+        long l1 = f1.length();
+        long l2 = f2.length();
+        return l1 > l2 ? -1 : (l1 == l2 ? FILE_NAME_COMPARATOR.compare(f1, f2) : 1);
     };
     private static final String[] UNITS = new String[]{"B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"};
 
@@ -98,8 +87,8 @@ public class FileUtils {
      * @return sorted file list
      */
     public static Array<FileHandle> sortFiles(FileHandle[] files, Comparator<FileHandle> comparator, boolean descending) {
-        Array<FileHandle> directoriesList = new Array<FileHandle>();
-        Array<FileHandle> filesList = new Array<FileHandle>();
+        Array<FileHandle> directoriesList = new Array<>();
+        Array<FileHandle> filesList = new Array<>();
 
         for (FileHandle f : files) {
             if (f.isDirectory()) {
@@ -150,7 +139,6 @@ public class FileUtils {
     /**
      * Shows given directory in system explorer window.
      */
-    @SuppressWarnings("unchecked")
     public static void showDirInExplorer(FileHandle dir) throws IOException {
         File dirToShow;
         if (dir.isDirectory()) {
@@ -163,7 +151,7 @@ public class FileUtils {
             // Using reflection to avoid importing AWT desktop which would trigger Android Lint errors
             // This is desktop only, rarely called, performance drop is negligible
             // Basically 'Desktop.getDesktop().open(dirToShow);'
-            Class desktopClass = Class.forName("java.awt.Desktop");
+            Class<?> desktopClass = Class.forName("java.awt.Desktop");
             Object desktop = desktopClass.getMethod("getDesktop").invoke(null);
             try {
                 // browseFileDirectory was introduced in JDK 9

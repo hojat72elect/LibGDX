@@ -62,11 +62,12 @@ public class FloatSpinnerModel extends AbstractSpinnerModel {
 
     @Override
     public void textChanged() {
+        if (spinner == null) return;
         String text = spinner.getTextField().getText();
         if (text.equals("")) {
             current = min.setScale(scale, RoundingMode.HALF_UP);
         } else if (checkInputBounds(text)) {
-            current = new BigDecimal(text);
+            current = new BigDecimal(text).setScale(scale, RoundingMode.HALF_UP);
         }
     }
 
@@ -111,7 +112,7 @@ public class FloatSpinnerModel extends AbstractSpinnerModel {
 
     @Override
     public String getText() {
-        return current.toPlainString();
+        return current.setScale(scale, RoundingMode.HALF_UP).toPlainString();
     }
 
     public int getScale() {
@@ -132,43 +133,48 @@ public class FloatSpinnerModel extends AbstractSpinnerModel {
         this.scale = scale;
         current = current.setScale(scale, RoundingMode.HALF_UP);
 
-        VisValidatableTextField valueText = spinner.getTextField();
-        valueText.getValidators().clear();
-        valueText.addValidator(boundsValidator); //Both need the bounds check
-        if (scale == 0) {
-            valueText.addValidator(Validators.INTEGERS);
-            valueText.setTextFieldFilter(textFieldFilter = new IntDigitsOnlyFilter(true));
-        } else {
-            valueText.addValidator(Validators.FLOATS);
-            valueText.addValidator(new InputValidator() {
-                @Override
-                public boolean validateInput(String input) {
-                    int dotIndex = input.indexOf('.');
-                    if (dotIndex == -1) return true;
-                    return input.length() - input.indexOf('.') - 1 <= scale;
-                }
-            });
-            valueText.setTextFieldFilter(textFieldFilter = new FloatDigitsOnlyFilter(true));
-        }
+        if (spinner != null) {
+            VisValidatableTextField valueText = spinner.getTextField();
+            valueText.getValidators().clear();
+            valueText.addValidator(boundsValidator); //Both need the bounds check
+            if (scale == 0) {
+                valueText.addValidator(Validators.INTEGERS);
+                valueText.setTextFieldFilter(textFieldFilter = new IntDigitsOnlyFilter(true));
+            } else {
+                valueText.addValidator(Validators.FLOATS);
+                valueText.addValidator(new InputValidator() {
+                    @Override
+                    public boolean validateInput(String input) {
+                        int dotIndex = input.indexOf('.');
+                        if (dotIndex == -1) return true;
+                        return input.length() - input.indexOf('.') - 1 <= scale;
+                    }
+                });
+                valueText.setTextFieldFilter(textFieldFilter = new FloatDigitsOnlyFilter(true));
+            }
 
-        textFieldFilter.setUseFieldCursorPosition(true);
-        textFieldFilter.setAcceptNegativeValues(min.compareTo(BigDecimal.ZERO) < 0);
+            textFieldFilter.setUseFieldCursorPosition(true);
+            textFieldFilter.setAcceptNegativeValues(min.compareTo(BigDecimal.ZERO) < 0);
 
-        if (notifySpinner) {
-            spinner.notifyValueChanged(spinner.isProgrammaticChangeEvents());
+            if (notifySpinner) {
+                spinner.notifyValueChanged(spinner.isProgrammaticChangeEvents());
+            }
         }
     }
 
     public void setValue(BigDecimal newValue, boolean fireEvent) {
+        BigDecimal oldValue = current;
         if (newValue.compareTo(max) > 0) {
-            current = max.setScale(scale, RoundingMode.HALF_UP);
+            current = max;
         } else if (newValue.compareTo(min) < 0) {
-            current = min.setScale(scale, RoundingMode.HALF_UP);
+            current = min;
         } else {
-            current = newValue.setScale(scale, RoundingMode.HALF_UP);
+            current = newValue;
         }
 
-        spinner.notifyValueChanged(fireEvent);
+        if (spinner != null && !current.equals(oldValue)) {
+            spinner.notifyValueChanged(fireEvent);
+        }
     }
 
     public BigDecimal getValue() {
@@ -176,7 +182,11 @@ public class FloatSpinnerModel extends AbstractSpinnerModel {
     }
 
     public void setValue(BigDecimal newValue) {
-        setValue(newValue, spinner.isProgrammaticChangeEvents());
+        if (spinner != null) {
+            setValue(newValue, spinner.isProgrammaticChangeEvents());
+        } else {
+            setValue(newValue, false);
+        }
     }
 
     public BigDecimal getMin() {
@@ -191,11 +201,15 @@ public class FloatSpinnerModel extends AbstractSpinnerModel {
 
         this.min = min;
 
-        textFieldFilter.setAcceptNegativeValues(min.compareTo(BigDecimal.ZERO) < 0);
+        if (textFieldFilter != null) {
+            textFieldFilter.setAcceptNegativeValues(min.compareTo(BigDecimal.ZERO) < 0);
+        }
 
         if (current.compareTo(min) < 0) {
             current = min.setScale(scale, RoundingMode.HALF_UP);
-            spinner.notifyValueChanged(spinner.isProgrammaticChangeEvents());
+            if (spinner != null) {
+                spinner.notifyValueChanged(spinner.isProgrammaticChangeEvents());
+            }
         }
     }
 
@@ -213,7 +227,9 @@ public class FloatSpinnerModel extends AbstractSpinnerModel {
 
         if (current.compareTo(max) > 0) {
             current = max.setScale(scale, RoundingMode.HALF_UP);
-            spinner.notifyValueChanged(spinner.isProgrammaticChangeEvents());
+            if (spinner != null) {
+                spinner.notifyValueChanged(spinner.isProgrammaticChangeEvents());
+            }
         }
     }
 

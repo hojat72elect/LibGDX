@@ -26,6 +26,7 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
      */
     public ArraySpinnerModel() {
         super(false);
+        updateCurrentItem(0);
     }
 
     /**
@@ -37,6 +38,7 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
     public ArraySpinnerModel(Array<T> items) {
         super(false);
         this.items.addAll(items);
+        updateCurrentItem(0);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
      * @return string representation of item
      */
     protected String itemToString(T item) {
-        if (item == null) return "";
+        if (item == null) return null;
         return item.toString();
     }
 
@@ -118,7 +120,9 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
      */
     public void invalidateDataSet() {
         updateCurrentItem(MathUtils.clamp(currentIndex, 0, items.size - 1));
-        spinner.notifyValueChanged(true);
+        if (spinner != null) {
+            spinner.notifyValueChanged(true);
+        }
     }
 
     /**
@@ -135,7 +139,10 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
         items.clear();
         items.addAll(newItems);
         currentIndex = 0;
-        invalidateDataSet();
+        updateCurrentItem(0);
+        if (spinner != null) {
+            spinner.notifyValueChanged(true);
+        }
     }
 
     /**
@@ -156,14 +163,27 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
      * Sets current item. If array is empty then current value will be set to null.
      */
     public void setCurrent(int newIndex) {
-        setCurrent(newIndex, spinner.isProgrammaticChangeEvents());
+        if (spinner != null) {
+            setCurrent(newIndex, spinner.isProgrammaticChangeEvents());
+        } else {
+            updateCurrentItem(newIndex);
+        }
     }
 
     /**
      * @param item if does not exist in items array, model item will be set to first item.
      */
     public void setCurrent(T item) {
-        setCurrent(item, spinner.isProgrammaticChangeEvents());
+        if (spinner != null) {
+            setCurrent(item, spinner.isProgrammaticChangeEvents());
+        } else {
+            int index = items.indexOf(item, true);
+            if (index == -1) {
+                updateCurrentItem(0);
+            } else {
+                updateCurrentItem(index);
+            }
+        }
     }
 
     /**
@@ -171,7 +191,9 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
      */
     public void setCurrent(int newIndex, boolean fireEvent) {
         updateCurrentItem(newIndex);
-        spinner.notifyValueChanged(fireEvent);
+        if (spinner != null) {
+            spinner.notifyValueChanged(fireEvent);
+        }
     }
 
     /**
@@ -191,8 +213,8 @@ public class ArraySpinnerModel<T> extends AbstractSpinnerModel {
             current = null;
             currentIndex = -1;
         } else {
-            currentIndex = newIndex;
-            current = items.get(newIndex);
+            currentIndex = MathUtils.clamp(newIndex, 0, items.size - 1);
+            current = items.get(currentIndex);
         }
     }
 }
