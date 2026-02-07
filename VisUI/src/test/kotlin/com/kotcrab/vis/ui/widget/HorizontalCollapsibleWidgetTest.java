@@ -7,42 +7,42 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Unit tests for {@link CollapsibleWidget}.
+ * Unit tests for {@link HorizontalCollapsibleWidget}.
  */
-public class CollapsibleWidgetTest {
+public class HorizontalCollapsibleWidgetTest {
 
     @Test
-    public void testCollapsedAffectsPrefHeightAndTouchableWithoutAnimation() {
+    public void testCollapsedAffectsPrefWidthAndTouchableWithoutAnimation() {
         Table table = new Table();
         table.setSize(100, 40);
 
-        CollapsibleWidget widget = new CollapsibleWidget(table, false);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table, false);
         widget.layout();
 
         Assert.assertFalse(widget.isCollapsed());
         Assert.assertEquals(Touchable.enabled, widget.getTouchable());
-        Assert.assertEquals(table.getPrefHeight(), widget.getPrefHeight(), 0.0001f);
+        Assert.assertEquals(table.getPrefWidth(), widget.getPrefWidth(), 0.0001f);
 
         widget.setCollapsed(true, false);
 
         Assert.assertTrue(widget.isCollapsed());
         Assert.assertEquals(Touchable.disabled, widget.getTouchable());
-        Assert.assertEquals(0f, widget.getPrefHeight(), 0.0001f);
+        Assert.assertEquals(0f, widget.getPrefWidth(), 0.0001f);
 
         widget.setCollapsed(false, false);
 
         Assert.assertFalse(widget.isCollapsed());
         Assert.assertEquals(Touchable.enabled, widget.getTouchable());
-        Assert.assertEquals(table.getPrefHeight(), widget.getPrefHeight(), 0.0001f);
+        Assert.assertEquals(table.getPrefWidth(), widget.getPrefWidth(), 0.0001f);
     }
 
     @Test
-    public void testGetPrefWidthDelegatesToTable() {
+    public void testGetPrefHeightDelegatesToTable() {
         Table table = new Table();
         table.setSize(123, 30);
 
-        CollapsibleWidget widget = new CollapsibleWidget(table, false);
-        Assert.assertEquals(table.getPrefWidth(), widget.getPrefWidth(), 0.0001f);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table, false);
+        Assert.assertEquals(table.getPrefHeight(), widget.getPrefHeight(), 0.0001f);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class CollapsibleWidgetTest {
         Table second = new Table();
         second.setSize(60, 20);
 
-        CollapsibleWidget widget = new CollapsibleWidget(first, false);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(first, false);
         Assert.assertEquals(1, widget.getChildren().size);
         Assert.assertSame(first, widget.getChildren().first());
 
@@ -64,13 +64,13 @@ public class CollapsibleWidgetTest {
 
     @Test(expected = GdxRuntimeException.class)
     public void testAddingMoreThanOneChildThrows() {
-        CollapsibleWidget widget = new CollapsibleWidget(new Table(), false);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(new Table(), false);
         widget.addActor(new Table());
     }
 
     @Test
     public void testDefaultConstructor() {
-        CollapsibleWidget widget = new CollapsibleWidget();
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget();
         Assert.assertNull("Table should be null for default constructor", getPrivateField(widget, "table"));
         Assert.assertFalse("Widget should not be collapsed by default", widget.isCollapsed());
     }
@@ -78,7 +78,7 @@ public class CollapsibleWidgetTest {
     @Test
     public void testConstructorWithTable() {
         Table table = new Table();
-        CollapsibleWidget widget = new CollapsibleWidget(table);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table);
         Assert.assertFalse("Widget should not be collapsed by default", widget.isCollapsed());
         Assert.assertEquals("Widget should have one child", 1, widget.getChildren().size);
         Assert.assertSame("Child should be the provided table", table, widget.getChildren().first());
@@ -87,7 +87,7 @@ public class CollapsibleWidgetTest {
     @Test
     public void testConstructorWithTableAndCollapsedState() {
         Table table = new Table();
-        CollapsibleWidget widget = new CollapsibleWidget(table, true);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table, true);
         Assert.assertTrue("Widget should be collapsed", widget.isCollapsed());
         Assert.assertEquals("Widget should have one child", 1, widget.getChildren().size);
         Assert.assertSame("Child should be the provided table", table, widget.getChildren().first());
@@ -98,7 +98,7 @@ public class CollapsibleWidgetTest {
         Table table = new Table();
         table.setSize(100, 40);
 
-        CollapsibleWidget widget = new CollapsibleWidget(table, false);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table, false);
         widget.setCollapsed(true, true); // with animation
 
         Assert.assertTrue("Widget should be collapsed", widget.isCollapsed());
@@ -110,7 +110,7 @@ public class CollapsibleWidgetTest {
         Table table = new Table();
         table.setSize(100, 40);
 
-        CollapsibleWidget widget = new CollapsibleWidget(table, false);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table, false);
         widget.setCollapsed(true, false); // without animation
 
         Assert.assertTrue("Widget should be collapsed", widget.isCollapsed());
@@ -122,7 +122,7 @@ public class CollapsibleWidgetTest {
         Table table = new Table();
         table.setSize(100, 40);
 
-        CollapsibleWidget widget = new CollapsibleWidget(table, false);
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget(table, false);
         widget.setCollapsed(true); // defaults to with animation
 
         Assert.assertTrue("Widget should be collapsed", widget.isCollapsed());
@@ -130,35 +130,20 @@ public class CollapsibleWidgetTest {
     }
 
     @Test
-    public void testSetCollapseDuration() {
-        CollapsibleWidget widget = new CollapsibleWidget();
-        widget.setCollapseDuration(0.5f);
-        Assert.assertEquals("Collapse duration should be set", 0.5f, getPrivateField(widget, "collapseDuration"), 0.0001f);
-    }
-
-    @Test
-    public void testSetCollapseInterpolation() {
-        CollapsibleWidget widget = new CollapsibleWidget();
-        com.badlogic.gdx.math.Interpolation interpolation = com.badlogic.gdx.math.Interpolation.linear;
-        widget.setCollapseInterpolation(interpolation);
-        Assert.assertEquals("Collapse interpolation should be set", interpolation, getPrivateField(widget, "collapseInterpolation"));
-    }
-
-    @Test
     public void testGetPrefWidthWithNullTable() {
-        CollapsibleWidget widget = new CollapsibleWidget();
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget();
         Assert.assertEquals("Pref width should be 0 when table is null", 0f, widget.getPrefWidth(), 0.0001f);
     }
 
     @Test
     public void testGetPrefHeightWithNullTable() {
-        CollapsibleWidget widget = new CollapsibleWidget();
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget();
         Assert.assertEquals("Pref height should be 0 when table is null", 0f, widget.getPrefHeight(), 0.0001f);
     }
 
     @Test
     public void testSetCollapsedWithNullTable() {
-        CollapsibleWidget widget = new CollapsibleWidget();
+        HorizontalCollapsibleWidget widget = new HorizontalCollapsibleWidget();
         // Should not throw exception
         widget.setCollapsed(true, false);
         Assert.assertTrue("Widget should be collapsed even with null table", widget.isCollapsed());

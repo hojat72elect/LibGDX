@@ -25,8 +25,8 @@ import com.kotcrab.vis.ui.util.highlight.Highlighter;
  * @since 1.1.2
  */
 public class HighlightTextArea extends ScrollableTextArea {
-    private final Array<Highlight> highlights = new Array<Highlight>();
-    private final Array<Chunk> renderChunks = new Array<Chunk>();
+    private final Array<Highlight> highlights = new Array<>();
+    private final Array<Chunk> renderChunks = new Array<>();
     private boolean chunkUpdateScheduled = true;
     private final Color defaultColor = Color.WHITE;
 
