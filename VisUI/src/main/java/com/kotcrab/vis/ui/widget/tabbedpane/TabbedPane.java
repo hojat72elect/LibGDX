@@ -86,11 +86,11 @@ public class TabbedPane {
     public TabbedPane(TabbedPaneStyle style, Sizes sizes) {
         this.style = style;
         this.sizes = sizes;
-        listeners = new Array<TabbedPaneListener>();
+        listeners = new Array<>();
 
         sharedCloseActiveButtonStyle = VisUI.getSkin().get("close-active-tab", VisImageButtonStyle.class);
 
-        group = new ButtonGroup<Button>();
+        group = new ButtonGroup<>();
 
         mainTable = new TabbedPaneTable(this);
         tabsPane = new DragPane(style.vertical ? new VerticalFlowGroup() : new HorizontalFlowGroup());

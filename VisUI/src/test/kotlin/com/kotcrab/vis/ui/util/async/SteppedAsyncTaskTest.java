@@ -31,7 +31,7 @@ public class SteppedAsyncTaskTest {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) {
                         if ("postRunnable".equals(method.getName()) && args != null && args.length == 1 && args[0] instanceof Runnable) {
-                            new Thread((Runnable) args[0]).start();
+                            ((Runnable) args[0]).run();
                             return null;
                         }
                         return null;

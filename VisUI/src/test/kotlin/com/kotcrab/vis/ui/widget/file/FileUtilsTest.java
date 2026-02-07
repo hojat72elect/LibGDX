@@ -1,6 +1,8 @@
 package com.kotcrab.vis.ui.widget.file;
 
 import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.kotcrab.vis.ui.util.OsUtils;
@@ -12,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Proxy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -50,9 +53,27 @@ public class FileUtilsTest {
 
     private AutoCloseable osUtilsMock;
 
+    private Files previousFiles;
+
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+
+        previousFiles = Gdx.files;
+        Gdx.files = (Files) Proxy.newProxyInstance(
+                Files.class.getClassLoader(),
+                new Class[]{Files.class},
+                (proxy, method, args) -> {
+                    String name = method.getName();
+                    if (args != null && args.length == 1 && args[0] instanceof String) {
+                        String path = (String) args[0];
+                        if ("classpath".equals(name) || "internal".equals(name) || "absolute".equals(name)
+                                || "local".equals(name) || "external".equals(name)) {
+                            return new FileHandle(path);
+                        }
+                    }
+                    return null;
+                });
 
         // Setup mock file handles
         when(mockFileHandle1.name()).thenReturn("test1.txt");
@@ -84,6 +105,8 @@ public class FileUtilsTest {
         if (osUtilsMock != null) {
             osUtilsMock.close();
         }
+
+        Gdx.files = previousFiles;
     }
 
     @Test

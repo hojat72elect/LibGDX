@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
@@ -31,7 +32,17 @@ public class ToastManagerTest {
             Gdx.files = (Files) Proxy.newProxyInstance(
                     Files.class.getClassLoader(),
                     new Class[]{Files.class},
-                    (proxy, method, args) -> null);
+                    (proxy, method, args) -> {
+                        String name = method.getName();
+                        if (args != null && args.length == 1 && args[0] instanceof String) {
+                            String path = (String) args[0];
+                            if ("classpath".equals(name) || "internal".equals(name) || "absolute".equals(name)
+                                    || "local".equals(name) || "external".equals(name)) {
+                                return new FileHandle(path);
+                            }
+                        }
+                        return null;
+                    });
         }
         if (Gdx.app == null) {
             Gdx.app = (Application) Proxy.newProxyInstance(

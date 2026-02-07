@@ -27,7 +27,15 @@ public class VisUITest {
                     Files.class.getClassLoader(),
                     new Class[]{Files.class},
                     (proxy, method, args) -> {
-                        if ("classpath".equals(method.getName())) {
+                        String name = method.getName();
+                        if (args != null && args.length == 1 && args[0] instanceof String) {
+                            String path = (String) args[0];
+                            if ("classpath".equals(name) || "internal".equals(name) || "absolute".equals(name)
+                                    || "local".equals(name) || "external".equals(name)) {
+                                return new FileHandle(path);
+                            }
+                        }
+                        if ("classpath".equals(name)) {
                             return new FileHandle("test");
                         }
                         return null;
