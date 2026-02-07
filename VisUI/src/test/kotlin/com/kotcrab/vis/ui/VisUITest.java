@@ -11,6 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 import static org.junit.Assert.assertTrue;
@@ -26,26 +28,32 @@ public class VisUITest {
             Gdx.files = (Files) Proxy.newProxyInstance(
                     Files.class.getClassLoader(),
                     new Class[]{Files.class},
-                    (proxy, method, args) -> {
-                        String name = method.getName();
-                        if (args != null && args.length == 1 && args[0] instanceof String) {
-                            String path = (String) args[0];
+                    new InvocationHandler() {
+                        @Override
+                        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                            String name = method.getName();
                             if ("classpath".equals(name) || "internal".equals(name) || "absolute".equals(name)
                                     || "local".equals(name) || "external".equals(name)) {
-                                return new FileHandle(path);
+                                if (args != null && args.length == 1 && args[0] instanceof String) {
+                                    String path = (String) args[0];
+                                    return new FileHandle(path);
+                                }
+                                return new FileHandle("test");
                             }
+                            return null;
                         }
-                        if ("classpath".equals(name)) {
-                            return new FileHandle("test");
-                        }
-                        return null;
                     });
         }
         if (Gdx.app == null) {
             Gdx.app = (com.badlogic.gdx.Application) Proxy.newProxyInstance(
                     com.badlogic.gdx.Application.class.getClassLoader(),
                     new Class[]{com.badlogic.gdx.Application.class},
-                    (proxy, method, args) -> null);
+                    new InvocationHandler() {
+                        @Override
+                        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                            return null;
+                        }
+                    });
         }
     }
 

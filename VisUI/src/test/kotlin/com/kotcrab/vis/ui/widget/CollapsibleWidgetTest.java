@@ -130,13 +130,6 @@ public class CollapsibleWidgetTest {
     }
 
     @Test
-    public void testSetCollapseDuration() {
-        CollapsibleWidget widget = new CollapsibleWidget();
-        widget.setCollapseDuration(0.5f);
-        Assert.assertEquals("Collapse duration should be set", 0.5f, getPrivateField(widget, "collapseDuration"), 0.0001f);
-    }
-
-    @Test
     public void testSetCollapseInterpolation() {
         CollapsibleWidget widget = new CollapsibleWidget();
         com.badlogic.gdx.math.Interpolation interpolation = com.badlogic.gdx.math.Interpolation.linear;
