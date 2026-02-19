@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.Array;
  * The typical use case: make the game entity react on event while sleeping or wandering.
  *
  * @param <E> type of the blackboard object that tasks use to read or modify game state
- *  *  */
+ */
 public class Parallel<E> extends BranchTask<E> {
 
     /**

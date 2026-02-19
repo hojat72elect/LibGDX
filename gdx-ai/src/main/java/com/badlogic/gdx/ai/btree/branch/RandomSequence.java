@@ -5,8 +5,7 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A {@code RandomSequence} is a sequence task's variant that runs its children in a random order.
- *
- * @param <E> type of the blackboard object that tasks use to read or modify game state
+ * @param <E> type of the blackboard object that tasks use to read or modify game state.
  */
 public class RandomSequence<E> extends Sequence<E> {
 
@@ -19,7 +18,6 @@ public class RandomSequence<E> extends Sequence<E> {
 
     /**
      * Creates a {@code RandomSequence} branch with the given children.
-     *
      * @param tasks the children of this task
      */
     public RandomSequence(Array<Task<E>> tasks) {
@@ -28,11 +26,10 @@ public class RandomSequence<E> extends Sequence<E> {
 
     /**
      * Creates a {@code RandomSequence} branch with the given children.
-     *
      * @param tasks the children of this task
      */
     public RandomSequence(Task<E>... tasks) {
-        super(new Array<Task<E>>(tasks));
+        super(new Array<>(tasks));
     }
 
     @Override
