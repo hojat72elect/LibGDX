@@ -5,10 +5,10 @@ import com.badlogic.gdx.ai.btree.Task;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * A {@code Sequence} is a branch task that runs every children until one of them fails. If a child task succeeds, the selector
+ * A {@code Sequence} is a branch task that runs every child until one of them fails. If a child task succeeds, the selector
  * will start and run the next child task.
  *
- * @param <E> type of the blackboard object that tasks use to read or modify game state
+ * @param <E> type of the blackboard object that tasks use to read or modify game state.
  */
 public class Sequence<E> extends SingleRunningChildBranch<E> {
 

@@ -5,7 +5,7 @@ import com.badlogic.gdx.ai.btree.Task;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * A {@code Selector} is a branch task that runs every children until one of them succeeds. If a child task fails, the selector
+ * A {@code Selector} is a branch task that runs every child until one of them succeeds. If a child task fails, the selector
  * will start and run the next child task.
  *
  * @param <E> type of the blackboard object that tasks use to read or modify game state.
