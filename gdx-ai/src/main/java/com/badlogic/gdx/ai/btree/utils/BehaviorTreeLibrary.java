@@ -6,7 +6,6 @@ import com.badlogic.gdx.ai.GdxAI;
 import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.ai.btree.Task;
 import com.badlogic.gdx.ai.btree.TaskCloneException;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.SerializationException;
@@ -18,8 +17,6 @@ import com.badlogic.gdx.utils.SerializationException;
 public class BehaviorTreeLibrary {
 
     protected ObjectMap<String, BehaviorTree<?>> repository;
-
-    //	protected AssetManager assetManager;
     protected FileHandleResolver resolver;
     protected BehaviorTreeParser<?> parser;
 
@@ -57,23 +54,9 @@ public class BehaviorTreeLibrary {
      * @param parseDebugLevel the debug level the parser will use
      */
     public BehaviorTreeLibrary(FileHandleResolver resolver, int parseDebugLevel) {
-        this(resolver, null, parseDebugLevel);
-    }
-
-//	public BehaviorTreeLibrary (AssetManager assetManager) {
-//		this(assetManager, BehaviorTreeParser.DEBUG_NONE);
-//	}
-//
-//	public BehaviorTreeLibrary (AssetManager assetManager, int parserDebugLevel) {
-//		this(null, assetManager, parserDebugLevel);
-//	}
-
-    @SuppressWarnings("rawtypes")
-    private BehaviorTreeLibrary(FileHandleResolver resolver, AssetManager assetManager, int parseDebugLevel) {
         this.resolver = resolver;
-//		this.assetManager = assetManager;
-        this.repository = new ObjectMap<String, BehaviorTree<?>>();
-        this.parser = new BehaviorTreeParser(parseDebugLevel);
+        this.repository = new ObjectMap<>();
+        this.parser = new BehaviorTreeParser<>(parseDebugLevel);
     }
 
     /**
@@ -128,12 +111,6 @@ public class BehaviorTreeLibrary {
     protected BehaviorTree<?> retrieveArchetypeTree(String treeReference) {
         BehaviorTree<?> archetypeTree = repository.get(treeReference);
         if (archetypeTree == null) {
-//			if (assetManager != null) {
-//				// TODO: fix me!!!
-//				// archetypeTree = assetManager.load(name, BehaviorTree.class, null);
-//				repository.put(treeReference, archetypeTree);
-//				return null;
-//			}
             archetypeTree = parser.parse(resolver.resolve(treeReference), null);
             registerArchetypeTree(treeReference, archetypeTree);
         }

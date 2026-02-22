@@ -7,24 +7,22 @@ import com.badlogic.gdx.utils.Pool;
 
 /**
  * A {@code BehaviorTreeLibrary} using reference pool.
- * <p>
  * {@link BehaviorTree} created by {@link PooledBehaviorTreeLibrary} should be disposed by
  * calling {@link BehaviorTreeLibrary#disposeBehaviorTree(String, BehaviorTree)}.
  */
 @SuppressWarnings("rawtypes")
 public class PooledBehaviorTreeLibrary extends BehaviorTreeLibrary {
-    protected ObjectMap<String, Pool<BehaviorTree>> pools = new ObjectMap<String, Pool<BehaviorTree>>();
+    protected ObjectMap<String, Pool<BehaviorTree>> pools = new ObjectMap<>();
 
     /**
      * retrieve pool by tree reference, create it if not already exists.
      *
-     * @param treeReference
      * @return existing or newly created pool.
      */
     protected Pool<BehaviorTree> getPool(final String treeReference) {
         Pool<BehaviorTree> treePool = pools.get(treeReference);
         if (treePool == null) {
-            treePool = new Pool<BehaviorTree>() {
+            treePool = new Pool<>() {
                 @Override
                 protected BehaviorTree newObject() {
                     return newBehaviorTree(treeReference);
@@ -38,7 +36,6 @@ public class PooledBehaviorTreeLibrary extends BehaviorTreeLibrary {
     /**
      * creates concrete tree instance.
      *
-     * @param treeReference
      * @return a new tree instance.
      */
     protected <T> BehaviorTree<T> newBehaviorTree(String treeReference) {
@@ -62,8 +59,6 @@ public class PooledBehaviorTreeLibrary extends BehaviorTreeLibrary {
 
     /**
      * Clear pool for a tree reference.
-     *
-     * @param treeReference
      */
     public void clear(String treeReference) {
         Pool<BehaviorTree> treePool = pools.get(treeReference);
