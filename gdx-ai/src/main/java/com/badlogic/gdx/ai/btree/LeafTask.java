@@ -4,17 +4,15 @@ import com.badlogic.gdx.ai.btree.annotation.TaskConstraint;
 
 /**
  * A {@code LeafTask} is a terminal task of a behavior tree, contains action or condition logic, can not have any child.
- *
  * @param <E> type of the blackboard object that tasks use to read or modify game state.
  */
-@TaskConstraint(minChildren = 0, maxChildren = 0)
+@TaskConstraint(maxChildren = 0)
 public abstract class LeafTask<E> extends Task<E> {
 
     /**
      * Creates a leaf task.
      */
-    public LeafTask() {
-    }
+    public LeafTask() {}
 
     /**
      * This method contains the update logic of this leaf task. The actual implementation MUST return one of {@link Status#RUNNING}
@@ -65,14 +63,11 @@ public abstract class LeafTask<E> extends Task<E> {
     }
 
     @Override
-    public final void childRunning(Task<E> runningTask, Task<E> reporter) {
-    }
+    public final void childRunning(Task<E> runningTask, Task<E> reporter) {}
 
     @Override
-    public final void childFail(Task<E> runningTask) {
-    }
+    public final void childFail(Task<E> runningTask) {}
 
     @Override
-    public final void childSuccess(Task<E> runningTask) {
-    }
+    public final void childSuccess(Task<E> runningTask) {}
 }

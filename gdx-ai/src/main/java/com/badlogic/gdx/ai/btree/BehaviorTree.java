@@ -46,7 +46,7 @@ public class BehaviorTree<E> extends Task<E> {
         this.rootTask = rootTask;
         this.object = object;
         this.tree = this;
-        this.guardEvaluator = new GuardEvaluator<E>(this);
+        this.guardEvaluator = new GuardEvaluator<>(this);
     }
 
     /**
@@ -142,7 +142,7 @@ public class BehaviorTree<E> extends Task<E> {
     }
 
     public void addListener(Listener<E> listener) {
-        if (listeners == null) listeners = new Array<Listener<E>>();
+        if (listeners == null) listeners = new Array<>();
         listeners.add(listener);
     }
 
@@ -181,7 +181,8 @@ public class BehaviorTree<E> extends Task<E> {
      * {@link BehaviorTree#addListener(Listener)} method. When a task event occurs, the corresponding method is invoked.
      *
      * @param <E> type of the blackboard object that tasks use to read or modify game state
-     *      */
+     *
+     */
     public interface Listener<E> {
 
         /**

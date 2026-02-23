@@ -4,9 +4,8 @@ import com.badlogic.gdx.ai.btree.annotation.TaskConstraint;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * A branch task defines a behavior tree branch, contains logic of starting or running sub-branches and leaves
- *
- * @param <E> type of the blackboard object that tasks use to read or modify game state
+ * A branch task defines a behavior tree branch, contains logic of starting or running sub-branches and leaves.
+ * @param <E> type of the blackboard object that tasks use to read or modify game state.
  */
 @TaskConstraint(minChildren = 1)
 public abstract class BranchTask<E> extends Task<E> {
@@ -17,16 +16,16 @@ public abstract class BranchTask<E> extends Task<E> {
     protected Array<Task<E>> children;
 
     /**
-     * Create a branch task with no children
+     * Create a branch task with no children.
      */
     public BranchTask() {
-        this(new Array<Task<E>>());
+        this(new Array<>());
     }
 
     /**
-     * Create a branch task with a list of children
+     * Create a branch task with a list of children.
      *
-     * @param tasks list of this task's children, can be empty
+     * @param tasks list of this task's children, can be empty.
      */
     public BranchTask(Array<Task<E>> tasks) {
         this.children = tasks;

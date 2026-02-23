@@ -1,9 +1,8 @@
 package com.badlogic.gdx.ai.btree;
 
 /**
- * A {@code TaskCloneException} is thrown when an exception occurs during task cloning. See {@link Task#cloneTask()}
+ * A {@code TaskCloneException} is thrown when an exception occurs during task cloning. See {@link Task#cloneTask()}.
  */
-@SuppressWarnings("serial")
 public class TaskCloneException extends RuntimeException {
 
     /**

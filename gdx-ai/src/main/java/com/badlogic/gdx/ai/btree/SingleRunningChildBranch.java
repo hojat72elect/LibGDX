@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * A {@code SingleRunningChildBranch} task is a branch task that supports only one running child at a time.
- *
  * @param <E> type of the blackboard object that tasks use to read or modify game state
  */
 public abstract class SingleRunningChildBranch<E> extends BranchTask<E> {
@@ -34,7 +33,6 @@ public abstract class SingleRunningChildBranch<E> extends BranchTask<E> {
 
     /**
      * Creates a {@code SingleRunningChildBranch} task with a list of children
-     *
      * @param tasks list of this task's children, can be empty
      */
     public SingleRunningChildBranch(Array<Task<E>> tasks) {
@@ -44,7 +42,7 @@ public abstract class SingleRunningChildBranch<E> extends BranchTask<E> {
     @Override
     public void childRunning(Task<E> task, Task<E> reporter) {
         runningChild = task;
-        running(); // Return a running status when a child says it's running
+        running();
     }
 
     @Override
@@ -66,7 +64,6 @@ public abstract class SingleRunningChildBranch<E> extends BranchTask<E> {
                 if (randomChildren != null) {
                     int last = children.size - 1;
                     if (currentChildIndex < last) {
-                        // Random swap
                         int otherChildIndex = MathUtils.random(currentChildIndex, last);
                         Task<E> tmp = randomChildren[currentChildIndex];
                         randomChildren[currentChildIndex] = randomChildren[otherChildIndex];
@@ -82,8 +79,6 @@ public abstract class SingleRunningChildBranch<E> extends BranchTask<E> {
                     runningChild.fail();
                 else
                     run();
-            } else {
-                // Should never happen; this case must be handled by subclasses in childXXX methods
             }
         }
     }

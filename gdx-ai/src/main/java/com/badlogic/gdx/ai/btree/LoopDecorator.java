@@ -15,8 +15,7 @@ public abstract class LoopDecorator<E> extends Decorator<E> {
     /**
      * Creates a loop decorator with no child task.
      */
-    public LoopDecorator() {
-    }
+    public LoopDecorator() {}
 
     /**
      * Creates a loop decorator that wraps the given task.

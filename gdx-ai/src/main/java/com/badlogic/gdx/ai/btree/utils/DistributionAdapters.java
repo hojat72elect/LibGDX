@@ -25,7 +25,7 @@ import java.util.StringTokenizer;
 
 public class DistributionAdapters {
 
-    private static final ObjectMap<Class<?>, Adapter<?>> ADAPTERS = new ObjectMap<Class<?>, Adapter<?>>();
+    private static final ObjectMap<Class<?>, Adapter<?>> ADAPTERS = new ObjectMap<>();
 
     static {
 
@@ -85,10 +85,6 @@ public class DistributionAdapters {
             }
         });
 
-        //
-        // Gaussian distributions
-        //
-
         ADAPTERS.put(GaussianDoubleDistribution.class, new DoubleAdapter<GaussianDoubleDistribution>("gaussian") {
 
             @Override
@@ -116,10 +112,6 @@ public class DistributionAdapters {
                 return new String[]{Float.toString(distribution.getMean()), Float.toString(distribution.getStandardDeviation())};
             }
         });
-
-        //
-        // Triangular distributions
-        //
 
         ADAPTERS.put(TriangularDoubleDistribution.class, new DoubleAdapter<TriangularDoubleDistribution>("triangular") {
 
@@ -177,7 +169,7 @@ public class DistributionAdapters {
                     case 2:
                         return new TriangularIntegerDistribution(parseInteger(args[0]), parseInteger(args[1]));
                     case 3:
-                        return new TriangularIntegerDistribution(parseInteger(args[0]), parseInteger(args[1]), Float.valueOf(args[2]));
+                        return new TriangularIntegerDistribution(parseInteger(args[0]), parseInteger(args[1]), Float.parseFloat(args[2]));
                     default:
                         throw invalidNumberOfArgumentsException(args.length, 1, 2, 3);
                 }
@@ -302,26 +294,26 @@ public class DistributionAdapters {
     ObjectMap<Class<?>, ObjectMap<String, Adapter<?>>> typeMap;
 
     public DistributionAdapters() {
-        this.map = new ObjectMap<Class<?>, Adapter<?>>();
-        this.typeMap = new ObjectMap<Class<?>, ObjectMap<String, Adapter<?>>>();
+        this.map = new ObjectMap<>();
+        this.typeMap = new ObjectMap<>();
         for (ObjectMap.Entry<Class<?>, Adapter<?>> e : ADAPTERS.entries())
             add(e.key, e.value);
     }
 
     private static DistributionFormatException invalidNumberOfArgumentsException(int found, int... expected) {
-        String message = "Found " + found + " arguments in triangular distribution; expected ";
+        StringBuilder message = new StringBuilder("Found " + found + " arguments in triangular distribution; expected ");
         if (expected.length < 2)
-            message += expected.length;
+            message.append(expected.length);
         else {
             String sep = "";
             int i = 0;
             while (i < expected.length - 1) {
-                message += sep + expected[i++];
+                message.append(sep).append(expected[i++]);
                 sep = ", ";
             }
-            message += " or " + expected[i];
+            message.append(" or ").append(expected[i]);
         }
-        return new DistributionFormatException(message);
+        return new DistributionFormatException(message.toString());
     }
 
     public final void add(Class<?> clazz, Adapter<?> adapter) {
@@ -329,7 +321,7 @@ public class DistributionAdapters {
 
         ObjectMap<String, Adapter<?>> m = typeMap.get(adapter.type);
         if (m == null) {
-            m = new ObjectMap<String, Adapter<?>>();
+            m = new ObjectMap<>();
             typeMap.put(adapter.type, m);
         }
         m.put(adapter.category, adapter);
@@ -354,18 +346,16 @@ public class DistributionAdapters {
     public String toString(Distribution distribution) {
         Adapter adapter = map.get(distribution.getClass());
         String[] args = adapter.toParameters(distribution);
-        String out = adapter.category;
+        StringBuilder out = new StringBuilder(adapter.category);
         for (String a : args)
-            out += "," + a;
-        return out;
+            out.append(",").append(a);
+        return out.toString();
     }
 
     /**
      * Thrown to indicate that the application has attempted to convert a string to one of the distribution types, but that the
      * string does not have the appropriate format.
-     *
-     *      */
-    @SuppressWarnings("serial")
+     */
     public static class DistributionFormatException extends RuntimeException {
 
         /**
