@@ -168,7 +168,7 @@ public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends Bounded
 
         @Override
         public int compareTo(MemberAndSlots<T> other) {
-            return assignmentEase < other.assignmentEase ? -1 : (assignmentEase > other.assignmentEase ? 1 : 0);
+            return Float.compare(assignmentEase, other.assignmentEase);
         }
     }
 }

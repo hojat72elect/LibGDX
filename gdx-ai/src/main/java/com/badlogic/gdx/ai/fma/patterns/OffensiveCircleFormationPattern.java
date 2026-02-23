@@ -15,8 +15,6 @@ public class OffensiveCircleFormationPattern<T extends Vector<T>> extends Defens
 
     /**
      * Creates a {@code OffensiveCircleFormationPattern}
-     *
-     * @param memberRadius
      */
     public OffensiveCircleFormationPattern(float memberRadius) {
         super(memberRadius);
