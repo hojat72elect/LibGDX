@@ -54,16 +54,11 @@ public class StackStateMachine<E, S extends State<E>> extends DefaultStateMachin
     @Override
     public void setInitialState(S state) {
         if (stateStack == null) {
-            stateStack = new Array<S>();
+            stateStack = new Array<>();
         }
 
         this.stateStack.clear();
         this.currentState = state;
-    }
-
-    @Override
-    public S getCurrentState() {
-        return currentState;
     }
 
     /**
