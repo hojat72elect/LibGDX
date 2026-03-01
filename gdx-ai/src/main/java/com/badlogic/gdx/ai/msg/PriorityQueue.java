@@ -39,19 +39,16 @@ public class PriorityQueue<E extends Comparable<E>> {
     private static final double CAPACITY_RATIO_LOW = 1.5f;
 
     private static final double CAPACITY_RATIO_HI = 2f;
-
+    /**
+     * A set used to check elements'uniqueness (if enabled).
+     */
+    private final ObjectSet<E> set;
     /**
      * Priority queue represented as a balanced binary heap: the two children of queue[n] are queue[2*n+1] and queue[2*(n+1)]. The
      * priority queue is ordered by the elements' natural ordering: For each node n in the heap and each descendant d of n, n <= d.
      * The element with the lowest value is in queue[0], assuming the queue is nonempty.
      */
     private Object[] queue;
-
-    /**
-     * A set used to check elements'uniqueness (if enabled).
-     */
-    private final ObjectSet<E> set;
-
     /**
      * A flag indicating whether elements inserted into the queue must be unique.
      */
@@ -78,7 +75,7 @@ public class PriorityQueue<E extends Comparable<E>> {
      */
     public PriorityQueue(int initialCapacity) {
         this.queue = new Object[initialCapacity];
-        this.set = new ObjectSet<E>(initialCapacity);
+        this.set = new ObjectSet<>(initialCapacity);
     }
 
     /**

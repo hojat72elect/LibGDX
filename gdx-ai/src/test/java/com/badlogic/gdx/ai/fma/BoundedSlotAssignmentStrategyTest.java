@@ -10,9 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
-/**
- * Unit tests for BoundedSlotAssignmentStrategy
- */
 public class BoundedSlotAssignmentStrategyTest {
 
     private TestBoundedSlotAssignmentStrategy<Vector2> strategy2D;

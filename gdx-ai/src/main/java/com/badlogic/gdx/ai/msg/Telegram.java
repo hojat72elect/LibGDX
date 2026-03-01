@@ -2,6 +2,8 @@ package com.badlogic.gdx.ai.msg;
 
 import com.badlogic.gdx.utils.Pool.Poolable;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A Telegram is the container of a message. The {@link MessageDispatcher} manages telegram life-cycle.
  */
@@ -83,7 +85,7 @@ public class Telegram implements Comparable<Telegram>, Poolable {
     }
 
     @Override
-    public int compareTo(Telegram other) {
+    public int compareTo(@NotNull Telegram other) {
         if (this.equals(other)) return 0;
         return (this.timestamp - other.timestamp < 0) ? -1 : 1;
     }
@@ -111,8 +113,7 @@ public class Telegram implements Comparable<Telegram>, Poolable {
             if (other.sender != null) return false;
         } else if (!sender.equals(other.sender)) return false;
         if (receiver == null) {
-            if (other.receiver != null) return false;
-        } else if (!receiver.equals(other.receiver)) return false;
-        return true;
+            return other.receiver == null;
+        } else return receiver.equals(other.receiver);
     }
 }

@@ -14,7 +14,7 @@ public class MessageDispatcher implements Telegraph {
 
     private static final String LOG_TAG = MessageDispatcher.class.getSimpleName();
 
-    private static final Pool<Telegram> POOL_GLOBAL = new Pool<Telegram>(16) {
+    private static final Pool<Telegram> POOL_GLOBAL = new Pool<>(16) {
         @Override
         protected Telegram newObject() {
             return new Telegram();
@@ -42,9 +42,9 @@ public class MessageDispatcher implements Telegraph {
         if (pool == null)
             throw new IllegalArgumentException("pool cannot be null");
         this.pool = pool;
-        this.queue = new PriorityQueue<Telegram>();
-        this.msgListeners = new IntMap<Array<Telegraph>>();
-        this.msgProviders = new IntMap<Array<TelegramProvider>>();
+        this.queue = new PriorityQueue<>();
+        this.msgListeners = new IntMap<>();
+        this.msgProviders = new IntMap<>();
     }
 
     /**
@@ -72,7 +72,7 @@ public class MessageDispatcher implements Telegraph {
         Array<Telegraph> listeners = msgListeners.get(msg);
         if (listeners == null) {
             // Associate an empty unordered array with the message code
-            listeners = new Array<Telegraph>(false, 16);
+            listeners = new Array<>(false, 16);
             msgListeners.put(msg, listeners);
         }
         listeners.add(listener);
@@ -113,7 +113,7 @@ public class MessageDispatcher implements Telegraph {
         Array<TelegramProvider> providers = msgProviders.get(msg);
         if (providers == null) {
             // Associate an empty unordered array with the message code
-            providers = new Array<TelegramProvider>(false, 16);
+            providers = new Array<>(false, 16);
             msgProviders.put(msg, providers);
         }
         providers.add(provider);
@@ -644,7 +644,7 @@ public class MessageDispatcher implements Telegraph {
 
     /**
      * This method is used by {@link #dispatchMessage(float, Telegraph, Telegraph, int, Object) dispatchMessage} for immediate
-     * telegrams and {@link #update(float) update} for delayed telegrams. It first calls the message handling method of the
+     * telegrams and {update(float) update} for delayed telegrams. It first calls the message handling method of the
      * receiving agents with the specified telegram then returns the telegram to the pool.
      *
      * @param telegram the telegram to discharge
@@ -668,7 +668,8 @@ public class MessageDispatcher implements Telegraph {
                 }
             }
             // Telegram could not be handled
-            if (debugEnabled && handledCount == 0) GdxAI.getLogger().info(LOG_TAG, "Message " + telegram.message + " not handled");
+            if (debugEnabled && handledCount == 0)
+                GdxAI.getLogger().info(LOG_TAG, "Message " + telegram.message + " not handled");
         }
 
         if (telegram.returnReceiptStatus == Telegram.RETURN_RECEIPT_NEEDED) {
@@ -698,8 +699,7 @@ public class MessageDispatcher implements Telegraph {
     /**
      * A {@code PendingMessageCallback} is used by the {@link MessageDispatcher#scanQueue(PendingMessageCallback) scanQueue} method
      * of the {@link MessageDispatcher} to report its pending messages individually.
-     *
-     *      */
+     */
     public interface PendingMessageCallback {
 
         /**
