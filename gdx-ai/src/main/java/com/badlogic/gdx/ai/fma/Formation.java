@@ -59,7 +59,7 @@ public class Formation<T extends Vector<T>> {
      * @throws IllegalArgumentException if the anchor point is {@code null}
      */
     public Formation(Location<T> anchor, FormationPattern<T> pattern) {
-        this(anchor, pattern, new FreeSlotAssignmentStrategy<T>(), null);
+        this(anchor, pattern, new FreeSlotAssignmentStrategy<>(), null);
     }
 
     /**
@@ -91,7 +91,7 @@ public class Formation<T extends Vector<T>> {
         this.slotAssignmentStrategy = slotAssignmentStrategy;
         this.motionModerator = motionModerator;
 
-        this.slotAssignments = new Array<SlotAssignment<T>>();
+        this.slotAssignments = new Array<>();
         this.driftOffset = anchor.newLocation();
         this.positionOffset = anchor.getPosition().cpy();
     }
@@ -214,7 +214,7 @@ public class Formation<T extends Vector<T>> {
         // Check if the pattern supports one more slot
         if (pattern.supportsSlots(occupiedSlots + 1)) {
             // Add a new slot assignment
-            slotAssignments.add(new SlotAssignment<T>(member, occupiedSlots));
+            slotAssignments.add(new SlotAssignment<>(member, occupiedSlots));
 
             // Update the slot assignments and return success
             updateSlotAssignments();
@@ -290,18 +290,8 @@ public class Formation<T extends Vector<T>> {
 
             T relativeLocPosition = relativeLoc.getPosition();
 
-// System.out.println("relativeLoc.position = " + relativeLocPosition);
-
-// [17:31] <@Xoppa> davebaol, interface Transform<T extends Vector<T>> { T getTranslation(); T getScale(); float getRotation();
-// void transform(T val); }
-// [17:31] <@Xoppa>
-// https://github.com/libgdx/libgdx/blob/master/gdx/src/com/badlogic/gdx/graphics/g3d/utils/BaseAnimationController.java#L40
-// [17:34] * ThreadL0ck (~ThreadL0c@197.220.114.182) Quit (Remote host closed the connection)
-// [17:35] <davebaol> thanks Xoppa, sounds interesting
-
             // TODO Consider the possibility of declaring mul(orientationMatrix) in Vector
             // Transform it by the anchor point's position and orientation
-// relativeLocPosition.mul(orientationMatrix).add(anchor.position);
             if (relativeLocPosition instanceof Vector2)
                 ((Vector2) relativeLocPosition).mul(orientationMatrix);
             else if (relativeLocPosition instanceof Vector3) ((Vector3) relativeLocPosition).mul(orientationMatrix);

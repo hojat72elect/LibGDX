@@ -28,11 +28,9 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
  */
 public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends BoundedSlotAssignmentStrategy<T> {
 
-    protected SlotCostProvider<T> slotCostProvider;
-
-    protected float costThreshold;
-
     private final BooleanArray filledSlots;
+    protected SlotCostProvider<T> slotCostProvider;
+    protected float costThreshold;
 
     /**
      * Creates a {@code SoftRoleSlotAssignmentStrategy} with the given slot cost provider and no cost threshold.
@@ -60,7 +58,7 @@ public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends Bounded
     public void updateSlotAssignments(Array<SlotAssignment<T>> assignments) {
 
         // Holds a list of member and slot data for each member.
-        Array<MemberAndSlots<T>> memberData = new Array<MemberAndSlots<T>>();
+        Array<MemberAndSlots<T>> memberData = new Array<>();
 
         // Compile the member data
         int numberOfAssignments = assignments.size;
@@ -68,7 +66,7 @@ public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends Bounded
             SlotAssignment<T> assignment = assignments.get(i);
 
             // Create a new member datum, and fill it
-            MemberAndSlots<T> datum = new MemberAndSlots<T>(assignment.member);
+            MemberAndSlots<T> datum = new MemberAndSlots<>(assignment.member);
 
             // Add each valid slot to it
             for (int j = 0; j < numberOfAssignments; j++) {
@@ -82,7 +80,7 @@ public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends Bounded
                 SlotAssignment<T> slot = assignments.get(j);
 
                 // Store the slot information
-                CostAndSlot<T> slotDatum = new CostAndSlot<T>(cost, slot.slotNumber);
+                CostAndSlot<T> slotDatum = new CostAndSlot<>(cost, slot.slotNumber);
                 datum.costAndSlots.add(slotDatum);
 
                 // Add it to the member's ease of assignment
@@ -151,7 +149,7 @@ public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends Bounded
 
         @Override
         public int compareTo(CostAndSlot<T> other) {
-            return cost < other.cost ? -1 : (cost > other.cost ? 1 : 0);
+            return Float.compare(cost, other.cost);
         }
     }
 
@@ -163,7 +161,7 @@ public class SoftRoleSlotAssignmentStrategy<T extends Vector<T>> extends Bounded
         public MemberAndSlots(FormationMember<T> member) {
             this.member = member;
             this.assignmentEase = 0f;
-            this.costAndSlots = new Array<CostAndSlot<T>>();
+            this.costAndSlots = new Array<>();
         }
 
         @Override
