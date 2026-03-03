@@ -62,9 +62,8 @@ public class IndexedAStarPathFinder<N> implements PathFinder<N> {
         this(graph, false);
     }
 
-    @SuppressWarnings("unchecked")
     public IndexedAStarPathFinder(IndexedGraph<N> graph, boolean calculateMetrics) {
-        this(graph, calculateMetrics, new EqualsByReferenceStopCondition<N>());
+        this(graph, calculateMetrics, new EqualsByReferenceStopCondition<>());
     }
 
     @SuppressWarnings("unchecked")
@@ -284,7 +283,7 @@ public class IndexedAStarPathFinder<N> implements PathFinder<N> {
             }
             return nr;
         }
-        nr = nodeRecords[index] = new NodeRecord<N>();
+        nr = nodeRecords[index] = new NodeRecord<>();
         nr.node = node;
         nr.searchId = searchId;
         return nr;
@@ -299,7 +298,8 @@ public class IndexedAStarPathFinder<N> implements PathFinder<N> {
      * If you use Java 8 or higher, you can use a lambda as a StopCondition.
      *
      * @param <N> Type of node
-     *      */
+     *
+     */
     public interface StopCondition<N> {
         boolean shouldStopSearch(N currentNode, N endNode);
     }
@@ -308,7 +308,8 @@ public class IndexedAStarPathFinder<N> implements PathFinder<N> {
      * This nested class is used to keep track of the information we need for each node during the search.
      *
      * @param <N> Type of node
-     *      */
+     *
+     */
     static class NodeRecord<N> extends BinaryHeap.Node {
         /**
          * The reference to the node.
@@ -352,8 +353,7 @@ public class IndexedAStarPathFinder<N> implements PathFinder<N> {
 
     /**
      * A class used by {@link IndexedAStarPathFinder} to collect search metrics.
-     *
-     *      */
+     */
     public static class Metrics {
         public int visitedNodes;
         public int openListAdditions;
@@ -375,7 +375,8 @@ public class IndexedAStarPathFinder<N> implements PathFinder<N> {
      * {@link IndexedAStarPathFinder#IndexedAStarPathFinder(IndexedGraph, boolean)} creates one by default.
      *
      * @param <N> Type of node
-     *      */
+     *
+     */
     public static class EqualsByReferenceStopCondition<N> implements StopCondition<N> {
         @Override
         public boolean shouldStopSearch(N currentNode, N endNode) {

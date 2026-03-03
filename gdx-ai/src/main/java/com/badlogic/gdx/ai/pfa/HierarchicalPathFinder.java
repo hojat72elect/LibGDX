@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.TimeUtils;
  * finder has no way of telling that it is working with a hierarchical graph and it doesn't need to, meaning that you can use any
  * path finder implementation for the level path finder.
  *
- * @param <N> Type of node
+ * @param <N> Type of node.
  */
 public class HierarchicalPathFinder<N> implements PathFinder<N> {
     private static final String TAG = "HierarchicalPathFinder";
@@ -41,7 +41,7 @@ public class HierarchicalPathFinder<N> implements PathFinder<N> {
         if (startNode == endNode) return true;
 
         // Set up our initial pair of nodes
-        N currentStartNode = startNode;
+        N currentStartNode;
         N currentEndNode = endNode;
         int levelOfNodes = 0;
 
@@ -90,7 +90,7 @@ public class HierarchicalPathFinder<N> implements PathFinder<N> {
         if (startNode == endNode) return true;
 
         // Set up our initial pair of nodes
-        N currentStartNode = startNode;
+        N currentStartNode;
         N currentEndNode = endNode;
         int levelOfNodes = 0;
 
@@ -139,8 +139,8 @@ public class HierarchicalPathFinder<N> implements PathFinder<N> {
 
         // Make sure the level request and its control are instantiated
         if (levelRequest == null) {
-            levelRequest = new LevelPathFinderRequest<N>();
-            levelRequestControl = new PathFinderRequestControl<N>();
+            levelRequest = new LevelPathFinderRequest<>();
+            levelRequestControl = new PathFinderRequestControl<>();
         }
 
         // We have to initialize the search if the status has just changed
@@ -150,7 +150,7 @@ public class HierarchicalPathFinder<N> implements PathFinder<N> {
             // Check if we have no path to find
             if (request.startNode == request.endNode) return true;
 
-            // Prepare the the level request control
+            // Prepare the level request control
             levelRequestControl.lastTime = TimeUtils.nanoTime(); // Keep track of the current time
             levelRequestControl.timeToRun = timeToRun;
             levelRequestControl.timeTolerance = PathFinderQueue.TIME_TOLERANCE;
@@ -171,18 +171,13 @@ public class HierarchicalPathFinder<N> implements PathFinder<N> {
         }
 
         while (levelRequest.currentLevel >= 0) {
-//			if (DEBUG) GdxAI.getLogger().debug(TAG, "currentLevel = "+levelRequest.currentLevel);
 
             boolean finished = levelRequestControl.execute(levelRequest);
-//			if (DEBUG) GdxAI.getLogger().debug(TAG, "finished = "+finished);
-//			if (DEBUG) GdxAI.getLogger().debug(TAG, "pathFound = "+levelRequest.pathFound);
 
-//			if (finished && !levelRequest.pathFound) return true;
             if (!finished) {
                 return false;
             } else {
                 levelRequest.executionFrames = 0;
-//				levelRequest.pathFound = false;
                 levelRequest.status = PathFinderRequest.SEARCH_NEW;
                 levelRequest.statusChanged = true;
 

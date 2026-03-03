@@ -2,6 +2,8 @@ package com.badlogic.gdx.ai.pfa;
 
 import com.badlogic.gdx.utils.Array;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 
 /**
@@ -16,14 +18,14 @@ public class DefaultGraphPath<N> implements GraphPath<N> {
      * Creates a {@code DefaultGraphPath} with no nodes.
      */
     public DefaultGraphPath() {
-        this(new Array<N>());
+        this(new Array<>());
     }
 
     /**
      * Creates a {@code DefaultGraphPath} with the given capacity and no nodes.
      */
     public DefaultGraphPath(int capacity) {
-        this(new Array<N>(capacity));
+        this(new Array<>(capacity));
     }
 
     /**
@@ -58,6 +60,7 @@ public class DefaultGraphPath<N> implements GraphPath<N> {
         nodes.reverse();
     }
 
+    @NotNull
     @Override
     public Iterator<N> iterator() {
         return nodes.iterator();

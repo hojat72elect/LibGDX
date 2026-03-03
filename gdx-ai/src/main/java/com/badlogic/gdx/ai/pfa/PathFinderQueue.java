@@ -7,7 +7,7 @@ import com.badlogic.gdx.ai.utils.CircularBuffer;
 import com.badlogic.gdx.utils.TimeUtils;
 
 /**
- * @param <N> Type of node
+ * @param <N> is the type of node.
  */
 public class PathFinderQueue<N> implements Schedulable, Telegraph {
 
@@ -23,9 +23,9 @@ public class PathFinderQueue<N> implements Schedulable, Telegraph {
 
     public PathFinderQueue(PathFinder<N> pathFinder) {
         this.pathFinder = pathFinder;
-        this.requestQueue = new CircularBuffer<PathFinderRequest<N>>(16);
+        this.requestQueue = new CircularBuffer<>(16);
         this.currentRequest = null;
-        this.requestControl = new PathFinderRequestControl<N>();
+        this.requestControl = new PathFinderRequestControl<>();
     }
 
     @Override
