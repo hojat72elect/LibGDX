@@ -7,8 +7,7 @@ import com.badlogic.gdx.ai.msg.Telegraph;
 
 /**
  * A request for interruptible pathfinding that should be sent to a {@link PathFinderQueue} through a {@link Telegram}.
- *
- * @param <N> Type of node
+ * @param <N> Type of node.
  */
 public class PathFinderRequest<N> {
 
@@ -32,8 +31,7 @@ public class PathFinderRequest<N> {
     /**
      * Creates an empty {@code PathFinderRequest}
      */
-    public PathFinderRequest() {
-    }
+    public PathFinderRequest() {}
 
     /**
      * Creates a {@code PathFinderRequest} with the given arguments that uses the singleton message dispatcher provided by
@@ -75,8 +73,8 @@ public class PathFinderRequest<N> {
     }
 
     /**
-     * @param pathFinder the path finder
-     * @param timeToRun  the time in nanoseconds that this call can use on the current frame
+     * @param pathFinder the path-finder.
+     * @param timeToRun  the time in nanoseconds that this call can use on the current frame.
      * @return {@code true} if the search has completed; {@code false} if more time is needed to complete.
      */
     public boolean search(PathFinder<N> pathFinder, long timeToRun) {
