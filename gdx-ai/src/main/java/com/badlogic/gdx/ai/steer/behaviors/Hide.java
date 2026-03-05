@@ -10,7 +10,7 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector;
 
 /**
- * This behavior attempts to position a owner so that an obstacle is always between itself and the agent (the hunter) it's trying
+ * This behavior attempts to position an owner so that an obstacle is always between itself and the agent (the hunter) it's trying
  * to hide from. First the distance to each of these obstacles is determined. Then the owner uses the arrive behavior to steer
  * toward the closest one. If no appropriate obstacles can be found, no steering is returned.
  * <p>

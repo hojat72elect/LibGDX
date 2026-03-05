@@ -47,8 +47,8 @@ public class BlendedSteering<T extends Vector<T>> extends SteeringBehavior<T> {
     public BlendedSteering(Steerable<T> owner) {
         super(owner);
 
-        this.list = new Array<BehaviorAndWeight<T>>();
-        this.steering = new SteeringAcceleration<T>(newVector(owner));
+        this.list = new Array<>();
+        this.steering = new SteeringAcceleration<>(newVector(owner));
     }
 
     /**
@@ -59,7 +59,7 @@ public class BlendedSteering<T extends Vector<T>> extends SteeringBehavior<T> {
      * @return this behavior for chaining.
      */
     public BlendedSteering<T> add(SteeringBehavior<T> behavior, float weight) {
-        return add(new BehaviorAndWeight<T>(behavior, weight));
+        return add(new BehaviorAndWeight<>(behavior, weight));
     }
 
     /**
@@ -160,10 +160,6 @@ public class BlendedSteering<T extends Vector<T>> extends SteeringBehavior<T> {
         this.limiter = limiter;
         return this;
     }
-
-    //
-    // Nested classes
-    //
 
     public static class BehaviorAndWeight<T extends Vector<T>> {
 

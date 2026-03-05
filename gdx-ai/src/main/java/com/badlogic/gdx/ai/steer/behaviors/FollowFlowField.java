@@ -157,11 +157,11 @@ public class FollowFlowField<T extends Vector<T>> extends SteeringBehavior<T> {
     }
 
     /**
-     * A {@code FlowField} defines a mapping from a location in space to a flow vector. Typically flow fields are implemented as a
+     * A {@code FlowField} defines a mapping from a location in space to a flow vector. Typically, flow fields are implemented as a
      * multidimensional array representing a grid of cells. In each cell of the grid lives a flow vector.
      *
-     * @param <T> Type of vector, either 2D or 3D, implementing the {@link Vector} interface
-     *      */
+     * @param <T> Type of vector, either 2D or 3D, implementing the {@link Vector} interface.
+     */
     public interface FlowField<T extends Vector<T>> {
         /**
          * Returns the flow vector for the specified position in space.
