@@ -124,8 +124,7 @@ public class PriorityScheduler extends SchedulerBase<PrioritySchedulableRecord> 
 
     /**
      * A scheduled task with priority.
-     *
-     *      */
+     */
     static class PrioritySchedulableRecord extends SchedulableRecord {
         float priority;
 

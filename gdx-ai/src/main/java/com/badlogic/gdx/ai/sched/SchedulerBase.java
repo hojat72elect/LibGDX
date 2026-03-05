@@ -24,8 +24,8 @@ public abstract class SchedulerBase<T extends SchedulerBase.SchedulableRecord> i
      *                     {@link #addWithAutomaticPhasing(Schedulable, int)}
      */
     public SchedulerBase(int dryRunFrames) {
-        this.schedulableRecords = new Array<T>();
-        this.runList = new Array<T>();
+        this.schedulableRecords = new Array<>();
+        this.runList = new Array<>();
         this.phaseCounters = new IntArray();
         this.dryRunFrames = dryRunFrames;
     }
@@ -36,7 +36,7 @@ public abstract class SchedulerBase<T extends SchedulerBase.SchedulableRecord> i
      * the size of the least common multiple (LCM, see {@link ArithmeticUtils#lcmPositive(int, int)}) of all the frequency values
      * used in the scheduler so far.
      *
-     * @param frequency the frequency of the skedulable task to add
+     * @param frequency the frequency of the schedulable task to add
      * @return the best phase based on the length of the dry run.
      */
     protected int calculatePhase(int frequency) {
@@ -76,7 +76,8 @@ public abstract class SchedulerBase<T extends SchedulerBase.SchedulableRecord> i
     /**
      * A scheduled task.
      *
-     *      */
+     *
+     */
     protected static class SchedulableRecord {
         Schedulable schedulable;
         int frequency;

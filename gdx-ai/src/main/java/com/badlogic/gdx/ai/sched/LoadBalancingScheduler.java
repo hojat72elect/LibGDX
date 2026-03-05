@@ -53,8 +53,8 @@ public class LoadBalancingScheduler extends SchedulerBase<SchedulableRecord> {
      * Adds the {@code schedulable} to the list using the given {@code frequency} and a phase calculated by a dry run of the
      * scheduler.
      *
-     * @param schedulable the task to schedule
-     * @param frequency   the frequency
+     * @param schedulable the task to schedule.
+     * @param frequency   the frequency.
      */
     @Override
     public void addWithAutomaticPhasing(Schedulable schedulable, int frequency) {
